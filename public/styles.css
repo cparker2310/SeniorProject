@@ -6,7 +6,7 @@ body{
   letter-spacing: 1px;
   background: #ffffff;
 }
-h1, h2, h3, h4, ul, li, a, p, input, label, div, footer{
+h1, h2, h3, h4, ul, li, a, p, input, label, div, {
   margin: 0;
   padding: 0;
   font-family: 'Domine', serif;
@@ -134,9 +134,4 @@ header .btn{
 .option img{
   width: 100px;
   margin: -30px auto 20px;
-}
-footer{
-  text-align: center;
-  margin-top: 120px;
-  color: #aaa;
 }
