@@ -14,13 +14,13 @@ const userSchema= new mongoose.Schema({
         type: String,
         required: [true, 'Password is required'],
         minlength: [8, 'Password length must be a minimum of 8 characters']
-    },
+    }
 });
 
-userSchema.post('save', function (document, next) {
+/*userSchema.post('save', function (document, next) {
     console.log('New Profile Saved Successfully', document);
     next();
-});
+});*/
 
 userSchema.pre('save', async function (next) {
     const salt= await bcrypt.genSalt();
@@ -42,5 +42,5 @@ userSchema.statics.login= async function (email, password) {
     throw Error('Email is not registered');
 }
 
-const User= mongoose.model('user', userSchema)
+const User= mongoose.model('user', userSchema);
 module.exports= User;
