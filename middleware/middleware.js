@@ -57,5 +57,4 @@ const checkUser= (request, response, next) => {
     }
 }
 
-module.exports= {requireAuthen};
-module.exports= {checkUser};
+module.exports= {requireAuthen, checkUser};
