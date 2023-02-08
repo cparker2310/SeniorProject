@@ -1,4 +1,4 @@
-# SeniorProject
+# Senior Project: Maryvale Alumnae Directory
 
 ## Requirements
 
