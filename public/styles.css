@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Domine&display=swap');
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 body{
   margin: 20px 40px;
   font-size: 1.2rem;
   letter-spacing: 1px;
-  background-image: ("castle.jpg");
+  background: #fafafa;
 }
-h1, h2, h3, h4, ul, li, a, p, input, label, div {
+h1, h2, h3, h4, ul, li, a, p, input, label, button, div, footer{
   margin: 0;
   padding: 0;
-  font-family: 'Domine', serif;
+  font-family: 'Quicksand', sans-serif;
   color: #444;
 }
 ul{
@@ -41,9 +42,7 @@ nav li a{
 }
 .btn{
   border-radius: 36px;
-  background: #af2d38;
-  font-family: 'Domine', serif;
-  color: rgb(255, 255, 255);
+  background: #FEE996;
 }
 form h2{
   font-size: 2.4em;
@@ -72,7 +71,7 @@ label{
 button{
   margin-top: 30px;
   border-radius: 36px;
-  background: #af2d38;
+  background: #FEE996;
   border:0;
   text-transform: uppercase;
   font-weight: 700;
@@ -80,8 +79,6 @@ button{
   display: block;
   padding: 10px 16px;
   letter-spacing: 2px;
-  font-family: 'Domine', serif;
-  color: rgb(255, 255, 255);
 }
 .error{
   color: #ff0099;
@@ -93,10 +90,9 @@ header{
   display: flex;
   align-items: center;
 }
-header h1 {
-  font-size: 3em;
-  margin-top: 400px;
-  color: rgb(255, 255, 255);
+header img{
+  width: 250px;
+  margin-right: 40px;
 }
 header h2{
   font-size: 3em;
@@ -116,7 +112,7 @@ header .btn{
   display: inline-block;
   font-size: 0.8em;
 }
-.options{
+.recipes{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 30px;
@@ -124,15 +120,20 @@ header .btn{
   margin: 80PX AUTO;
   max-width: 1200px;
 }
-.option{
+.recipe{
   display: inline-block;
   border-radius: 20px;
   background: white;
   position: relative;
   text-align: center;
-  padding: 0 20px 30px 20px;
+  padding: 0 20px 30px 20px
 }
-.option img{
+.recipe img{
   width: 100px;
   margin: -30px auto 20px;
+}
+footer{
+  text-align: center;
+  margin-top: 120px;
+  color: #aaa;
 }
