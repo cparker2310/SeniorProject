@@ -12,7 +12,7 @@ app.use(cookieParser());
 
 app.set('view engine', 'ejs');
 
-const dbURI = 'mongodb+srv://Barbara:JhqipbEQE1Wc6qDS@cluster0.cxdjlov.mongodb.net/?retryWrites=true&w=majority';
+const dbURI = 'mongodb+srv://cparker2310:astonsoccer@cluster0.2sqxf.mongodb.net/node-auth';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
   .then((result) => app.listen(3000))
   .catch((err) => console.log(err));
