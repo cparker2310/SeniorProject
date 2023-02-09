@@ -1,30 +1,29 @@
 {
   "name": "SeniorProject",
   "version": "1.0.0",
+  "description": "",
   "main": "app.js",
   "dependencies": {
-    "bcrypt": "^5.1.0",
-    "cookie-parser": "^1.4.6",
-    "ejs": "^3.1.8",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.0",
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.23",
-    "validate": "^5.2.0",
-    "validator": "^13.7.0"
+    "validator": "^13.1.1"
   },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cparker2310/SeniorProject.git"
+    "url": "git+https://github.com/iamshaunjp/node-express-jwt-auth.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cparker2310/SeniorProject/issues"
+    "url": "https://github.com/iamshaunjp/node-express-jwt-auth/issues"
   },
-  "homepage": "https://github.com/cparker2310/SeniorProject#readme",
-  "description": ""
-}
+  "homepage": "https://github.com/iamshaunjp/node-express-jwt-auth#readme"
