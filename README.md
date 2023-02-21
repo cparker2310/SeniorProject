@@ -2,7 +2,7 @@
 
 ## Requirements
 
-[User Stories](https://docs.google.com/spreadsheets/d/1kykr5OWJhqd-gHRz7Cqxc_k8ILerQRz-HDJO-mg1TKo/edit#gid=0)
+[User Stories](https://docs.google.com/spreadsheets/d/1_QwudAAi9BX-j_2ZAZfFq_GFp-EMWKnDFQONNTnFGdA/edit?pli=1#gid=0)
 
 ## Design, UI, & Diagrams
 
