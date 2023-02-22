@@ -69,9 +69,3 @@ export const BtnWrap= styled.div`
     display: flex;
     justify-content: flex-start;
 `;
-
-export const Img= styled.img`
-    width: 100%;
-    margin: 0 0 10px;
-    padding-right: 0px;
-`;

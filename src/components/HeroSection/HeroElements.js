@@ -4,8 +4,6 @@ import { FaPaw } from 'react-icons/fa';
 import { GiFlatPawPrint } from 'react-icons/gi';
 
 export const HeroContainer= styled.div`
-    background: #0000;
-    backgroundImage: ${Image};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +41,7 @@ export const ImageBg= styled.image`
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
-    background: #342323;
+    backgroundImage: ${Image};
 `;
 
 export const HeroContent= styled.div`

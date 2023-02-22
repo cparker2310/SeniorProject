@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Home from './pages';
 import LogInPage from './pages/login';
 
+
 function App() {
     return (
         <Router>
