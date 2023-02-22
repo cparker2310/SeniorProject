@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../ButtonElement';
+import { Button } from '../../ButtonElement';
 import {
     SectionContainer,
     SectionWrapper,
@@ -10,8 +10,6 @@ import {
     Heading,
     Subtitle,
     BtnWrap,
-    ImgWrap,
-    Img
 } from './SectionElements';
 
 const Section = ({
@@ -23,7 +21,6 @@ const Section = ({
     darkText, 
     description, 
     buttonLabel, 
-    img,
     primary,
     dark,
     dark2

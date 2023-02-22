@@ -7,7 +7,7 @@ import {
     FormLabel,
     FormWrap, 
     Icon, 
-    Form1, 
+    FormH1, 
     Form 
 } from './LogInElements';
 
@@ -19,7 +19,7 @@ const LogIn = () => {
             <Icon to='/'>MARYVALE</Icon>
             <FormContent>
                 <Form action="#">
-                    <Form1>Log In</Form1>
+                    <FormH1>Log In</FormH1>
                     <FormLabel htmlFor='for'>Email</FormLabel>
                     <FormInput type='email' required/>
                     <FormLabel htmlFor='for'>Password</FormLabel>
