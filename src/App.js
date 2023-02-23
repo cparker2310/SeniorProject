@@ -1,19 +1,27 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import NavBar from './components/NavBar/Navbar';
+import Directory from './pages/Directory';
+import Messages from './pages/Messages';
+import Conduct from './pages/Conduct';
+import Jobs from './pages/Jobs';
+import Home from './pages/Home';
 
 function App() {
     return (
-        <Router>
-            <Navbar />
-            <Routes>
-                <Route path="/"/>
-                <Route path="/conduct"/>
-                <Route path="/directory"/>
-                <Route path="/jobs"/>
-                <Route path="/messages"/>
-            </Routes>
-        </Router>
+        <>
+            <NavBar />
+            <div className="container">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/conduct" element={<Conduct />} />
+                  <Route path="/directory" element={<Directory />} />
+                  <Route path="/jobs" element={<Jobs />} />
+                  <Route path="/messages" element={<Messages />} />
+                </Routes>
+                
+            </div>
+        </>
     );
 }
 
