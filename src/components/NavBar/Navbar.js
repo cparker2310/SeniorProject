@@ -100,7 +100,7 @@ const Navbar = () => {
           <NavLink to="/messages">Message Board</NavLink>
         </Nav>
         <ButtonContainer>
-          <Button to="/signup" css={`color: #e6e1e1; background: inherit;`}>
+          <Button to="/consent" css={`color: #e6e1e1; background: inherit;`}>
             Register
           </Button>
           <Button to="/login">
