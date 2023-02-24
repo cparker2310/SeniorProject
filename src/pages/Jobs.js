@@ -1,4 +1,11 @@
-export default function Jobs()
-{
-    return <h1>Career Center</h1>
+import React from 'react'
+
+const CareerCenter = () => {
+  return (
+    <div>
+      
+    </div>
+  )
 }
+
+export default CareerCenter;

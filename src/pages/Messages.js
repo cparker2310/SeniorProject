@@ -1,4 +1,11 @@
-export default function Messages()
-{
-    return <h1>Message Board</h1>
+import React from 'react'
+
+const MessageBoard = () => {
+  return (
+    <div>
+      
+    </div>
+  )
 }
+
+export default MessageBoard;

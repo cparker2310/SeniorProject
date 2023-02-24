@@ -1,4 +1,11 @@
-export default function Directory()
-{
-     return <h1>Directory</h1>
+import React from 'react'
+
+const Directory = () => {
+  return (
+    <div>
+      
+    </div>
+  )
 }
+
+export default Directory;

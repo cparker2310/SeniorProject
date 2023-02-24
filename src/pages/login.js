@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SiteConduct = () => {
+const LogInPage = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const SiteConduct = () => {
   );
 }
 
-export default SiteConduct;
+export default LogInPage;

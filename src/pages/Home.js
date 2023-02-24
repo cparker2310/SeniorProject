@@ -1,4 +1,14 @@
-export default function Home() 
-{
-    return <h1>Maryvale Alumnae Network</h1>
+import React from 'react';
+import Hero from '../components/Hero/Hero';
+import Navbar from '../components/Navbar/Navbar';
+
+const Home = () => {
+  return (
+    <>
+        <Navbar />
+        <Hero />
+    </>
+  );
 }
+
+export default Home;
