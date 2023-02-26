@@ -21,3 +21,5 @@ app.get('*', checkUser);
 app.get('/', (request, response) => response.render('home'));
 app.get('/options', requireAuthen, (request, response) => response.render('options'));
 app.use(routes);
+
+
