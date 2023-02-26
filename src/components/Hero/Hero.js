@@ -5,7 +5,8 @@ import { FaPaw } from 'react-icons/fa';
 
 const Section= styled.section`
     background-image: url(${Castle});
-    height: 785px;
+    height: 100%;
+    width: 100%;
     display: block;
     background-size: cover;
     background-repeat: no-repeat;
@@ -13,13 +14,15 @@ const Section= styled.section`
 `;
 
 const Title= styled.h1`
-    font-size: 55px;
+    font-size: 72px;
     color: #fdfdfd;
-    font-weight: 400;
+    font-weight: bold;
     position: relative;
     z-index: 1;
-    margin: 315px;
+    margin: 375px;
     margin-bottom: -80px;
+    text-align: center;
+    text-shadow: 1.5px 1.5px 2.5px #030000;
 `;
 
 const Button= styled.section`
@@ -37,9 +40,6 @@ const Button= styled.section`
     background: linear-gradient(90deg, #60000D, #a32738);
     text-decoration: none;
     box-shadow: 0 15px 14px rgb(0 42 177 / 12%);
-    margin: 305px;
-    margin-left: 150px;
-    margin-right: 150px;
 `;
 
 const Hero = () => {
