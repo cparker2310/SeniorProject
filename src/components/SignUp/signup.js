@@ -22,13 +22,13 @@ export const FormWrap= styled.div`
 `;
 
 export const Icon= styled(Link)`
-  margin-left: 28px;
-  margin-top: 28px;
+  margin-left: 20px;
+  margin-top: 20px;
   text-decoration: none;
-  color: #d12626;
+  color: #a32738;
   font-weight: 800;
   font-size: 34px;
-  text-shadow: 1.5px 1.5px 2.5px #030000;
+  text-shadow: 1.5px 1.5px 0.5px #a32738;
 `;
 
 export const FormContent= styled.div`
@@ -92,6 +92,7 @@ const SignUp = () => {
             <Form action='#'>
               <FormH1>Register</FormH1>
               <FormLabel htmlFor='for'>Full Name</FormLabel>
+                <FormInput type='name' required />
               <FormLabel htmlFor='for'>Email</FormLabel>
                 <FormInput type='email' required />
               <FormLabel htmlFor='for'>Password</FormLabel>
