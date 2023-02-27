@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import Castle from '../../images/castle.jpg';
-import { FaPaw } from 'react-icons/fa';
+//import { FaPaw } from 'react-icons/fa';
 
 const Section= styled.section`
     background-image: url(${Castle});
@@ -25,7 +25,7 @@ const Title= styled.h1`
     text-shadow: 1.5px 1.5px 2.5px #030000;
 `;
 
-const Button= styled.section`
+/*const Button= styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,7 +40,9 @@ const Button= styled.section`
     background: linear-gradient(90deg, #60000D, #a32738);
     text-decoration: none;
     box-shadow: 0 15px 14px rgb(0 42 177 / 12%);
-`;
+
+    <Button>JOIN NETWORK <FaPaw /></Button>
+`;*/
 
 const Hero = () => {
   return (
@@ -48,7 +50,6 @@ const Hero = () => {
        <Title>
             Maryvale Alumnae Network
         </Title>
-        <Button>JOIN NETWORK <FaPaw /></Button>
     </Section>
   );
 }
