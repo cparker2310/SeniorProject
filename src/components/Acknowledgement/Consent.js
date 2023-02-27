@@ -108,7 +108,7 @@ const Consent = () => {
                     and agree to sharing my personal 
                     information on the Maryvale Alumnae Network.
                     <Cancel to="/">Cancel</Cancel>
-                    <Proceed /*to="/createprofile*/>Proceed</Proceed>
+                    <Proceed to="/signup">Proceed</Proceed>
                 </Content>
             </BoxWrapper>
         </Container>
