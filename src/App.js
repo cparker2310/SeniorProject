@@ -1,9 +1,9 @@
-import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './pages/home';
 import Consent from './components/Acknowledgement/Consent';
-import LogInPage from './pages/login';
+import LogInPage from './components/LogIn/login';
+import SignUpPage from './pages/SignUp';
 import SiteConduct from './pages/conduct';
 import Directory from './pages/directory';
 import CareerCenter from './pages/jobs';
@@ -16,6 +16,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} exact />
                     <Route path="/consent" element={<Consent/>} exact />
+                    <Route path="/signup" element={<SignUpPage/>} exact />
                     <Route path="/login" element={<LogInPage />} exact />
                     <Route path="/conduct" element={<SiteConduct />} exact />
                     <Route path="/directory" element={<Directory />} exact />
@@ -23,6 +24,8 @@ function App() {
                     <Route path="/messages" element={<MessageBoard />} exact />
                 </Routes>
             </Router>
+
+
         </>
     );
 }
