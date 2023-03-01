@@ -90,15 +90,22 @@ class signup extends Component {
     super(props)
 
     this.state = {
-        name: '',
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
+        maidenName: '',
+        classYear: 2000,
+        degree: '',
+        currentCity: '',
+        currentState: '',
+        universityName: '',
     }
 }
 
 handleChangeInputName = async event => {
-    const name = event.target.value
-    this.setState({ name })
+    const firstName = event.target.value
+    this.setState({ firstName })
 }
 
 handleChangeInputEmail = async event => {
@@ -115,20 +122,27 @@ handleChangeInputPassword = async event => {
 }
 
 handleIncludeUser = async () => {
-    const { name, email, password } = this.state
-    const payload = { name, email, password }
+    const { firstName, lastName, email, password, maidenName, classYear, degree, currentCity, currentState, universityName } = this.state
+    const payload = { firstName, lastName, email, password, maidenName, classYear, degree, currentCity, currentState, universityName }
 
     await api.insertUser(payload).then(res => {
         window.alert(`User inserted successfully`)
         this.setState({
-            name: '',
-            email: '',
-            password: '',
-        })
+          firstName: '',
+          lastName: '',
+          email: '',
+          password: '',
+          maidenName: '',
+          classYear: 2000,
+          degree: '',
+          currentCity: '',
+          currentState: '',
+          universityName: '',
+      })
     })
 }
 render() {
-  const { name, email, password } = this.state
+  const { firstName, lastName, email, password, maidenName, classYear, degree, currentCity, currentState, universityName } = this.state
   return (
     <>
       <Container>
@@ -140,7 +154,7 @@ render() {
               <FormLabel htmlFor='for'>Full Name</FormLabel>
                 <FormInput
                     type="text"
-                    value={name}
+                    value={firstName}
                     onChange={this.handleChangeInputName}
                 />
               <FormLabel htmlFor='for'>Email</FormLabel>
