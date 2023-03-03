@@ -26,12 +26,9 @@ const User = new Schema(
       const user= await this.findOne({email});
       if (user)
       {
-          const authenUser= await bcrypt.compare(password, user.password);
-          if (authenUser)
-          {
-              return user;
-          }
-          throw Error('Password is Incorrect');
+          await /*bycrpt*/compare(password, user.password);
+          return user;
+          //throw Error('Password is Incorrect');
       }
       throw Error('Email is not registered');
   }
