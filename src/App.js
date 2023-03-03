@@ -9,6 +9,7 @@ import SiteConduct from './pages/conduct';
 import Directory from './pages/directory';
 import CareerCenter from './pages/jobs';
 import MessageBoard from './pages/messages';
+import Form from './components/MultiStepForm/Form'
 
 function App() {
     return (
@@ -17,7 +18,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} exact />
                     <Route path="/consent" element={<Consent/>} exact />
-                    <Route path="/signup" element={<SignUpPage />} exact />
+                    <Route path="/signup" element={<Form />} exact />
                     <Route path="/login" element={<LogInPage />} exact />
                     <Route path="/conduct" element={<SiteConduct />} exact />
                     <Route path="/directory" element={<Directory />} exact />

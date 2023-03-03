@@ -52,7 +52,22 @@ updateUser = async (req, res) => {
         }
         user.email = body.email
         user.password = body.password
-        user.name = body.name
+        user.firstName = body.firstName
+        user.maidenName = body.maidenName
+        user.marriedName = body.marriedName
+        user.classYear = body.classYear
+        user.currentCity = body.currentCity
+        user.currentState = body.currentState
+        user.universityName = body.universityName
+        user.degree = body.degree
+        user.email2 = body.email2
+        user.areaStudy = body.areaStudy
+        user.gradYear = body.gradYear
+        user.position = body.position
+        user.industry = body.industry
+        user.companyName = body.companyName
+
+
         user
             .save()
             .then(() => {
