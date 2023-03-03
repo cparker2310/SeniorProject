@@ -21,7 +21,19 @@ const User = new Schema(
       industry: { type: String, required: false },
       email2: { type: String, required: false }
     })
-     
 
+    User.statics.login= async function (email, password) {
+      const user= await this.findOne({email});
+      if (user)
+      {
+          const authenUser= await bcrypt.compare(password, user.password);
+          if (authenUser)
+          {
+              return user;
+          }
+          throw Error('Password is Incorrect');
+      }
+      throw Error('Email is not registered');
+  }
 
 module.exports = mongoose.model('users', User)
