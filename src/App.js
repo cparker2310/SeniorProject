@@ -4,6 +4,7 @@ import Home from './pages/home';
 import Consent from './components/Acknowledgement/Consent';
 import LogInPage from './components/LogIn/login';
 import SignUpPage from './pages/SignUp';
+//import Form from './components/MultiStepForm/Form';
 import SiteConduct from './pages/conduct';
 import Directory from './pages/directory';
 import CareerCenter from './pages/jobs';
@@ -16,7 +17,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} exact />
                     <Route path="/consent" element={<Consent/>} exact />
-                    <Route path="/signup" element={<SignUpPage/>} exact />
+                    <Route path="/signup" element={<SignUpPage />} exact />
                     <Route path="/login" element={<LogInPage />} exact />
                     <Route path="/conduct" element={<SiteConduct />} exact />
                     <Route path="/directory" element={<Directory />} exact />
