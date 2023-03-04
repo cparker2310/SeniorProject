@@ -8,7 +8,7 @@ import SiteConduct from './pages/conduct';
 import Directory from './pages/directory';
 import CareerCenter from './pages/jobs';
 import MessageBoard from './pages/messages';
-import Form from './components/MultiStepForm/Form'
+import Form from './components/MultiStepForm/Form';
 
 function App() {
     return (

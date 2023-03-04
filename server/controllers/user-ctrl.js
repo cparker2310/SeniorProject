@@ -61,6 +61,7 @@ updateUser = async (req, res) => {
         user.universityName = body.universityName
         user.degree = body.degree
         user.email2 = body.email2
+        user.phone= body.phone
         user.areaStudy = body.areaStudy
         user.gradYear = body.gradYear
         user.position = body.position
