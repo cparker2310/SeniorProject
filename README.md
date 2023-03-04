@@ -10,3 +10,14 @@
 
 ## Iteration Planning
 [Iteration Planning Document](https://docs.google.com/document/d/1WdYIVGUy4vkNrcb3N5dJ6M4iC1BRC8n5g3eWo-nUDsg/edit)
+
+## Instructions 
+### Running the Backend: 
+`cd server`
+
+`node index.js`
+
+### Running the Frontend:
+`cd src`
+
+`npm start`
