@@ -1,5 +1,6 @@
 import React from 'react';
 import useHistory from 'react-router-dom';
+import NavBarLogIn from '../components/NavBarAfterLogIn/NavBarLogIn';
 import api from '../api/index';
 import {
      Row,
@@ -67,6 +68,8 @@ const Profile = () => {
     }
 
   return (
+    <>
+    <NavBarLogIn />
     <div>
       <h1>Edit Profile</h1>
         <div>
@@ -217,6 +220,7 @@ const Profile = () => {
             </Row>
         </div>
     </div>
+    </>
   );
 }
 

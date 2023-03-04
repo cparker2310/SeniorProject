@@ -131,7 +131,7 @@ validLogin = async () => {
     
   
   render(){
-    const { email, password, movies, isLoading } = this.state
+    const { email, password } = this.state
   return (
     <>
       <Container>
@@ -146,7 +146,7 @@ validLogin = async () => {
               <FormLabel htmlFor='for'>Password</FormLabel>
                 <FormInput type='password' value={password}
                     onChange={this.handleChangePassword}/>
-              <FormButton type='submit'onClick={(this.validLogin)}>Submit <FaPaw /></FormButton>
+              <FormButton to="/profile" type='submit'onClick={(this.validLogin)}>Submit <FaPaw /></FormButton>
             </Form>
           </FormContent>
         </FormWrap>

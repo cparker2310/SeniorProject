@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Consent from './components/Acknowledgement/Consent';
 import LogInPage from './components/LogIn/login';
+import NavBarLogIn from './components/NavBarAfterLogIn/NavBarLogIn';
 import SignUpPage from './pages/SignUp';
 //import Form from './components/MultiStepForm/Form';
 import SiteConduct from './pages/conduct';
@@ -20,6 +21,7 @@ function App() {
                     <Route path="/consent" element={<Consent/>} exact />
                     <Route path="/signup" element={<Form />} exact />
                     <Route path="/login" element={<LogInPage />} exact />
+                    <Route path="/profile" element={<NavBarLogIn />} exact />
                     <Route path="/conduct" element={<SiteConduct />} exact />
                     <Route path="/directory" element={<Directory />} exact />
                     <Route path="/jobs" element={<CareerCenter />} exact />
