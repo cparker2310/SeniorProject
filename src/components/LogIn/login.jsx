@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Castle from '../../images/castle.jpg';
 import { FaPaw } from 'react-icons/fa';
+import api from '../../api'
 
 export const Container= styled.div`
   background-image: url(${Castle});
@@ -82,7 +83,55 @@ export const FormButton= styled.button`
   cursor: pointer;
 `;
 
-const LogIn = () => {
+class LogIn extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+        email: '',
+        password: '',
+        users:[],
+      isLoading: false,
+    }
+  }
+
+  handleChangeEmail = async event => {
+    const email = event.target.value
+    this.setState({ email })
+}
+
+handleChangePassword = async event => {
+    const password = event.target.validity.valid
+        ? event.target.value
+        : this.state.password
+
+    this.setState({ password })
+}
+
+validLogin = async () => {
+
+  this.setState({ isLoading: true })
+  await api.getAllUsers().then(users => {
+      this.setState({
+          users: users.data.data,
+          isLoading: false,
+      })
+  })
+  for(let i = 0; i<this.state.users.length; i++){
+    let user = this.state.users[i]
+    if(user.email === this.state.email && user.password === this.state.password){
+      return alert("true")
+    }
+  }
+  
+  return alert("false")
+}
+  
+  
+    
+  
+  render(){
+    const { email, password, movies, isLoading } = this.state
   return (
     <>
       <Container>
@@ -92,10 +141,12 @@ const LogIn = () => {
             <Form action='#'>
               <FormH1>Log In</FormH1>
               <FormLabel htmlFor='for'>Email</FormLabel>
-                <FormInput type='email' required />
+                <FormInput type='email' value={email}
+                    onChange={this.handleChangeEmail}/>
               <FormLabel htmlFor='for'>Password</FormLabel>
-                <FormInput type='password' required />
-              <FormButton type='submit'>Submit <FaPaw /></FormButton>
+                <FormInput type='password' value={password}
+                    onChange={this.handleChangePassword}/>
+              <FormButton type='submit'onClick={(this.validLogin)}>Submit <FaPaw /></FormButton>
             </Form>
           </FormContent>
         </FormWrap>
@@ -103,5 +154,5 @@ const LogIn = () => {
     </>
   );
 }
-
+}
 export default LogIn;

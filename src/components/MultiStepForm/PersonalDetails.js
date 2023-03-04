@@ -7,7 +7,7 @@ const PersonalDetails = ({ formData, setFormData }) => {
         <input
           type="text" placeholder="First Name"
           value={formData.firstName} onChange={(event) => setFormData({ ...formData, firstName: event.target.value })} />
-
+          
         <input
           type="text" placeholder="Maiden Name"
           value={formData.maidenName} onChange={(event) => setFormData({ ...formData, maidenName: event.target.value })} />

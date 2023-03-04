@@ -1,4 +1,4 @@
-import './App.css';
+//import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Consent from './components/Acknowledgement/Consent';
@@ -13,7 +13,7 @@ import Form from './components/MultiStepForm/Form'
 
 function App() {
     return (
-        <>  
+         
             <Router>
                 <Routes>
                     <Route path="/" element={<Home />} exact />
@@ -28,7 +28,7 @@ function App() {
             </Router>
 
 
-        </>
+        
     );
 }
 
