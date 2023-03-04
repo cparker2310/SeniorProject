@@ -1,4 +1,6 @@
 import React from 'react';
+import useHistory from 'react-router-dom';
+import api from '../api/index';
 import {
      Row,
      Col,
@@ -7,7 +9,28 @@ import {
 } from "react-bootstrap";
 
 const Profile = () => {
-   /* Needs backend connection to prefill form with user data */
+   const history= useHistory();
+
+   useEffect(() => {
+        if (!user)
+            history.push("/");
+        else 
+        {
+            setFirstName(user.firstName);
+            setmaidenName(user.maidenName);
+            setMarriedName(user.marriedName);
+            setClassYear(user.classYear);
+            setCurrentCity(user.currentCity);
+            setCurrentState(user.currentState);
+            setUniversityName(user.universityName);
+            setDegree(user.degree);
+            setAreaStudy(user.areaStudy);
+            setGradYear(user.gradYear);
+            setPosition(user.position);
+            setCompanyName(user.companyName);
+            setIndustry(user.industry);
+        }
+   }, [history, user]);
 
    const [firstName, setFirstName]= useState("");
    const [maidenName, setMaidenName]= useState("");
@@ -23,13 +46,33 @@ const Profile = () => {
    const [companyName, setCompanyName]= useState("");
    const [industry, setIndustry]= useState("");
 
+   const submitHandler= (e) => {
+        e.preventDefault();
+        /* Connect to backend */
+        updateUser({
+            firstName,
+            maidenName,
+            marriedName,
+            classYear,
+            currentCity,
+            currentState,
+            universityName,
+            degree,
+            areaStudy,
+            gradYear,
+            position,
+            companyName,
+            industry
+        });
+    }
+
   return (
     <div>
       <h1>Edit Profile</h1>
         <div>
             <Row className= "profile-container">
                 <Col md={6}>
-                    <Form>
+                    <Form onSubmit={submitHandler}>
                         <Form.Group controlId="fistName">
                             <Form.Label>First Name</Form.Label>
                             <Form.Control
