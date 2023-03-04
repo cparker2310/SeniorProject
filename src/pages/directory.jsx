@@ -2,7 +2,6 @@ import React, { useEffect, useState, Component } from 'react';
 import ReactTable from "react-table-6";  
 import "react-table-6/react-table.css" 
 import Navbar from '../components/NavBar/Navbar';
-import UserDetails from '../components/UserDetails';
 import styled from 'styled-components';
 import Castle from '../images/castle.jpg';
 import './directory.css';
