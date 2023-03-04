@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useHistory from 'react-router-dom';
-import NavBarLogIn from '../components/NavBarAfterLogIn/NavBarLogIn';
-import api from '../api/index';
+import NavBarLogIn from '../../components/NavBarAfterLogIn/NavBarLogIn';
+import api from '../../api/index';
 import {
      Row,
      Col,
@@ -9,7 +9,7 @@ import {
      Form
 } from "react-bootstrap";
 
-const Profile = () => {
+const EditProfile = () => {
    const history= useHistory();
 
    useEffect(() => {
@@ -224,4 +224,4 @@ const Profile = () => {
   );
 }
 
-export default Profile;
+export default EditProfile;

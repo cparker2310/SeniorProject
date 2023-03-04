@@ -19,7 +19,8 @@ const User = new Schema(
       position: { type: String, required: false },
       companyName: { type: String, required: false },
       industry: { type: String, required: false },
-      email2: { type: String, required: false }
+      email2: { type: String, required: false },
+      phone: { type: String, required: false }
     })
 
     User.statics.login= async function (email, password) {

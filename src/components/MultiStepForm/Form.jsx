@@ -29,6 +29,7 @@ const Form = () => {
       companyName: "",
       industry: "",
       email2: "",
+      phone: ""
   });
 
   const FormTitles= ["Personal Details", "Location", "Education", "Career", "Contact Information"];
@@ -58,11 +59,11 @@ const Form = () => {
 
     const { email, password, firstName, maidenName, lastName,
       classYear, currentCity, currentState, universityName, degree,
-        areaStudy, gradYear, position, companyName, industry, email2 } = formData
+        areaStudy, gradYear, position, companyName, industry, email2, phone } = formData
 
     const payload = { email, password, firstName, maidenName, lastName,
       classYear, currentCity, currentState, universityName, degree,
-        areaStudy, gradYear, position, companyName, industry, email2 }
+        areaStudy, gradYear, position, companyName, industry, email2, phone }
 
     await api.insertUser(payload).then(res => {
         window.alert(`User inserted successfully`)
