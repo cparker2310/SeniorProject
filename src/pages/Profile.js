@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useHistory from 'react-router-dom';
 import NavBarLogIn from '../components/NavBarAfterLogIn/NavBarLogIn';
 import api from '../api/index';
@@ -18,7 +18,7 @@ const Profile = () => {
         else 
         {
             setFirstName(user.firstName);
-            setmaidenName(user.maidenName);
+            setMaidenName(user.maidenName);
             setMarriedName(user.marriedName);
             setClassYear(user.classYear);
             setCurrentCity(user.currentCity);
