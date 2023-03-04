@@ -1,9 +1,10 @@
 import React, { Component, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useNavigation, Link, redirect, useNavigate } from 'react-router-dom';
 import Castle from '../../images/castle.jpg';
 import { FaPaw } from 'react-icons/fa';
 import api from '../../api'
+import Home from '../../pages/home';
 
 export const Container= styled.div`
   background-image: url(${Castle});
@@ -83,70 +84,67 @@ export const FormButton= styled.button`
   cursor: pointer;
 `;
 
-class LogIn extends Component {
-  constructor(props) {
-    super(props)
+export const Button= styled(Link)`
+  width: 110px;
+  color: #e6e1e1;
+  cursor: pointer;
+  height: 36px;
+  font-size: 20px;
+  box-sizing: border-box;
+  background: #63625d;
+  text-align: center;
+  line-height: 36px;
+  border-radius: 21px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
 
-    this.state = {
-        email: '',
-        password: '',
-        users:[],
-      isLoading: false,
-    }
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: #60000D;
   }
+`;
 
-  handleChangeEmail = async event => {
-    const email = event.target.value
-    this.setState({ email })
-}
-
-handleChangePassword = async event => {
-    const password = event.target.validity.valid
-        ? event.target.value
-        : this.state.password
-
-    this.setState({ password })
-}
-
-validLogin = async () => {
-
-  this.setState({ isLoading: true })
-  await api.getAllUsers().then(users => {
-      this.setState({
-          users: users.data.data,
-          isLoading: false,
-      })
-  })
-  for(let i = 0; i<this.state.users.length; i++){
-    let user = this.state.users[i]
-    if(user.email === this.state.email && user.password === this.state.password){
-      return alert("true")
-    }
-  }
+function Login() {
+  const [email, setEmail]= useState("");
+  const [password, setPassword]= useState("");
+  const [users, setUsers]= useState({});
+  const navigate = useNavigate();
   
-  return alert("false")
-}
-  
-  
+const displayAll = async() => {
+    //alert("workding")
+    await api.getAllUsers().then(users => {
+      setUsers(users.data.data )})
     
+  }
   
-  render(){
-    const { email, password, movies, isLoading } = this.state
+
+  const validate = () => {
+    
+    for(let i = 0; i< users.length; i++){
+      if(users[i].email === email && users[i].password === password){
+        //alert('valid Login Info')
+        navigate();
+      }
+    }
+    //alert('invalid')
+}
+
+  displayAll()
   return (
     <>
       <Container>
-        <FormWrap>
+        <FormWrap >
           <Icon to="/">MARYVALE</Icon>
-          <FormContent>
+          <FormContent >
             <Form action='#'>
               <FormH1>Log In</FormH1>
               <FormLabel htmlFor='for'>Email</FormLabel>
-                <FormInput type='email' value={email}
-                    onChange={this.handleChangeEmail}/>
+                <FormInput type='email' 
+                    onChange={(event) => setEmail( event.target.value )}/>
               <FormLabel htmlFor='for'>Password</FormLabel>
-                <FormInput type='password' value={password}
-                    onChange={this.handleChangePassword}/>
-              <FormButton type='submit'onClick={(this.validLogin)}>Submit <FaPaw /></FormButton>
+                <FormInput type='password' 
+                    onChange={(event) => setPassword( event.target.value )}/>
+              <Button onClick={validate} type="submit"  >Submit <FaPaw /></Button>
             </Form>
           </FormContent>
         </FormWrap>
@@ -154,5 +152,5 @@ validLogin = async () => {
     </>
   );
 }
-}
-export default LogIn;
+
+export default Login;

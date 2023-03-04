@@ -22,15 +22,5 @@ const User = new Schema(
       email2: { type: String, required: false }
     })
 
-    User.statics.login= async function (email, password) {
-      const user= await this.findOne({email});
-      if (user)
-      {
-          await /*bycrpt*/compare(password, user.password);
-          return user;
-          //throw Error('Password is Incorrect');
-      }
-      throw Error('Email is not registered');
-  }
 
 module.exports = mongoose.model('users', User)

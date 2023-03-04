@@ -48,7 +48,7 @@ const Form = () => {
 
   const pageOneMissing= (formData) => {
      if(!formData.firstName || !formData.maidenName || !formData.classYear || !formData.email || !formData.password){
-      return alert(formData.marriedName)
+      return alert("Missing fields")
      }
      return setPage((currentPage) => currentPage+1)
 
@@ -104,7 +104,6 @@ const Form = () => {
                     else{                      
                       setPage((currentPage) => currentPage+1)
                     
-                      //alert("All fields required to register")
                   }
                 }}
                 >

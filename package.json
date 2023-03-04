@@ -1,5 +1,5 @@
 {
-    "proxy": "http://localhost:3000",
+    "proxy": "http://127.0.0.1:3000",
     "name": "maryvale",
     "version": "0.1.0",
     "private": true,
@@ -31,7 +31,7 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "start": "PORT=8000 react-scripts start",
+        "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "cross-env NODE_ENV=test jest --testTimeout=5000",
         "eject": "react-scripts eject"
