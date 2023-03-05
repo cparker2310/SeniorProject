@@ -59,16 +59,15 @@ body {
     font-weight: bold;
     color: #fdfdfd;
     border: 0 none;
-    border-radius: 1px;
+    border-radius: 10px;
     cursor: pointer;
     padding: 10px 5px;
     margin: 10px 5px;
     margin: 5px;
     font-family: 'Lora', serif;
-    font-size: 14px;
+    font-size: 16px;
   }
 
-  /* Personal Details */
   .sign-up-container {
     height: 100%;
     width: 100%;
@@ -87,7 +86,6 @@ body {
     font-family: 'Lora', serif;
   }
 
-/* Personal Details */
 .personal-container {
   height: 100%;
   width: 100%;
@@ -106,8 +104,6 @@ body {
   font-family: 'Lora', serif;
 }
     
-
-  /* Education */
   .education-container {
     height: 100%;
     width: 100%;
@@ -141,10 +137,10 @@ body {
   }
   
   input {
-    border: 2px solid #a32738;
-    border-radius: 5px;
+    border: 2px solid #030000;
+    border-radius: 10px;
   }
   
   input:focus {
-    border: 3px solid #a32738;
+    border: 3px solid #030000;
   }

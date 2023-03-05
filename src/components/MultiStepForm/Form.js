@@ -5,10 +5,21 @@ import Education from './Education';
 import Career from './Career';
 import ContactInfo from './ContactInfo';
 import './MultiForm.css';
-import api from '../../api'
+import api from '../../api';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-// should make a back button in case user doesn't want to register
 // should make required UI for the user to know + better alerts for a field being empty
+
+export const Icon= styled(Link)`
+  margin-left: 28px;
+  margin-top: 28px;
+  text-decoration: none;
+  color: #d12626;
+  font-weight: 800;
+  font-size: 34px;
+  text-shadow: 1.5px 1.5px 2.5px #030000;
+`;
 
 const Form = () => {
   const [page, setPage]= useState(0);
@@ -71,6 +82,8 @@ const Form = () => {
 }
 
   return (
+    <>
+    <Icon to='/'>MARYVALE</Icon>
     <div className="form">
         <div className="progressbar">
           <div style={{ 
@@ -113,6 +126,7 @@ const Form = () => {
             </div>
         </div>     
     </div>
+    </>
   );
 }
 
