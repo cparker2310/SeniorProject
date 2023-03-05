@@ -10,63 +10,75 @@ import {
 } from "react-bootstrap";
 
 const EditProfile = () => {
-   const history= useHistory();
 
-   useEffect(() => {
-        if (!user)
-            history.push("/");
-        else 
-        {
-            setFirstName(user.firstName);
-            setMaidenName(user.maidenName);
-            setMarriedName(user.marriedName);
-            setClassYear(user.classYear);
-            setCurrentCity(user.currentCity);
-            setCurrentState(user.currentState);
-            setUniversityName(user.universityName);
-            setDegree(user.degree);
-            setAreaStudy(user.areaStudy);
-            setGradYear(user.gradYear);
-            setPosition(user.position);
-            setCompanyName(user.companyName);
-            setIndustry(user.industry);
-        }
-   }, [history, user]);
+    // temporary before we can store a user session
+    const [user, setUser]= useState({});
 
-   const [firstName, setFirstName]= useState("");
-   const [maidenName, setMaidenName]= useState("");
-   const [marriedName, setMarriedName]= useState("");
-   const [classYear, setClassYear]= useState("");
-   const [currentCity, setCurrentCity]= useState("");
-   const [currentState, setCurrentState]= useState("");
-   const [universityName, setUniversityName]= useState("");
-   const [degree, setDegree]= useState("");
-   const [areaStudy, setAreaStudy]= useState("");
-   const [gradYear, setGradYear]= useState("");
-   const [position, setPosition]= useState("");
-   const [companyName, setCompanyName]= useState("");
-   const [industry, setIndustry]= useState("");
+   
+   
 
-   const submitHandler= (e) => {
-        e.preventDefault();
-        /* Connect to backend */
-        updateUser({
-            firstName,
-            maidenName,
-            marriedName,
-            classYear,
-            currentCity,
-            currentState,
-            universityName,
-            degree,
-            areaStudy,
-            gradYear,
-            position,
-            companyName,
-            industry
-        });
+   const [formData, setFormData]= useState({
+    email: "", 
+    password: "", 
+    firstName: "", 
+    maidenName: "", 
+    marriedName: "",
+    classYear: "", 
+    currentCity: "", 
+    currentState: "", 
+    universityName: "",
+    degree: "",
+    areaStudy: "",
+    gradYear: "",
+    position: "",
+    companyName: "",
+    industry: "",
+    email2: "",
+    phone: ""
+});
+
+    const GetUser = async () =>{
+        //const u = await api.getUserById('640400f25c94a051edc5ade2')
+        /*setUser(u.data.data);
+        useEffect(() => {
+    
+    
+            setFormData(user.firstName);
+            setFormData(user.maidenName);
+            setFormData(user.marriedName);
+            setFormData(user.classYear);
+            setFormData(user.currentCity);
+            setFormData(user.currentState);
+            setFormData(user.universityName);
+            setFormData(user.degree);
+            setFormData(user.areaStudy);
+            setFormData(user.gradYear);
+            setFormData(user.position);
+            setFormData(user.companyName);
+            setFormData(user.industry);
+        
+    }, [user]);*/
     }
 
+   const submitHandler= async (e) => {
+        e.preventDefault();
+        //GetUser();
+        /* Connect to backend */
+        let id = '640400f25c94a051edc5ade2';
+        const { email, password, firstName, maidenName, lastName,
+            classYear, currentCity, currentState, universityName, degree,
+              areaStudy, gradYear, position, companyName, industry, email2, phone } = formData
+
+              const payload = { email, password, firstName, maidenName, lastName,
+                classYear, currentCity, currentState, universityName, degree,
+                  areaStudy, gradYear, position, companyName, industry, email2, phone }
+        await api.updateUserById(id, payload).then(res => {
+            alert(`User updated successfully`)
+        })
+    
+   }
+   //GetUser();
+    // for the placeholders, should be the current variable value - need to fix
   return (
     <>
     <NavBarLogIn />
@@ -75,14 +87,14 @@ const EditProfile = () => {
         <div>
             <Row className= "profile-container">
                 <Col md={6}>
-                    <Form onSubmit={submitHandler}>
+                    <Form >
                         <Form.Group controlId="fistName">
                             <Form.Label>First Name</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Edit First Name"
-                                value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
+                                value={formData.firstName}
+                                onChange={(e) => setFormData({...formData, firstName: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
 
@@ -91,8 +103,8 @@ const EditProfile = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Edit Maiden Name"
-                                value={maidenName}
-                                onChange={(e) => setMaidenName(e.target.value)}
+                                value={formData.maidenName}
+                                onChange={(e) => setFormData({...formData, maidenName: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
 
@@ -101,8 +113,8 @@ const EditProfile = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Edit Married Name"
-                                value={marriedName}
-                                onChange={(e) => setMarriedName(e.target.value)}
+                                value={formData.marriedName}
+                                onChange={(e) => setFormData({...formData, marriedName: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
 
@@ -111,8 +123,8 @@ const EditProfile = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Edit Class Year"
-                                value={classYear}
-                                onChange={(e) => setClassYear(e.target.value)}
+                                value={formData.classYear}
+                                onChange={(e) => setFormData({...formData, classYear: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
 
@@ -121,8 +133,8 @@ const EditProfile = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Edit Current City"
-                                value={currentCity}
-                                onChange={(e) => setCurrentCity(e.target.value)}
+                                value={formData.currentCity}
+                                onChange={(e) => setFormData({...formData, currentCity: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
 
@@ -131,8 +143,8 @@ const EditProfile = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Edit Current State"
-                                value={currentState}
-                                onChange={(e) => setCurrentState(e.target.value)}
+                                value={formData.currentState}
+                                onChange={(e) => setFormData({...formData, currentState: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
 
@@ -141,8 +153,8 @@ const EditProfile = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Edit Name of Institution"
-                                value={universityName}
-                                onChange={(e) => setUniversityName(e.target.value)}
+                                value={formData.universityName}
+                                onChange={(e) => setFormData({...formData, universityName: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
 
@@ -151,8 +163,8 @@ const EditProfile = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Edit Degree Earned"
-                                value={degree}
-                                onChange={(e) => setDegree(e.target.value)}
+                                value={formData.degree}
+                                onChange={(e) => setFormData({...formData, degree: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
 
@@ -161,8 +173,8 @@ const EditProfile = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Edit Area of Study"
-                                value={areaStudy}
-                                onChange={(e) => setAreaStudy(e.target.value)}
+                                value={formData.areaStudy}
+                                onChange={(e) => setFormData({...formData, areaStudy: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
 
@@ -171,8 +183,8 @@ const EditProfile = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Edit Graduation Year"
-                                value={gradYear}
-                                onChange={(e) => setGradYear(e.target.value)}
+                                value={formData.gradYear}
+                                onChange={(e) => setFormData({...formData, gradYear: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
 
@@ -181,8 +193,8 @@ const EditProfile = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Edit Position"
-                                value={position}
-                                onChange={(e) => setPosition(e.target.value)}
+                                value={formData.position}
+                                onChange={(e) => setFormData({...formData, position: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
 
@@ -191,8 +203,8 @@ const EditProfile = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Edit First Name"
-                                value={companyName}
-                                onChange={(e) => setCompanyName(e.target.value)}
+                                value={formData.companyName}
+                                onChange={(e) => setFormData({...formData, companyName: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
 
@@ -201,11 +213,11 @@ const EditProfile = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Edit First Name"
-                                value={industry}
-                                onChange={(e) => setIndustry(e.target.value)}
+                                value={formData.industry}
+                                onChange={(e) => setFormData({...formData, industry: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
-                        <Button type="submit">Submit</Button>
+                        <Button type="submit" onClick={submitHandler}>Submit</Button>
                     </Form>
                 </Col>
                 

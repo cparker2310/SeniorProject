@@ -9,6 +9,7 @@ import Directory from './pages/NewDirectory/directory';
 import CareerCenter from './pages/jobs';
 import MessageBoard from './pages/messages';
 import Form from './components/MultiStepForm/Form';
+import EditProfile from './pages/Profile/EditProfile'; 
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/directory" element={<Directory />} exact />
                     <Route path="/jobs" element={<CareerCenter />} exact />
                     <Route path="/messages" element={<MessageBoard />} exact />
+                    <Route path="/editprofile" element={<EditProfile />} exact />
                 </Routes>
             </Router>
 

@@ -123,7 +123,7 @@ const displayAll = async() => {
     for(let i = 0; i< users.length; i++){
       if(users[i].email === email && users[i].password === password){
         //alert('valid Login Info')
-        navigate();
+        navigate(-1);
       }
     }
     //alert('invalid')
