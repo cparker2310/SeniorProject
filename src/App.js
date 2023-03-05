@@ -7,7 +7,7 @@ import LogInPage from './components/LogIn/login';
 import SignUpPage from './pages/SignUp';
 //import Form from './components/MultiStepForm/Form';
 import SiteConduct from './pages/conduct';
-import Directory from './pages/directory';
+import Directory from './pages/NewDirectory/directory';
 import CareerCenter from './pages/jobs';
 import MessageBoard from './pages/messages';
 import Form from './components/MultiStepForm/Form';
