@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import './api.css';
+import api from '../../api/index'
 
 const DirectoryApi = () => {
     const [users, setUsers]= useState([]);
 
-    const getUsers= async () => {
-        const response= await fetch('http://localhost:3000/users');
-        setUsers(await response.json());
+    const getUsers = async () => {
+        //this.setState({ isLoading: true })
+        //alert("works")
+        await api.getAllUsers().then(users => {
+            setUsers(users.data.data);
+        })
+        //alert(users)
     }
 
     useEffect(() => {
