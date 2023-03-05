@@ -1,11 +1,11 @@
 import React, { useEffect, useState, Component } from 'react';
 import ReactTable from "react-table-6";  
 import "react-table-6/react-table.css" 
-import Navbar from '../components/NavBar/Navbar';
+import Navbar from '../../components/NavBar/Navbar';
 import styled from 'styled-components';
 import Castle from '../images/castle.jpg';
 import './directory.css';
-import api from '../api/index';
+import api from '../../api/index';
 
 
 /*
@@ -18,13 +18,13 @@ const Background= styled.section`
     background-repeat: no-repeat;
     position: fixed;
 `;
-*/
+
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
 `
 
 class DirectoryPage extends Component{
-  /*
+
   const [users, setUsers]= useState(null)
 
   useEffect(() => {
@@ -38,7 +38,6 @@ class DirectoryPage extends Component{
     }
     fetchUsers()
   }, [])
-  */
 
   constructor(props) {
     super(props)
@@ -85,7 +84,6 @@ displayAll = async () => {
   if (!users.length) {
       showTable = false
   }
-
   return (
     <>
       <Navbar />
@@ -107,3 +105,5 @@ displayAll = async () => {
 }}
 
 export default DirectoryPage;
+*/
+
