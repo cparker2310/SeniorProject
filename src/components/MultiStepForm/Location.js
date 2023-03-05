@@ -1,15 +1,25 @@
 import React from 'react';
 import './MultiForm.css';
+import styled from 'styled-components/macro';
+
+export const FormLabel= styled.label`
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #030000;
+  margin-right: 125px;
+`;
 
 const Location = ({ formData, setFormData }) => {
   return (
-    <div className="sign-up-container">
-      <input type="text" placeholder="Current City"
+    <div className="location-container">
+      <FormLabel htmlFor='for'>Current City</FormLabel>
+      <input type="text"
           value={formData.currentCity} onChange={(event) => 
             setFormData({...formData, currentCity: event.target.value})}
       />
 
-      <input type="text" placeholder="State"
+      <FormLabel htmlFor='for' css={`margin-left: -50px;`}>State</FormLabel>
+      <input type="text"
           value={formData.state} onChange={(event) => 
             setFormData({...formData, state: event.target.value})}
       />
