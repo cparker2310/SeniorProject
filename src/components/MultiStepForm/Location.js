@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 
 export const FormLabel= styled.label`
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 18px;
   color: #030000;
   margin-right: 125px;
 `;
@@ -18,7 +18,7 @@ const Location = ({ formData, setFormData }) => {
             setFormData({...formData, currentCity: event.target.value})}
       />
 
-      <FormLabel htmlFor='for' css={`margin-left: -50px;`}>State</FormLabel>
+      <FormLabel htmlFor='for' css={`margin-left: -57px;`}>State</FormLabel>
       <input type="text"
           value={formData.state} onChange={(event) => 
             setFormData({...formData, state: event.target.value})}

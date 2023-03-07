@@ -26,7 +26,10 @@ body {
     height: 600px;
     background-color: #fdfdfd;
     border-radius: 8px;
-    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+    background: rgba(253, 253, 253, 0.5);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -111,8 +114,13 @@ body {
     font-size: 20px;
     font-family: 'Lora', serif;
     border-radius: 2px;
+    border: none;
     margin-bottom: 4rem;
     margin-left: -30px;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+    background: rgba(163, 39, 56, 0.5);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
   }
 
 .personal-container {
@@ -133,6 +141,11 @@ body {
   font-family: 'Lora', serif;
   margin-bottom: 1rem;
   border-radius: 2px;
+  border: none;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+  background: rgba(163, 39, 56, 0.5);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
 }
     
   .education-container {
@@ -143,7 +156,7 @@ body {
     justify-content: center;
     align-items: center;
   }
-  
+
   .education-container input {
     margin: 5px;
     width: 200px;
@@ -151,6 +164,64 @@ body {
     padding-left: 5px;
     font-size: 20px;
     font-family: 'Lora', serif;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    border: none;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+    background: rgba(163, 39, 56, 0.5);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+  }
+  
+  .career-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .career-container input {
+    margin: 5px;
+    width: 200px;
+    height: 50px;
+    padding-left: 5px;
+    font-size: 20px;
+    font-family: 'Lora', serif;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    border: none;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+    background: rgba(163, 39, 56, 0.5);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+  }
+
+
+  .contact-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contact-container input {
+    margin: 7px;
+    width: 200px;
+    height: 50px;
+    padding-left: 5px;
+    font-size: 20px;
+    font-family: 'Lora', serif;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    border: none;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+    background: rgba(163, 39, 56, 0.5);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
   }
   
   .progressbar {

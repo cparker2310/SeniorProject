@@ -9,6 +9,13 @@ import {
      Form
 } from "react-bootstrap";
 
+export const FormLabel= styled.label`
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: #030000;
+  margin-right: 125px;
+`;
+
 const EditProfile = () => {
 
     // temporary before we can store a user session
