@@ -6,17 +6,21 @@ const JobSchema= new Schema({
         type: String,
         required: [true, 'Job Title is Required']
     },
+    companyName: {
+        type: String,
+        required: [true, 'Company Name is Required']
+    },
     location: {
         type: String,
-        required: [true, 'Job Title is Required']
+        required: [true, 'Location is Required']
     }, 
     jobType: {
         type: String,
-        required: [true, 'Job Title is Required']
+        required: [true, 'Job Type is Required']
     },
     description: {
         type: String,
-        required: [true, 'Job Title is Required']
+        required: [true, 'Description is Required']
     },
     isAvailable: {
         type: Boolean,

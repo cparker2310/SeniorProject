@@ -51,6 +51,7 @@ updateJob = async (req, res) => {
             })
         }
         job.title = body.title
+        job.companyName= body.companyName
         job.location = body.location
         job.jobType= body.jobType
         job.description = body.description
