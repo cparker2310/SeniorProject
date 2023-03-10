@@ -39,19 +39,20 @@ const useStyles= makeStyles(theme => ({
     }
 }));
 
+const initState= {
+    title: "",
+    type: "Full Time",
+    companyName: "",
+    location: "Onsite",
+    contactName: "",
+    contactInfo: "",
+    description: "",
+    categories: []   
+}
+
 export default (props) => {
     const classes= useStyles();
-
-    const [jobDetails, setJobDetails]= useState({
-        title: "",
-        type: "Full Time",
-        companyName: "",
-        location: "Onsite",
-        contactName: "",
-        contactInfo: "",
-        description: "",
-        categories: []   
-    });
+    const [jobDetails, setJobDetails]= useState(initState);
 
     const handleChange= event => {
         event.persist();
@@ -63,6 +64,21 @@ export default (props) => {
             }))
         : setJobDetails(oldState => ({...oldState, categories: oldState.categories.concat(category)
         }));
+
+    /*const handleSubmit= async() => {
+        for (const field in jobDetails) {
+            if (typeof jobDetails[field] === 'string' && !jobDetails[field])
+                return;
+        }
+
+        if (!jobDetails.categories.length) return;
+        closeNewJob();
+    }*/
+
+    const closeNewJob= () => {
+        setJobDetails(initState);
+        props.closeNewJob();
+    }
 
     const categories= [
         "Medical",
@@ -79,7 +95,7 @@ export default (props) => {
             <DialogTitle>
                 <Box display='flex' justifyContent='space-between' alignItems='center'>
                     Post Vacancies in Your Company
-                    <IconButton onClick={props.closeNewJob}>
+                    <IconButton onClick={closeNewJob}>
                         <CloseIcon />
                     </IconButton>
                 </Box>
@@ -122,7 +138,7 @@ export default (props) => {
                     </Grid>
                 </Grid>
                 <Box mt={2}>
-                    <Typography>Categories</Typography>
+                    <Typography>Categories *</Typography>
                     <Box display='flex'>
                         {categories.map(category => <Box onClick={() => addRemoveCategory(category)} className={`${classes.categoryChip} ${jobDetails.categories.includes(category) && classes.included}`} key={category}>{category}</Box>)}
                     </Box>

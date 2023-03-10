@@ -23,6 +23,10 @@ const Background= styled.section`
 const CareerCenter = () => {
   const [newJob, setNewJob]= useState(false);
 
+  /*const fetchSearchJobs= jobSearch => {
+    where("location", '==', jobSearch.location).where("type", '==', jobSearch.type)
+  }*/
+
   return (
     <>
       <Navbar />
@@ -30,12 +34,14 @@ const CareerCenter = () => {
         <ThemeProvider theme={theme}>
           <Header openNewJob={() => setNewJob(true)} />
           <NewJob closeNewJob={() => setNewJob(false)} newJob={newJob} />
-          <Grid container justifyContent='center'>
-            <Grid item xs={10}>
-              <Search />
-              <JobCard />
+          <Box mb={3}>
+            <Grid container justifyContent='center'>
+              <Grid item xs={10}>
+                <Search />
+                <JobCard />
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
         </ThemeProvider>
       </Background>
     </>

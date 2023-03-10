@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from "@mui/material/Box";
 import { 
     Button,
@@ -22,17 +22,28 @@ const useStyles= makeStyles({
 });
 
 export default props => {
-    const classes= useStyles()
+    const classes= useStyles();
+    
+    const [jobSearch, setjobSearch]= useState({
+        type: 'Full Time',
+        location: 'Onsite'
+    });
+
+
+    const handleChange= event => {
+        event.persist();
+        setjobSearch(oldState => ({...oldState, [event.target.name] : event.target.value}));
+    }
 
     return (
         <Box p={1} mt={-5} mb={2} className={classes.wrapper}>
-            <Select disableUnderline variant='filled' defaultValue='Full Time'>
+            <Select onChange={handleChange} name='type' value={jobSearch.type} disableUnderline variant='filled'>
                 <MenuItem value='Full Time'>Full Time</MenuItem>
                 <MenuItem value='Part Time'>Part Time</MenuItem>
                 <MenuItem value='Internship'>Internship</MenuItem>
             </Select>
 
-            <Select disableUnderline variant='filled' defaultValue='Onsite'>
+            <Select onChange={handleChange} name='location' value={jobSearch.location} disableUnderline variant='filled'>
                 <MenuItem value='Onsite'>Onsite</MenuItem>
                 <MenuItem value='Remote'>Remote</MenuItem>
             </Select>
