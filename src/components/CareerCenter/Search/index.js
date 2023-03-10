@@ -12,6 +12,7 @@ const useStyles= makeStyles({
         backgroundColor: '#fdfdfd',
         display: 'flex',
         boxShadow: '0px 1px 5px rgba(0, 0, 0, 0.1)',
+        borderRadius: '5px',
         '& > *': {
             flex: 1,
             height: '45px',
@@ -24,7 +25,7 @@ export default props => {
     const classes= useStyles()
 
     return (
-        <Box className={classes.wrapper}>
+        <Box p={1} mt={-5} mb={2} className={classes.wrapper}>
             <Select disableUnderline variant='filled' defaultValue='Full Time'>
                 <MenuItem value='Full Time'>Full Time</MenuItem>
                 <MenuItem value='Part Time'>Part Time</MenuItem>

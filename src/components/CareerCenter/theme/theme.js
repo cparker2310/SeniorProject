@@ -2,6 +2,7 @@ import { createMuiTheme } from "@material-ui/core";
 
 const primary = "#a32738";
 const secondary = "#63625d";
+const tertiary= '#989791';
 
 export default createMuiTheme({
   typography: {
@@ -13,6 +14,9 @@ export default createMuiTheme({
     },
     secondary: {
       main: secondary,
+    },
+    tertiary: {
+      main: tertiary,
     },
   },
   overrides: {

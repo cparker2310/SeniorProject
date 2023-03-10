@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/NavBar/Navbar';
 import Castle from '../images/castle.jpg';
 import styled from 'styled-components';
@@ -7,6 +7,8 @@ import { ThemeProvider, Grid } from "@material-ui/core";
 import theme from '../components/CareerCenter/theme/theme';
 import Header from '../components/CareerCenter/Header';
 import Search from '../components/CareerCenter/Search';
+import JobCard from '../components/CareerCenter/Jobs/JobCard';
+import NewJob from '../components/CareerCenter/Jobs/NewJob';
 
 const Background= styled.section`
     background-image: url(${Castle});
@@ -19,15 +21,19 @@ const Background= styled.section`
 `;
 
 const CareerCenter = () => {
+  const [newJob, setNewJob]= useState(false);
+
   return (
     <>
       <Navbar />
       <Background>
         <ThemeProvider theme={theme}>
-          <Header />
+          <Header openNewJob={() => setNewJob(true)} />
+          <NewJob closeNewJob={() => setNewJob(false)} newJob={newJob} />
           <Grid container justifyContent='center'>
             <Grid item xs={10}>
               <Search />
+              <JobCard />
             </Grid>
           </Grid>
         </ThemeProvider>
