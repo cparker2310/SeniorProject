@@ -16,14 +16,12 @@
 #### 1. Clone the repository
 #### 2. Go to the server: `cd server`
 #### 3. Install the node_modules: `npm install`
-#### 4. Go to the source code: `cd src`
-#### 5. Install the node_modules: `npm install`
 
 
 ### Running the Backend: 
 `cd server`
 
-`node index.js`
+`nodemon index.js`
 
 ### Running the Frontend:
 `cd src`
