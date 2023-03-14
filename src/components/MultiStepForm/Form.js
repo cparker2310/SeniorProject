@@ -79,7 +79,7 @@ const Form = () => {
     await api.insertUser(payload).then(res => {
         window.alert(`User inserted successfully`)
     })
-}
+} 
 
   return (
     <>

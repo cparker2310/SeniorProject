@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import styled from 'styled-components';
-import { useNavigation, Link, redirect, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Castle from '../../images/castle.jpg';
 import { FaPaw } from 'react-icons/fa';
 import api from '../../api'
@@ -108,25 +108,30 @@ function Login() {
   const [email, setEmail]= useState("");
   const [password, setPassword]= useState("");
   const [users, setUsers]= useState({});
-  const navigate = useNavigate();
+  const [link, setLink]= useState("");
   
 const displayAll = async() => {
     //alert("workding")
     await api.getAllUsers().then(users => {
-      setUsers(users.data.data )})
+      setUsers(users.data.data)})
     
   }
   
 
-  const validate = () => {
-    
+  const validate = async () => {
+    var flag = false;
     for(let i = 0; i< users.length; i++){
       if(users[i].email === email && users[i].password === password){
-        //alert('valid Login Info')
-        navigate(-1);
+        alert("Successful Login")
+        setLink("/")
+        flag = true;
       }
+      if(!flag){
+        alert('Invalid Credentials')
+        //setLink('/login')
+        setLink("/login")
+      }     
     }
-    //alert('invalid')
 }
 
   displayAll()
@@ -144,7 +149,7 @@ const displayAll = async() => {
               <FormLabel htmlFor='for'>Password</FormLabel>
                 <FormInput type='password' 
                     onChange={(event) => setPassword( event.target.value )}/>
-              <Button onClick={validate} type="submit"  >Submit <FaPaw /></Button>
+              <Button as="a" href={link} onClick={validate} type="submit"  >Submit <FaPaw /></Button>
             </Form>
           </FormContent>
         </FormWrap>

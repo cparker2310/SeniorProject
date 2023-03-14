@@ -6,8 +6,9 @@ import {
      Row,
      Col,
      Button,
-     Form
+     Form,
 } from "react-bootstrap";
+import styled from 'styled-components';
 
 export const FormLabel= styled.label`
   margin-bottom: 8px;
@@ -71,17 +72,20 @@ const EditProfile = () => {
         e.preventDefault();
         //GetUser();
         /* Connect to backend */
-        let id = '640400f25c94a051edc5ade2';
+        let id = '640f70359e74b579db632399';
         const { email, password, firstName, maidenName, lastName,
             classYear, currentCity, currentState, universityName, degree,
               areaStudy, gradYear, position, companyName, industry, email2, phone } = formData
+      
+          const payload = { email, password, firstName, maidenName, lastName,
+            classYear, currentCity, currentState, universityName, degree,
+              areaStudy, gradYear, position, companyName, industry, email2, phone }
 
-              const payload = { email, password, firstName, maidenName, lastName,
-                classYear, currentCity, currentState, universityName, degree,
-                  areaStudy, gradYear, position, companyName, industry, email2, phone }
         await api.updateUserById(id, payload).then(res => {
             alert(`User updated successfully`)
+
         })
+        
     
    }
    //GetUser();

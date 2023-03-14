@@ -33,6 +33,7 @@ createUser = (req, res) => {
         })
 }
 
+
 updateUser = async (req, res) => {
     const body = req.body
 
@@ -50,8 +51,8 @@ updateUser = async (req, res) => {
                 message: 'User not found!',
             })
         }
-        user.email = body.email
-        user.password = body.password
+        //user.email = body.email
+        //user.password = body.password
         user.firstName = body.firstName
         user.maidenName = body.maidenName
         user.marriedName = body.marriedName
@@ -137,4 +138,5 @@ module.exports = {
     deleteUser,
     getUsers,
     getUserById,
+    logIn
 }
