@@ -1,10 +1,13 @@
 import React from 'react';
 import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
+import { MdOutlineEditNote } from 'react-icons/md';
+import { GiTrashCan } from 'react-icons/gi';
 import { 
     Button,
     Grid,
     Typography,
+    IconButton,
     makeStyles
 } from '@material-ui/core';
 
@@ -43,6 +46,10 @@ const useStyles= makeStyles((theme) => ({
         fontWeight: 600,
         backgroundColor: theme.palette.secondary.main,
         color: '#fdfdfd'
+    },
+    edit: {
+        maxHeight: '30px',
+        maxWidth: '30px'
     }
 }));
 
@@ -65,7 +72,8 @@ export default props => {
                     </Grid>
                     <Grid item>
                         <Box mt={2}>
-                            <Button style={{backgroundColor: '#63625d', color: '#fdfdfd'}}>View Details <FaPaw /></Button> 
+                            <IconButton style={{marginRight: '-21px'}}><MdOutlineEditNote /></IconButton><IconButton><GiTrashCan /></IconButton>
+                            <Button style={{backgroundColor: '#63625d', color: '#fdfdfd'}}>View Details <FaPaw /></Button>
                         </Box>
                     </Grid>
                 </Grid>

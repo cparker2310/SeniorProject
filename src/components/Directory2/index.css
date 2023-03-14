@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+body {
+    border-radius: 10px;
+    font-family: 'Lora', serif;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+:root {
+    --black: #030000;
+    --red: #a32738;
+    --gray: #63625d;
+    --white: #fdfdfd
+    box-shadow: 0 3px 10px #030000;
+}

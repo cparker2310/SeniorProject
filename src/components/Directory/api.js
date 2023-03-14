@@ -20,30 +20,21 @@ const DirectoryApi = () => {
 
   return (
     <>
-      <h2>Directory</h2>
-      <div className="container-fluid mt-5">
-        <div className="row text-center">
+      <div>
+        <div>
             {
                 users.map((currentElement) => {
                     const {id, firstName, maidenName, marriedName, classYear}= currentElement;
 
                     return (
-                            <div className= "col-10 col-md-4 mt-5" key={id}>
-                                <div class="card p-2">
-                                    <div class="d-flex align-items-center">
-                                        <div className="ml-3 w-100">
-                                            <div className="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
-                                                <div className="d-flex flex-column">
-                                                    <span className="title">{firstName} {maidenName} {marriedName}</span>
-                                                </div>
-                                                <div className="d-flex flex-column">
-                                                    <span className="classYear">{classYear}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div key={id}>
+                                <div className="card">
+                                    <span className="title">{firstName} {maidenName} {marriedName}</span>
+                                    <br />
+                                    <span className="classYear">Class of {classYear}</span>
                                 </div>
                             </div>
+                                        
                     )
                 })
             }
