@@ -1,4 +1,5 @@
 import React from 'react';
+import theme from '../ProfileCard/theme/theme';
 import { 
     Box, 
     Card, 
@@ -6,30 +7,17 @@ import {
     Typography,
     CardActions,
     Button,
-    makeStyles
+    ThemeProvider
     /* CardMedia - Use for Profile Picture */
 } from '@mui/material';
-
-
-/*const useStyles= makeStyles({
-    wrapper: {
-        border: '1px solid #63625d',
-        backgroundColor: '#fdfdfd',
-        display: 'flex',
-        boxShadow: '0px 1px 5px rgba(0, 0, 0, 0.1)',
-        borderRadius: '5px',
-        cursor: 'pointer',
-        transition: '.3s',
-        alignItems: 'center'
-    }
-});*/
 
 export const ProfileCard = () => {
     //const classes= useStyles();
 
   return (
     <>
-      <Box width='500px' p={2}>
+    <ThemeProvider theme={theme}>
+      <Box p={8} sx={{width: 1290, height: 1200}} alignItems='center'>
         <Card>
             <CardContent>
                 <Typography gutterBottom variant='h5' component='div' color='#030000'>FirstName MaidenName MarriedName</Typography>
@@ -74,6 +62,7 @@ export const ProfileCard = () => {
             </CardActions>
         </Card>
       </Box>
+    </ThemeProvider>
     </>
   );
 }

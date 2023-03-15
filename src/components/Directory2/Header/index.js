@@ -11,12 +11,14 @@ export default (props) => {
     const [profiles, setProfiles]= useState(/*{originalProfiles}*/);
     const [searched, setSearched]= useState("");
 
-    const requestSearch= (searchValue= String) => {
+    /*const requestSearch= (searchValue= String) => {
         const filteredProfiles= originalProfiles.filter(profile => {
             return profile.firstName.toLowerCase().includes(searchValue.toLowerCase())
         });
         setProfiles(filteredProfiles);
-    };
+    };*/
+
+    const requestSearch= () => {};
 
     const cancelSearch= () => {
         setSearched("");
@@ -26,7 +28,7 @@ export default (props) => {
     return (
         <Box py={10}>
             <Grid container justifyContent='center'>
-                <Grid item>
+                <Grid item xs={10}>
                     <Box display='flex' justifyContent='center'>
                         <SearchBar 
                             value={searched} 
