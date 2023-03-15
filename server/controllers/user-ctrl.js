@@ -51,8 +51,8 @@ updateUser = async (req, res) => {
                 message: 'User not found!',
             })
         }
-        //user.email = body.email
-        //user.password = body.password
+        user.email = body.email
+        user.pass = body.password
         user.firstName = body.firstName
         user.maidenName = body.maidenName
         user.marriedName = body.marriedName
@@ -61,14 +61,14 @@ updateUser = async (req, res) => {
         user.currentState = body.currentState
         user.universityName = body.universityName
         user.degree = body.degree
-        user.email2 = body.email2
-        user.phone= body.phone
         user.areaStudy = body.areaStudy
         user.gradYear = body.gradYear
         user.position = body.position
-        user.industry = body.industry
         user.companyName = body.companyName
-
+        user.industry = body.industry
+        user.email2 = body.email2
+        user.phone= body.phone
+        console.log(user._id)        
 
         user
             .save()
@@ -77,6 +77,7 @@ updateUser = async (req, res) => {
                     success: true,
                     id: user._id,
                     message: 'User updated!',
+                    
                 })
             })
             .catch(error => {
@@ -86,6 +87,7 @@ updateUser = async (req, res) => {
                 })
             })
     })
+    
 }
 
 deleteUser = async (req, res) => {
@@ -138,5 +140,4 @@ module.exports = {
     deleteUser,
     getUsers,
     getUserById,
-    logIn
 }
