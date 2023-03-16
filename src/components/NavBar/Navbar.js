@@ -89,6 +89,14 @@ export const Button= styled(Link)`
 `;
 
 const Navbar = () => {
+
+  const logOut = () => {
+    if(sessionStorage.getItem("user") && window.confirm("Are you sure you want to log out?")){
+      sessionStorage.clear();
+      window.location.reload(false);
+    }
+  }
+
   return (
     <NavbarContainer>
       <NavbarWrap>
@@ -100,11 +108,11 @@ const Navbar = () => {
           <NavLink to="/messages">Message Board</NavLink>
         </Nav>
         <ButtonContainer>
-          <Button to="/consent" css={`color: #e6e1e1; background: inherit;`}>
-            Register
+          <Button to={sessionStorage.getItem("user") ? "/" : "/consent"} css={`color: #e6e1e1; background: inherit;`}>
+          {sessionStorage.getItem("user") ? "Welcome" : "Register"}
           </Button>
-          <Button to="/login">
-            Log In
+          <Button onClick={logOut} to={sessionStorage.getItem("user") ? "/" : "/login"}>
+            {sessionStorage.getItem("user") ? "Log Out" : "Log In"}
           </Button>
         </ButtonContainer>
       </NavbarWrap>
