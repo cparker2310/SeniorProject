@@ -8,7 +8,6 @@ import { FaPaw } from 'react-icons/fa';
 import { ThemeProvider } from '@material-ui/core';
 import theme from '../../Directory2/theme/theme';
 import "@fontsource/lora";
-import { maxHeight } from '@mui/system';
 
  export default function UserCard() {
    return (
@@ -21,16 +20,16 @@ import { maxHeight } from '@mui/system';
              alt="profile picture"
              />
              <CardContent>
-             <Typography gutterBottom variant="h6" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>
+             <Typography gutterBottom variant="h6" style={{ textAlign: "center", fontFamily: "Lora, serif", fontWeight: "bold" }}>
              FirstName MaidenName LastName
              </Typography>
-             <Typography variant="body1" color="#a32738" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>
+             <Typography variant="body1" color="#a32738" style={{ textAlign: "center", fontFamily: "Lora, serif", fontWeight: "bold" }}>
                  Class of 20XX
              </Typography>
              </CardContent>
          </CardActionArea>
          <CardActions style={{justifyContent: "center"}}>
-            <Button size="small" variant="contained" style={{ backgroundColor: "#a32738", fontFamily: "Lora, serif" }}>
+            <Button size="small" variant="contained" style={{ backgroundColor: "#a32738", fontFamily: "Lora, serif", fontWeight: "bold" }}>
               View Profile<FaPaw />
             </Button>
          </CardActions>

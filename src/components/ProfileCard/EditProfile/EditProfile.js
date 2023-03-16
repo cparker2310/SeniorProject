@@ -38,11 +38,11 @@ const initState= {
 export default (props) => {
     const [editDetails, setEditDetails]= useState(initState);
     
-        const handleChange= event => {
+       /* const handleChange= event => {
             event.persist();
             setEditDetails(oldState => ({...oldState, [event.target.name] : event.target.value}));
         }
-    
+    */
         /*const handleSubmit= async() => {
             for (const field in jobDetails) {
                 if (typeof jobDetails[field] === 'string' && !jobDetails[field])
