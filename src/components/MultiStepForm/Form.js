@@ -22,6 +22,7 @@ export const Icon= styled(Link)`
 `;
 
 const Form = () => {
+  const [users, setUsers]= useState({});
   const [page, setPage]= useState(0);
   const [formData, setFormData]= useState({
       email: "", 
@@ -45,6 +46,35 @@ const Form = () => {
 
   const FormTitles= ["Personal Details", "Location", "Education", "Career", "Contact Information"];
   
+  const ButtonChoice = () =>{
+    if (page===4){
+      return (<button 
+        
+        onClick={
+          handleIncludeUser
+      }
+    >
+      Submit
+      
+    </button>);
+    }
+    else{
+      return (<button 
+      onClick={() => {
+        if(page=== 0){
+          
+            pageOneMissing(formData)
+          }
+        else{                      
+          setPage((currentPage) => currentPage+1)
+      }
+    }}
+    >
+      Next
+    </button>);
+    }
+  }
+
   const PageDisplay= () => {
     if (page=== 0) 
       return <PersonalDetails formData={formData} setFormData={setFormData}/>;
@@ -77,7 +107,8 @@ const Form = () => {
         areaStudy, gradYear, position, companyName, industry, email2, phone }
 
     await api.insertUser(payload).then(res => {
-        window.alert(`User inserted successfully`)
+      window.alert('Register Complete')
+      window.location.href = '/login';
     })
 } 
 
@@ -105,24 +136,8 @@ const Form = () => {
                       setPage((currentPage) => currentPage-1)
                     }}
                 >Previous</button>
-                <button 
-                  onClick={() => {
-                    if (page=== FormTitles.length-1){
-                      alert("Your Profile was Sucessfully Created")
-                      handleIncludeUser()
-                    }
-                    else if(page=== 0){
-                      
-                        pageOneMissing(formData)
-                      }
-                    else{                      
-                      setPage((currentPage) => currentPage+1)
-                    
-                  }
-                }}
-                >
-                  {page=== FormTitles.length-1 ? "Submit" : "Next"}
-                </button>
+                <ButtonChoice/>
+                
             </div>
         </div>     
     </div>

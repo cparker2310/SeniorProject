@@ -110,12 +110,12 @@ function Login() {
   const [users, setUsers]= useState({});
   const [link, setLink]= useState("");
   
-const displayAll = async() => {
+
     //alert("workding")
-    await api.getAllUsers().then(users => {
+    api.getAllUsers().then(users => {
       setUsers(users.data.data)})
     
-  }
+  
   
 
   const validate = async () => {
@@ -128,15 +128,16 @@ const displayAll = async() => {
         setLink("/")
         flag = true;
       }
-      if(!flag){
-        alert('Invalid Credentials')
-        //setLink('/login')
-        setLink("/login")
-      }     
     }
+
+    if(!flag){
+      alert('Invalid Credentials')
+      //setLink('/login')
+      setLink("/login")
+    }     
 }
 
-  displayAll()
+  
   return (
     <>
       <Container>
