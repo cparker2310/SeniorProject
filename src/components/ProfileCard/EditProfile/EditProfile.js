@@ -37,7 +37,7 @@ const initState= {
     
 export default (props) => {
     const [editDetails, setEditDetails]= useState(initState);
-    
+        /*
         const handleChange= event => {
             event.persist();
             setEditDetails(oldState => ({...oldState, [event.target.name] : event.target.value}));
@@ -55,14 +55,18 @@ export default (props) => {
     
         const closeEditProfile= () => {
             setEditDetails(initState);
-            props.closeEditProfile();
+            props.closeEdit();
         }
 
     const [user, setUser]= useState({});
 
+    api.getUserById(sessionStorage.getItem('user')).then(user => {
+        setUser(user.data.data)
+    })
+
     const [formData, setFormData]= useState({
-        email: "", 
-        password: "", 
+        email: "",
+        password: "",
         firstName: "", 
         maidenName: "", 
         marriedName: "",
@@ -82,19 +86,18 @@ export default (props) => {
 
 
    const submitHandler= async (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     //GetUser();
     /* Connect to backend */
-    let id = '641211e75f717e6191b9a571';
-    const { email, password, firstName, maidenName, lastName,
+    const { email, password, firstName, maidenName, marriedName,
         classYear, currentCity, currentState, universityName, degree,
           areaStudy, gradYear, position, companyName, industry, email2, phone } = formData
   
-      const payload = { email, password, firstName, maidenName, lastName,
+      const payload = { email, password, firstName, maidenName, marriedName,
         classYear, currentCity, currentState, universityName, degree,
           areaStudy, gradYear, position, companyName, industry, email2, phone }
 
-    await api.updateUserById(id, payload).then(res => {
+    await api.updateUserById(user._id, payload).then(res => {
         alert(`User updated successfully`)
 
     })

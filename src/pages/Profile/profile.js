@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import NavBar from '../../components/NavBarAfterLogIn/NavBarLogIn';
 import EditProfile from '../../components/ProfileCard/EditProfile/EditProfile';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';

@@ -51,24 +51,23 @@ updateUser = async (req, res) => {
                 message: 'User not found!',
             })
         }
-        //user.email = body.email
-        //user.pass = body.password
-        user.firstName = body.firstName
-        user.maidenName = body.maidenName
-        user.marriedName = body.marriedName
-        user.classYear = body.classYear
-        user.currentCity = body.currentCity
-        user.currentState = body.currentState
-        user.universityName = body.universityName
-        user.degree = body.degree
-        user.areaStudy = body.areaStudy
-        user.gradYear = body.gradYear
-        user.position = body.position
-        user.companyName = body.companyName
-        user.industry = body.industry
-        user.email2 = body.email2
-        user.phone= body.phone
-        console.log(user._id)        
+        //user.email = user.email
+        //user.pass = user.password
+        user.firstName = body.firstName ? body.firstName : user.firstName
+        user.maidenName = body.maidenName ? body.maidenName : user.maidenName
+        user.marriedName = body.marriedName ? body.marriedName : user.marriedName
+        user.classYear = body.classYear ? body.classYear : user.classYear
+        user.currentCity = body.currentCity ? body.currentCity : user.currentCity
+        user.currentState = body.currentState ? body.currentState : user.currentState
+        user.universityName = body.universityName ? body.universityName : user.universityName
+        user.degree = body.degree ? body.degree : user.degree
+        user.areaStudy = body.areaStudy ? body.areaStudy : user.areaStudy
+        user.gradYear = body.gradYear ? body.gradYear : user.gradYear
+        user.position = body.position ? body.position : user.position
+        user.companyName = body.companyName ? body.companyName : user.companyName
+        user.industry = body.industry ? body.industry : user.industry
+        user.email2 = body.email2 ? body.email2 : user.email2
+        user.phone= body.phone ? body.phone : user.phone
 
         user
             .save()

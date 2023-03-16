@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import useHistory from 'react-router-dom';
+import React, { useState } from 'react';
 import NavBarLogIn from '../../components/NavBarAfterLogIn/NavBarLogIn';
 import api from '../../api/index';
 import {
@@ -21,72 +20,49 @@ const EditProfile = () => {
 
     // temporary before we can store a user session
     const [user, setUser]= useState({});
-
-   
+    api.getUserById(sessionStorage.getItem('user')).then(user => {
+        setUser(user.data.data)
+        //alert(user._id)
+    })
+    
    
 
    const [formData, setFormData]= useState({
-    email: "", 
-    password: "", 
-    firstName: "", 
-    maidenName: "", 
-    marriedName: "",
-    classYear: "", 
-    currentCity: "", 
-    currentState: "", 
-    universityName: "",
-    degree: "",
-    areaStudy: "",
-    gradYear: "",
-    position: "",
-    companyName: "",
-    industry: "",
-    email2: "",
-    phone: ""
+    //email: "", 
+    //password: "", 
+    firstName: user.ma, 
+    maidenName: user.maidenName, 
+    marriedName: user.marriedName,
+    classYear: user.classYear, 
+    currentCity: user.currentCity, 
+    currentState: user.currentState, 
+    universityName: user.universityName,
+    degree: user.degree,
+    areaStudy: user.areaStudy,
+    gradYear: user.gradYear,
+    position: user.position,
+    companyName: user.companyName,
+    industry: user.industry,
+    email2: user.email2,
+    phone: user.phone
 });
-
-    const GetUser = async () =>{
-        //const u = await api.getUserById('640400f25c94a051edc5ade2')
-        /*setUser(u.data.data);
-        useEffect(() => {
     
-    
-            setFormData(user.firstName);
-            setFormData(user.maidenName);
-            setFormData(user.marriedName);
-            setFormData(user.classYear);
-            setFormData(user.currentCity);
-            setFormData(user.currentState);
-            setFormData(user.universityName);
-            setFormData(user.degree);
-            setFormData(user.areaStudy);
-            setFormData(user.gradYear);
-            setFormData(user.position);
-            setFormData(user.companyName);
-            setFormData(user.industry);
-        
-    }, [user]);*/
-    }
-
    const submitHandler= async (e) => {
-        e.preventDefault();
+        //e.preventDefault();
         //GetUser();
         /* Connect to backend */
-        let id = '641211e75f717e6191b9a571';
-        const { email, password, firstName, maidenName, lastName,
+        
+        const {firstName, maidenName, lastName,
             classYear, currentCity, currentState, universityName, degree,
               areaStudy, gradYear, position, companyName, industry, email2, phone } = formData
       
-          const payload = { email, password, firstName, maidenName, lastName,
+          const payload = {firstName, maidenName, lastName,
             classYear, currentCity, currentState, universityName, degree,
               areaStudy, gradYear, position, companyName, industry, email2, phone }
 
-        await api.updateUserById(id, payload).then(res => {
+        await api.updateUserById(user._id, payload).then(res => {
             alert(`User updated successfully`)
-
-        })
-        
-    
+        }) 
    }
    //GetUser();
     // for the placeholders, should be the current variable value - need to fix
@@ -94,12 +70,12 @@ const EditProfile = () => {
     <>
     <NavBarLogIn />
     <div>
-      <h1>Edit Profile</h1>
+      <h1>{user._id}</h1>
         <div>
             <Row className= "profile-container">
                 <Col md={6}>
                     <Form >
-                        <Form.Group controlId="fistName">
+                        <Form.Group controlId="firstName">
                             <Form.Label>First Name</Form.Label>
                             <Form.Control
                                 type="text"
@@ -228,7 +204,7 @@ const EditProfile = () => {
                                 onChange={(e) => setFormData({...formData, industry: e.target.value})}
                             ></Form.Control>
                         </Form.Group>
-                        <Button type="submit" onClick={submitHandler}>Submit</Button>
+                        <Button type="submit" onClick={() => submitHandler}>Submit</Button>
                     </Form>
                 </Col>
                 

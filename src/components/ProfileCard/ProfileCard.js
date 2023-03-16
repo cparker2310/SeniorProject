@@ -18,16 +18,22 @@ import api from '../../api/index';
 
 export default (props) => {
     //const classes= useStyles();
-  const [user, setUser] = useState("");
-  //setUser(sessionStorage.getItem('user'))
+  const [user, setUser] = useState({});
+  let u = sessionStorage.getItem('user')
   
-  const getUser = () =>{
-    let u = sessionStorage.getItem('user')
     api.getUserById(u).then(user => {
       setUser(user.data.data)})
-  }
+      
+  const handleDelete = () => {
+    if(window.confirm("Are you sure you want to delete your profile?")){
 
-  getUser();
+      api.deleteUserById(user._id).then(res => {
+        sessionStorage.clear()
+        window.location.href = '/';
+      })
+    }
+}
+  
   return (
     <>
     <ThemeProvider theme={theme}>
@@ -71,8 +77,8 @@ export default (props) => {
                 <Typography variant='h5' color='#030000'>Email: {user.email2} </Typography>
             </CardContent>
             <CardActions style={{justifyContent: "center"}}>
-                <Button variant='contained' /*as="a" href='/editprofile'*/ onClick={props.openEdit} style={{fontWeight: "bold"}}>Edit Profile <FaPaw /></Button>
-                <Button variant='contained' style={{fontWeight: "bold"}}>Delete Profile <FaPaw /></Button>
+                <Button variant='contained' onClick={props.openEdit} style={{fontWeight: "bold"}}>Edit Profile <FaPaw /></Button>
+                <Button variant='contained' style={{fontWeight: "bold"}} onClick={handleDelete}>Delete Profile <FaPaw /></Button>
             </CardActions>
         </Card>
       </Box>
