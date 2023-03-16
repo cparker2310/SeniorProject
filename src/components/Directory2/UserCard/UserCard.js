@@ -17,7 +17,6 @@ import { maxHeight } from '@mui/system';
          <CardActionArea>
              <CardMedia
              component="img"
-             height="140"
              image=""
              alt="profile picture"
              />
