@@ -70,7 +70,7 @@ export const ProfileCard =  () => {
                 <Typography variant='h8' color='#030000'>Email: {user.email2} </Typography>
             </CardContent>
             <CardActions>
-                <Button variant='contained' as="a" href='/editprofile'>Edit Profile</Button>
+                <Button variant='contained' as="a" href='/editprofile' onClick={props.openEdit}>Edit Profile</Button>
                 <Button variant='contained' >Delete Profile</Button>
             </CardActions>
         </Card>
