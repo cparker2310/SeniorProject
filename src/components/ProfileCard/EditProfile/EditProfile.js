@@ -38,27 +38,16 @@ const initState= {
 export default (props) => {
     const [editDetails, setEditDetails]= useState(initState);
     
-       /* const handleChange= event => {
-            event.persist();
-            setEditDetails(oldState => ({...oldState, [event.target.name] : event.target.value}));
-        }
-    */
-        /*const handleSubmit= async() => {
-            for (const field in jobDetails) {
-                if (typeof jobDetails[field] === 'string' && !jobDetails[field])
-                    return;
-            }
-    
-            if (!jobDetails.categories.length) return;
-            closeNewJob();
-        }*/
-    
         const closeEditProfile= () => {
             setEditDetails(initState);
-            props.closeEditProfile();
+            props.closeEdit();
         }
 
-    const [user, setUser]= useState({});
+    const [user, setUser]= useState("");
+
+    let u = sessionStorage.getItem('user')
+    api.getUserById(u).then(user => {
+        setUser(user.data.data)})
 
     const [formData, setFormData]= useState({
         email: "", 
@@ -114,7 +103,7 @@ export default (props) => {
                     <Grid item xs={6}>
                         <FilledInput placeholder="First Name" disableUnderline fullWidth
                             value={formData.firstName}
-                            onChange={/*{handleChange}*/(e) => setFormData({...formData, firstName: e.target.value})}
+                            onChange={(e) => setFormData({...formData, firstName: e.target.value})}
                         />
                     </Grid>
 
