@@ -37,12 +37,12 @@ const initState= {
     
 export default (props) => {
     const [editDetails, setEditDetails]= useState(initState);
-        /*
-        const handleChange= event => {
+    
+       /* const handleChange= event => {
             event.persist();
             setEditDetails(oldState => ({...oldState, [event.target.name] : event.target.value}));
         }
-    
+    */
         /*const handleSubmit= async() => {
             for (const field in jobDetails) {
                 if (typeof jobDetails[field] === 'string' && !jobDetails[field])
@@ -55,18 +55,14 @@ export default (props) => {
     
         const closeEditProfile= () => {
             setEditDetails(initState);
-            props.closeEdit();
+            props.closeEditProfile();
         }
 
     const [user, setUser]= useState({});
 
-    api.getUserById(sessionStorage.getItem('user')).then(user => {
-        setUser(user.data.data)
-    })
-
     const [formData, setFormData]= useState({
-        email: "",
-        password: "",
+        email: "", 
+        password: "", 
         firstName: "", 
         maidenName: "", 
         marriedName: "",
