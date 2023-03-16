@@ -72,7 +72,7 @@ const EditProfile = () => {
         e.preventDefault();
         //GetUser();
         /* Connect to backend */
-        let id = '640f70359e74b579db632399';
+        let id = '641211e75f717e6191b9a571';
         const { email, password, firstName, maidenName, lastName,
             classYear, currentCity, currentState, universityName, degree,
               areaStudy, gradYear, position, companyName, industry, email2, phone } = formData

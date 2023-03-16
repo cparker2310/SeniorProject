@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../../components/NavBarAfterLogIn/NavBarLogIn';
+import EditProfile from '../../components/ProfileCard/EditProfile/EditProfile';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
 
 const ProfilePage = () => {
+  const [edit, setEdit]= useState(false);
+
   return (
     <>
         <NavBar />
-        <ProfileCard />
+        <EditProfile closeEdit={() => setEdit(false)} edit={edit}/>
+        <ProfileCard openEdit={() => setEdit(true)}/>
     </>
   );
 }

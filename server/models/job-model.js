@@ -25,6 +25,14 @@ const JobSchema= new Schema({
     isAvailable: {
         type: Boolean,
         default: true
+    },
+    contactName: {
+        type: String,
+        required: [true, 'Contact Name is required']
+    },
+    contactInfo: {
+        type: String,
+        required: [true, 'Contact Information is required']
     }
 })
 

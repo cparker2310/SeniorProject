@@ -15,7 +15,7 @@ import api from '../../api/index';
 
 
 
-export const ProfileCard =  () => {
+export default (props) => {
     //const classes= useStyles();
   const [user, setUser] = useState("");
   //setUser(sessionStorage.getItem('user'))
@@ -79,5 +79,3 @@ export const ProfileCard =  () => {
     </>
   );
 }
-
-export default ProfileCard;
