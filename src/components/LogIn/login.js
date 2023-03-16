@@ -122,6 +122,8 @@ const displayAll = async() => {
     var flag = false;
     for(let i = 0; i< users.length; i++){
       if(users[i].email === email && users[i].password === password){
+        sessionStorage.setItem('user', users[i]._id)
+
         alert("Successful Login")
         setLink("/")
         flag = true;

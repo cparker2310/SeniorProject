@@ -68,11 +68,11 @@ const Form = () => {
 
   const handleIncludeUser = async () => {
 
-    const { email, password, firstName, maidenName, lastName,
+    const { email, password, firstName, maidenName, marriedName,
       classYear, currentCity, currentState, universityName, degree,
         areaStudy, gradYear, position, companyName, industry, email2, phone } = formData
 
-    const payload = { email, password, firstName, maidenName, lastName,
+    const payload = { email, password, firstName, maidenName, marriedName,
       classYear, currentCity, currentState, universityName, degree,
         areaStudy, gradYear, position, companyName, industry, email2, phone }
 
