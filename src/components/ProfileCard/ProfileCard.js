@@ -23,11 +23,11 @@ export default (props) => {
   
     api.getUserById(u).then(user => {
       setUser(user.data.data)})
-      
-  const handleDelete = () => {
+
+  const handleDelete = async () => {
     if(window.confirm("Are you sure you want to delete your profile?")){
 
-      api.deleteUserById(user._id).then(res => {
+      await api.deleteUserById(user._id).then(res => {
         sessionStorage.clear()
         window.location.href = '/';
       })
