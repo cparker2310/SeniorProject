@@ -2,10 +2,10 @@ import React from 'react';
 import Navbar from '../../components/NavBar/Navbar';
 import Box from "@mui/material/Box";
 import { ThemeProvider, Grid } from "@material-ui/core";
-import theme from '../../components/Directory2/theme/theme';
-import Header from '../../components/Directory2/Header';
-import Filter from '../../components/Directory2/Filter';
-import UserCard from '../../components/Directory2/UserCard/UserCard';
+import theme from '../../components/Directory/theme/theme';
+import Header from '../../components/Directory/Header';
+import Filter from '../../components/Directory/Filter';
+import UserCard from '../../components/Directory/UserCard/UserCard';
 
 const Directory = () => {
   return (

@@ -1,10 +1,10 @@
-import { createMuiTheme } from "@material-ui/core";
+import { createTheme } from "@material-ui/core";
 
 const primary = "#a32738";
 const secondary = "#63625d";
 const tertiary= '#989791';
 
-export default createMuiTheme({
+export default createTheme({
   typography: {
     fontFamily: "Lora, serif",
   },

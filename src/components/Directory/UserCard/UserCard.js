@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Box } from '@mui/material';
 import { FaPaw } from 'react-icons/fa';
 import { ThemeProvider } from '@material-ui/core';
-import theme from '../../Directory2/theme/theme';
+import theme from '../../Directory/theme/theme';
 import "@fontsource/lora";
 import { maxHeight } from '@mui/system';
 

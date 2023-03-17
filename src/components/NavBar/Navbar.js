@@ -108,8 +108,8 @@ const Navbar = () => {
           <NavLink to="/messages">Message Board</NavLink>
         </Nav>
         <ButtonContainer>
-          <Button to={sessionStorage.getItem("user") ? "/" : "/consent"} css={`color: #e6e1e1; background: inherit;`}>
-          {sessionStorage.getItem("user") ? "Welcome" : "Register"}
+          <Button to={sessionStorage.getItem("user") ? "/profile" : "/consent"} css={`color: #e6e1e1; background: inherit;`}>
+          {sessionStorage.getItem("user") ? "Profile" : "Register"}
           </Button>
           <Button onClick={logOut} to={sessionStorage.getItem("user") ? "/" : "/login"}>
             {sessionStorage.getItem("user") ? "Log Out" : "Log In"}

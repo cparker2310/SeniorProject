@@ -1,11 +1,9 @@
-//import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Consent from './components/Acknowledgement/Consent';
-import LogInPage from './components/LogIn/login';
-//import Form from './components/MultiStepForm/Form';
+import LogInPage from './components/Login/login';
 import SiteConduct from './pages/conduct';
-import Directory from './pages/Directory2/directory2';
+import Directory from './pages/Directory/directory';
 import CareerCenter from './pages/jobs';
 import MessageBoard from './pages/messages';
 import Form from './components/MultiStepForm/Form';
