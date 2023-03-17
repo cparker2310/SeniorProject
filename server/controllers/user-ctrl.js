@@ -51,8 +51,6 @@ updateUser = async (req, res) => {
                 message: 'User not found!',
             })
         }
-        //user.email = user.email
-        //user.pass = user.password
         user.firstName = body.firstName ? body.firstName : user.firstName
         user.maidenName = body.maidenName ? body.maidenName : user.maidenName
         user.marriedName = body.marriedName ? body.marriedName : user.marriedName
