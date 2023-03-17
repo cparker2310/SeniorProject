@@ -9,6 +9,12 @@ import Header from '../components/CareerCenter/Header';
 import Search from '../components/CareerCenter/Search';
 import JobCard from '../components/CareerCenter/Jobs/JobCard';
 import NewJob from '../components/CareerCenter/Jobs/NewJob';
+import { useDispatch } from 'react-redux';
+import { getJobs } from '../components/CareerCenter/Jobs/actions/actions';
+import { Provider } from 'react-redux';
+import { configureStore, applyMiddleware, compose } from 'redux';
+import thunk from 'react-thunk';
+import reducers from '../components/CareerCenter/Jobs/reducers';
 
 const Background= styled.section`
     background-image: url(${Castle});
@@ -22,6 +28,14 @@ const Background= styled.section`
 
 const CareerCenter = () => {
   const [newJob, setNewJob]= useState(false);
+  const [jobId, setJobId]= useState(0);
+  
+  const dispatch= useDispatch();
+  const store= configureStore(reducers, compose(applyMiddleware(thunk)));
+
+  useEffect(() => {
+    dispatch(getJobs());
+  }, [jobId, dispatch]);
 
   /*const fetchSearchJobs= jobSearch => {
     where("location", '==', jobSearch.location).where("type", '==', jobSearch.type)
@@ -29,6 +43,7 @@ const CareerCenter = () => {
 
   return (
     <>
+    <Provider store={store}>
       <Navbar />
       <Background>
         <ThemeProvider theme={theme}>
@@ -38,12 +53,13 @@ const CareerCenter = () => {
             <Grid container justifyContent='center'>
               <Grid item xs={10}>
                 <Search />
-                <JobCard />
+                <JobCard jobId={jobId} setJobId={setJobId} />
               </Grid>
             </Grid>
           </Box>
         </ThemeProvider>
       </Background>
+      </Provider>
     </>
   )
 }
