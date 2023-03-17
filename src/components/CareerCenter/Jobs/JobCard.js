@@ -72,7 +72,7 @@ export default props => {
                     </Grid>
                     <Grid item>
                         <Box mt={2}>
-                            <IconButton style={{marginRight: '-21px'}}><MdOutlineEditNote /></IconButton><IconButton><GiTrashCan /></IconButton>
+                            <IconButton style={{marginRight: '-21px'}} onClick={props.openEditJob}><MdOutlineEditNote /></IconButton><IconButton><GiTrashCan /></IconButton>
                             <Button style={{backgroundColor: '#63625d', color: '#fdfdfd'}}>View Details <FaPaw /></Button>
                         </Box>
                     </Grid>

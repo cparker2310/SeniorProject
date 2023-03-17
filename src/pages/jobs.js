@@ -9,6 +9,7 @@ import Header from '../components/CareerCenter/Header';
 import Search from '../components/CareerCenter/Search';
 import JobCard from '../components/CareerCenter/Jobs/JobCard';
 import NewJob from '../components/CareerCenter/Jobs/NewJob';
+import EditJob from '../components/CareerCenter/Jobs/EditJob/EditJob';
 import { useDispatch } from 'react-redux';
 import { getJobs } from '../components/CareerCenter/Jobs/actions/actions';
 import { Provider } from 'react-redux';
@@ -28,6 +29,7 @@ const Background= styled.section`
 
 const CareerCenter = () => {
   const [newJob, setNewJob]= useState(false);
+  const [editJob, setEditJob]= useState(false);
   const [jobId, setJobId]= useState(0);
   
   const dispatch= useDispatch();
@@ -53,7 +55,8 @@ const CareerCenter = () => {
             <Grid container justifyContent='center'>
               <Grid item xs={10}>
                 <Search />
-                <JobCard jobId={jobId} setJobId={setJobId} />
+                <JobCard jobId={jobId} setJobId={setJobId} openEditJob={() => setEditJob(true)} />
+                <EditJob closeEditJob={() => setEditJob(false)} editJob={editJob} />
               </Grid>
             </Grid>
           </Box>
