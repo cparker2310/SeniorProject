@@ -21,8 +21,8 @@ const User = new Schema(
       industry: { type: String, required: false },
       email2: { type: String, required: false },
       phone: { type: String, required: false },
-      imageName: { type: String, required: true },
-      image: { data: Buffer, contentType: String }
+      //imageName: { type: String, required: true },
+      //image: { data: Buffer, contentType: String }
     })
 
 

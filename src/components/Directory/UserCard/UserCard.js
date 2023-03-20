@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useState}from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,31 +10,32 @@ import theme from '../../Directory/theme/theme';
 import "@fontsource/lora";
 import { maxHeight } from '@mui/system';
 
- export default function UserCard() {
+ export default function UserCard({props}) {
+  //alert(props)
    return (
      <ThemeProvider theme={theme}>
          <Card sx={{ maxWidth: 325, maxHeight: 355}}>
-         <CardActionArea>
-             <CardMedia
-             component="img"
-             image=""
-             alt="profile picture"
-             />
-             <CardContent>
-             <Typography gutterBottom variant="h6" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>
-             FirstName MaidenName LastName
-             </Typography>
-             <Typography variant="body1" color="#a32738" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>
-                 Class of 20XX
-             </Typography>
-             </CardContent>
-         </CardActionArea>
-         <CardActions style={{justifyContent: "center"}}>
-            <Button size="small" variant="contained" style={{ backgroundColor: "#a32738", fontFamily: "Lora, serif" }}>
-              View Profile<FaPaw />
-            </Button>
-         </CardActions>
-         </Card>
+      <CardActionArea>
+          <CardMedia
+          component="img"
+          image=""
+          alt="profile picture"
+          />
+          <CardContent>
+          <Typography gutterBottom variant="h6" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>
+          {props.firstName} {props.maidenName} {props.marriedName}
+          </Typography>
+          <Typography variant="body1" color="#a32738" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>
+              Class of {props.classYear}
+          </Typography>
+          </CardContent>
+      </CardActionArea>
+      <CardActions style={{justifyContent: "center"}}>
+         <Button size="small" variant="contained" style={{ backgroundColor: "#a32738", fontFamily: "Lora, serif" }}>
+           View Profile<FaPaw />
+         </Button>
+      </CardActions>
+      </Card>
      </ThemeProvider>
    );
  }

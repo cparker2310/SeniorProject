@@ -22,7 +22,6 @@ export const Icon= styled(Link)`
 `;
 
 const Form = () => {
-  const [users, setUsers]= useState({});
   const [page, setPage]= useState(0);
   const [formData, setFormData]= useState({
       email: "", 
@@ -46,6 +45,22 @@ const Form = () => {
 
   const FormTitles= ["Personal Details", "Location", "Education", "Career", "Contact Information"];
   
+  const handleIncludeUser = async () => {
+    //alert("inside")
+    const { email, password, firstName, maidenName, marriedName,
+      classYear, currentCity, currentState, universityName, degree,
+        areaStudy, gradYear, position, companyName, industry, email2, phone } = formData
+
+    const payload = { email, password, firstName, maidenName, marriedName,
+      classYear, currentCity, currentState, universityName, degree,
+        areaStudy, gradYear, position, companyName, industry, email2, phone }
+
+    await api.insertUser(payload).then(res => {
+      window.alert('Register Complete')
+      window.location.href = '/login';
+    })
+} 
+
   const ButtonChoice = () =>{
     if (page===4){
       return (<button 
@@ -96,21 +111,6 @@ const Form = () => {
 
   }
 
-  const handleIncludeUser = async () => {
-
-    const { email, password, firstName, maidenName, marriedName,
-      classYear, currentCity, currentState, universityName, degree,
-        areaStudy, gradYear, position, companyName, industry, email2, phone } = formData
-
-    const payload = { email, password, firstName, maidenName, marriedName,
-      classYear, currentCity, currentState, universityName, degree,
-        areaStudy, gradYear, position, companyName, industry, email2, phone }
-
-    await api.insertUser(payload).then(res => {
-      window.alert('Register Complete')
-      window.location.href = '/login';
-    })
-} 
 
   return (
     <>
