@@ -23,6 +23,7 @@ const User = new Schema(
       phone: { type: String, required: false },
       //imageName: { type: String, required: true },
       //image: { data: Buffer, contentType: String }
+      isAdmin: { type: Boolean, default: false }
     })
 
 
