@@ -2,6 +2,14 @@ const mongoose= require('mongoose');
 const Schema= mongoose.Schema;
 
 const JobSchema= new Schema({
+    author_id: {
+        type: String,
+        required: true
+    },
+    dateCreated: {
+        type: Date, 
+        default: Date.now
+    },
     title: {
         type: String,
         required: [true, 'Job Title is Required']
@@ -14,13 +22,16 @@ const JobSchema= new Schema({
         type: String,
         required: [true, 'Location is Required']
     }, 
-    jobType: {
+    type: {
         type: String,
         required: [true, 'Job Type is Required']
     },
     description: {
         type: String,
         required: [true, 'Description is Required']
+    },
+    categories: {
+        type: [String],
     },
     isAvailable: {
         type: Boolean,
@@ -33,6 +44,9 @@ const JobSchema= new Schema({
     contactInfo: {
         type: String,
         required: [true, 'Contact Information is required']
+    },
+    comments: {
+        type: [String]
     }
 })
 

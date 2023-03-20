@@ -10,6 +10,7 @@ import Search from '../components/CareerCenter/Search';
 import JobCard from '../components/CareerCenter/Jobs/JobCard';
 import NewJob from '../components/CareerCenter/Jobs/NewJob';
 import EditJob from '../components/CareerCenter/Jobs/EditJob/EditJob';
+import api from '../api/index';
 /*import { useDispatch } from 'react-redux';
 import { getJobs } from '../components/CareerCenter/Jobs/actions/actions';
 import { Provider } from 'react-redux';
@@ -32,17 +33,16 @@ const CareerCenter = () => {
   const [newJob, setNewJob]= useState(false);
   const [editJob, setEditJob]= useState(false);
   const [jobId, setJobId]= useState(0);
+  const [job, setJobs] = useState({});
+  const [elements, setElements] = useState(0);
+
+  api.getAllJobs().then(jobs => {
+      setJobs(jobs.data.data)
+      const ele = job.map((job)=>{
+        return <JobCard props={job} openEditJob={() => setEditJob(true)}/>;
+      })
+      setElements(ele)})
   
-  /*const dispatch= useDispatch();
-  const store= configureStore(reducers, compose(applyMiddleware(thunk)));
-
-  useEffect(() => {
-    dispatch(getJobs());
-  }, [jobId, dispatch]);*/
-
-  /*const fetchSearchJobs= jobSearch => {
-    where("location", '==', jobSearch.location).where("type", '==', jobSearch.type)
-  }*/
 
   return (
     <>
@@ -55,7 +55,7 @@ const CareerCenter = () => {
             <Grid container justifyContent='center'>
               <Grid item xs={10}>
                 <Search />
-                <JobCard /*jobId={jobId} setJobId={setJobId}*/ openEditJob={() => setEditJob(true)} />
+                {elements}
                 <EditJob closeEditJob={() => setEditJob(false)} editJob={editJob} />
               </Grid>
             </Grid>

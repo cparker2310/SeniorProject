@@ -11,7 +11,7 @@ import {
     makeStyles
 } from '@material-ui/core';
 
-const categories= ["Medical"];
+
 
 const useStyles= makeStyles((theme) => ({
     wrapper: {
@@ -53,22 +53,22 @@ const useStyles= makeStyles((theme) => ({
     }
 }));
 
-export default props => {
+export default function JobCard({props}){
     const classes= useStyles();
-
+    const categories= props.categories
     return (
         <Box p={2} className={classes.wrapper}>
             <Grid container>
                 <Grid item xs alignItems='center'>
-                    <Typography variant='subtitle1'>Nurse</Typography>
-                    <Typography className={classes.companyName} variant='subtitle1'>St. Joseph Medical Center</Typography>
+                    <Typography variant='subtitle1'>{props.title}</Typography>
+                    <Typography className={classes.companyName} variant='subtitle1'>{props.companyName}</Typography>
                 </Grid>
                 <Grid item container xs>
                     {categories.map(category => <Grid key={category} className={classes.categoryChip} style={{height: '35px'}} item>{category}</Grid>)}
                 </Grid>
                 <Grid item container direction='column' alignItems='flex-end' xs>
                     <Grid item>
-                        <Typography variant='caption'> Full Time | Onsite</Typography>
+                        <Typography variant='caption'> {props.type} | {props.location}</Typography>
                     </Grid>
                     <Grid item>
                         <Box mt={2}>

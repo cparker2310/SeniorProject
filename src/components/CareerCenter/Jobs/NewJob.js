@@ -16,6 +16,7 @@ import {
     IconButton,
     makeStyles
 } from '@material-ui/core';
+import api from '../../../api/index'
 
 const useStyles= makeStyles(theme => ({
     categoryChip: {
@@ -40,19 +41,24 @@ const useStyles= makeStyles(theme => ({
 }));
 
 const initState= {
+    author_id: sessionStorage.getItem('user'),
+    dateCreated: "",
     title: "",
-    type: "Full Time",
+    type: "",
     companyName: "",
-    location: "Onsite",
+    location: "",
+    isAvailable: true,
     contactName: "",
     contactInfo: "",
     description: "",
-    categories: []   
+    categories: [],
+    comments: []   
 }
 
 export default (props) => {
     const classes= useStyles();
     const [jobDetails, setJobDetails]= useState(initState);
+    
 
     const handleChange= event => {
         event.persist();
@@ -64,16 +70,33 @@ export default (props) => {
             }))
         : setJobDetails(oldState => ({...oldState, categories: oldState.categories.concat(category)
         }));
-
-    /*const handleSubmit= async() => {
+    
+    const handleSubmit= async() => {
+        /*
         for (const field in jobDetails) {
             if (typeof jobDetails[field] === 'string' && !jobDetails[field])
-                return;
-        }
+             return;
+        }*/
 
+        /*
         if (!jobDetails.categories.length) return;
-        closeNewJob();
-    }*/
+        closeNewJob();*/
+
+        if(!sessionStorage.getItem('user')){
+            alert('You must be logged in to create a job posting')
+            return
+        }
+        const { author_id, dateCreated, title, type, categories, companyName, location, contactInfo, 
+            contactName, isAvailable, description, comments} = jobDetails
+      
+        const payload = { author_id, dateCreated, title, type, categories, companyName, location, contactInfo, 
+            contactName, isAvailable, description, comments}
+        alert("Inserting....")
+          await api.insertJob(payload).then(res => {
+            window.alert('Job Created')
+          })
+
+    }
 
     const closeNewJob= () => {
         setJobDetails(initState);
@@ -147,7 +170,7 @@ export default (props) => {
             <DialogActions>
                 <Box alignItems='center' color='#60000d' width='100%' display='flex' justifyContent='space-between'>
                     <Typography variant='caption'>*Required Fields</Typography>
-                    <Button variant='contained' color='primary'>Submit <FaPaw /></Button>
+                    <Button variant='contained' color='primary' onClick={handleSubmit}>Submit <FaPaw /></Button>
                 </Box>
             </DialogActions>
         </Dialog>
