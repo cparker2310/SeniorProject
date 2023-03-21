@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import Navbar from '../../components/NavBar/Navbar';
-import Box from "@mui/material/Box";
 import { ThemeProvider, Grid } from "@material-ui/core";
 import theme from '../../components/Directory/theme/theme';
 import Header from '../../components/Directory/Header';

@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from "material-ui-search-bar";
 import Box from "@mui/material/Box";
-import { 
-    Grid,
-    Typography,
-    Button
-} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 export default (props) => {
     const [profiles, setProfiles]= useState(/*{originalProfiles}*/);

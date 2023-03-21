@@ -97,10 +97,6 @@ const Navbar = () => {
     }
   }
 
-  const auth= useSelector((state) => state.auth);
-
-  if (!auth.isAdmin) return <p>Access Denied</p>;
-
   return (
     <>
     <NavbarContainer>
