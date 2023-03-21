@@ -19,6 +19,4 @@ router.delete('/job/:id', JobCtrl.deleteJob)
 router.get('/job/:id', JobCtrl.getJobById)
 router.get('/jobs', JobCtrl.getJobs)
 
-
-
 module.exports = router
