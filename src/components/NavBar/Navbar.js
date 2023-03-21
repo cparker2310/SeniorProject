@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
+import { useSelector } from 'react-redux';
 
 export const NavbarContainer= styled.div`
   width: 100%;
@@ -97,7 +98,12 @@ const Navbar = () => {
     }
   }
 
+  const auth= useSelector((state) => state.auth);
+
+  if (!auth.isAdmin) return <p>Access Denied</p>;
+
   return (
+    <>
     <NavbarContainer>
       <NavbarWrap>
         <Nav>
@@ -117,6 +123,7 @@ const Navbar = () => {
         </ButtonContainer>
       </NavbarWrap>
     </NavbarContainer>
+    </>
   );
 }
 

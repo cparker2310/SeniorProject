@@ -16,6 +16,15 @@ export const updateJobById = (id, payload) => api.put(`/job/${id}`, payload)
 export const deleteJobById = id => api.delete(`/job/${id}`)
 export const getJobById = id => api.get(`/job/${id}`)
 
+export const setHeaders = () => {
+    const headers= {
+        headers: {
+            "x-auth-token": localStorage.getItem(token),
+        }
+    }
+    return headers;
+}
+
 const apis = {
     insertUser,
     updateUserById,
