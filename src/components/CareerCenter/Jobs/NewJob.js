@@ -91,10 +91,11 @@ export default (props) => {
       
         const payload = { author_id, dateCreated, title, type, categories, companyName, location, contactInfo, 
             contactName, isAvailable, description, comments}
-        alert("Inserting....")
+            
           await api.insertJob(payload).then(res => {
-            window.alert('Job Created')
+            //window.alert('Job Created')
           })
+          window.location.reload(true)
 
     }
 

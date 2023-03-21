@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
 import { MdOutlineEditNote } from 'react-icons/md';
@@ -10,7 +10,7 @@ import {
     IconButton,
     makeStyles
 } from '@material-ui/core';
-
+import api from '../../../api/index'
 
 
 const useStyles= makeStyles((theme) => ({
@@ -56,6 +56,19 @@ const useStyles= makeStyles((theme) => ({
 export default function JobCard({props}){
     const classes= useStyles();
     const categories= props.categories
+    const element = sessionStorage.getItem('user') === props.author_id ? <GiTrashCan /> : <></>
+    
+    
+
+    const handleDelete = async () => {
+        if(window.confirm("Are you sure you want to delete this job post?")){
+            await api.deleteJobById(props._id).then(res => {
+                
+            })
+            window.location.reload(true);
+        }
+    }
+
     return (
         <Box p={2} className={classes.wrapper}>
             <Grid container>
@@ -72,7 +85,10 @@ export default function JobCard({props}){
                     </Grid>
                     <Grid item>
                         <Box mt={2}>
-                            <IconButton style={{marginRight: '-21px'}} onClick={props.openEditJob}><MdOutlineEditNote /></IconButton><IconButton><GiTrashCan /></IconButton>
+                            <IconButton style={{marginRight: '-21px'}} onClick={props.openEditJob}><MdOutlineEditNote /></IconButton>
+                            <IconButton onClick={handleDelete}>
+                                {element}
+                            </IconButton>
                             <Button style={{backgroundColor: '#63625d', color: '#fdfdfd'}}>View Details <FaPaw /></Button>
                         </Box>
                     </Grid>
