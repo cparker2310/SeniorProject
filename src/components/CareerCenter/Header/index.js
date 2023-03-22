@@ -1,11 +1,7 @@
 import React from 'react';
 import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
-import { 
-    Grid,
-    Typography,
-    Button
-} from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 
 export default (props) => (
     <Box py={10}>

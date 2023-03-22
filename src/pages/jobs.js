@@ -32,7 +32,7 @@ const Background= styled.section`
 const CareerCenter = () => {
   const [newJob, setNewJob]= useState(false);
   const [editJob, setEditJob]= useState(false);
-  const [jobId, setJobId]= useState(0);
+  //const [jobId, setJobId]= useState(0);
   const [job, setJobs] = useState({});
   const [elements, setElements] = useState(0);
 

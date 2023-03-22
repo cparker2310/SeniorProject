@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Castle from '../../images/castle.jpg';
 import { FaPaw } from 'react-icons/fa';
-import api from '../../api'
-import Home from '../../pages/home';
+import api from '../../api';
 
 export const Container= styled.div`
   background-image: url(${Castle});
