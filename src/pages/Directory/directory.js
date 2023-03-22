@@ -12,14 +12,26 @@ const Directory = () => {
   const [use, setUsers] = useState({});
   const [elements, setElements] = useState(0);
 
-  api.getAllUsers().then(users => {
+  const getUsers = async() => {
+
+    await api.getAllUsers().then(users => {
       setUsers(users.data.data)
-      const ele = use.map((user)=>{
-        return <UserCard props={user}/>;
+    })
+
+    const ele = await use.map((user)=>{
+      return <UserCard props={user}/>;
       })
-      setElements(ele)})
+
+    setElements(ele)
+    }
+  
+
+
+  
+    
       
   
+    getUsers()
   
 
   return (

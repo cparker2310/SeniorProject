@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
-
+import api from '../../api/index'
 export const NavbarContainer= styled.div`
   width: 100%;
   height: 80px;
@@ -89,6 +89,17 @@ export const Button= styled(Link)`
 `;
 
 const Navbar = () => {
+const u = sessionStorage.getItem('user')
+
+const [user, setUser] = useState({})
+
+  const getUser = async () => {
+    if(u){
+      await api.getUserById(u).then(user => {
+        setUser(user.data.data)
+      })
+    }
+  }
 
   const logOut = () => {
     if(sessionStorage.getItem("user") && window.confirm("Are you sure you want to log out?")){
@@ -97,10 +108,11 @@ const Navbar = () => {
     }
   }
 
-  const auth= useSelector((state) => state.auth);
+  //const auth= useSelector((state) => state.auth);
 
-  if (!auth.isAdmin) return <p>Access Denied</p>;
-
+  //if (!auth.isAdmin) return <p>Access Denied</p>;
+  getUser()
+  
   return (
     <>
     <NavbarContainer>
@@ -112,12 +124,14 @@ const Navbar = () => {
           <NavLink to="/jobs">Career Center</NavLink>
           <NavLink to="/messages">Message Board</NavLink>
         </Nav>
-        <ButtonContainer>
-          <Button to={sessionStorage.getItem("user") ? "/profile" : "/consent"} css={`color: #e6e1e1; background: inherit;`}>
-          {sessionStorage.getItem("user") ? "Profile" : "Register"}
+          <ButtonContainer> 
+            <Link state={{props:user}} style={{ textDecoration: 'none' }}>
+          <Button css={`color: #e6e1e1; background: inherit;`} to={u ? "/profile" : "/consent"} state={{props:user}}>
+            {u ? "Profile" : "Register"}
           </Button>
-          <Button onClick={logOut} to={sessionStorage.getItem("user") ? "/" : "/login"}>
-            {sessionStorage.getItem("user") ? "Log Out" : "Log In"}
+          </Link>
+          <Button onClick={logOut} to={u ? "/" : "/login"}>
+            {u ? "Log Out" : "Log In"}
           </Button>
         </ButtonContainer>
       </NavbarWrap>

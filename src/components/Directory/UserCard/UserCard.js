@@ -9,9 +9,11 @@ import { ThemeProvider } from '@material-ui/core';
 import theme from '../../Directory/theme/theme';
 import "@fontsource/lora";
 import { maxHeight } from '@mui/system';
+import { Link } from 'react-router-dom';
 
  export default function UserCard({props}) {
   //alert(props)
+
    return (
      <ThemeProvider theme={theme}>
          <Card sx={{ maxWidth: 325, maxHeight: 355}}>
@@ -31,9 +33,11 @@ import { maxHeight } from '@mui/system';
           </CardContent>
       </CardActionArea>
       <CardActions style={{justifyContent: "center"}}>
+        <Link to="/profile" state={{ props: props }} style={{ textDecoration: 'none' }}>
          <Button size="small" variant="contained" style={{ backgroundColor: "#a32738", fontFamily: "Lora, serif" }}>
            View Profile<FaPaw />
          </Button>
+         </Link>
       </CardActions>
       </Card>
      </ThemeProvider>
