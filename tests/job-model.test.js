@@ -1,6 +1,5 @@
-const jobModel = require("../server/models/job-model");
-
-const db = require("../server/db/index");
+const Job= require('../server/models/job-model');
+import { connect, connection } from "../server/db/index";
 
 describe("Test for posting new job", () => {
     it('Database should save the new job', async done => {
@@ -15,15 +14,27 @@ describe("Test for posting new job", () => {
             contactName: "Mary Johnson '78",
             contactInfo: "mjohnson@gmail.com"
         });
+
+        const job= await Job.findOne({title: "RN Clinical Nurse"});
+        
+        expect(job.title).toBeTruthy();
+        expect(job.companyName).toBeTruthy();
+        expect(job.location).toBeTruthy();
+        expect(job.jobType).toBeTruthy();
+        expect(job.description).toBeTruthy();
+        expect(job.isAvailable).toBeTruthy();
+        expect(job.contactName).toBeTruthy();
+        expect(job.contactInfo).toBeTruthy();
+
         done();
     })
 
     beforeEach(async () => {
-        await db.connect();
+        await connect();
     });
 
     afterEach(async () => {
-        await db.connection.close();
+        await connection.close();
     });
 });
 
