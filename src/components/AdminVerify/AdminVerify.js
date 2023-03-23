@@ -32,6 +32,7 @@ const AdminVerify = ({open, close, title}) => {
                 <Grid item xs={12}>
                     <Box sx={{mb:3, display:'flex', justifyContent:'flex-start', flexDirection:'column'}}>
                         <Typography>Deny {title}</Typography>
+                        <Typography>Are you sure you want to deny this user?</Typography>
 
                     </Box>
                 </Grid>

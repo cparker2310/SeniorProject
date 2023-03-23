@@ -1,6 +1,6 @@
 import renderer from 'react-test-renderer';
 
-import DirectoryPage from '../pages/directory';
+import DirectoryPage from '../pages/Directory/directory';
 import ProfilePage from '../pages/Profile/profile';
 import SiteConduct from '../pages/conduct';
 import Home from '../pages/home';
