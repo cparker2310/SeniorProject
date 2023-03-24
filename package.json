@@ -39,7 +39,7 @@
     "scripts": {
         "start": "set PORT=3000 && react-scripts start",
         "build": "react-scripts build",
-        "test": "cross-env NODE_ENV=test jest --testTimeout=5000",
+        "test": "cross-env NODE_ENV=test jest --testTimeout=5000 --coverage",
         "eject": "react-scripts eject"
     },
     "jest": {

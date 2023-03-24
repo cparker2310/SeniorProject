@@ -53,11 +53,11 @@ const useStyles= makeStyles((theme) => ({
     }
 }));
 
-export default function JobCard({props}){
+export default function JobCard({props, openEditJob}){
     const classes= useStyles();
     const categories= props.categories
     const element = sessionStorage.getItem('user') === props.author_id ? <GiTrashCan /> : <></>
-    
+    const element2 = sessionStorage.getItem('user') === props.author_id ? <MdOutlineEditNote/> : <></>
     
 
     const handleDelete = async () => {
@@ -85,7 +85,7 @@ export default function JobCard({props}){
                     </Grid>
                     <Grid item>
                         <Box mt={2}>
-                            <IconButton style={{marginRight: '-21px'}} onClick={props.openEditJob}><MdOutlineEditNote /></IconButton>
+                            <IconButton style={{marginRight: '-21px'}} onClick={openEditJob}> {element2} </IconButton>
                             <IconButton onClick={handleDelete}>
                                 {element}
                             </IconButton>

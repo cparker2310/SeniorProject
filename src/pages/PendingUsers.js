@@ -19,7 +19,7 @@ const PendingUsers = () => {
         getUsers();
     }, []);
 
-
+    /*
     function denyUserFromEnter() {
         axios.delete(`http://localhost:8000/users/user/${id}`).then((res) => {
             getUsers();
@@ -28,7 +28,7 @@ const PendingUsers = () => {
             console.log(error);
         })
     }
-
+    */
     function confirmDenyUser(data) {
         setOpen(true);
         setDenyUser(data);

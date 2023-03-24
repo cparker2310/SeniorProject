@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Consent from './components/Acknowledgement/Consent';
-import LogInPage from './components/LogIn/login';
+import LogInPage from './components/Login/login';
 import SiteConduct from './pages/conduct';
 import Directory from './pages/Directory/directory';
 import CareerCenter from './pages/jobs';
 import MessageBoard from './pages/messages';
 import Form from './components/MultiStepForm/Form';
-import EditProfile from './pages/Profile/EditProfile';        
+//import EditProfile from './pages/Profile/EditProfile';        
 import ProfilePage from './pages/Profile/profile';
 import PendingUsers from './pages/PendingUsers';
 
@@ -24,7 +24,7 @@ function App() {
                     <Route path="/directory" element={<Directory />} exact />
                     <Route path="/jobs" element={<CareerCenter />} exact />
                     <Route path="/messages" element={<MessageBoard />} exact />
-                    <Route path="/editprofile" element={<EditProfile />} exact />
+                    
                     <Route path="/profile" element={<ProfilePage />} exact />
                     <Route path="/pending" element={<PendingUsers />} exact />
                 </Routes>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
 import CloseIcon from '@mui/icons-material/Close';
+import api from '../../../../api/index'
 import { 
     Button,
     Typography,
@@ -41,12 +42,13 @@ const useStyles= makeStyles(theme => ({
 
 const initState= {
     title: "",
-    type: "Full Time",
+    type: "",
     companyName: "",
-    location: "Onsite",
+    location: "",
     contactName: "",
     contactInfo: "",
     description: "",
+    isAvailable: false,
     categories: []   
 }
 
@@ -64,16 +66,19 @@ export default (props) => {
             }))
         : setEditJobDetails(oldState => ({...oldState, categories: oldState.categories.concat(category)
         }));
+    
+    const handleSubmit= async() => {
 
-    /*const handleSubmit= async() => {
-        for (const field in jobDetails) {
-            if (typeof jobDetails[field] === 'string' && !jobDetails[field])
-                return;
-        }
-
-        if (!jobDetails.categories.length) return;
-        closeNewJob();
-    }*/
+        const { title, type, companyName, location, contactName,
+            contactInfo, description, isAvailable, categories} = editJobDetails
+      
+          const payload = { title, type, companyName, location, contactName,
+            contactInfo, description, isAvailable, categories}
+    
+        await api.updateJobById(props._id, payload).then(res => {
+            alert(`Job updated successfully`)
+        })
+    }
 
     const closeEditJob= () => {
         setEditJobDetails(initState);
@@ -147,7 +152,7 @@ export default (props) => {
             <DialogActions>
                 <Box alignItems='center' color='#60000d' width='100%' display='flex' justifyContent='space-between'>
                     <Typography variant='caption'>*Required Fields</Typography>
-                    <Button variant='contained' color='primary'>Submit <FaPaw /></Button>
+                    <Button variant='contained' color='primary' onClick={handleSubmit}>Submit <FaPaw /></Button>
                 </Box>
             </DialogActions>
         </Dialog>

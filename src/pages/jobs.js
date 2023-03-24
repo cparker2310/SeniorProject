@@ -39,7 +39,9 @@ const CareerCenter = () => {
   api.getAllJobs().then(jobs => {
       setJobs(jobs.data.data)
       const ele = job.map((job)=>{
-        return <JobCard props={job} openEditJob={() => setEditJob(true)}/>;
+        return (<><JobCard props={job} openEditJob={() => setEditJob(true)}/>
+        <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
+        </>)
       })
       setElements(ele)})
   
@@ -56,7 +58,7 @@ const CareerCenter = () => {
               <Grid item xs={10}>
                 <Search />
                 {elements}
-                <EditJob closeEditJob={() => setEditJob(false)} editJob={editJob} />
+                
               </Grid>
             </Grid>
           </Box>

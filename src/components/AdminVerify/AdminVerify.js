@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+/*import React, { forwardRef } from 'react';
 import { 
     Dialog, 
     DialogContent, 
@@ -44,3 +44,4 @@ const AdminVerify = ({open, close, title}) => {
 
 export default AdminVerify;
 
+*/

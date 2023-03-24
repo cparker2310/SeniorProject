@@ -50,14 +50,15 @@ updateJob = async (req, res) => {
                 message: 'Job not found!',
             })
         }
-        job.title = body.title
-        job.companyName = body.companyName
-        job.location = body.location
-        job.jobType = body.jobType
-        job.description = body.description
-        job.isAvailable = body.isAvailable
-        job.contactName = body.contactName
-        job.contactInfo = body.contactInfo
+        
+        job.title = body.title ? body.title : job.title
+        job.companyName = body.companyName ? body.companyName : job.companyName
+        job.location = body.location ? body.location : job.location
+        job.type = body.type ? body.type : job.type
+        job.description = body.description ? body.description : job.description
+        job.isAvailable = body.isAvailable ? body.isAvailable : job.isAvailable
+        job.contactName = body.contactName ? body.contactName : job.contactName
+        job.contactInfo = body.contactInfo ? body.contactInfo : job.contactInfo
 
         job
             .save()
