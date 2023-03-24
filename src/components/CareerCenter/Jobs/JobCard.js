@@ -86,7 +86,7 @@ export default function JobCard({props}){
                     <Grid item>
                         <Box mt={2}>
                             <IconButton style={{marginRight: '-21px'}} onClick={props.openEditJob}><MdOutlineEditNote /></IconButton>
-                            <IconButton onClick={handleDelete}>
+                            <IconButton onClick={handleDelete}><GiTrashCan />
                                 {element}
                             </IconButton>
                             <Button style={{backgroundColor: '#63625d', color: '#fdfdfd'}}>View Details <FaPaw /></Button>
