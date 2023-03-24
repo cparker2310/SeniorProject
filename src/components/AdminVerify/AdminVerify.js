@@ -8,11 +8,11 @@ import {
     Typography
 } from '@material-ui/core';
 
-const Transition= forwardRef(function Transition(prop, ref) {
+const Transition= forwardRef(function Transition(props, ref) {
     return <Fade ref={ref} {...props} />
-})
+});
 
-const AdminVerify = ({open, close, title}) => {
+const AdminVerify = ({open, close, title, denyFunction}) => {
   return (
     <Dialog
         fullWidth
@@ -29,12 +29,16 @@ const AdminVerify = ({open, close, title}) => {
             </IconButton>
 
             <Grid container spacing={6}>
-                <Grid item xs={12}>
-                    <Box sx={{mb:3, display:'flex', justifyContent:'flex-start', flexDirection:'column'}}>
-                        <Typography>Deny {title}</Typography>
-                        <Typography>Are you sure you want to deny this user?</Typography>
-
-                    </Box>
+                <Grid item xs={12} sx={{display:'flex', justifyContent: 'flex-end', gap:'1rem'}}>
+                        <Typography variant='h5'>Deny {title}</Typography>
+                        <Typography variant='body1'>Are you sure you want to deny this user? {title}</Typography>
+                        
+                        <Button onClick={denyFunction} size='medium' variant='contained' color='#63625d'>
+                            Deny
+                        </Button>
+                        <Button size='medium' variant='contained' color='#a32738'>
+                            Accept
+                        </Button>
                 </Grid>
             </Grid>
         </DialogContent>

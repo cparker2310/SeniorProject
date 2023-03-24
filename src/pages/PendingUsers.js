@@ -20,7 +20,7 @@ const PendingUsers = () => {
     }, []);
 
 
-    function denyUserFromEnter() {
+    function denyUserEntry() {
         axios.delete(`http://localhost:8000/users/user/${id}`).then((res) => {
             getUsers();
             setOpen(false);
@@ -38,7 +38,36 @@ const PendingUsers = () => {
     <>
       <Navbar />
       <h1>Newly Registered Users</h1>
-      <AdminVerify open={open} close={() => setOpen(false)} />
+      <table>
+        <thread>
+            <tr>
+                <th>Name</th>
+                <th>Class Year</th>
+                <th>Email</th>
+            </tr>
+        </thread>
+        <tbody>
+            {users.map((data, index) => 
+                <>
+                    <tr key={index}></tr>
+                    <td>{index + 1}</td>
+                    <td>{data.firstName} {data.maidenName} {data.lastName}</td>
+                    <td>{data.classYear}</td>
+                    <td>{data.email}</td>
+
+                    <td>
+                        <Link>Accept</Link>
+                        <Link onClick={() => confirmDenyUser(data)}>Deny</Link>
+                    </td>
+                </>
+            )}
+        </tbody>
+      </table>
+      <AdminVerify 
+        open={open} close={() => setOpen(false)} 
+        title={denyUser?.name}
+        denyFunction={denyUserEntry}
+      />
     </>
   )
 }
