@@ -14,7 +14,6 @@
 ## Instructions 
 
 #### 1. Clone the repository
-#### 2. Go to the server: `cd server`
 #### 3. Install the node_modules: `npm install`
 
 
@@ -24,6 +23,10 @@
 `nodemon index.js`
 
 ### Running the Frontend:
-`cd src`
-
 `npm start`
+
+
+## Testing 
+`npm test`
+
+`npm test --coverage`
