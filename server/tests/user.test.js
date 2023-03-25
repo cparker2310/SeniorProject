@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const request = require("supertest");
 import api from "../../src/api/index" 
 //import app from "../index"
+import m from '../models/user-model'
+import c from '../controllers/user-ctrl'
 require("dotenv").config();
 const MONGODB_URI = 'mongodb+srv://cparker2310:astonsoccer@cluster0.2sqxf.mongodb.net/maryvale_temp'
 

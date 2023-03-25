@@ -6,7 +6,8 @@ import api from "../../src/api/index"
 //import app from "../index"
 require("dotenv").config();
 const MONGODB_URI = 'mongodb+srv://cparker2310:astonsoccer@cluster0.2sqxf.mongodb.net/maryvale_temp'
-
+import m from '../models/job-model'
+import c from '../controllers/job-ctrl'
 var author_id = "temp_id"
 const title = "updatedEmail"
 const companyName = "Amazon"
