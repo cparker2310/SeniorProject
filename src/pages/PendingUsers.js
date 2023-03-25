@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 //import AdminVerify from '../components/AdminVerify/AdminVerify';
 import Navbar from '../components/NavBar/Navbar';
 import api from '../api/index'
-
 const PendingUsers = () => {
     const [open, setOpen]= useState(false);
     const [users, setUsers]= useState([]);

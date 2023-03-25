@@ -3,7 +3,7 @@ const isEmail = require('validator')
 const bcrypt = require('bcrypt')
 const Schema = mongoose.Schema
 
-const User = new Schema(
+const Pending = new Schema(
     {
       email: { type: String, required: true }, //validate: [isEmail, 'Please enter a valid email'] },
       password: { type: String, required: true }, //minlength: [8, 'Password length must be a minimum of 8 characters'] },
@@ -27,11 +27,11 @@ const User = new Schema(
       isAdmin: { type: Boolean, default: false }
     })
 /*
-    User.pre('save', async function(next) {
+    Pending.pre('save', async function(next) {
       const salt= await bcrypt.genSalt();
       this.password= await bcrypt.hash(this.password, salt);
       next();
     });
 */
 
-module.exports = mongoose.model('users', User)
+module.exports = mongoose.model('pendings', Pending)
