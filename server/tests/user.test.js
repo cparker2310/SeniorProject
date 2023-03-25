@@ -141,37 +141,6 @@ test("get all users / create user", async () => {
       expect(users_len_after).toBe(users_len -1)
     })
 
-/*
-    it('should create a new user', async () => {
-      const response = await request(app)
-        .post('/api/users')
-        .send({
-          email: 'john.doe@example.com',
-          password: 'testpassword',
-          firstName: 'John Doe',
-          maidenName: 'Marie',
-          marriedName: "Parker",
-          classYear: "2021",
-          currentCity: "Baltimore",
-          currentState:"PA",
-          universityName: "Yes",
-          degree: "ma",
-          areaStudy: "CS",
-          gradYear: "2011",
-          position: "intern",
-          companyName: "NA",
-          industry: "na",
-          email2: "na",
-          phone: "na",
-          isAdmin: false
-        })
-        .expect(201);
-        
-        expect(response.body).toHaveProperty('_id');
-          expect(response.body).toHaveProperty('name', 'John Doe');
-          expect(response.body).toHaveProperty('email', 'john.doe@example.com');
-          expect(response.body).not.toHaveProperty('password');
-      })
-*/
+
     
     
