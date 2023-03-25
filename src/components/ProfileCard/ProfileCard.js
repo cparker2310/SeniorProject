@@ -4,6 +4,7 @@ import theme from './theme/theme';
 import { FaPaw } from 'react-icons/fa';
 import { useState } from 'react';
 import img from "../../images/castle.jpg"
+import axios from 'axios'
 
 import { 
     Box, 
@@ -24,8 +25,14 @@ import api from '../../api/index';
 export default ({props, openEdit}) => {
   const [postImage, setPostImage] = useState( { myFile : ""})
   const show = sessionStorage.getItem('user')
+
   const createPost = async (newImage) => {
+
     
+    const profileFinal = newImage
+    await api.updateUserById(props._id, { profileFinal }).then(res=>{
+      alert("profile updated")
+    })
   }
 
   const handleSubmit = (e) => {

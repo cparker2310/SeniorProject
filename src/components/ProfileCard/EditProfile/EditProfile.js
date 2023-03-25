@@ -42,10 +42,14 @@ export default (props) => {
         }
 
     const [user, setUser]= useState("");
-
-    let u = sessionStorage.getItem('user')
-    api.getUserById(u).then(user => {
-        setUser(user.data.data)})
+    const getUsers = async() => {
+        let u = sessionStorage.getItem('user')
+        if(u){
+            await api.getUserById(u).then(user => {
+            setUser(user.data.data)})
+        }
+    }
+    
 
     const [formData, setFormData]= useState({
         email: "", 
@@ -69,7 +73,7 @@ export default (props) => {
 
 
    const submitHandler= async (e) => {
-    //e.preventDefault();
+    e.preventDefault();
     //GetUser();
     /* Connect to backend */
     const { email, password, firstName, maidenName, marriedName,
@@ -85,6 +89,7 @@ export default (props) => {
 
     })
 }
+    getUsers()
 
     return (
         <Dialog open={props.edit}>

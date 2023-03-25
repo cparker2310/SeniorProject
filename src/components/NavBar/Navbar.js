@@ -107,7 +107,7 @@ const [user, setUser] = useState({})
       window.location.reload(false);
     }
   }
-
+  getUser()
   return (
     <>
     <NavbarContainer>

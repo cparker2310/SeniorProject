@@ -8,21 +8,20 @@ import api from '../api/index'
 
 const PendingUsers = () => {
     const [open, setOpen]= useState(false);
-    const [users, setUsers]= useState([]);
+    const [pendings, setPendings]= useState([]);
     const [denyUser, setDenyUser]= useState({});
     const [element, setElement]= useState(<></>);
 
     // Should retrieve users after they register
     
-    const getUsers = async() => {
-        await api.getAllUsers().then((users) => {
-            setUsers(users.data.data);
+    const getPendings = async() => {
+        await api.getAllPendings().then((pendings) => {
+            setPendings(pendings.data.data);
         });
     }
     
-    function denyUserEntry(id) {
-        api.deleteUserById(id).then((res) => {
-            getUsers();
+    const handleDeny = async(id) => {
+        await api.deletePending(id).then((res) => {
             setOpen(false);
         })
     }
@@ -32,27 +31,15 @@ const PendingUsers = () => {
         setDenyUser(data);
     }
 
-
-   
-
-    const dataElement = () =>{
-        const ele = (users.map((data, index) => (
-            <>
-            <tr>
-                <td>{index + 1}</td>
-                <td>{data.firstName} {data.maidenName} {data.marriedName}</td>
-                <td>{data.classYear}</td>
-                <td>{data.email}</td>
-
-                <td>
-                </td>
-                </tr>
-            </>
-        )))
-        setElement(ele);
+    const handleAccept = async(data) => {
+        await api.insertUser(data).then(res => {
+            alert("accepted")
+        })
+        handleDeny(data._id)
     }
 
-    getUsers()
+
+    getPendings()
     
 
   return (
@@ -68,7 +55,7 @@ const PendingUsers = () => {
                 <th>Email</th>
                 <th>Actions</th>
             </tr>
-            {(users.map((data, index) => (
+            {(pendings.map((data, index) => (
             
             <tr key={index} className='th'>
                 <td>{index + 1}</td>
@@ -77,8 +64,8 @@ const PendingUsers = () => {
                 <td>{data.email}</td>
 
                 <td>
-                    <Link className='accept'>Accept </Link>
-                    <Link className='deny'>Deny</Link>
+                    <Link className='accept' onClick={handleAccept(data)}> Accept </Link>
+                    <Link className='deny' onClick={handleDeny(data._id)}>Deny</Link>
                 </td>
                 </tr>
             )))}
