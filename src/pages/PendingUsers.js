@@ -1,9 +1,11 @@
 //import axios from 'axios';
+import './PendingUsers.css';
 import React, {useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 //import AdminVerify from '../components/AdminVerify/AdminVerify';
 import Navbar from '../components/NavBar/Navbar';
 import api from '../api/index'
+
 const PendingUsers = () => {
     const [open, setOpen]= useState(false);
     const [users, setUsers]= useState([]);
@@ -43,7 +45,6 @@ const PendingUsers = () => {
                 <td>{data.email}</td>
 
                 <td>
-                    na
                 </td>
                 </tr>
             </>
@@ -57,27 +58,27 @@ const PendingUsers = () => {
   return (
     <>
       <Navbar />
-      <h1>Newly Registered Users</h1>
-      <table>
+      <h1 className='h1'>Newly Registered Users</h1>
+      <table className='table'>
         
             <tr>
                 <th>#</th>
                 <th>Name</th>
                 <th>Class Year</th>
                 <th>Email</th>
-                <th>Accept/Deny</th>
+                <th>Actions</th>
             </tr>
             {(users.map((data, index) => (
             
-            <tr key={index}>
+            <tr key={index} className='th'>
                 <td>{index + 1}</td>
                 <td>{data.firstName} {data.maidenName} {data.marriedName}</td>
                 <td>{data.classYear}</td>
                 <td>{data.email}</td>
 
                 <td>
-                    <Link>Accept </Link>
-                    <Link>Deny</Link>
+                    <Link className='accept'>Accept </Link>
+                    <Link className='deny'>Deny</Link>
                 </td>
                 </tr>
             )))}
