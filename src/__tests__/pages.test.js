@@ -1,10 +1,17 @@
 import renderer from 'react-test-renderer';
-
-import DirectoryPage from '../pages/directory';
+import DirectoryPage from '../pages/Directory/directory';
 import ProfilePage from '../pages/Profile/profile';
 import SiteConduct from '../pages/conduct';
 import Home from '../pages/home';
 import MessageBoard from '../pages/messages';
+import Castle from '../images/castle.jpg';
+
+const { toMatchImageSnapshot } = require('jest-image-snapshot');
+expect.extend({ toMatchImageSnapshot });
+
+it('Background image renders correctly', () => {
+    expect(Castle).toMatchImageSnapshot();
+});
 
 it('Directory Page renders correctly ', () => {
     const tree= renderer.create(<DirectoryPage />).toJSON();

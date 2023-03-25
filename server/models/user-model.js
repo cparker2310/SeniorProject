@@ -24,7 +24,8 @@ const User = new Schema(
       phone: { type: String, required: false },
       //imageName: { type: String, required: true },
       //image: { data: Buffer, contentType: String }
-      isAdmin: { type: Boolean, default: false }
+      isAdmin: { type: Boolean, default: false },
+      profileFinal: {type: String, required: false}
     })
 /*
     User.pre('save', async function(next) {

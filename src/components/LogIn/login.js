@@ -103,18 +103,19 @@ export const Button= styled(Link)`
   }
 `;
 
-function Login() {
+export default function Login() {
   const [email, setEmail]= useState("");
   const [password, setPassword]= useState("");
   const [users, setUsers]= useState({});
+  const [pendings, setPendings]= useState({});
   const [link, setLink]= useState("");
-  
 
-    //alert("workding")
     api.getAllUsers().then(users => {
       setUsers(users.data.data)})
-    
-  
+
+    api.getAllPendings().then(pendings => {
+      setPendings(pendings.data.data)})
+
   
 
   const validate = async () => {
@@ -126,14 +127,23 @@ function Login() {
         alert("Successful Login")
         setLink("/")
         flag = true;
+        break;
       }
     }
 
     if(!flag){
-      alert('Invalid Credentials')
-      //setLink('/login')
-      setLink("/login")
-    }     
+      for(let i = 0; i< pendings.length; i++){
+        if(pendings[i].email === email && pendings[i].password === password){
+          alert('Account is pending verification') 
+          flag = true
+          break;
+        } 
+      } 
+      if(!flag){
+        alert('Invalid Credentials')
+        setLink("/login")   
+      }
+  }
 }
 
   
@@ -159,5 +169,3 @@ function Login() {
     </>
   );
 }
-
-export default Login;

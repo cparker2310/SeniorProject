@@ -1,7 +1,10 @@
-import React from 'react';
-import theme from '../ProfileCard/theme/theme';
+import theme from './theme/theme';
+//import avatar from "./assets/profile.png"
+
 import { FaPaw } from 'react-icons/fa';
 import { useState } from 'react';
+import img from "../../images/castle.jpg"
+
 import { 
     Box, 
     Card, 
@@ -9,17 +12,34 @@ import {
     Typography,
     CardActions,
     Button,
-    ThemeProvider
+    ThemeProvider,
+    CardMedia,
+    Dialog
     /* CardMedia - Use for Profile Picture */
 } from '@mui/material';
+
 import api from '../../api/index';
 
 
-
 export default ({props, openEdit}) => {
-    //const classes= useStyles();
-  let u = sessionStorage.getItem('user')
-  const show = u === props._id;
+  const [postImage, setPostImage] = useState( { myFile : ""})
+  const show = sessionStorage.getItem('user')
+  const createPost = async (newImage) => {
+    
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createPost(postImage)
+    console.log("Uploaded")
+  }
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    console.log(base64)
+    setPostImage({ ...postImage, myFile : base64 })
+  }
 
 
   const handleDelete = async () => {
@@ -30,13 +50,33 @@ export default ({props, openEdit}) => {
         window.location.href = '/';
       })
     }
-}
-  
+  }
+
   return (
     <>
     <ThemeProvider theme={theme}>
       <Box p={8} sx={{width: 1290, height: 1500}} alignItems='center'>
         <Card>
+        <div className="App">
+      <form onSubmit={handleSubmit}>
+
+        <label htmlFor="file-upload" className='custom-file-upload'>
+          <img src={postImage.myFile || img} alt="" />
+        </label>
+
+        <input 
+          type="file"
+          lable="Image"
+          name="myFile"
+          id='file-upload'
+          accept='.jpeg, .png, .jpg'
+          onChange={(e) => handleFileUpload(e)}
+         />
+
+
+         <button type='submit'>Submit</button>
+      </form>
+    </div>
             <CardContent>
                 <Typography gutterBottom variant='h4' component='div' color='#030000'>{props.firstName} {props.maidenName} {props.marriedName}</Typography>
                 <Typography variant='h4' color='#a32738'>Class of {props.classYear}</Typography>
@@ -84,4 +124,17 @@ export default ({props, openEdit}) => {
     </ThemeProvider>
     </>
   );
+}
+
+function convertToBase64(file){
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result)
+    };
+    fileReader.onerror = (error) => {
+      reject(error)
+    }
+  })
 }

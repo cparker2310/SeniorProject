@@ -1,11 +1,18 @@
 import renderer from 'react-test-renderer';
-
 import Career from '../components/MultiStepForm/Career';
 import ContactInfo from '../components/MultiStepForm/ContactInfo';
 import Education from '../components/MultiStepForm/Education';
 import Form from '../components/MultiStepForm/Form';
 import Location from '../components/MultiStepForm/Location';
 import PersonalDetails from '../components/MultiStepForm/PersonalDetails';
+import Castle from '../images/castle.jpg';
+
+const { toMatchImageSnapshot } = require('jest-image-snapshot');
+expect.extend({ toMatchImageSnapshot });
+
+it('Background image renders correctly', () => {
+    expect(Castle).toMatchImageSnapshot();
+});
 
 it('Career section renders correctly', () => {
     const tree= renderer.create(<Career />).toJSON();

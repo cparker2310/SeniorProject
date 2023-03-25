@@ -70,6 +70,7 @@ updateUser = async (req, res) => {
         user.email2 = body.email2 ? body.email2 : user.email2
         user.phone= body.phone ? body.phone : user.phone
         user.isAdmin = body.isAdmin ? body.isAdmin : user.isAdmin
+        user.profileFinal = body.profileFinal ? body.profileFinal : user.profileFinal
 
         user
             .save()

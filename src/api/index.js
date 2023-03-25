@@ -10,6 +10,11 @@ export const updateUserById = (id, payload) => api.put(`/user/${id}`, payload)
 export const deleteUserById = id => api.delete(`/user/${id}`)
 export const getUserById = id => api.get(`/user/${id}`)
 
+export const insertPending = payload => api.post(`/pending`, payload)
+export const getAllPendings = () => api.get(`/pendings`)
+export const deletePending = id => api.delete(`/pending/${id}`)
+export const getPendingById = id => api.get(`/pending/${id}`)
+
 export const insertJob = payload => api.post(`/job`, payload)
 export const getAllJobs = () => api.get(`/jobs`)
 export const updateJobById = (id, payload) => api.put(`/job/${id}`, payload)
@@ -33,6 +38,11 @@ const apis = {
     deleteUserById,
     getAllUsers,
     getUserById,
+
+    insertPending,
+    deletePending,
+    getAllPendings,
+    getPendingById,
 
     insertJob,
     updateJobById,

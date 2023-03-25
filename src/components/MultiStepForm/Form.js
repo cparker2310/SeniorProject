@@ -55,8 +55,8 @@ const Form = () => {
       classYear, currentCity, currentState, universityName, degree,
         areaStudy, gradYear, position, companyName, industry, email2, phone }
 
-    await api.insertUser(payload).then(res => {
-      window.alert('Register Complete')
+    await api.insertPending(payload).then(res => {
+      window.alert('Registration info sent to admin for verification')
       window.location.href = '/login';
     })
 } 
