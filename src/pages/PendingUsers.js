@@ -1,44 +1,91 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react'
-import AdminVerify from '../components/AdminVerify/AdminVerify';
+//import axios from 'axios';
+import React, {useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
+//import AdminVerify from '../components/AdminVerify/AdminVerify';
 import Navbar from '../components/NavBar/Navbar';
+import api from '../api/index'
 
 const PendingUsers = () => {
     const [open, setOpen]= useState(false);
     const [users, setUsers]= useState([]);
     const [denyUser, setDenyUser]= useState({});
+    const [element, setElement]= useState(<></>);
 
     // Should retrieve users after they register
-    function getUsers() {
-        axios.get("http://localhost:8000/users").then((res) => {
-            setUsers(res.data.reverse());
+    
+    const getUsers = async() => {
+        await api.getAllUsers().then((users) => {
+            setUsers(users.data.data);
         });
     }
-
-    useEffect(() => {
-        getUsers();
-    }, []);
-
-    /*
-    function denyUserFromEnter() {
-        axios.delete(`http://localhost:8000/users/user/${id}`).then((res) => {
+    
+    function denyUserEntry(id) {
+        api.deleteUserById(id).then((res) => {
             getUsers();
             setOpen(false);
-        }).catch((error) => {
-            console.log(error);
         })
     }
-    */
+    
     function confirmDenyUser(data) {
         setOpen(true);
         setDenyUser(data);
     }
 
+
+   
+
+    const dataElement = () =>{
+        const ele = (users.map((data, index) => (
+            <>
+            <tr>
+                <td>{index + 1}</td>
+                <td>{data.firstName} {data.maidenName} {data.marriedName}</td>
+                <td>{data.classYear}</td>
+                <td>{data.email}</td>
+
+                <td>
+                    na
+                </td>
+                </tr>
+            </>
+        )))
+        setElement(ele);
+    }
+
+    getUsers()
+    
+
   return (
     <>
       <Navbar />
       <h1>Newly Registered Users</h1>
-      <AdminVerify open={open} close={() => setOpen(false)} />
+      <table>
+        
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Class Year</th>
+                <th>Email</th>
+                <th>Accept/Deny</th>
+            </tr>
+            {(users.map((data, index) => (
+            
+            <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{data.firstName} {data.maidenName} {data.marriedName}</td>
+                <td>{data.classYear}</td>
+                <td>{data.email}</td>
+
+                <td>
+                    <Link>Accept </Link>
+                    <Link>Deny</Link>
+                </td>
+                </tr>
+            )))}
+        
+      </table>
+      
+      
     </>
   )
 }
