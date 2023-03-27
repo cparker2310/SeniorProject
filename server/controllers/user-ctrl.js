@@ -139,7 +139,17 @@ getUsers = async (req, res) => {
 }
 
 
+export const getUserBySearch= async (req, res) => {
+    const { searchQuery } = req.query
 
+    try {
+        const name= new RegExp(searchQuery, 'i')
+        const user= await User.find({ $or: [ { name } ]});
+        res.json({ data: user })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
 
 
 module.exports = {
@@ -148,4 +158,5 @@ module.exports = {
     deleteUser,
     getUsers,
     getUserById,
+    getUserBySearch
 }
