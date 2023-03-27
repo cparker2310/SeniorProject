@@ -6,61 +6,6 @@
     margin: 0;
 }
 
-body {
-    letter-spacing: 0.4px;
-}
-
-.h1{
-  color: #030000;;
-  text-shadow: 0.5px 0.5px 0.75px #030000;
-  text-align: center;
-  font-weight: 600;
-}
-
-:root {
-    --white: #fdfdfd;
-    --red: #a32738;
-    --gray: #63625d;
-    --black: #030000;
-    --burgundy: #60000d;
-
-    --border-radius: 8px;
-
-    --sm-spacing: 8px;
-    --md-spacing: 16px;
-    --lg-spacing: 32px;
-
-    --sm: 37.5em;
-    --md: 48em;
-    --lg: 64em;
-
-    --box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11);
-}
-
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    background: var(--burgundy);
-    color: var(--white);
-}
-
-.thead {
-    position: sticky;
-    z-index: 100;
-}
-
-.th {
-    padding: var(--sm-spacing);
-    color: var(--black);
-    text-transform: capitalize;
-    font-weight: 600;
-    font-size: 14px;
-    background: var(--white);
-}
-
 .accept {
     cursor: pointer;
     transition: all 0.2s ease-in-out;

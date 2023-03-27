@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Consent from './components/Acknowledgement/Consent';
-import LogInPage from './components/Login/login';
+import LogInPage from './components/LogIn/login';
 import SiteConduct from './pages/conduct';
 import Directory from './pages/Directory/directory';
 import CareerCenter from './pages/jobs';
