@@ -120,11 +120,11 @@ const PendingUsers = () => {
           <TableRow>
             <StyledTableCell>Newly Registered Users</StyledTableCell>
             <StyledTableCell align="right">First Name</StyledTableCell>
-            <StyledTableCell align="right">Maiden Name&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Married Name&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Class Year&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Email&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Actionsl&nbsp;(g)</StyledTableCell>
+            <StyledTableCell align="right">Maiden Name</StyledTableCell>
+            <StyledTableCell align="right">Married Name</StyledTableCell>
+            <StyledTableCell align="right">Class Year</StyledTableCell>
+            <StyledTableCell align="right">Email</StyledTableCell>
+            <StyledTableCell align="right">Actions</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
