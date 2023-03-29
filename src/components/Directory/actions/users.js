@@ -1,4 +1,4 @@
-import { FETCH_ALL } from '../constants/actionTypes';
+import { FETCH_ALL, FETCH_BY_SEARCH } from '../constants/actionTypes';
 import * as api from '../../../api/index';
 
 export const getUsers= () => async (dispatch) => {
@@ -13,7 +13,7 @@ export const getUsers= () => async (dispatch) => {
 export const getUserBySearch= (searchQuery) => async (dispatch) => {
     try {
         const { data: { data } }= await api.fetchUserBySearch(searchQuery);
-        console.log(data);
+        dispatch({ type: FETCH_BY_SEARCH, payload: data });
     } catch (error) {
         console.log(error);
     }

@@ -1,25 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SearchBar from "material-ui-search-bar";
 import Box from "@mui/material/Box";
 import { Grid } from '@material-ui/core';
 import { getUsers, getUserBySearch } from '../actions/users';
-/*function useQuery() {
-    return new URLSearchParams(useLocation().search);
-}*/
 
 export default (props) => {
-    const [profiles, setProfiles]= useState(/*{originalProfiles}*/);
     const [searched, setSearched]= useState("");
     const query= useQuery();
-    //const history= useHistory();
+    const navigate= useNavigate();
     const searchQuery= query.get('searchQuery');
-
-    /*const requestSearch= (searchValue= String) => {
-        const filteredProfiles= originalProfiles.filter(profile => {
-            return profile.firstName.toLowerCase().includes(searchValue.toLowerCase())
-        });
-        setProfiles(filteredProfiles);
-    };*/
 
     useEffect(() => {
         dispatch(getUsers());
@@ -34,8 +24,9 @@ export default (props) => {
     const requestSearch= () => {
         if (searched.trim()) {
             dispatch(getUserBySearch({ searched }));
+            navigate.push(`/users/search?searchQuery=${searched || 'none'}`);
         } else {
-            cancelSearch();
+            navigate.push('/directory');
         }
     };
 
