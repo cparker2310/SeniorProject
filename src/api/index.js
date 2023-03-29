@@ -6,6 +6,7 @@ const api = axios.create({
 
 export const insertUser = payload => api.post(`/user`, payload)
 export const getAllUsers = () => api.get(`/users`)
+export const fetchUserBySearch = (searchQuery) => api.get(`/users/search?searchQuery=${searchQuery.search || 'none'}`)
 export const updateUserById = (id, payload) => api.put(`/user/${id}`, payload)
 export const deleteUserById = id => api.delete(`/user/${id}`)
 export const getUserById = id => api.get(`/user/${id}`)
