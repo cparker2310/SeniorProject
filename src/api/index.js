@@ -22,6 +22,12 @@ export const updateJobById = (id, payload) => api.put(`/job/${id}`, payload)
 export const deleteJobById = id => api.delete(`/job/${id}`)
 export const getJobById = id => api.get(`/job/${id}`)
 
+export const insertMessage = payload => api.post(`/message`, payload)
+export const getAllMessages = () => api.get(`/messages`)
+export const updateMessageById = (id, payload) => api.put(`/message/${id}`, payload)
+export const deleteMessageById = id => api.delete(`/message/${id}`)
+export const getMessageById = id => api.get(`/message/${id}`)
+
 /*
 export const setHeaders = () => {
     const headers= {

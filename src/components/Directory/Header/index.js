@@ -7,7 +7,7 @@ import { getUsers, getUserBySearch } from '../actions/users';
 
 export default (props) => {
     const [searched, setSearched]= useState("");
-    const query= useQuery();
+    /*const query= useQuery();
     const navigate= useNavigate();
     const searchQuery= query.get('searchQuery');
 
@@ -19,15 +19,15 @@ export default (props) => {
         if (e.keyCode== 13) {
             requestSearch();
         }
-    }
+    }*/
 
     const requestSearch= () => {
-        if (searched.trim()) {
+        /*if (searched.trim()) {
             dispatch(getUserBySearch({ searched }));
             navigate.push(`/users/search?searchQuery=${searched || 'none'}`);
         } else {
             navigate.push('/directory');
-        }
+        }*/
     };
 
     const cancelSearch= () => {
@@ -42,7 +42,7 @@ export default (props) => {
                     <Box display='flex' justifyContent='center'>
                         <SearchBar 
                             fullWidth
-                            onKeyPress={handleKeyPress}
+                            //onKeyPress={handleKeyPress}
                             value={searched} 
                             onChange={(e) => setSearched(e.target.value)}
                             onCancelSearch={() => cancelSearch()}

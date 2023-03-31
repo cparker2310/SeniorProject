@@ -139,7 +139,7 @@ getUsers = async (req, res) => {
 }
 
 
-export const getUserBySearch= async (req, res) => {
+/*export const getUserBySearch= async (req, res) => {
     const { searchQuery } = req.query
 
     try {
@@ -150,7 +150,7 @@ export const getUserBySearch= async (req, res) => {
         res.status(404).json({ message: error.message })
     }
 }
-
+*/
 
 module.exports = {
     createUser,
@@ -158,5 +158,5 @@ module.exports = {
     deleteUser,
     getUsers,
     getUserById,
-    getUserBySearch
+    //getUserBySearch
 }
