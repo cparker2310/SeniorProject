@@ -1,33 +1,28 @@
-/*import React from 'react';
 import styled from 'styled-components';
-import { FaPaw } from 'react-icons/fa';
 
-export const ButtonElement= styled.button`
-  background-color: #a32738;
-  color: white;
+export const Button= styled.button`
+  border-radius: 50px;
+  background: '#a32738';
+  color: '#fdfdfd';
   cursor: pointer;
-  display: inline-block;
-  font-weight: 600;
-  font-family: 'Domine', serif;
-  text-align: center;
   white-space: nowrap;
-  vertical-align: middle;
-  user-select: none;
-  border: 1px solid transparent;
-  border: none;
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.25rem;
+  padding: '14px 48px';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: '20px';
+  font-family: 'Lora', serif;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
-  margin-top: 525px;
-  margin-left: 100px;
+  outline: none;
+  border: none;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: '63625d';
+    color: '#fdfdfd';
+  }
 `;
 
-function Button() {
-  return (
-    <ButtonElement>JOIN NETWORK <FaPaw /></ButtonElement>
-  );
-}
-
-export default Button;*/
+export default Button;
