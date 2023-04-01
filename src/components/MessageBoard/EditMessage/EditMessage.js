@@ -82,7 +82,8 @@ export default (props) => {
         "Events",
         "Life Updates",
         "News",
-        "Mentorship Opportunity"
+        "Mentorship Opportunity",
+        "Reunions"
     ];
 
     return (

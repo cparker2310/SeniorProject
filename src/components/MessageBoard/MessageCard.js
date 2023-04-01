@@ -1,4 +1,4 @@
-/*import React, {useState} from 'react';
+import React, {useState} from 'react';
 import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
 import { MdOutlineEditNote } from 'react-icons/md';
@@ -10,7 +10,7 @@ import {
     IconButton,
     makeStyles
 } from '@material-ui/core';
-import api from '../../../api/index';
+import api from '../../api/index';
 
 
 const useStyles= makeStyles((theme) => ({
@@ -53,7 +53,7 @@ const useStyles= makeStyles((theme) => ({
     }
 }));
 
-export default function JobCard({props, openEditJob}){
+export default function MessageCard({props, openEditJob}){
     const classes= useStyles();
     const categories= props.categories
     const element = sessionStorage.getItem('user') === props.author_id ? <GiTrashCan /> : <></>
@@ -96,4 +96,4 @@ export default function JobCard({props, openEditJob}){
             </Grid>
         </Box>
     );
-}*/
+}

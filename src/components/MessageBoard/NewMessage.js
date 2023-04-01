@@ -1,4 +1,4 @@
-/*import React, { useState } from 'react';
+import React, { useState } from 'react';
 import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
 import CloseIcon from '@mui/icons-material/Close';
@@ -14,7 +14,7 @@ import {
     IconButton,
     makeStyles
 } from '@material-ui/core';
-import api from '../../../api/index';
+import api from '../../api/index';
 
 const useStyles= makeStyles(theme => ({
     categoryChip: {
@@ -64,18 +64,16 @@ export default (props) => {
         }));
     
     const handleSubmit= async() => {
-        /*
-        for (const field in jobDetails) {
-            if (typeof jobDetails[field] === 'string' && !jobDetails[field])
+        for (const field in messageDetails) {
+            if (typeof messageDetails[field] === 'string' && !messageDetails[field])
              return;
-        }*/
+        }
 
-        /*
-        if (!jobDetails.categories.length) return;
-        closeNewJob();
+        if (!messageDetails.categories.length) return;
+        closeNewMessage();
 
         if(!sessionStorage.getItem('user')){
-            alert('You must be logged in to create a job posting')
+            alert('You must be logged in to post to the message board')
             return
         }
         const { author_id, dateCreated, title, categories, description, comments} = messageDetails
@@ -98,11 +96,10 @@ export default (props) => {
         "Events",
         "Life Updates",
         "News",
-        "Mentorship Opportunity"
+        "Mentorship Opportunity",
+        "Reunions"
     ];
     
-*/
-/*
     return (
         <Dialog open={props.newMessage} fullWidth>
             <DialogTitle>
@@ -115,12 +112,12 @@ export default (props) => {
             </DialogTitle>
             <DialogContent>
                 <Grid container spacing={2}>
-                    <Grid item xs={6}>
-                        <FilledInput onChange={handleChange} name='title' value={messageDetails.title} autoComplete='off' placeholder='Message Title *' disableUnderline fullWidth/>
+                    <Grid item xs={8}>
+                        <FilledInput onChange={handleChange} name='title' value={messageDetails.title} autoComplete='off' placeholder=' Title *' disableUnderline fullWidth/>
                     </Grid>
 
                     <Grid item xs={12}>
-                        <FilledInput onChange={handleChange} name='description' value={messageDetails.description} autoComplete='off' placeholder='Company Name *' disableUnderline fullWidth/>
+                        <FilledInput onChange={handleChange} name='description' value={messageDetails.description} autoComplete='off' placeholder='Description *' disableUnderline fullWidth multiline rows={6} maxRows={10}/>
                     </Grid>
                 </Grid>
                 <Box mt={2}>
@@ -139,5 +136,3 @@ export default (props) => {
         </Dialog>
     );
 }
-
-*/
