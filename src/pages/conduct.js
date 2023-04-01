@@ -27,7 +27,7 @@ const BoxWrapper= styled.div`
     display: flex;
     top: 60px;
     right: 100px;
-    left: 100px;
+    left: 130px;
     position: relative;
     z-index: 10;
 `;
@@ -54,7 +54,7 @@ const SiteConduct = () => {
         
           <BoxWrapper>
             <Content>
-              Site Conduct <br />
+              Site Conduct<br />
               Members will provide accurate information in all materials posted or shared via the Maryvale Alumnae Network. <br />
               This commitment to dignity & inclusivity will continue in all professional interactions <br />developed through network participation. <br />
               <br />

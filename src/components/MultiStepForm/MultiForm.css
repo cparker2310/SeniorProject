@@ -198,7 +198,6 @@ body {
     -webkit-backdrop-filter: blur(1px);
   }
 
-
   .contact-container {
     height: 100%;
     width: 100%;
@@ -206,6 +205,33 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .photo-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .photo-container input {
+    font-size: 20px;
+    width: 400px;
+    height: 50px;
+    margin-top: -40px;
+    font-family: 'Lora', serif;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    border: none;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+    background: rgba(36, 31, 32, 0.5);
+    color: #fdfdfd;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
   }
 
   .contact-container input {
@@ -222,6 +248,21 @@ body {
     background: rgba(163, 39, 56, 0.5);
     backdrop-filter: blur(1px);
     -webkit-backdrop-filter: blur(1px);
+  }
+
+  .upload {
+    border-radius: 7px;
+    width: 100px;
+    height: 40px;
+    background-color: #63625d;
+    font-weight: bold;
+    color: #fdfdfd;
+    border: 0 none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 5px;
+    font-family: 'Lora', serif;
+    font-size: 16px;
   }
   
   .progressbar {

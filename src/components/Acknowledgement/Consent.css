@@ -26,6 +26,7 @@
     text-align: center;
     margin-top: 10px;
     color: #030000;
+    font-size: 20px;
   }
   
   .titleCloseBtn {
@@ -45,7 +46,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     text-align: center;
     color: #030000;
   }

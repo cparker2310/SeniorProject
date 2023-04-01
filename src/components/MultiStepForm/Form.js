@@ -4,6 +4,7 @@ import Location from './Location';
 import Education from './Education';
 import Career from './Career';
 import ContactInfo from './ContactInfo';
+import PhotoUpload from './PhotoUpload';
 import './MultiForm.css';
 import api from '../../api';
 import { Link } from 'react-router-dom';
@@ -43,7 +44,7 @@ const Form = () => {
       phone: ""
   });
 
-  const FormTitles= ["Personal Details", "Location", "Education", "Career", "Contact Information"];
+  const FormTitles= ["Personal Details", "Profile Picture", "Location", "Education", "Career", "Contact Information"];
   
   const handleIncludeUser = async () => {
     //alert("inside")
@@ -62,7 +63,7 @@ const Form = () => {
 } 
 
   const ButtonChoice = () =>{
-    if (page===4){
+    if (page===5){
       return (<button 
         
         onClick={
@@ -94,10 +95,12 @@ const Form = () => {
     if (page=== 0) 
       return <PersonalDetails formData={formData} setFormData={setFormData}/>;
     else if (page=== 1)
-      return <Location formData={formData} setFormData={setFormData}/>;
+      return <PhotoUpload formData={formData} setFormData={setFormData}/>;
     else if (page=== 2)
-      return <Education formData={formData} setFormData={setFormData}/>;
+      return <Location formData={formData} setFormData={setFormData}/>;
     else if (page=== 3)
+      return <Education formData={formData} setFormData={setFormData}/>;
+    else if (page=== 4)
       return <Career formData={formData} setFormData={setFormData}/>;
     else 
       return <ContactInfo formData={formData} setFormData={setFormData}/>;
@@ -118,10 +121,11 @@ const Form = () => {
     <div className="form">
         <div className="progressbar">
           <div style={{ 
-            width: page=== 0 ? "20%" : 
-            page===1 ? "40%" :
-             page===2 ? "60%" :
-             page=== 3 ? "80%" : 
+            width: page=== 0 ? "10%" : 
+            page=== 1 ? "20%" :
+            page=== 2 ? "40%" :
+             page=== 3 ? "60%" :
+             page=== 4? "80%" : 
              "100%"}}></div>
         </div>
         <div className="form-container">

@@ -56,6 +56,12 @@ const apis = {
     deleteJobById,
     getAllJobs,
     getJobById,
+
+    insertMessage,
+    updateMessageById,
+    deleteMessageById,
+    getAllMessages,
+    getMessageById,
 }
 
 export default apis
