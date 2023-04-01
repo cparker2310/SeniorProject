@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+/*import React, {useState} from 'react';
 import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
 import { MdOutlineEditNote } from 'react-icons/md';
@@ -96,4 +96,4 @@ export default function JobCard({props, openEditJob}){
             </Grid>
         </Box>
     );
-}
+}*/

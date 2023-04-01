@@ -1,12 +1,14 @@
 import React from 'react';
 import Hero from '../components/Hero/Hero';
 import Navbar from '../components/NavBar/Navbar';
+import Footer from '../components/Footer/Footer';
 
-const Home = () => {
+function Home() {
   return (
     <>
-        <Navbar />
-        <Hero />
+      <Navbar />
+      <Hero />
+      <Footer />
     </>
   );
 }

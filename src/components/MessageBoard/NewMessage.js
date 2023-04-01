@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
 import CloseIcon from '@mui/icons-material/Close';
@@ -72,7 +72,7 @@ export default (props) => {
 
         /*
         if (!jobDetails.categories.length) return;
-        closeNewJob();*/
+        closeNewJob();
 
         if(!sessionStorage.getItem('user')){
             alert('You must be logged in to create a job posting')
@@ -100,7 +100,9 @@ export default (props) => {
         "News",
         "Mentorship Opportunity"
     ];
-
+    
+*/
+/*
     return (
         <Dialog open={props.newMessage} fullWidth>
             <DialogTitle>
@@ -137,3 +139,5 @@ export default (props) => {
         </Dialog>
     );
 }
+
+*/

@@ -18,11 +18,9 @@ const Section= styled.section`
 const Title= styled.h1`
     font-size: 72px;
     color: #fdfdfd;
-    font-weight: bold;
     position: relative;
     z-index: 1;
-    margin: 375px;
-    margin-bottom: 32px;
+    margin: 335px;
     text-align: center;
     text-shadow: 1.5px 1.5px 2.5px #030000;
 `;

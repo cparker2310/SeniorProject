@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import api from '../../api/index'
+import api from '../../api/index';
+
 export const NavbarContainer= styled.div`
   width: 100%;
   height: 80px;
