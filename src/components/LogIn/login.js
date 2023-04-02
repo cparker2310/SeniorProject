@@ -58,6 +58,7 @@ export const FormH1= styled.h1`
   font-size: 30px;
   font-weight: 400;
   text-align: center;
+  font-weight: bold;
 `;
 
 export const FormLabel= styled.label`
@@ -81,25 +82,13 @@ export const FormButton= styled.button`
   font-size: 20px;
   font-family: 'Lora', serif;
   cursor: pointer;
-`;
-
-export const Button= styled(Link)`
-  width: 110px;
-  color: #e6e1e1;
-  cursor: pointer;
-  height: 36px;
-  font-size: 20px;
-  box-sizing: border-box;
-  background: #63625d;
-  text-align: center;
-  line-height: 36px;
-  border-radius: 21px;
   text-decoration: none;
-  transition: all 0.2s ease-in-out;
+  text-align: center;
+  font-weight: bolder;
 
   &:hover {
     transition: all 0.2s ease-in-out;
-    background: #60000D;
+    background: linear-gradient(90deg, #2e2d2c, #63625d);
   }
 `;
 
@@ -161,7 +150,9 @@ export default function Login() {
               <FormLabel htmlFor='for'>Password</FormLabel>
                 <FormInput type='password' 
                     onChange={(event) => setPassword( event.target.value )}/>
-              <Button as="a" href={link} onClick={validate} type="submit"  >Submit <FaPaw /></Button>
+              <FormButton as="a" href={link} onClick={validate} type="submit">
+                  Submit <FaPaw />
+              </FormButton>
             </Form>
           </FormContent>
         </FormWrap>

@@ -1,6 +1,8 @@
 import React from 'react';
 import './MultiForm.css';
 import styled from 'styled-components/macro';
+import { Tooltip, IconButton } from '@mui/material';
+import LockIcon from '@mui/icons-material/Lock';
 
 export const FormLabel= styled.label`
   margin-bottom: 8px;
@@ -35,7 +37,13 @@ const PersonalDetails = ({ formData, setFormData }) => {
         <input type="text"
           value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
 
-        <FormLabel htmlFor='for' css={`margin-left: -9px;`}>Password *</FormLabel> 
+        <FormLabel htmlFor='for' css={`margin-left: 17px;`}>Password *
+        <Tooltip title="Passwords will remain private on public profiles" placement="top" arrow>
+            <IconButton>
+              <LockIcon fontSize="small" css={`color: #030000;`}/>
+            </IconButton>
+          </Tooltip>
+        </FormLabel> 
         <input type="text"
           value={formData.password} onChange={(event) => setFormData({ ...formData, password: event.target.value })} />
       </div>
