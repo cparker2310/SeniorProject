@@ -1,38 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import SearchBar from "material-ui-search-bar";
 import Box from "@mui/material/Box";
 import { Grid } from '@material-ui/core';
-import { getUsers, getUserBySearch } from '../actions/users';
+import appStore from '../appStore';
+import LinearProgress from '@mui/material/LinearProgress';
 
 export default (props) => {
     const [searched, setSearched]= useState("");
-    /*const query= useQuery();
-    const navigate= useNavigate();
-    const searchQuery= query.get('searchQuery');
-
-    useEffect(() => {
-        dispatch(getUsers());
-    }, [userId], dispatch);
-
-   const handleKeyPress= (e) => {
-        if (e.keyCode== 13) {
-            requestSearch();
-        }
-    }*/
-
-    const requestSearch= () => {
-        /*if (searched.trim()) {
-            dispatch(getUserBySearch({ searched }));
-            navigate.push(`/users/search?searchQuery=${searched || 'none'}`);
-        } else {
-            navigate.push('/directory');
-        }*/
-    };
 
     const cancelSearch= () => {
         setSearched("");
-        requestSearch(searched);
     };
 
     return (
@@ -42,11 +19,12 @@ export default (props) => {
                     <Box display='flex' justifyContent='center'>
                         <SearchBar 
                             fullWidth
-                            //onKeyPress={handleKeyPress}
                             value={searched} 
-                            onChange={(e) => setSearched(e.target.value)}
+                            onRequestSearch={appStore.getAllUsers}
                             onCancelSearch={() => cancelSearch()}
+                            placeholder="Search"
                         />
+                        {appStore.isLoading && <LinearProgress color="#a32738" />}
                     </Box>
                 </Grid>
             </Grid>
