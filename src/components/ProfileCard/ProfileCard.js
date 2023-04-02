@@ -3,8 +3,9 @@ import theme from './theme/theme';
 
 import { FaPaw } from 'react-icons/fa';
 import { useState } from 'react';
-import img from "../../images/castle.jpg"
+import img from "../../images/female-icon.png"
 import axios from 'axios'
+import './index.css'
 
 import { 
     Box, 
@@ -71,22 +72,25 @@ export default ({props, openEdit}) => {
           <img src={postImage.myFile || img} alt="" />
         </label>
 
-        <input 
-          type="file"
-          lable="Image"
-          name="myFile"
-          id='file-upload'
-          accept='.jpeg, .png, .jpg'
-          onChange={(e) => handleFileUpload(e)}
-         />
+        <div className="photo-container">
+          <input 
+            type="file"
+            lable="Image"
+            name="myFile"
+            id='file-upload'
+            accept='.jpeg, .png, .jpg'
+            onChange={(e) => handleFileUpload(e)}
+            className=""
+          />
+        </div>
 
 
-         <button type='submit'>Submit</button>
+         <button className="upload" type='submit'>Submit <FaPaw /></button>
       </form>
     </div>
             <CardContent>
-                <Typography gutterBottom variant='h4' component='div' color='#030000'>{props.firstName} {props.maidenName} {props.marriedName}</Typography>
-                <Typography variant='h4' color='#a32738'>Class of {props.classYear}</Typography>
+                <Typography fontWeight= 'bolder' gutterBottom variant='h4' component='div' color='#030000'>{props.firstName} {props.maidenName} {props.marriedName}</Typography>
+                <Typography fontWeight= 'bolder' variant='h4' color='#a32738'>Class of {props.classYear}</Typography>
                 <br />
                 <Typography variant='h5' color='#030000' style={{fontWeight: "bold"}}>Location</Typography>
                 <br />
