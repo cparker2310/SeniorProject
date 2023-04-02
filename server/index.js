@@ -14,7 +14,7 @@ app.use(express.json())
 
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
-//app.use(cors({limit: '50mb'}))
+app.use(cors({limit: '50mb'}))
 
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))

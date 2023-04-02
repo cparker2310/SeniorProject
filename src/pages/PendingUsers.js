@@ -17,7 +17,8 @@ import Paper from '@mui/material/Paper';
 
 const PendingUsers = () => {
     const [open, setOpen]= useState(false);
-    const [pendings, setPendings]= useState([]);
+    const [state, setState]= useState(true);
+    const [pending, setPendings]= useState([]);
     const [denyUser, setDenyUser]= useState({});
     const [element, setElement]= useState(<></>);
 
@@ -43,22 +44,40 @@ const PendingUsers = () => {
         },
     }));
 
-    function createData(index, firstName, maidenName, marriedName, classYear, email, actions) {
-        return { index, firstName, maidenName, marriedName, classYear, email, actions };
-    }
-
     // Should retrieve users after they register
     
     const getPendings = async() => {
         await api.getAllPendings().then((pendings) => {
             setPendings(pendings.data.data);
-        });
-    }
+            const ele = pending.map((pendings, index)=>{
+              return <>
+              <StyledTableRow key={pendings._id}>
+                <StyledTableCell align="right">{index+1}</StyledTableCell>
+                <StyledTableCell align="right">{pendings.firstName}</StyledTableCell>
+                <StyledTableCell align="right">{pendings.maidenName}</StyledTableCell>
+                <StyledTableCell align="right">{pendings.marriedName}</StyledTableCell>
+                <StyledTableCell align="right">{pendings.classYear}</StyledTableCell>
+                <StyledTableCell align="right">{pendings.email}</StyledTableCell>
+                <StyledTableCell align="right">
+                      <Link className='accept' onClick={() => handleAccept(pendings)}> Accept </Link>
+                      <Link className='deny' onClick={() => handleDeny(pendings._id)}>Deny</Link>
+                </StyledTableCell>
+              </StyledTableRow>
+              </>
+            })
+            setElement(ele)})
+        }
+    
     
     const handleDeny = async(id) => {
         await api.deletePending(id).then((res) => {
             setOpen(false);
+            alert("User Updated")
+            
         })
+        
+        window.location.reload(true)
+        
     }
     
     function confirmDenyUser(data) {
@@ -68,47 +87,17 @@ const PendingUsers = () => {
 
     const handleAccept = async(data) => {
         await api.insertUser(data).then(res => {
-            alert("accepted")
+            
         })
         handleDeny(data._id)
     }
 
-
-    const rows = [
-        createData({/*data.*/firstName}, {/*data.*/maidenName}, {/*data.*/marriedName}, {/*data.*/classYear}, {/*data.*/email})
-    ];
-
-
-    getPendings()
-
-    /* 
-       <h1 className='h1'>Newly Registered Users</h1>
-      <table className='table'>
-        
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Class Year</th>
-                <th>Email</th>
-                <th>Actions</th>
-            </tr>
-            {(pendings.map((data, index) => (
-            
-            <tr key={index} className='th'>
-                <td>{index + 1}</td>
-                <td>{data.firstName} {data.maidenName} {data.marriedName}</td>
-                <td>{data.classYear}</td>
-                <td>{data.email}</td>
-
-                <td>
-                    <Link className='accept' onClick={handleAccept(data)}> Accept </Link>
-                    <Link className='deny' onClick={handleDeny(data._id)}>Deny</Link>
-                </td>
-                </tr>
-            )))}
-        
-      </table>
-    */
+    
+    
+    useEffect(() =>{
+      getPendings();
+    }, [])
+    
     
 
   return (
@@ -128,23 +117,7 @@ const PendingUsers = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.index}>
-              <StyledTableCell component="th" scope="row">
-                {row.index}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.index+1}</StyledTableCell>
-              <StyledTableCell align="right">{row.firstName}</StyledTableCell>
-              <StyledTableCell align="right">{row.maidenName}</StyledTableCell>
-              <StyledTableCell align="right">{row.marriedName}</StyledTableCell>
-              <StyledTableCell align="right">{row.classYear}</StyledTableCell>
-              <StyledTableCell align="right">{row.email}</StyledTableCell>
-              <StyledTableCell align="right">
-                    <Link className='accept' onClick={handleAccept(data)}> Accept </Link>
-                    <Link className='deny' onClick={handleDeny(data._id)}>Deny</Link>
-              </StyledTableCell>
-            </StyledTableRow>
-          ))}
+          {element}
         </TableBody>
       </Table>
     </TableContainer>      
