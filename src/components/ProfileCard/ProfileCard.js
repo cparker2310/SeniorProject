@@ -64,12 +64,12 @@ export default ({props, openEdit}) => {
     <>
     <ThemeProvider theme={theme}>
       <Box p={8} sx={{width: 1290, height: 1500}} alignItems='center'>
-        <Card>
+        <Card alignItems='center'>
         <div className="App">
       <form onSubmit={handleSubmit}>
 
         <label htmlFor="file-upload" className='custom-file-upload'>
-          <img src={postImage.myFile || img} alt="" />
+          <img src={postImage.myFile || img} alt="" style={{width: "450px", height: "450px"}} />
         </label>
 
         <div className="photo-container">

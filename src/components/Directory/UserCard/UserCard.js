@@ -18,9 +18,9 @@ import { Link } from 'react-router-dom';
          <Card sx={{  maxWidth: 325, minWidth: 225, height: 220, width: 325 }}>
       <CardActionArea>
           <CardMedia
-          component="img"
-          image=""
-          alt="profile picture"
+            component="img"
+            //image={postImage.myFile || img}
+            alt="profile picture"
           />
           <CardContent>
           <Typography gutterBottom variant="h6" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>
