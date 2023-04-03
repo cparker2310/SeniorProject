@@ -6,17 +6,24 @@ import { Grid } from '@material-ui/core';
 
 export default (props, onChange) => {
     const [searched, setSearched]= useState("");
-    const [names, setNames]= useState(users);
+    //const [names, setNames]= useState(users);
 
     const cancelSearch= () => {
         setSearched("");
     };
 
-    const filterNames= event => {
+    /*const filterNames= event => {
         const search= event.target.value.toLowerCase();
         const filterNames= users.filter(names => names.toLowerCase().includes(search));
         setNames(filterNames);
     }
+
+     <ul>
+        {names.map(user => {
+            return <li key={user._id}>{user.firstName}</li>
+        })}
+    </ul>
+    */
 
     return (
         <Box py={10}>
@@ -27,13 +34,8 @@ export default (props, onChange) => {
                             fullWidth
                             value={searched} 
                             onCancelSearch={() => cancelSearch()}
-                            onChange={(event) => filterNames(event)}
+                            //onChange={(event) => filterNames(event)}
                         />
-                        <ul>
-                            {names.map(user => {
-                                return <li key={user._id}>{user.firstName}</li>
-                            })}
-                        </ul>
                     </Box>
                 </Grid>
             </Grid>

@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions, Box } from '@mui/material';
+import { Button, CardActionArea, CardActions } from '@mui/material';
 import { FaPaw } from 'react-icons/fa';
 import { ThemeProvider } from '@material-ui/core';
 import theme from '../../Directory/theme/theme';
@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
    return (
     <>
      <ThemeProvider theme={theme}>
-         <Card sx={{ maxWidth: 325, maxHeight: 355}}>
+         <Card sx={{  maxWidth: 325, minWidth: 225, height: 220, width: 325 }}>
       <CardActionArea>
           <CardMedia
           component="img"
