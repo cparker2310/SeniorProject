@@ -2,15 +2,21 @@ import React, { useState, useEffect } from 'react';
 import SearchBar from "material-ui-search-bar";
 import Box from "@mui/material/Box";
 import { Grid } from '@material-ui/core';
-import appStore from '../appStore';
-import LinearProgress from '@mui/material/LinearProgress';
+//import LinearProgress from '@mui/material/LinearProgress';
 
-export default (props) => {
+export default (props, onChange) => {
     const [searched, setSearched]= useState("");
+    const [names, setNames]= useState(users);
 
     const cancelSearch= () => {
         setSearched("");
     };
+
+    const filterNames= event => {
+        const search= event.target.value.toLowerCase();
+        const filterNames= users.filter(names => names.toLowerCase().includes(search));
+        setNames(filterNames);
+    }
 
     return (
         <Box py={10}>
@@ -20,11 +26,14 @@ export default (props) => {
                         <SearchBar 
                             fullWidth
                             value={searched} 
-                            onRequestSearch={appStore.getAllUsers}
                             onCancelSearch={() => cancelSearch()}
-                            placeholder="Search"
+                            onChange={(event) => filterNames(event)}
                         />
-                        {appStore.isLoading && <LinearProgress color="#a32738" />}
+                        <ul>
+                            {names.map(user => {
+                                return <li key={user._id}>{user.firstName}</li>
+                            })}
+                        </ul>
                     </Box>
                 </Grid>
             </Grid>
