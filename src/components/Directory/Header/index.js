@@ -3,8 +3,9 @@ import SearchBar from "material-ui-search-bar";
 import Box from "@mui/material/Box";
 import { Grid } from '@material-ui/core';
 import api from '../../../api/index';
+import UserCard from '../UserCard/UserCard';
 
-export default (props, onChange) => {
+export default function SearchUser({ props }) {
     const [searched, setSearched]= useState("");
     const [users, setUsers]= useState([]);
     const [searchedUsers, setSearchedUsers]= useState([]);
@@ -45,11 +46,9 @@ export default (props, onChange) => {
                     </Box>
                 </Grid>
             </Grid>
-            <ul>
                 {searchedUsers.map((user) => {
-                    return <li key={user._id}>{user.firstName}</li>;
+                    return <UserCard key={user._id} props={user}/>;
                 })}
-            </ul>
         </Box>
     );
 };
