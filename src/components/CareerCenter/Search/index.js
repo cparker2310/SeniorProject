@@ -46,6 +46,7 @@ export default props => {
             <Select onChange={handleChange} name='location' value={jobSearch.location} disableUnderline variant='filled'>
                 <MenuItem value='Onsite'>Onsite</MenuItem>
                 <MenuItem value='Remote'>Remote</MenuItem>
+                <MenuItem value='Hybrid'>Hybrid</MenuItem>
             </Select>
 
             <Button variant='contained' color='primary'>Search</Button>

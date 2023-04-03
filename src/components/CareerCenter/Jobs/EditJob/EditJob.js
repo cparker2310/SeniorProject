@@ -131,6 +131,7 @@ export default (props) => {
                         <Select onChange={handleChange} name='location' value={editJobDetails.location} fullWidth disableUnderline variant='filled'>
                             <MenuItem value='Onsite'>Onsite</MenuItem>
                             <MenuItem value='Remote'>Remote</MenuItem>
+                            <MenuItem value='Remote'>Hybrid</MenuItem>
                         </Select>
                     </Grid>
 
