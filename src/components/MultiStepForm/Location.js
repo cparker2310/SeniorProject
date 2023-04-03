@@ -6,7 +6,7 @@ export const FormLabel= styled.label`
   margin-bottom: 8px;
   font-size: 18px;
   color: #030000;
-  margin-right: 125px;
+  margin-right: 105px;
 `;
 
 const Location = ({ formData, setFormData }) => {

@@ -18,23 +18,13 @@ const PhotoUpload= () => {
         setImage(e.target.files[0]);
     }
 
-    function handleApi() {
-        const formData= new FormData;
-        formData.append('image', image);
-
-        /*api.uploadImage(formData).then((res) => {
-            console.log(res);
-        });*/
-    }
-
-  return (
-  <div className="photo-container">
-    <input type="file" name='file'
-        onChange={handleImage}
-    />
-    <button className="upload" onClick={handleApi}>Upload <FaPaw /></button>
-  </div>
-  );
+    return (
+    <div className="photo-container">
+      <input type="file" name='file'
+          onChange={handleImage}
+      />
+    </div>
+    );
 }
 
 export default PhotoUpload;
