@@ -94,9 +94,9 @@ const PendingUsers = () => {
 
     
     
-    useEffect(() =>{
+    
       getPendings();
-    }, [])
+    
     
     
 

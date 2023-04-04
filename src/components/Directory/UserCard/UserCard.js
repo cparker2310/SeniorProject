@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { store } from '@risingstack/react-easy-state';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -13,15 +12,15 @@ import { maxHeight } from '@mui/system';
 import { Link } from 'react-router-dom';
 
  export default function UserCard({props}) {
-    const user= store({ props: false });
+    //const user= store({ props: false });
 
    return (
     <>
      <ThemeProvider theme={theme}>
          <Card sx={{ maxWidth: 325, maxHeight: 355}}
-          onClick={() => {
+          /*onClick={() => {
             user.props= !user.props;
-          }}
+          }}*/
          >
       <CardActionArea>
           <CardMedia

@@ -1,4 +1,4 @@
-import { store } from '@risingstack/react-easy-state';
+/*import { store } from '@risingstack/react-easy-state';
 import api from '../../api/index';
 
 const appStore = store({
@@ -10,4 +10,4 @@ const appStore = store({
   },
 });
 
-export default appStore;
+export default appStore;*/

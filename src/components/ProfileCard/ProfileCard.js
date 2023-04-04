@@ -2,7 +2,7 @@ import theme from './theme/theme';
 //import avatar from "./assets/profile.png"
 
 import { FaPaw } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import img from "../../images/castle.jpg"
 import axios from 'axios'
 
@@ -24,21 +24,22 @@ import api from '../../api/index';
 
 export default ({props, openEdit}) => {
   const [postImage, setPostImage] = useState( { myFile : ""})
+  const [pf, setProfileFinal] = useState("")
   const show = sessionStorage.getItem('user')
 
-  const createPost = async (newImage) => {
+  const createPost = async () => {
 
-    
-    const profileFinal = newImage
-    await api.updateUserById(props._id, { profileFinal }).then(res=>{
-      alert("profile updated")
+    const { profileFinal } = pf
+    const payload = { profileFinal }
+    console.log(payload)
+    await api.updateUserById(props._id, payload).then(res=>{
+      alert("Profile Updated")
     })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPost(postImage)
-    console.log("Uploaded")
+    createPost()
   }
 
   const handleFileUpload = async (e) => {
@@ -46,6 +47,8 @@ export default ({props, openEdit}) => {
     const base64 = await convertToBase64(file);
     console.log(base64)
     setPostImage({ ...postImage, myFile : base64 })
+    setProfileFinal(base64)
+    console.log(postImage.myFile)
   }
 
 
@@ -58,6 +61,15 @@ export default ({props, openEdit}) => {
       })
     }
   }
+
+
+  useEffect(()=>{
+    if(show){
+      //console.log(props.profileFinal)
+      setPostImage({...postImage, myFile : props.profileFinal})
+    }
+    
+  },[])
 
   return (
     <>
