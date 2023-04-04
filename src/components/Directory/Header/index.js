@@ -32,23 +32,71 @@ export default function SearchUser({ props }) {
         setSearchedUsers(searchedNames);
     };
 
+    const [elements, setElements] = useState([]);
+  
+    useEffect(() => {
+      const getUsers = async () => {
+        const response = await api.getAllUsers();
+        const fetchedUsers = response.data.data;
+        setUsers(fetchedUsers);
+      };
+  
+      getUsers();
+    }, []);
+  
+    useEffect(() => {
+      const generateElements = () => {
+        const rows = [];
+  
+        for (let i = 0; i < searchedUsers.length; i += 3) {
+          const row = [];
+  
+          for (let j = i; j < i + 3 && j < searchedUsers.length; j++) {
+            row.push(
+              <Grid item xs={4} key={searchedUsers[j]._id}>
+                <UserCard props={searchedUsers[j]} />
+              </Grid>
+            );
+          }
+  
+          rows.push(
+            <Grid container spacing={4} key={i} justifyContent="center">
+              {row}
+            </Grid>
+          );
+        }
+  
+        setElements(rows);
+      };
+  
+      generateElements();
+    }, [searchedUsers]);
+
     return (
         <Box py={10}>
-            <Grid container justifyContent='center'>
-                <Grid item xs={12} sm={6} md={3}>
-                    <Box display='flex' justifyContent='center'>
-                        <SearchBar 
-                            fullWidth
-                            value={searched} 
-                            onCancelSearch={() => cancelSearch()}
-                            onChange={(event) => searchNames(event)}
-                        />
-                    </Box>
-                </Grid>
+        <Grid container justifyContent='center'>
+            <Grid item xs={12} sm={6} md={3}>
+                <Box display='flex' justifyContent='center'>
+                    <SearchBar 
+                    fullWidth
+                    value={searched} 
+                    onCancelSearch={() => cancelSearch()}
+                    onChange={(event) => searchNames(event)}
+                    />
+                </Box>
             </Grid>
+        </Grid>
+            <Box py={4}>
+                <Grid container justifyContent='center' spacing={4}>
                 {searchedUsers.map((user) => {
-                    return <UserCard key={user._id} props={user}/>;
+                    return (
+                    <Grid item xs={12} sm={6} md={4} key={user._id}>
+                        <UserCard props={user}/>
+                    </Grid>
+                    );
                 })}
+                </Grid>
+            </Box>
         </Box>
     );
 };
