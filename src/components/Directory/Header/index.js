@@ -2,32 +2,103 @@ import React, { useState, useEffect } from 'react';
 import SearchBar from "material-ui-search-bar";
 import Box from "@mui/material/Box";
 import { Grid } from '@material-ui/core';
-import appStore from '../appStore';
-import LinearProgress from '@mui/material/LinearProgress';
+import api from '../../../api/index';
+import UserCard from '../UserCard/UserCard';
+import Filter from '../Filter/index';
 
-export default (props) => {
+export default function SearchUser({ props }) {
     const [searched, setSearched]= useState("");
+    const [users, setUsers]= useState([]);
+    const [searchedUsers, setSearchedUsers]= useState([]);
 
-    const cancelSearch= () => {
+    useEffect(() => {
+        const searchUsers= async () => {
+            const result = await api.getAllUsers();
+            setUsers(result.data.data);
+            setSearchedUsers(result.data.data);
+        };
+        searchUsers();
+    }, []);
+
+    const cancelSearch = () => {
         setSearched("");
+        setSearchedUsers(users);
     };
+
+    const searchNames= (event) => {
+        const search= event.toLowerCase();
+        const searchedNames= users.filter((user) =>
+            user.firstName.toLowerCase().includes(search)
+        );
+        setSearchedUsers(searchedNames);
+    };
+
+    const [elements, setElements] = useState([]);
+  
+    useEffect(() => {
+      const getUsers = async () => {
+        const response = await api.getAllUsers();
+        const fetchedUsers = response.data.data;
+        setUsers(fetchedUsers);
+      };
+  
+      getUsers();
+    }, []);
+  
+    useEffect(() => {
+      const generateElements = () => {
+        const rows = [];
+  
+        for (let i = 0; i < searchedUsers.length; i += 3) {
+          const row = [];
+  
+          for (let j = i; j < i + 3 && j < searchedUsers.length; j++) {
+            row.push(
+              <Grid item xs={4} key={searchedUsers[j]._id}>
+                <UserCard props={searchedUsers[j]} />
+              </Grid>
+            );
+          }
+  
+          rows.push(
+            <Grid container spacing={4} key={i} justifyContent="center">
+              {row}
+            </Grid>
+          );
+        }
+  
+        setElements(rows);
+      };
+  
+      generateElements();
+    }, [searchedUsers]);
 
     return (
         <Box py={10}>
-            <Grid container justifyContent='center'>
-                <Grid item xs={12} sm={6} md={3}>
-                    <Box display='flex' justifyContent='center'>
-                        <SearchBar 
-                            fullWidth
-                            value={searched} 
-                            onRequestSearch={appStore.getAllUsers}
-                            onCancelSearch={() => cancelSearch()}
-                            placeholder="Search"
-                        />
-                        {appStore.isLoading && <LinearProgress color="#a32738" />}
-                    </Box>
-                </Grid>
+         <Filter />
+        <Grid container justifyContent='center'>
+            <Grid item xs={12} sm={6} md={3}>
+                <Box display='flex' justifyContent='center'>
+                    <SearchBar 
+                        value={searched} 
+                        onCancelSearch={() => cancelSearch()}
+                        onChange={(event) => searchNames(event)}
+                        style={{ width:  '2000px' }}
+                    />
+                </Box>
             </Grid>
+        </Grid>
+            <Box py={4}>
+                <Grid container justifyContent='center' spacing={4}>
+                {searchedUsers.map((user) => {
+                    return (
+                    <Grid item xs={12} sm={6} md={4} key={user._id}>
+                        <UserCard props={user}/>
+                    </Grid>
+                    );
+                })}
+                </Grid>
+            </Box>
         </Box>
     );
-}
+};

@@ -25,8 +25,7 @@ export default props => {
     const classes= useStyles();
     
     const [userSearch, setUserSearch]= useState({
-        type: 'Full Time',
-        location: 'Onsite'
+        years: '2022'
     });
 
 
@@ -37,14 +36,11 @@ export default props => {
 
     return (
         <Box p={1} mt={-5} mb={2} className={classes.wrapper}>
-            <Select onChange={handleChange} name='type' value={userSearch.type} disableUnderline variant='filled'>
+            <Select onChange={handleChange} name='years' value={userSearch.type} disableUnderline variant='filled'>
                 <MenuItem value='2022'>2022</MenuItem>
                 <MenuItem value='2021'>2021</MenuItem> 
                 <MenuItem value='2020'>2020</MenuItem>
             </Select>
-
-    
-
             <Button variant='contained' color='primary'>Filter</Button>
         </Box>
     );

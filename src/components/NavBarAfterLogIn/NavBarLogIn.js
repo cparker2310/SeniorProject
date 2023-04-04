@@ -9,12 +9,12 @@ export const NavbarContainer= styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 24px;
-  max-width: 1400px;
+  max-width: 1800px;
   background: linear-gradient(90deg, #60000D, #a32738);
 `;
 
 export const NavbarWrap= styled.div`
-  width: 1200px;
+  width: 1800px;
   height: 100%;
   margin: 0 auto;
   z-index: 20;

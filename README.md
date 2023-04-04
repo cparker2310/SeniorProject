@@ -1,4 +1,4 @@
-# Senior Project: Maryvale Alumnae Directory
+# Senior Project: Maryvale Alumnae Network
 
 ## Requirements
 
@@ -14,7 +14,7 @@
 ## Instructions 
 
 #### 1. Clone the repository
-#### 3. Install the node_modules: `npm install`
+#### 2. Install the node_modules: `npm install`
 
 
 ### Running the Backend: 

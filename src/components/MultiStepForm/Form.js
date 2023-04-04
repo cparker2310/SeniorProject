@@ -9,6 +9,7 @@ import './MultiForm.css';
 import api from '../../api';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FaPaw } from 'react-icons/fa';
 
 // should make required UI for the user to know + better alerts for a field being empty
 
@@ -70,7 +71,7 @@ const Form = () => {
           handleIncludeUser
       }
     >
-      Submit
+      Submit <FaPaw />
       
     </button>);
     }

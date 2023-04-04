@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions, Box } from '@mui/material';
+import { Button, CardActionArea, CardActions } from '@mui/material';
 import { FaPaw } from 'react-icons/fa';
 import { ThemeProvider } from '@material-ui/core';
 import theme from '../../Directory/theme/theme';
@@ -24,9 +24,9 @@ import { Link } from 'react-router-dom';
          >
       <CardActionArea>
           <CardMedia
-          component="img"
-          image=""
-          alt="profile picture"
+            component="img"
+            //image={postImage.myFile || img}
+            alt="profile picture"
           />
           <CardContent>
           <Typography gutterBottom variant="h6" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>

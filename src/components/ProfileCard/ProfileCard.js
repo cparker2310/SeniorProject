@@ -2,9 +2,10 @@ import theme from './theme/theme';
 //import avatar from "./assets/profile.png"
 
 import { FaPaw } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
-import img from "../../images/castle.jpg"
+import { useState } from 'react';
+import img from "../../images/female-icon.png"
 import axios from 'axios'
+import './index.css'
 
 import { 
     Box, 
@@ -75,30 +76,33 @@ export default ({props, openEdit}) => {
     <>
     <ThemeProvider theme={theme}>
       <Box p={8} sx={{width: 1290, height: 1500}} alignItems='center'>
-        <Card>
+        <Card alignItems='center'>
         <div className="App">
       <form onSubmit={handleSubmit}>
 
         <label htmlFor="file-upload" className='custom-file-upload'>
-          <img src={postImage.myFile || img} alt="" />
+          <img src={postImage.myFile || img} alt="" style={{width: "450px", height: "450px"}} />
         </label>
 
-        <input 
-          type="file"
-          lable="Image"
-          name="myFile"
-          id='file-upload'
-          accept='.jpeg, .png, .jpg'
-          onChange={(e) => handleFileUpload(e)}
-         />
+        <div className="photo-container">
+          <input 
+            type="file"
+            lable="Image"
+            name="myFile"
+            id='file-upload'
+            accept='.jpeg, .png, .jpg'
+            onChange={(e) => handleFileUpload(e)}
+            className=""
+          />
+        </div>
 
 
-         <button type='submit'>Submit</button>
+         <button className="upload" type='submit'>Submit <FaPaw /></button>
       </form>
     </div>
             <CardContent>
-                <Typography gutterBottom variant='h4' component='div' color='#030000'>{props.firstName} {props.maidenName} {props.marriedName}</Typography>
-                <Typography variant='h4' color='#a32738'>Class of {props.classYear}</Typography>
+                <Typography fontWeight= 'bolder' gutterBottom variant='h4' component='div' color='#030000'>{props.firstName} {props.maidenName} {props.marriedName}</Typography>
+                <Typography fontWeight= 'bolder' variant='h4' color='#a32738'>Class of {props.classYear}</Typography>
                 <br />
                 <Typography variant='h5' color='#030000' style={{fontWeight: "bold"}}>Location</Typography>
                 <br />

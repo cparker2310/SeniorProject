@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import api from '../../api/index';
+import { CgProfile } from "react-icons/cg";
 
 export const NavbarContainer= styled.div`
   width: 100%;
@@ -123,7 +124,7 @@ const [user, setUser] = useState({})
           <ButtonContainer> 
             <Link state={{props:user}} style={{ textDecoration: 'none' }}>
           <Button css={`color: #e6e1e1; background: inherit;`} to={u ? "/profile" : "/consent"} state={{props:user}}>
-            {u ? "Profile" : "Register"}
+            {u ? <CgProfile style={{height: '40px', width: '40px', color: '#e6e1e1',  marginRight: '30px', marginTop: '10px'}}/> : "Register"}
           </Button>
           </Link>
           <Button onClick={logOut} to={u ? "/" : "/login"}>
