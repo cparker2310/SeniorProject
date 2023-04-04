@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import { Grid } from '@material-ui/core';
 import api from '../../../api/index';
 import UserCard from '../UserCard/UserCard';
+import Filter from '../Filter/index';
 
 export default function SearchUser({ props }) {
     const [searched, setSearched]= useState("");
@@ -74,14 +75,15 @@ export default function SearchUser({ props }) {
 
     return (
         <Box py={10}>
+         <Filter />
         <Grid container justifyContent='center'>
             <Grid item xs={12} sm={6} md={3}>
                 <Box display='flex' justifyContent='center'>
                     <SearchBar 
-                    fullWidth
-                    value={searched} 
-                    onCancelSearch={() => cancelSearch()}
-                    onChange={(event) => searchNames(event)}
+                        value={searched} 
+                        onCancelSearch={() => cancelSearch()}
+                        onChange={(event) => searchNames(event)}
+                        style={{ width:  '2000px' }}
                     />
                 </Box>
             </Grid>

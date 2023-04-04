@@ -11,7 +11,6 @@ const Directory = () => {
       <Navbar />
       <ThemeProvider theme={theme}>
         <Header />
-        <Filter />
         <Grid container justifyContent="center">
           <Grid item xs={10}>
           </Grid>
