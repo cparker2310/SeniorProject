@@ -69,7 +69,7 @@ export default ({props, openEdit}) => {
       <form onSubmit={handleSubmit}>
 
         <label htmlFor="file-upload" className='custom-file-upload'>
-          <img src={postImage.myFile || img} alt="" style={{width: "450px", height: "450px"}} />
+          <img src={postImage.myFile || img} alt="" style={{width: "450px", height: "450px", margin: "auto", display: "block", marginBottom: "20px"}} />
         </label>
 
         <div className="photo-container">
@@ -83,9 +83,7 @@ export default ({props, openEdit}) => {
             className=""
           />
         </div>
-
-
-         <button className="upload" type='submit'>Submit <FaPaw /></button>
+        
       </form>
     </div>
             <CardContent>
@@ -121,9 +119,9 @@ export default ({props, openEdit}) => {
                 <br />
                 <Typography variant='h5' color='#030000' style={{fontWeight: "bold"}}>Contact Information</Typography>
                 <br />
-                <Typography variant='h5' color='#030000'>Phone: {props.phone}</Typography>
+                <Typography variant='h6' color='#030000'>Phone: {props.phone}</Typography>
                 <br />
-                <Typography variant='h5' color='#030000'>Email: {props.email2} </Typography>
+                <Typography variant='h6' color='#030000'>Email: {props.email2} </Typography>
             </CardContent>
             <CardActions style={{justifyContent: "center"}}>
             {show && <><Button variant='contained' onClick={openEdit} style={{ backgroundColor: "#a32738", fontSize: "15px", fontWeight: "bold", color: "#fdfdfd",  height: "50px", width: "200px", borderRadius: "8px" }}>Edit Profile <FaPaw /></Button>
