@@ -25,22 +25,21 @@ import api from '../../api/index';
 
 export default ({props, openEdit}) => {
   const [postImage, setPostImage] = useState( { myFile : ""})
-  const [pf, setProfileFinal] = useState("")
   const show = sessionStorage.getItem('user')
 
-  const createPost = async () => {
+  const createPost = async (newImage) => {
 
-    const { profileFinal } = pf
-    const payload = { profileFinal }
-    console.log(payload)
-    await api.updateUserById(props._id, payload).then(res=>{
-      alert("Profile Updated")
+    
+    const profileFinal = newImage
+    await api.updateUserById(props._id, { profileFinal }).then(res=>{
+      alert("profile updated")
     })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPost()
+    createPost(postImage)
+    console.log("Uploaded")
   }
 
   const handleFileUpload = async (e) => {
@@ -48,8 +47,6 @@ export default ({props, openEdit}) => {
     const base64 = await convertToBase64(file);
     console.log(base64)
     setPostImage({ ...postImage, myFile : base64 })
-    setProfileFinal(base64)
-    console.log(postImage.myFile)
   }
 
 
@@ -63,19 +60,10 @@ export default ({props, openEdit}) => {
     }
   }
 
-
-  useEffect(()=>{
-    if(show){
-      //console.log(props.profileFinal)
-      setPostImage({...postImage, myFile : props.profileFinal})
-    }
-    
-  },[])
-
   return (
     <>
     <ThemeProvider theme={theme}>
-      <Box p={8} sx={{width: 1290, height: 1500}} alignItems='center'>
+      <Box p={8} sx={{width: 1430, height: 1500}} alignItems='center'>
         <Card alignItems='center'>
         <div className="App">
       <form onSubmit={handleSubmit}>
@@ -138,8 +126,8 @@ export default ({props, openEdit}) => {
                 <Typography variant='h5' color='#030000'>Email: {props.email2} </Typography>
             </CardContent>
             <CardActions style={{justifyContent: "center"}}>
-            {show && <><Button variant='contained' onClick={openEdit} style={{ fontWeight: "bold" }}>Edit Profile <FaPaw /></Button>
-            <Button variant='contained' style={{ fontWeight: "bold" }} onClick={handleDelete}>Delete Profile <FaPaw /></Button> </>
+            {show && <><Button variant='contained' onClick={openEdit} style={{ backgroundColor: "#a32738", fontSize: "15px", fontWeight: "bold", color: "#fdfdfd",  height: "50px", width: "200px", borderRadius: "8px" }}>Edit Profile <FaPaw /></Button>
+            <Button variant='contained' style={{ backgroundColor: "#a32738", fontSize: "15px", fontWeight: "bold", color: "#fdfdfd",  height: "50px", width: "200px", borderRadius: "8px" }} onClick={handleDelete}>Delete Profile <FaPaw /></Button> </>
             }
             </CardActions>
         </Card>

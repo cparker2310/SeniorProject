@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
+import { CgProfile } from 'react-icons/cg';
 
 export const NavbarContainer= styled.div`
   width: 100%;
@@ -101,7 +102,7 @@ const Navbar = () => {
         </Nav>
         <ButtonContainer>
           <Button to="/profile" css={`color: #e6e1e1; background: inherit;`}>
-            Profile
+            <CgProfile style={{height: '40px', width: '40px', color: '#e6e1e1',  marginRight: '-8px', marginTop: '-2px'}}/>
           </Button>
           <Button to="/logout">
             Log Out
