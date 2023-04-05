@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import api from '../../api/index';
@@ -42,7 +42,6 @@ export const NavLink= styled(Link)`
   color: #fdfdfd;
   padding: 0 17px;
   font-size: 20px;
-  font-weight: bold;
   line-height: 80px;
   font-weight: 700;
   text-decoration: none;
@@ -99,18 +98,27 @@ const [user, setUser] = useState({})
   const getUser = async () => {
     if(u){
       await api.getUserById(u).then(user => {
-        setUser(user.data.data)
+        setUser(user.data)
       })
-    }
+      //console.log(newUser)
+        //console.log(user)
+      }
+    
   }
 
   const logOut = () => {
     if(sessionStorage.getItem("user") && window.confirm("Are you sure you want to log out?")){
       sessionStorage.clear();
-      window.location.reload(false);
+      //window.location.reload(false);
     }
   }
-  getUser()
+
+  useEffect(()=>{
+    getUser()
+  }, [])
+    
+
+  
   return (
     <>
     <NavbarContainer>
