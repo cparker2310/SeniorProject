@@ -25,21 +25,25 @@ import api from '../../api/index';
 
 export default ({props, openEdit}) => {
   const [postImage, setPostImage] = useState( { myFile : ""})
-  const [pf, setProfileFinal] = useState("")
   const show = sessionStorage.getItem('user')
+<<<<<<< HEAD
   const createPost = async () => {
+=======
 
-    const { profileFinal } = pf
-    const payload = { profileFinal }
-    console.log(payload)
-    await api.updateUserById(props._id, payload).then(res=>{
-      alert("Profile Updated")
+  const createPost = async (newImage) => {
+>>>>>>> 00152b7aaed2bab43083c4530c71bfbe134ba2dc
+
+    
+    const profileFinal = newImage
+    await api.updateUserById(props._id, { profileFinal }).then(res=>{
+      alert("profile updated")
     })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPost()
+    createPost(postImage)
+    console.log("Uploaded")
   }
 
   const handleFileUpload = async (e) => {
@@ -47,8 +51,6 @@ export default ({props, openEdit}) => {
     const base64 = await convertToBase64(file);
     console.log(base64)
     setPostImage({ ...postImage, myFile : base64 })
-    setProfileFinal(base64)
-    console.log(postImage.myFile)
   }
 
 
@@ -62,19 +64,22 @@ export default ({props, openEdit}) => {
     }
   }
 
+<<<<<<< HEAD
 
   
 
+=======
+>>>>>>> 00152b7aaed2bab43083c4530c71bfbe134ba2dc
   return (
     <>
     <ThemeProvider theme={theme}>
-      <Box p={8} sx={{width: 1290, height: 1500}} alignItems='center'>
+      <Box p={8} sx={{width: 1430, height: 1500}} alignItems='center'>
         <Card alignItems='center'>
         <div className="App">
       <form onSubmit={handleSubmit}>
 
         <label htmlFor="file-upload" className='custom-file-upload'>
-          <img src={postImage.myFile || img} alt="" style={{width: "450px", height: "450px"}} />
+          <img src={postImage.myFile || img} alt="" style={{width: "450px", height: "450px", margin: "auto", display: "block", marginBottom: "20px"}} />
         </label>
 
         <div className="photo-container">
@@ -88,9 +93,7 @@ export default ({props, openEdit}) => {
             className=""
           />
         </div>
-
-
-         <button className="upload" type='submit'>Submit <FaPaw /></button>
+        
       </form>
     </div>
             <CardContent>
@@ -126,13 +129,13 @@ export default ({props, openEdit}) => {
                 <br />
                 <Typography variant='h5' color='#030000' style={{fontWeight: "bold"}}>Contact Information</Typography>
                 <br />
-                <Typography variant='h5' color='#030000'>Phone: {props.phone}</Typography>
+                <Typography variant='h6' color='#030000'>Phone: {props.phone}</Typography>
                 <br />
-                <Typography variant='h5' color='#030000'>Email: {props.email2} </Typography>
+                <Typography variant='h6' color='#030000'>Email: {props.email2} </Typography>
             </CardContent>
             <CardActions style={{justifyContent: "center"}}>
-            {show && <><Button variant='contained' onClick={openEdit} style={{ fontWeight: "bold" }}>Edit Profile <FaPaw /></Button>
-            <Button variant='contained' style={{ fontWeight: "bold" }} onClick={handleDelete}>Delete Profile <FaPaw /></Button> </>
+            {show && <><Button variant='contained' onClick={openEdit} style={{ backgroundColor: "#a32738", fontSize: "15px", fontWeight: "bold", color: "#fdfdfd",  height: "50px", width: "200px", borderRadius: "8px" }}>Edit Profile <FaPaw /></Button>
+            <Button variant='contained' style={{ backgroundColor: "#a32738", fontSize: "15px", fontWeight: "bold", color: "#fdfdfd",  height: "50px", width: "200px", borderRadius: "8px" }} onClick={handleDelete}>Delete Profile <FaPaw /></Button> </>
             }
             </CardActions>
         </Card>

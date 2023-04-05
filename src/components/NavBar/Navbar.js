@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import api from '../../api/index';
@@ -98,18 +98,27 @@ const [user, setUser] = useState({})
   const getUser = async () => {
     if(u){
       await api.getUserById(u).then(user => {
-        setUser(user.data.data)
+        setUser(user.data)
       })
-    }
+      //console.log(newUser)
+        //console.log(user)
+      }
+    
   }
 
   const logOut = () => {
     if(sessionStorage.getItem("user") && window.confirm("Are you sure you want to log out?")){
       sessionStorage.clear();
-      window.location.reload(false);
+      //window.location.reload(false);
     }
   }
-  getUser()
+
+  useEffect(()=>{
+    getUser()
+  }, [])
+    
+
+  
   return (
     <>
     <NavbarContainer>

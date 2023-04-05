@@ -85,7 +85,11 @@ export default ({props, closeEdit, edit, newProps}) => {
     
 
     return (
+<<<<<<< HEAD
         <Dialog open={edit}>
+=======
+        <Dialog open={props.edit} style={{fontFamily: "Lora, serif"}}>
+>>>>>>> 00152b7aaed2bab43083c4530c71bfbe134ba2dc
             <DialogTitle>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                     Edit Profile
@@ -97,49 +101,49 @@ export default ({props, closeEdit, edit, newProps}) => {
             <DialogContent style={{fontFamily: "Lora, serif"}}>
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
-                        <FilledInput placeholder="First Name" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="First Name" disableUnderline fullWidth
                             value={formData.firstName}
                             onChange={(e) => setFormData({...formData, firstName: e.target.value})}
                         />
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Maiden Name" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Maiden Name" disableUnderline fullWidth
                             value={formData.maidenName}
                             onChange={(e) => setFormData({...formData, maidenName: e.target.value})}
                         />
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Married Name" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Married Name" disableUnderline fullWidth
                             value={formData.marriedName}
                             onChange={(e) => setFormData({...formData, marriedName: e.target.value})}
                         />
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Class Year" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Class Year" disableUnderline fullWidth
                             value={formData.classYear}
                             onChange={(e) => setFormData({...formData, classYear: e.target.value})}
                         />
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Current City" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Current City" disableUnderline fullWidth
                             value={formData.currentCity}
                             onChange={(e) => setFormData({...formData, currentCity: e.target.value})}
                         />
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Current State" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Current State" disableUnderline fullWidth
                             value={formData.currentState}
                             onChange={(e) => setFormData({...formData, currentState: e.target.value})}
                         />
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Name of Institution" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Name of Institution" disableUnderline fullWidth
                             value={formData.universityName}
                             onChange={(e) => setFormData({...formData, universityName: e.target.value})}
                         />
@@ -153,49 +157,49 @@ export default ({props, closeEdit, edit, newProps}) => {
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Area of Study" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Area of Study" disableUnderline fullWidth
                             value={formData.areaStudy}
                             onChange={(e) => setFormData({...formData, areaStudy: e.target.value})}
                         />
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Graduation Year" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Graduation Year" disableUnderline fullWidth
                             value={formData.gradYear}
                             onChange={(e) => setFormData({...formData, gradYear: e.target.value})}
                         />
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Position" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Position" disableUnderline fullWidth
                             value={formData.position}
                             onChange={(e) => setFormData({...formData, position: e.target.value})}
                         />
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Company Name" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Company Name" disableUnderline fullWidth
                             value={formData.companyName}
                             onChange={(e) => setFormData({...formData, companyName: e.target.value})}
                         />
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Industry" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Industry" disableUnderline fullWidth
                             value={formData.industry}
                             onChange={(e) => setFormData({...formData, industry: e.target.value})}
                         />
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Phone" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Phone" disableUnderline fullWidth
                             value={formData.phone}
                             onChange={(e) => setFormData({...formData, phone: e.target.value})}
                         />
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Email" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Email" disableUnderline fullWidth
                             value={formData.email2}
                             onChange={(e) => setFormData({...formData, email2: e.target.value})}
                         />
@@ -204,7 +208,7 @@ export default ({props, closeEdit, edit, newProps}) => {
             </DialogContent>
             <DialogActions>
                 <Box>
-                    <Button variant= "contained" style={{ backgroundColor: "#a32738", color: "#fdfdfd", fontFamily: "Lora, serif"}} onClick={submitHandler}>Submit <FaPaw /></Button>
+                    <Button variant= "contained" style={{ fontWeight: "bold", backgroundColor: "#a32738", color: "#fdfdfd", fontFamily: "Lora, serif"}} onClick={submitHandler}>Submit <FaPaw /></Button>
                 </Box>
             </DialogActions>
         </Dialog>

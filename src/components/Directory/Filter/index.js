@@ -9,6 +9,8 @@ import {
 
 const useStyles= makeStyles({
     wrapper: {
+        width: '800px',
+        marginLeft: '320px',
         backgroundColor: '#fdfdfd',
         display: 'flex',
         boxShadow: '0px 1px 5px rgba(0, 0, 0, 0.1)',
