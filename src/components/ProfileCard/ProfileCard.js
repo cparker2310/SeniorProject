@@ -2,7 +2,7 @@ import theme from './theme/theme';
 //import avatar from "./assets/profile.png"
 
 import { FaPaw } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import img from "../../images/female-icon.png"
 import axios from 'axios'
 import './index.css'
@@ -27,7 +27,6 @@ export default ({props, openEdit}) => {
   const [postImage, setPostImage] = useState( { myFile : ""})
   const [pf, setProfileFinal] = useState("")
   const show = sessionStorage.getItem('user')
-
   const createPost = async () => {
 
     const { profileFinal } = pf
@@ -64,13 +63,7 @@ export default ({props, openEdit}) => {
   }
 
 
-  useEffect(()=>{
-    if(show){
-      //console.log(props.profileFinal)
-      setPostImage({...postImage, myFile : props.profileFinal})
-    }
-    
-  },[])
+  
 
   return (
     <>

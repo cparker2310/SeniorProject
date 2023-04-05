@@ -1,9 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const multer = require('multer')
-const User = require('./models/user-model')
 
+
+//const userCont = require('./controllers/user-ctrl');
 const db = require('./db')
 const router = require('./routes/router')
 
@@ -22,8 +22,16 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
-
-
+/*
+app.get('/user', userCont.getAll );
+app.get('/user/:id',userCont.get );
+app.post('/user',userCont.postCreateOrUpdate); 
+app.get('/deluser/:id',userCont.deleteOne); 
+app.post('/updateuser',userCont.postCreateOrUpdate);
+app.post('/dologin',userCont.login); 
+app.get('/loggedUser',userCont.loggedUser);
+app.get('/logout',userCont.logout);
+*/
 
 app.use('/api', router)
 

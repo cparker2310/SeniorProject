@@ -35,4 +35,60 @@ const User = new Schema(
     });
 */
 
-module.exports = mongoose.model('users', User)
+const userModel = mongoose.model('users', User)
+
+exports.readAll = async function(){
+  let users = await userModel.find({});
+  // Later try: find().sort({name:'asc'}).skip(0).limit(5);
+  return users;
+}
+
+exports.read = async function(id){
+  let user = await userModel.findOne({_id: id});
+  return user;
+}
+
+exports.create = async function(newuser){
+  const user = new userModel(newuser);
+  await user.save();
+  return user;
+}
+
+exports.del = async function(id){
+  let user = await userModel.findByIdAndDelete(id);
+  return user;
+} 
+
+exports.deleteAll = async function(){
+  await userModel.deleteMany();
+}
+
+
+exports.update = async function(id, updatedUser){
+let user = await userModel.findOne({_id: id})
+if(!user) return;
+user.email = updatedUser.email || user.email
+user.password = updatedUser.password ? updatedUser.password : user.password
+user.firstName = updatedUser.firstName ? updatedUser.firstName : user.firstName
+user.maidenName = updatedUser.maidenName ? updatedUser.maidenName : user.maidenName
+user.marriedName = updatedUser.marriedName ? updatedUser.marriedName : user.marriedName
+user.classYear = updatedUser.classYear ? updatedUser.classYear : user.classYear
+user.currentCity = updatedUser.currentCity ? updatedUser.currentCity : user.currentCity
+user.currentState = updatedUser.currentState ? updatedUser.currentState : user.currentState
+user.universityName = updatedUser.universityName ? updatedUser.universityName : user.universityName
+user.degree = updatedUser.degree ? updatedUser.degree : user.degree
+user.areaStudy = updatedUser.areaStudy ? updatedUser.areaStudy : user.areaStudy
+user.gradYear = updatedUser.gradYear ? updatedUser.gradYear : user.gradYear
+user.position = updatedUser.position ? updatedUser.position : user.position
+user.companyName = updatedUser.companyName ? updatedUser.companyName : user.companyName
+user.industry = updatedUser.industry ? updatedUser.industry : user.industry
+user.email2 = updatedUser.email2 ? updatedUser.email2 : user.email2
+user.phone= updatedUser.phone ? updatedUser.phone : user.phone
+user.isAdmin = updatedUser.isAdmin ? updatedUser.isAdmin : user.isAdmin
+user.profileFinal = updatedUser.profileFinal ? updatedUser.profileFinal : user.profileFinal
+user.save()
+return user
+}
+
+
+

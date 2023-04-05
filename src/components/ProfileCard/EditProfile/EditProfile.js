@@ -33,22 +33,15 @@ const initState= {
     phone: "",
 }
     
-export default (props) => {
+export default ({props, closeEdit, edit, newProps}) => {
     const [editDetails, setEditDetails]= useState(initState);
     
         const closeEditProfile= () => {
             setEditDetails(initState);
-            props.closeEdit();
+            closeEdit()
         }
-
-    const [user, setUser]= useState("");
-    const getUsers = async() => {
-        let u = sessionStorage.getItem('user')
-        if(u){
-            await api.getUserById(u).then(user => {
-            setUser(user.data.data)})
-        }
-    }
+        
+    
     
 
     const [formData, setFormData]= useState({
@@ -74,8 +67,6 @@ export default (props) => {
 
    const submitHandler= async (e) => {
     e.preventDefault();
-    //GetUser();
-    /* Connect to backend */
     const { email, password, firstName, maidenName, marriedName,
         classYear, currentCity, currentState, universityName, degree,
           areaStudy, gradYear, position, companyName, industry, email2, phone } = formData
@@ -84,15 +75,17 @@ export default (props) => {
         classYear, currentCity, currentState, universityName, degree,
           areaStudy, gradYear, position, companyName, industry, email2, phone }
 
-    await api.updateUserById(user._id, payload).then(res => {
+    await api.updateUserById(props._id, payload).then(res => {
         alert(`User updated successfully`)
-
-    })
-}
-    getUsers()
+        
+        })
+        closeEdit()
+        //window.location.reload()
+    }
+    
 
     return (
-        <Dialog open={props.edit}>
+        <Dialog open={edit}>
             <DialogTitle>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                     Edit Profile

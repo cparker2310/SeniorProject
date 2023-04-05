@@ -1,5 +1,80 @@
-const User = require('../models/user-model')
+const userDao = require('../models/user-model');
 
+getUsers = async function(req,res){ // REST get (all) method
+    res.status(200); // 200 = Ok
+    res.send(await userDao.readAll()); //send the users back to the client
+    res.end(); 
+}
+
+getUserById = async function(req,res){ //REST get (one) method
+    //URL parameter always on req.params.<name>
+    let id = req.params.id; //get param and convert to int
+    let found = await userDao.read(id);
+    
+    if(found !== null){ //We found the requested user
+        res.status(200);
+        //console.log(found.email) //200 = OK
+        res.send(found); //Send the found user
+    }
+
+    else{ //The requested id does not exist
+        res.status(404); //404 = Not Found
+        res.send({msg:'User not found.'}); //send a message
+    }
+    res.end(); //ends the response (only 1 end per response)
+}
+
+createUser = function(req,res){
+    let newuser = {}; //empty obj
+    newuser.name = req.body.txt_name;
+    newuser.login = req.body.txt_login;
+    newuser.password = passUtil.hashPassword(req.body.txt_pass);
+    newuser.permission = parseInt(req.body.txt_perm);
+
+    if(req.body.txt_id){
+        //update user
+        console.log('Update user');
+        userDao.update(newuser);
+    }
+    else{
+        //insert user
+        userDao.create(newuser);        
+    }
+    res.redirect('users.html');
+}
+
+updateUser = async function(req, res){
+    let user = req.body
+    let id = req.params.id
+    await userDao.update(id, user)
+    //res.redirect('/profile')
+    res.end();
+}
+
+deleteUser = async function(req,res){
+    let id = req.params.id; //get param and convert to int    
+    await userDao.del(id);
+    res.end();
+    //}
+}
+/*
+exports.login = async function(req, res){
+    let plogin = req.body.txt_login;
+    let pwd = passUtil.hashPassword(req.body.txt_pass);
+    let user = await userDao.login(plogin, pwd);
+    console.log(user);
+    if(user != null){ //login successful
+        user.password = null; //for security
+        //Save the user in the session
+        //req.session.user = user;
+        res.redirect('index.html');
+    }
+    else{ //incorrect login or password
+        res.redirect('login.html?error=1');
+    }
+}
+*/
+/*
 createUser = (req, res) => {
     const body = req.body
 
@@ -150,8 +225,8 @@ getUsers = async (req, res) => {
         res.status(404).json({ message: error.message })
     }
 }
-*/
 
+*/
 module.exports = {
     createUser,
     updateUser,

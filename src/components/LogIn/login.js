@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Castle from '../../images/castle.jpg';
@@ -98,14 +98,18 @@ export default function Login() {
   const [users, setUsers]= useState({});
   const [pendings, setPendings]= useState({});
   const [link, setLink]= useState("");
+  
+  
+  const getLists = async () => {
 
-    api.getAllUsers().then(users => {
-      setUsers(users.data.data)})
-
-    api.getAllPendings().then(pendings => {
+    await api.getAllUsers().then(users=> {
+      setUsers(users.data)
+    })
+  
+    await api.getAllPendings().then(pendings => {
       setPendings(pendings.data.data)})
 
-  
+    }
 
   const validate = async () => {
     var flag = false;
@@ -134,6 +138,10 @@ export default function Login() {
       }
   }
 }
+
+useEffect(()=>{
+  getLists()
+})
 
   
   return (
