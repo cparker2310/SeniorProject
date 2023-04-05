@@ -115,7 +115,12 @@ export default function JobCard({props, openEditJob}){
                                 <IconButton onClick={closeViewJob}>
                                     <CloseIcon style={{ position: 'absolute', top: 8, right: 8 }} />
                                 </IconButton>
-                                    <DialogTitle>{props.title}</DialogTitle>
+                                    <DialogTitle> 
+                                        <Typography variant='h5' fontWeight='bold'>{props.title}</Typography>
+                                    </DialogTitle>
+                                    <DialogContent>
+                                        <DialogContentText style={{color: '#60000d', fontWeight: 'bold'}}>Categories: {props.categories}</DialogContentText>
+                                    </DialogContent>
                                     <DialogContent>
                                         <DialogContentText>Posted By: {props.contactName}</DialogContentText>
                                     </DialogContent>
