@@ -85,11 +85,7 @@ export default ({props, closeEdit, edit, newProps}) => {
     
 
     return (
-<<<<<<< HEAD
-        <Dialog open={edit}>
-=======
         <Dialog open={props.edit} style={{fontFamily: "Lora, serif"}}>
->>>>>>> 00152b7aaed2bab43083c4530c71bfbe134ba2dc
             <DialogTitle>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                     Edit Profile
@@ -150,7 +146,7 @@ export default ({props, closeEdit, edit, newProps}) => {
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Degree Earned" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Degree Earned" disableUnderline fullWidth
                             value={formData.degree}
                             onChange={(e) => setFormData({...formData, degree: e.target.value})}
                         />

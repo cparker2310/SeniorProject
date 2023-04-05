@@ -26,14 +26,8 @@ import api from '../../api/index';
 export default ({props, openEdit}) => {
   const [postImage, setPostImage] = useState( { myFile : ""})
   const show = sessionStorage.getItem('user')
-<<<<<<< HEAD
-  const createPost = async () => {
-=======
 
   const createPost = async (newImage) => {
->>>>>>> 00152b7aaed2bab43083c4530c71bfbe134ba2dc
-
-    
     const profileFinal = newImage
     await api.updateUserById(props._id, { profileFinal }).then(res=>{
       alert("profile updated")
@@ -64,12 +58,9 @@ export default ({props, openEdit}) => {
     }
   }
 
-<<<<<<< HEAD
 
   
 
-=======
->>>>>>> 00152b7aaed2bab43083c4530c71bfbe134ba2dc
   return (
     <>
     <ThemeProvider theme={theme}>
