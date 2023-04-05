@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
    return (
     <>
      <ThemeProvider theme={theme}>
-         <Card sx={{ maxWidth: 325, maxHeight: 355}}
+         <Card sx={{ width: 325, height: 215}}
           /*onClick={() => {
             user.props= !user.props;
           }}*/

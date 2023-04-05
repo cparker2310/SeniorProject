@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import NavBar from '../../components/NavBarAfterLogIn/NavBarLogIn';
+import NavBar from '../../components/NavBar/Navbar';
 import EditProfile from '../../components/ProfileCard/EditProfile/EditProfile';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
 import api from '../../api/index'
