@@ -35,36 +35,36 @@ const CareerCenter = () => {
   const [job, setJobs] = useState([]);
   const [elements, setElements] = useState(<></>);
 
-  const getJobs = async () =>{
-    await api.getAllJobs().then(jobs => {
-      setJobs(jobs.data)
+
+  const filterJobs = async(filterSettings) => {
+    await api.getAllJobs().then((response) => {
+      const filteredJobs= response.data.filter(
+        (job) => job.type=== filterSettings.type && job.location=== filterSettings.location
+      );
+        /*
+      const ele= filteredJobs.map((job) => (
+        <>
+          <JobCard props={job} openEditJob={() => setEditJob(true)} />
+          <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob} />
+        </>
+      ));*/
+      setJobs(filteredJobs);
+      })}
       
-      const ele = job.map((job)=>{
-        return (<><JobCard props={job} openEditJob={() => setEditJob(true)}/>
-        <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
-        </>)
-      })
-      setElements(ele)})
-    }
-    
-      const filterJobs = async(filterSettings) => {
-          await api.getAllJobs().then((response) => {
-            const filteredJobs= response.data.filter(
-              (job) => job.type=== filterSettings.type && job.location=== filterSettings.location
-            );
-        
-            const ele= filteredJobs.map((job) => (
-              <>
-                <JobCard props={job} openEditJob={() => setEditJob(true)} />
-                <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob} />
-              </>
-            ));
-            setJobs(filteredJobs);
-            setElements(ele);
-        }); 
-      }   
       
     useEffect(() =>{
+      const getJobs = async () =>{
+        await api.getAllJobs().then(jobs => {
+          setJobs(jobs.data)
+          /*
+          const ele = job.map((job)=>{
+            return (<><JobCard props={job} openEditJob={() => setEditJob(true)}/>
+            <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
+            </>)
+          })
+        setElements(ele)*/})
+        }
+
       getJobs()
     },[])
     
@@ -81,7 +81,10 @@ const CareerCenter = () => {
             <Grid container justifyContent='center'>
               <Grid item xs={10}>
                 <Search filterJobs={filterJobs}/>
-                {elements}
+                {job.map((job)=>{
+            return (<><JobCard props={job} openEditJob={() => setEditJob(true)}/>
+            <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
+            </>)})}
                 
               </Grid>
             </Grid>

@@ -1,116 +1,50 @@
-const Message = require('../models/message-model')
 
-createMessage = (req, res) => {
-    const body = req.body
+const messageDao = require('../models/message-model')
 
-    if (!body) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a message',
-        })
+getMessages = async function(req,res){ // REST get (all) method
+    res.status(200); // 200 = Ok
+    res.send(await messageDao.readAll()); //send the users back to the client
+    res.end(); 
+}
+
+getMessageById = async function(req,res){ //REST get (one) method
+    //URL parameter always on req.params.<name>
+    let id = req.params.id; //get param and convert to int
+    let found = await messageDao.read(id);
+    
+    if(found !== null){ //We found the requested user
+        res.status(200);
+        //console.log(found.email) //200 = OK
+        res.send(found); //Send the found user
     }
 
-    const messages = new Message(body)
-
-    if (!messages) {
-        return res.status(400).json({ success: false, error: err })
+    else{ //The requested id does not exist
+        res.status(404); //404 = Not Found
+        res.send({msg:'User not found.'}); //send a message
     }
-
-    messages
-        .save()
-        .then(() => {
-            return res.status(201).json({
-                success: true,
-                id: messages._id,
-                message: 'Message created!',
-            })
-        })
-        .catch(error => {
-            return res.status(400).json({
-                error,
-                message: 'Message not created!',
-            })
-        })
+    res.end(); //ends the response (only 1 end per response)
 }
 
-updateMessage = async (req, res) => {
-    const body = req.body
 
-    if (!body) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a body to update',
-        })
-    }
-
-    Message.findOne({ _id: req.params.id }, (err, job) => {
-        if (err) {
-            return res.status(404).json({
-                err,
-                message: 'Message not found!',
-            })
-        }
-        
-        messages.title = body.title ? body.title : messages.title
-        messages.description = body.description ? body.description : messages.description
-
-
-        messages
-            .save()
-            .then(() => {
-                return res.status(200).json({
-                    success: true,
-                    id: messages._id,
-                    message: 'Message updated!',
-                })
-            })
-            .catch(error => {
-                return res.status(404).json({
-                    error,
-                    message: 'Message not updated!',
-                })
-            })
-    })
+createMessage = function(req,res){
+    let message = req.body;
+    messageDao.create(message)
+    res.end()
 }
 
-deleteMessage = async (req, res) => {
-    await Message.findOneAndDelete({ _id: req.params.id }, (err, job) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-
-        if (!messages) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Message not found` })
-        }
-
-        return res.status(200).json({ success: true, data: messages })
-    }).catch(err => console.log(err))
+updateMessage = async function(req, res){
+    let message = req.body
+    let id = req.params.id
+    await messageDao.update(id, message)
+    //res.redirect('/profile')
+    res.end();
 }
 
-getMessageById = async (req, res) => {
-    await Message.findOne({ _id: req.params.id }, (err, messages) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-
-        return res.status(200).json({ success: true, data: messages })
-    }).clone().catch(err => console.log(err))
-}
-
-getMessages = async (req, res) => {
-    await Message.find({}, (err, allMessages) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-        if (!allMessages.length) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Message not found` })
-        }
-        return res.status(200).json({ success: true, data: allMessages })
-    }).clone().catch(err => console.log(err))
+deleteMessage = async function(req,res){
+    let id = req.params.id; //get param and convert to int    
+    await messageDao.del(id);
+    res.end();
+    //}
 }
 
 module.exports = {

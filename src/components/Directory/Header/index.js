@@ -34,7 +34,7 @@ export default function SearchUser({ props }) {
     };
 
     const [elements, setElements] = useState([]);
-  
+    /*
     useEffect(() => {
       const getUsers = async () => {
         const response = await api.getAllUsers();
@@ -43,7 +43,7 @@ export default function SearchUser({ props }) {
       };
   
       getUsers();
-    }, []);
+    }, []);*/
   
     useEffect(() => {
       const generateElements = () => {

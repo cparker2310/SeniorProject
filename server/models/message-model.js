@@ -23,5 +23,44 @@ const MessageSchema= new Schema({
     },
 })
 
-const Message= mongoose.model('messages', MessageSchema);
-module.exports= Message;
+const messageModel= mongoose.model('messages', MessageSchema);
+
+
+
+exports.readAll = async function(){
+  let messages = await messageModel.find({});
+  // Later try: find().sort({name:'asc'}).skip(0).limit(5);
+  return messages;
+}
+
+exports.read = async function(id){
+  let message = await messageModel.findOne({_id: id});
+  return message;
+}
+
+exports.create = async function(newmessage){
+  const message = new messageModel(newmessage);
+  await message.save();
+  return message;
+}
+
+exports.del = async function(id){
+  let message = await messageModel.findByIdAndDelete(id);
+  return message;
+} 
+
+exports.deleteAll = async function(){
+  await messageModel.deleteMany();
+}
+
+exports.update = async function (id, updatedMessage){
+    let message = await messageModel.findById(id)
+    if(!message) return; 
+
+    message.title = updatedMessage.title ? updatedMessage.title : message.title
+    message.description = updatedMessage.description ? updatedMessage.description : message.description
+    
+    await message.save()
+    return message
+
+}

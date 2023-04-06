@@ -53,20 +53,24 @@ const useStyles= makeStyles((theme) => ({
     }
 }));
 
-export default function MessageCard({props, openEditJob}){
+export default function MessageCard({props, openEditMessage}){
     const classes= useStyles();
     const categories= props.categories
     const element = sessionStorage.getItem('user') === props.author_id ? <GiTrashCan /> : <></>
     const element2 = sessionStorage.getItem('user') === props.author_id ? <MdOutlineEditNote/> : <></>
-    
+    const [openMessageDetails, setOpenMessageDetails]= useState(false);
+
 
     const handleDelete = async () => {
         if(window.confirm("Are you sure you want to delete this message board post?")){
-            await api.deleteMeesageById(props._id).then(res => {
+            await api.deleteMessageById(props._id).then(res => {
                 
             })
             window.location.reload(true);
         }
+    }
+    const closeViewMessage= () => {
+        setOpenMessageDetails(false);
     }
 
     return (
@@ -85,7 +89,7 @@ export default function MessageCard({props, openEditJob}){
                     </Grid>
                     <Grid item>
                         <Box mt={2}>
-                            <IconButton style={{marginRight: '-21px'}} onClick={openEditJob}> {element2} </IconButton>
+                            <IconButton style={{marginRight: '-21px'}} onClick={openEditMessage}> {element2} </IconButton>
                             <IconButton onClick={handleDelete}>
                                 {element}
                             </IconButton>

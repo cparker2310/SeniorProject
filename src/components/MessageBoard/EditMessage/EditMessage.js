@@ -38,18 +38,20 @@ const useStyles= makeStyles(theme => ({
     }
 }));
 
-const initState= {
-    author_id: sessionStorage.getItem('user'),
-    dateCreated: "",
-    title: "",
-    description: "",
-    categories: [],
-    comments: []   
-}
+
 
 export default (props) => {
     const classes= useStyles();
+    const initState= {
+        author_id: sessionStorage.getItem('user'),
+        dateCreated: props.dateCreated,
+        title: "",
+        description: "",
+        categories: [],
+        comments: []   
+    }
     const [editMessageDetails, setEditMessageDetails]= useState(initState);
+
 
     const handleChange= event => {
         event.persist();

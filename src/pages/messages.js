@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Navbar from '../components/NavBar/Navbar';
 import Castle from '../images/castle.jpg';
 import styled from 'styled-components';
@@ -24,19 +24,23 @@ const Background= styled.section`
 const MessageBoard = () => {
   const [newMessage, setNewMessage]= useState(false);
   const [editMessage, setEditMessage]= useState(false);
-  //const [jobId, setJobId]= useState(0);
-  const [theMessage, setMessages] = useState({});
-  const [elements, setElements] = useState(0);
+  const [theMessage, setMessages] = useState([]);
+  const [elements, setElements] = useState(<></>);
 
-  api.getAllMessages().then(messages => {
-      setMessages(messages.data.data)
-      const ele = theMessage.map((theMessage)=>{
-        return (<><MessageCard props={theMessage} openEditMessage={() => setEditMessage(true)}/>
-        <EditMessage _id={theMessage._id} closeEditMessage={() => setEditMessage(false)} editMessage={editMessage}></EditMessage>
-        </>)
-      })
-      setElements(ele)})
+  
+  
+  useEffect(() => {
 
+    const getMessages = async() => {
+      let messages = await api.getAllMessages()
+        setMessages(messages.data)
+        }
+    
+
+    getMessages()
+  }, [])
+  
+  
 
   return (
     <>
@@ -48,7 +52,10 @@ const MessageBoard = () => {
           <Box mb={3}>
             <Grid container justifyContent='center'>
               <Grid item xs={10}>
-                {elements}
+                {theMessage.map((msg)=>{
+          return (<><MessageCard props={msg} openEditMessage={() => setEditMessage(true)}/>
+          <EditMessage _id={msg._id} closeEditMessage={() => setEditMessage(false)} editMessage={editMessage}></EditMessage>
+          </>)})}
               </Grid>
             </Grid>
           </Box>

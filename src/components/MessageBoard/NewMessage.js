@@ -40,7 +40,7 @@ const useStyles= makeStyles(theme => ({
 
 const initState= {
     author_id: sessionStorage.getItem('user'),
-    dateCreated: "",
+    dateCreated: Date.now,
     title: "",
     description: "",
     categories: [],
@@ -65,11 +65,14 @@ export default (props) => {
     
     const handleSubmit= async() => {
         for (const field in messageDetails) {
+            
             if (typeof messageDetails[field] === 'string' && !messageDetails[field])
+                
              return;
         }
 
-        if (!messageDetails.categories.length) return;
+        if (!messageDetails.categories.length)             
+        return;
         closeNewMessage();
 
         if(!sessionStorage.getItem('user')){
