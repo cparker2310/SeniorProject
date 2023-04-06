@@ -146,7 +146,7 @@ export default ({props, closeEdit, edit, newProps}) => {
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput placeholder="Degree Earned" disableUnderline fullWidth
+                        <FilledInput style={{fontFamily: "Lora, serif"}} placeholder="Degree Earned" disableUnderline fullWidth
                             value={formData.degree}
                             onChange={(e) => setFormData({...formData, degree: e.target.value})}
                         />

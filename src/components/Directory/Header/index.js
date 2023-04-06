@@ -14,8 +14,8 @@ export default function SearchUser({ props }) {
     useEffect(() => {
         const searchUsers= async () => {
             const result = await api.getAllUsers();
-            setUsers(result.data.data);
-            setSearchedUsers(result.data.data);
+            setUsers(result.data);
+            setSearchedUsers(result.data);
         };
         searchUsers();
     }, []);
@@ -38,7 +38,7 @@ export default function SearchUser({ props }) {
     useEffect(() => {
       const getUsers = async () => {
         const response = await api.getAllUsers();
-        const fetchedUsers = response.data.data;
+        const fetchedUsers = response.data;
         setUsers(fetchedUsers);
       };
   

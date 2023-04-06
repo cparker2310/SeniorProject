@@ -21,7 +21,7 @@ const useStyles= makeStyles({
     },
 });
 
-export default props => {
+export default (props) => {
     const classes= useStyles();
     
     const [jobSearch, setjobSearch]= useState({
@@ -29,10 +29,13 @@ export default props => {
         location: 'Onsite'
     });
 
-
     const handleChange= event => {
         event.persist();
         setjobSearch(oldState => ({...oldState, [event.target.name] : event.target.value}));
+    }
+
+    const search= async () => {
+        await props.filterJobs(jobSearch);
     }
 
     return (
@@ -49,7 +52,7 @@ export default props => {
                 <MenuItem value='Hybrid'>Hybrid</MenuItem>
             </Select>
 
-            <Button variant='contained' color='primary'>Search</Button>
+            <Button variant='contained' color='primary' onClick={search}>Search</Button>
         </Box>
     );
 }
