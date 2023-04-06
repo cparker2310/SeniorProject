@@ -45,17 +45,22 @@ const CareerCenter = () => {
       })
       setElements(ele)})
 
-  const filterJobs= jobSearch => {
-    api.getAllJobs().then(jobs => {
-      setJobs(jobs.data.data)
-      const ele = job.map((job)=>{
-        return (<><JobCard props={job} openEditJob={() => setEditJob(true)}/>
-        <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
-        </>).where("type", '==', jobSearch.type).where("location", '==', jobSearch.location)
-      })
-      setElements(ele)})
-  }
-  
+      const filterJobs = (filterSettings) => {
+          api.getAllJobs().then((response) => {
+            const filteredJobs= response.data.data.filter(
+              (job) => job.type=== filterSettings.type && job.location=== filterSettings.location
+            );
+        
+            const ele= filteredJobs.map((job) => (
+              <>
+                <JobCard props={job} openEditJob={() => setEditJob(true)} />
+                <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob} />
+              </>
+            ));
+            setJobs(filteredJobs);
+            setElements(ele);
+        }); 
+      }    
 
   return (
     <>
