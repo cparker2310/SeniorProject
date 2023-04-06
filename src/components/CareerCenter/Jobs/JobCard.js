@@ -85,7 +85,7 @@ export default function JobCard({props, openEditJob}){
 
     const viewDetails= async () => {
         const response= await api.getJobById(props._id);
-        setJobDescription(response.data.description);
+        setJobDescription(response.description);
         setOpenJobDetails(true);
     }
 
