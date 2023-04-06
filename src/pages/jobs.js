@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/NavBar/Navbar';
 import Castle from '../images/castle.jpg';
 import styled from 'styled-components';
@@ -32,22 +32,24 @@ const Background= styled.section`
 const CareerCenter = () => {
   const [newJob, setNewJob]= useState(false);
   const [editJob, setEditJob]= useState(false);
-  //const [jobId, setJobId]= useState(0);
-  const [job, setJobs] = useState({});
-  const [elements, setElements] = useState(0);
+  const [job, setJobs] = useState([]);
+  const [elements, setElements] = useState(<></>);
 
-  api.getAllJobs().then(jobs => {
+  const getJobs = async () =>{
+    await api.getAllJobs().then(jobs => {
       setJobs(jobs.data)
+      
       const ele = job.map((job)=>{
         return (<><JobCard props={job} openEditJob={() => setEditJob(true)}/>
         <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
         </>)
       })
       setElements(ele)})
-
-      const filterJobs = (filterSettings) => {
-          api.getAllJobs().then((response) => {
-            const filteredJobs= response.filter(
+    }
+    
+      const filterJobs = async(filterSettings) => {
+          await api.getAllJobs().then((response) => {
+            const filteredJobs= response.data.filter(
               (job) => job.type=== filterSettings.type && job.location=== filterSettings.location
             );
         
@@ -60,7 +62,13 @@ const CareerCenter = () => {
             setJobs(filteredJobs);
             setElements(ele);
         }); 
-      }    
+      }   
+      
+    useEffect(() =>{
+      getJobs()
+    },[])
+    
+  
 
   return (
     <>
