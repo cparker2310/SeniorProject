@@ -107,7 +107,7 @@ export default function Login() {
     })
   
     await api.getAllPendings().then(pendings => {
-      setPendings(pendings.data.data)})
+      setPendings(pendings.data)})
 
     }
 

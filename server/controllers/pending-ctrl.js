@@ -1,83 +1,40 @@
-const Pending = require('../models/pending-model')
+const pendingDao = require('../models/pending-model');
 
-createPending = (req, res) => {
-    const body = req.body
+getPendings = async function(req,res){ // REST get (all) method
+    res.status(200); // 200 = Ok
+    res.send(await pendingDao.readAll()); //send the users back to the client
+    res.end(); 
+}
 
-    if (!body) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a user',
-        })
+getPendingById = async function(req,res){ //REST get (one) method
+    //URL parameter always on req.params.<name>
+    let id = req.params.id; //get param and convert to int
+    let found = await pendingDao.read(id);
+    
+    if(found !== null){ //We found the requested user
+        res.status(200);
+        //console.log(found.email) //200 = OK
+        res.send(found); //Send the found user
     }
 
-    const pending = new Pending(body)
-
-    if (!pending) {
-        return res.status(400).json({ success: false, error: err })
+    else{ //The requested id does not exist
+        res.status(404); //404 = Not Found
+        res.send({msg:'User not found.'}); //send a message
     }
-
-    pending
-        .save()
-        .then(() => {
-            return res.status(201).json({
-                success: true,
-                id: pending._id,
-                message: 'User created!',
-            })
-        })
-        .catch(error => {
-            return res.status(400).json({
-                error,
-                message: 'User not created!',
-            })
-        })
+    res.end(); //ends the response (only 1 end per response)
 }
 
-
-deletePending = async (req, res) => {
-    await Pending.findOneAndDelete({ _id: req.params.id }, (err, pending) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-
-        if (!pending) {
-            return res
-                .status(404)
-                .json({ success: false, error: `User not found` })
-        }
-
-        return res.status(200).json({ success: true, data: pending })
-    }).clone().catch(err => console.log(err))
+createPending = function(req,res){
+    let user = req.body;
+    pendingDao.create(user)
+    res.end()
 }
 
-getPendingById = async (req, res) => {
-    await Pending.findOne({ _id: req.params.id }, (err, pending) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-
-        if (!pending) {
-            return res
-                .status(404)
-                .json({ success: false, error: `User not found` })
-        }
-
-        return res.status(200).json({ success: true, data: pending })
-    }).clone().catch(err => console.log(err))
-}
-
-getPendings = async (req, res) => {
-    await Pending.find({}, (err, pendings) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-        if (!pendings.length) {
-            return res
-                .status(404)
-                .json({ success: false, error: `User not found` })
-        }
-        return res.status(200).json({ success: true, data: pendings })
-    }).clone().catch(err => console.log(err))
+deletePending = async function(req,res){
+    let id = req.params.id; //get param and convert to int    
+    await pendingDao.del(id);
+    res.end();
+    //}
 }
 
 

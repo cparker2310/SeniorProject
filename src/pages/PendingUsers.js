@@ -17,8 +17,8 @@ import Paper from '@mui/material/Paper';
 
 const PendingUsers = () => {
     const [open, setOpen]= useState(false);
-    const [state, setState]= useState(true);
-    const [pending, setPendings]= useState([]);
+    //const [state, setState]= useState(true);
+    //const [pendingUsers, setPendings]= useState([]);
     const [denyUser, setDenyUser]= useState({});
     const [element, setElement]= useState(<></>);
 
@@ -44,23 +44,46 @@ const PendingUsers = () => {
         },
     }));
 
+
+    const handleDeny = async(id) => {
+      await api.deletePending(id).then((res) => {
+          setOpen(false);
+          alert("User Updated")
+          
+      })
+      
+      //window.location.reload(true)
+      
+  }
+  
+  function confirmDenyUser(data) {
+      setOpen(true);
+      setDenyUser(data);
+  }
+
+  const handleAccept = async(data) => {
+      await api.insertUser(data).then(res => {
+          
+      })
+      handleDeny(data._id)
+  }
     // Should retrieve users after they register
     
     const getPendings = async() => {
         await api.getAllPendings().then((pendings) => {
-            setPendings(pendings.data.data);
-            const ele = pending.map((pendings, index)=>{
+            const pendingUsers = pendings.data
+            const ele = pendingUsers.map((user, index)=>{
               return <>
-              <StyledTableRow key={pendings._id}>
+              <StyledTableRow key={user._id}>
                 <StyledTableCell align="right">{index+1}</StyledTableCell>
-                <StyledTableCell align="right">{pendings.firstName}</StyledTableCell>
-                <StyledTableCell align="right">{pendings.maidenName}</StyledTableCell>
-                <StyledTableCell align="right">{pendings.marriedName}</StyledTableCell>
-                <StyledTableCell align="right">{pendings.classYear}</StyledTableCell>
-                <StyledTableCell align="right">{pendings.email}</StyledTableCell>
+                <StyledTableCell align="right">{user.firstName}</StyledTableCell>
+                <StyledTableCell align="right">{user.maidenName}</StyledTableCell>
+                <StyledTableCell align="right">{user.marriedName}</StyledTableCell>
+                <StyledTableCell align="right">{user.classYear}</StyledTableCell>
+                <StyledTableCell align="right">{user.email}</StyledTableCell>
                 <StyledTableCell align="right">
-                      <Link className='accept' onClick={() => handleAccept(pendings)}> Accept </Link>
-                      <Link className='deny' onClick={() => handleDeny(pendings._id)}>Deny</Link>
+                  <><button className='accept' onClick={() => handleAccept(user)}> Accept </button></>
+                      <><button className='deny' onClick={() => handleDeny(user._id)}>Deny</button></>
                 </StyledTableCell>
               </StyledTableRow>
               </>
@@ -68,34 +91,12 @@ const PendingUsers = () => {
             setElement(ele)})
         }
     
-    
-    const handleDeny = async(id) => {
-        await api.deletePending(id).then((res) => {
-            setOpen(false);
-            alert("User Updated")
-            
-        })
-        
-        window.location.reload(true)
-        
-    }
-    
-    function confirmDenyUser(data) {
-        setOpen(true);
-        setDenyUser(data);
-    }
-
-    const handleAccept = async(data) => {
-        await api.insertUser(data).then(res => {
-            
-        })
-        handleDeny(data._id)
-    }
 
     
     
-    
+    useEffect(()=>{
       getPendings();
+    })
     
     
     

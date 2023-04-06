@@ -34,4 +34,30 @@ const Pending = new Schema(
     });
 */
 
-module.exports = mongoose.model('pendings', Pending)
+const pendingModel = mongoose.model('pendings', Pending)
+
+exports.readAll = async function(){
+  let users = await pendingModel.find({});
+  // Later try: find().sort({name:'asc'}).skip(0).limit(5);
+  return users;
+}
+
+exports.read = async function(id){
+  let user = await pendingModel.findOne({_id: id});
+  return user;
+}
+
+exports.create = async function(newuser){
+  const user = new pendingModel(newuser);
+  await user.save();
+  return user;
+}
+
+exports.del = async function(id){
+  let user = await pendingModel.findByIdAndDelete(id);
+  return user;
+} 
+
+exports.deleteAll = async function(){
+  await pendingModel.deleteMany();
+}

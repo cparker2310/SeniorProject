@@ -109,7 +109,7 @@ const [user, setUser] = useState({})
   const logOut = () => {
     if(sessionStorage.getItem("user") && window.confirm("Are you sure you want to log out?")){
       sessionStorage.clear();
-      //window.location.reload(false);
+      window.location.reload(false)
     }
   }
 
