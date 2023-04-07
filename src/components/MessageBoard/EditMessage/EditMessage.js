@@ -105,7 +105,7 @@ export default (props) => {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <FilledInput onChange={handleChange} name='description' value={editMessageDetails.description} autoComplete='off' placeholder='Description *' disableUnderline fullWidth/>
+                        <FilledInput onChange={handleChange} name='description' value={editMessageDetails.description} autoComplete='off' placeholder='Description *' disableUnderline fullWidth rows={6} maxRows={10}/>
                     </Grid>
                 </Grid>
                 <Box mt={2}>

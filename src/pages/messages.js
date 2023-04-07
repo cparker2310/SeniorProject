@@ -9,6 +9,7 @@ import Header from '../components/MessageBoard/Header/index';
 import MessageCard from '../components/MessageBoard/MessageCard';
 import NewMessage from '../components/MessageBoard/NewMessage';
 import EditMessage from '../components/MessageBoard/EditMessage/EditMessage';
+import ReplyMessage from '../components/MessageBoard/ReplyMessage/ReplyMessage';
 import api from '../api/index';
 
 const Background= styled.section`
@@ -49,6 +50,7 @@ const MessageBoard = () => {
         <ThemeProvider theme={theme}>
           <Header openNewMessage={() => setNewMessage(true)} />
           <NewMessage closeNewMessage={() => setNewMessage(false)} newMessage={newMessage} />
+          <ReplyMessage closeNewMessage={() => setNewMessage(false)} newMessage={newMessage} />
           <Box mb={3}>
             <Grid container justifyContent='center'>
               <Grid item xs={10}>

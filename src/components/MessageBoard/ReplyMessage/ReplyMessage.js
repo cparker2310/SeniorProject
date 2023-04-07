@@ -4,7 +4,6 @@ import { FaPaw } from 'react-icons/fa';
 import CloseIcon from '@mui/icons-material/Close';
 import { 
     Button,
-    Typography,
     Grid,
     FilledInput,
     Dialog,
@@ -14,7 +13,7 @@ import {
     IconButton,
     makeStyles
 } from '@material-ui/core';
-import api from '../../api/index';
+import api from '../../../api/index';
 
 const useStyles= makeStyles(theme => ({
     categoryChip: {
@@ -56,12 +55,6 @@ export default (props) => {
         event.persist();
         setMessageDetails(oldState => ({...oldState, [event.target.name] : event.target.value}));
     }
-
-    const addRemoveCategory= category => messageDetails.categories.includes(category)
-        ? setMessageDetails(oldState => ({...oldState, categories: oldState.categories.filter(c => c != category),
-            }))
-        : setMessageDetails(oldState => ({...oldState, categories: oldState.categories.concat(category)
-        }));
     
     const handleSubmit= async() => {
         for (const field in messageDetails) {
@@ -76,12 +69,12 @@ export default (props) => {
         closeNewMessage();
 
         if(!sessionStorage.getItem('user')){
-            alert('You must be logged in to post to the message board')
+            alert('You must be logged in to comment on this post')
             return
         }
-        const { author_id, dateCreated, title, categories, description, comments} = messageDetails
+        const { author_id, dateCreated, comments} = messageDetails
       
-        const payload = { author_id, dateCreated, title, categories, description, comments}
+        const payload = { author_id, dateCreated, comments}
             
           await api.insertMessage(payload).then(res => {
             //window.alert('Job Created')
@@ -94,20 +87,12 @@ export default (props) => {
         setMessageDetails(initState);
         props.closeNewMessage();
     }
-
-    const categories= [
-        "Events",
-        "Life Updates",
-        "News",
-        "Memories",
-        "Reunions"
-    ];
     
     return (
         <Dialog open={props.newMessage} fullWidth>
             <DialogTitle>
                 <Box display='flex' justifyContent='space-between' alignItems='center'>
-                    Share Exciting Updates
+                    Reply
                     <IconButton onClick={closeNewMessage}>
                         <CloseIcon />
                     </IconButton>
@@ -115,20 +100,13 @@ export default (props) => {
             </DialogTitle>
             <DialogContent>
                 <Grid container spacing={2}>
-                    <Grid item xs={8}>
-                        <FilledInput onChange={handleChange} name='title' value={messageDetails.title} autoComplete='off' placeholder=' Title *' disableUnderline fullWidth/>
+                    <Grid item xs={12}>
+                        <FilledInput onChange={handleChange} name='comments' value={messageDetails.comments} autoComplete='off' placeholder='Add a Comment' disableUnderline fullWidth />
                     </Grid>
                 </Grid>
-                <Box mt={2}>
-                    <Typography>Categories *</Typography>
-                    <Box display='flex'>
-                        {categories.map(category => <Box onClick={() => addRemoveCategory(category)} className={`${classes.categoryChip} ${messageDetails.categories.includes(category) && classes.included}`} key={category}>{category}</Box>)}
-                    </Box>
-                </Box>
             </DialogContent>
             <DialogActions>
                 <Box alignItems='center' color='#60000d' width='100%' display='flex' justifyContent='space-between'>
-                    <Typography variant='caption'>*Required Fields</Typography>
                     <Button variant='contained' color='primary' onClick={handleSubmit}>Submit <FaPaw /></Button>
                 </Box>
             </DialogActions>

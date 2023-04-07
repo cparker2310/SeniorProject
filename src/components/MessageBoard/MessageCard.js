@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
 import { MdOutlineEditNote } from 'react-icons/md';
 import { GiTrashCan } from 'react-icons/gi';
+import { BiCommentDetail } from 'react-icons/bi';
 import { 
     Button,
     Grid,
@@ -53,7 +54,7 @@ const useStyles= makeStyles((theme) => ({
     }
 }));
 
-export default function MessageCard({props, openEditMessage}){
+export default function MessageCard({props, openEditMessage, openComment}){
     const classes= useStyles();
     const categories= props.categories
     const element = sessionStorage.getItem('user') === props.author_id ? <GiTrashCan /> : <></>
@@ -89,10 +90,9 @@ export default function MessageCard({props, openEditMessage}){
                     </Grid>
                     <Grid item>
                         <Box mt={2}>
+                            <IconButton style={{marginRight: '-21px'}} onClick={openComment}> <BiCommentDetail /> </IconButton>
                             <IconButton style={{marginRight: '-21px'}} onClick={openEditMessage}> {element2} </IconButton>
-                            <IconButton onClick={handleDelete}>
-                                {element}
-                            </IconButton>
+                            <IconButton onClick={handleDelete}>{element}</IconButton>
                             <Button style={{backgroundColor: '#63625d', color: '#fdfdfd'}}>View Details <FaPaw /></Button>
                         </Box>
                     </Grid>
