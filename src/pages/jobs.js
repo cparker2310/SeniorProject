@@ -27,10 +27,9 @@ const CareerCenter = () => {
   const [editJob, setEditJob]= useState(false);
   const [job, setJobs] = useState([]);
   const [elements, setElements] = useState(<></>);
-
-
+  
   const filterJobs = async(filterSettings) => {
-    if (filterSettings.type=== "" && filterSettings.location=== "") {
+    if (!filterSettings || filterSettings.type=== "" && filterSettings.location=== "") {
       await api.getAllJobs().then((response) => {
         setJobs(response.data);
       });

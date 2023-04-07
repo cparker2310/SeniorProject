@@ -29,6 +29,8 @@ export default (props) => {
         location: 'Onsite'
     });
 
+    const [filterSettings, setFilterSettings]= useState({type: "", location: ""});
+
     const handleChange= event => {
         event.persist();
         setjobSearch(oldState => ({...oldState, [event.target.name] : event.target.value}));
@@ -36,6 +38,11 @@ export default (props) => {
 
     const search= async () => {
         await props.filterJobs(jobSearch);
+    }
+
+    const reset= async () => {
+        setFilterSettings=({type: 'Full Time', location: 'Onsite'});
+        await props.filterJobs(null);
     }
 
     return (
@@ -53,6 +60,7 @@ export default (props) => {
             </Select>
 
             <Button variant='contained' color='primary' onClick={search}>Search</Button>
+            <Button variant='contained' color='secondary' onClick={reset}>Reset</Button>
         </Box>
     );
 }
