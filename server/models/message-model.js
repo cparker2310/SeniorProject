@@ -21,6 +21,10 @@ const MessageSchema= new Schema({
     categories: {
         type: [String],
     },
+    comments: {
+        type: Schema.Types.Mixed
+      }
+    
 })
 
 const messageModel= mongoose.model('messages', MessageSchema);
@@ -56,10 +60,10 @@ exports.deleteAll = async function(){
 exports.update = async function (id, updatedMessage){
     let message = await messageModel.findById(id)
     if(!message) return; 
-
+    console.log(updatedMessage)
     message.title = updatedMessage.title ? updatedMessage.title : message.title
     message.description = updatedMessage.description ? updatedMessage.description : message.description
-    
+    message.comments = updatedMessage.comments ? updatedMessage.comments : message.comments
     await message.save()
     return message
 

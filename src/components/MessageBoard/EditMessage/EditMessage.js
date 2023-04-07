@@ -66,9 +66,9 @@ export default (props) => {
     
     const handleSubmit= async() => {
 
-       const { author_id, dateCreated, title, categories, description, comments }= editMessageDetails
+       const { author_id, title, categories, description, comments }= editMessageDetails
       
-          const payload = { author_id, dateCreated, title, categories, description, comments }
+          const payload = { author_id, title, categories, description, comments }
     
         await api.updateMessageById(props._id, payload).then(res => {
             alert(`Message updated successfully`)

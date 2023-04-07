@@ -24,6 +24,7 @@ const Background= styled.section`
 
 const MessageBoard = () => {
   const [newMessage, setNewMessage]= useState(false);
+  const [newComment, setNewComment]= useState(false);
   const [editMessage, setEditMessage]= useState(false);
   const [theMessage, setMessages] = useState([]);
   const [elements, setElements] = useState(<></>);
@@ -55,8 +56,9 @@ const MessageBoard = () => {
             <Grid container justifyContent='center'>
               <Grid item xs={10}>
                 {theMessage.map((msg)=>{
-          return (<><MessageCard props={msg} openEditMessage={() => setEditMessage(true)}/>
+          return (<><MessageCard props={msg} openEditMessage={() => setEditMessage(true)} openComment={() => setNewComment(true)}/>
           <EditMessage _id={msg._id} closeEditMessage={() => setEditMessage(false)} editMessage={editMessage}></EditMessage>
+          <ReplyMessage closeNewMessage={() => setNewComment(false)} newMessage={newComment} id={msg._id} />
           </>)})}
               </Grid>
             </Grid>

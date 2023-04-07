@@ -39,7 +39,7 @@ const useStyles= makeStyles(theme => ({
 
 const initState= {
     author_id: sessionStorage.getItem('user'),
-    dateCreated: Date.now,
+    //dateCreated: Date.now,
     title: "",
     description: "",
     categories: [],
@@ -48,7 +48,7 @@ const initState= {
 
 export default (props) => {
     const classes= useStyles();
-    const [messageDetails, setMessageDetails]= useState(initState);
+    const [messageDetails, setMessageDetails]= useState("");
     
 
     const handleChange= event => {
@@ -57,6 +57,7 @@ export default (props) => {
     }
     
     const handleSubmit= async() => {
+        /*
         for (const field in messageDetails) {
             
             if (typeof messageDetails[field] === 'string' && !messageDetails[field])
@@ -67,17 +68,20 @@ export default (props) => {
         if (!messageDetails.categories.length)             
         return;
         closeNewMessage();
-
-        if(!sessionStorage.getItem('user')){
+        */
+        const user = sessionStorage.getItem('user')
+        if(!user){
             alert('You must be logged in to comment on this post')
             return
         }
-        const { author_id, dateCreated, comments} = messageDetails
-      
-        const payload = { author_id, dateCreated, comments}
-            
-          await api.insertMessage(payload).then(res => {
-            //window.alert('Job Created')
+        //props.comments.push([user, messageDetails])
+        //const { comments} = messageDetails
+        const author_id = user
+        const comments = [user, messageDetails]
+        const payload = {comments}
+            //console.log(comments)
+          await api.updateMessageById(props.id, comments).then(res => {
+            window.alert('Replied')
           })
           window.location.reload(true)
 

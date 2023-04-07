@@ -40,7 +40,6 @@ const useStyles= makeStyles(theme => ({
 
 const initState= {
     author_id: sessionStorage.getItem('user'),
-    dateCreated: Date.now,
     title: "",
     description: "",
     categories: [],
