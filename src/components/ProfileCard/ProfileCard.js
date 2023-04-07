@@ -66,9 +66,10 @@ export default ({props, openEdit}) => {
       <Box p={8} sx={{width: 1430, height: 1500}} alignItems='center'>
         <Card alignItems='center'>
         <div className="App">
-      <form onSubmit={handleSubmit}>
+      <form action="http://localhost:8000/api/upload" method="POST" encType="multipart/form-data"
+      /*onSubmit={handleSubmit}*/>
 
-        <label htmlFor="file-upload" className='custom-file-upload'>
+        <label htmlFor="myFile" className='custom-file-upload'>
           <img src={postImage.myFile || img} alt="" style={{width: "450px", height: "450px", margin: "auto", display: "block", marginBottom: "20px"}} />
         </label>
 
@@ -83,7 +84,7 @@ export default ({props, openEdit}) => {
             className=""
           />
         </div>
-        
+         <button type='submit'>Submit</button>
       </form>
     </div>
             <CardContent>
