@@ -33,6 +33,12 @@ createUser = function(req,res){
     res.end()
 }
 
+updateImageIndex = async function (req, res){
+    let index = await userDao.maxIndex()
+    res.send(index)
+    res.end()
+}
+
 updateUser = async function(req, res){
     let user = req.body
     let id = req.params.id
@@ -52,5 +58,6 @@ module.exports = {
     updateUser,
     deleteUser,
     getUsers,
-    getUserById
+    getUserById,
+    updateImageIndex
 }

@@ -24,30 +24,27 @@ import api from '../../api/index';
 
 
 export default ({props, openEdit}) => {
-  const [postImage, setPostImage] = useState( { myFile : ""})
-  const show = sessionStorage.getItem('user')
+  const [index, setIndex] = useState(0);
+  const show = sessionStorage.getItem('user') === props._id
 
-  const createPost = async (newImage) => {
-
+  const getIndex = async() => {
+    let i = await api.updateImageIndex()
+    i = i.data[0].profileFinal
+    console.log(i)
+    setIndex(i);
+      
     
-    const profileFinal = newImage
-    await api.updateUserById(props._id, { profileFinal }).then(res=>{
-      alert("profile updated")
-    })
+  }
+  const onSubmit = async() =>{
+    const profileFinal = index + 1
+    const payload = {profileFinal}
+    await api.updateUserById(props._id, payload)
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createPost(postImage)
-    console.log("Uploaded")
-  }
-
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
-    console.log(base64)
-    setPostImage({ ...postImage, myFile : base64 })
-  }
+  useEffect(() => {
+    getIndex()
+  }, [])
+  
 
 
   const handleDelete = async () => {
@@ -66,11 +63,11 @@ export default ({props, openEdit}) => {
       <Box p={8} sx={{width: 1430, height: 1500}} alignItems='center'>
         <Card alignItems='center'>
         <div className="App">
-      <form action="http://localhost:8000/api/upload" method="POST" encType="multipart/form-data"
+      <form action={"http://localhost:8000/api/upload/" + props._id} method="POST" encType="multipart/form-data"
       /*onSubmit={handleSubmit}*/>
 
         <label htmlFor="myFile" className='custom-file-upload'>
-          <img src={postImage.myFile || img} alt="" style={{width: "450px", height: "450px", margin: "auto", display: "block", marginBottom: "20px"}} />
+          <img src={("http://localhost:8000/api/image/" +index) || img} alt="" style={{width: "450px", height: "450px", margin: "auto", display: "block", marginBottom: "20px"}} />
         </label>
 
         <div className="photo-container">
@@ -80,11 +77,11 @@ export default ({props, openEdit}) => {
             name="myFile"
             id='file-upload'
             accept='.jpeg, .png, .jpg'
-            onChange={(e) => handleFileUpload(e)}
+            
             className=""
           />
         </div>
-         <button type='submit'>Submit</button>
+         <button type='submit' onClick={onSubmit}>Submit</button>
       </form>
     </div>
             <CardContent>
@@ -136,15 +133,4 @@ export default ({props, openEdit}) => {
   );
 }
 
-function convertToBase64(file){
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = () => {
-      resolve(fileReader.result)
-    };
-    fileReader.onerror = (error) => {
-      reject(error)
-    }
-  })
-}
+

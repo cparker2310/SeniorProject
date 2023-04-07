@@ -10,7 +10,7 @@ const UserCtrl = require('../controllers/user-ctrl')
 const JobCtrl = require('../controllers/job-ctrl')
 const PendingCtrl = require('../controllers/pending-ctrl')
 const MessageCtrl = require('../controllers/message-ctrl')
-const db = require('../db')
+const db = require('../db');
 const router = express.Router()
 
 router.post('/user', UserCtrl.createUser)
@@ -37,11 +37,14 @@ router.put('/message/:id', MessageCtrl.updateMessage)
 router.delete('/message/:id', MessageCtrl.deleteMessage)
 router.get('/message/:id', MessageCtrl.getMessageById)
 router.get('/messages', MessageCtrl.getMessages)
+router.get('/index', UserCtrl.updateImageIndex)
 
 let gfs;
-
 db.once('open', () => {
     // Init stream
+    gridfsBucket = new mongoose.mongo.GridFSBucket(db, {
+      bucketName: 'uploads'
+    });
     gfs = Grid(db, mongoose.mongo);  
     gfs.collection('uploads');
   });
@@ -68,8 +71,43 @@ const storage = new GridFsStorage({
   });
 
 const upload = multer({ storage })
-router.post('/upload', upload.single('myFile'), (req, res) => {
+router.post('/upload/:user_id', upload.single('myFile'), (req, res) => {
+    req.file.author_id = req.params.user_id
+    //res.render('http://localhost:3000/profile', {file:req.file})
     res.json({file:req.file});
   });
+
+router.get('/upload/:user_id', (req, res) => {
+    gfs.files.find().toArray((err, files) => {
+      if(!files){
+        return res.status(404).json({
+          err: "No files exist"
+        })
+      }
+      else{
+        return res.json(files)
+      }
+    })
+    //{ file.author_id: req.params.user_id}
+    
+  })
+
+
+router.get('/image/:index', (req,res) => {
+  gfs.files.find().toArray((err, files) => {
+
+  
+    if(!files){
+      return res.status(404).json({
+        err: "No File Exist"
+      })
+    }
+    const readstream = gridfsBucket.openDownloadStream(files[req.params.index]._id)
+    readstream.pipe(res)
+
+  })
+})
+
+
 
 module.exports = router

@@ -25,7 +25,7 @@ const User = new Schema(
       //imageName: { type: String, required: true },
       //image: { data: Buffer, contentType: String }
       isAdmin: { type: Boolean, default: false },
-      profileFinal: {type: String, required: false}
+      profileFinal: {type: Number, default: false}
     })
 /*
     User.pre('save', async function(next) {
@@ -41,6 +41,11 @@ exports.readAll = async function(){
   let users = await userModel.find({});
   // Later try: find().sort({name:'asc'}).skip(0).limit(5);
   return users;
+}
+
+exports.maxIndex = async function(){
+  let index = userModel.find({}).sort({profileFinal:-1}).limit(1)
+  return index
 }
 
 exports.read = async function(id){
@@ -67,7 +72,6 @@ exports.deleteAll = async function(){
 exports.update = async function(id, updatedUser){
 let user = await userModel.findOne({_id: id})
 if(!user) return;
-console.log(updatedUser.email)
 user.email = updatedUser.email ? updatedUser.email :user.email 
 user.password = updatedUser.password ? updatedUser.password : user.password
 user.firstName = updatedUser.firstName ? updatedUser.firstName : user.firstName

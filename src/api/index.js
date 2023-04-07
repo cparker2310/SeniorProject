@@ -9,6 +9,7 @@ export const getAllUsers = () => api.get(`/users`)
 export const updateUserById = (id, payload) => api.put(`/user/${id}`, payload)
 export const deleteUserById = id => api.delete(`/user/${id}`)
 export const getUserById = id => api.get(`/user/${id}`)
+export const updateImageIndex = () => api.get('/index')
 
 export const insertPending = payload => api.post(`/pending`, payload)
 export const getAllPendings = () => api.get(`/pendings`)
@@ -44,6 +45,7 @@ const apis = {
     deleteUserById,
     getAllUsers,
     getUserById,
+    updateImageIndex,
 
     insertPending,
     deletePending,
