@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const request = require("supertest");
-import userDao from '../models/user-model'
+import userDao from '../models/pending-model'
 const MONGODB_URI = 'mongodb+srv://cparker2310:astonsoccer@cluster0.2sqxf.mongodb.net/maryvale_temp'
 
 let email = "temp@gmail.com"
@@ -90,33 +89,7 @@ test("get all users / create user", async () => {
 
     });
 
-    test("Update User by id", async () => {
-
-      var payload = {email, password, firstName, maidenName, marriedName,
-        classYear, currentCity, currentState, universityName, degree, areaStudy, 
-        gradYear, position, companyName, industry, email2, phone, isAdmin }
-  
-      await userDao.create(payload)
-      
-      var users_before = await userDao.readAll()
-      var users_len = users_before.length
-
-      email = "new_email"
-      //var pay = {"email":"new_email"}
-      payload = {email, password, firstName, maidenName, marriedName,
-        classYear, currentCity, currentState, universityName, degree, areaStudy, 
-        gradYear, position, companyName, industry, email2, phone, isAdmin }
-
-      await userDao.update(users_before[users_len-1]._id, payload)
-      var users_after = await userDao.readAll()
-
-      email = "temp@gmail.com"
-      
-      //expect(users_before[users_len-1].email).not.toBe("temp@gmail.com");
-      expect(users_after[users_len-1].firstName).toBe("Molly");
-      expect(users_after[users_len-1].email).toBe("new_email");
-
-    })
+   
   
     test("delete User", async () => {
       var payload = {email, password, firstName, maidenName, marriedName,

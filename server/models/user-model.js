@@ -67,7 +67,8 @@ exports.deleteAll = async function(){
 exports.update = async function(id, updatedUser){
 let user = await userModel.findOne({_id: id})
 if(!user) return;
-user.email = updatedUser.email || user.email
+console.log(updatedUser.email)
+user.email = updatedUser.email ? updatedUser.email :user.email 
 user.password = updatedUser.password ? updatedUser.password : user.password
 user.firstName = updatedUser.firstName ? updatedUser.firstName : user.firstName
 user.maidenName = updatedUser.maidenName ? updatedUser.maidenName : user.maidenName
@@ -86,7 +87,7 @@ user.email2 = updatedUser.email2 ? updatedUser.email2 : user.email2
 user.phone= updatedUser.phone ? updatedUser.phone : user.phone
 user.isAdmin = updatedUser.isAdmin ? updatedUser.isAdmin : user.isAdmin
 user.profileFinal = updatedUser.profileFinal ? updatedUser.profileFinal : user.profileFinal
-user.save()
+await user.save()
 return user
 }
 

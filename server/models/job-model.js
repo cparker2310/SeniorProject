@@ -89,6 +89,6 @@ job.description = updatedJob.description ? updatedJob.description : job.descript
 job.isAvailable = updatedJob.isAvailable ? updatedJob.isAvailable : job.isAvailable
 job.contactName = updatedJob.contactName ? updatedJob.contactName : job.contactName
 job.contactInfo = updatedJob.contactInfo ? updatedJob.contactInfo : job.contactInfo
-job.save()
+await job.save()
 return job
 }

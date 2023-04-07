@@ -1,23 +1,18 @@
 const mongoose = require("mongoose");
-//const { describe } = require("node:test");
-//const { default: test } = require("node:test");
 const request = require("supertest");
-import api from "../../src/api/index" 
-//import app from "../index"
-require("dotenv").config();
+import jobDao from '../models/job-model'
 const MONGODB_URI = 'mongodb+srv://cparker2310:astonsoccer@cluster0.2sqxf.mongodb.net/maryvale_temp'
-import m from '../models/job-model'
-import c from '../controllers/job-ctrl'
+
 var author_id = "temp_id"
 const title = "updatedEmail"
+const dateCreated = Date.now()
 const companyName = "Amazon"
+var location = "Onsite"
 const type = "Remote"
 const description = "..."
 const categories =  ["STEM"]
-const contactName = "joe"
-const contactInfo = "joeemail"
-
-
+var contactName = "joe"
+var contactInfo = "joeemail"
 
 /* Connecting to the database before each test. */
 beforeEach(async () => {
@@ -27,132 +22,98 @@ beforeEach(async () => {
   
   /* Closing database connection after each test. */
 afterEach(async () => {
-    const jobs = await api.getAllJobs()
+    const jobs = await jobDao.readAll()
     
-    const id = jobs.data.data[jobs.data.data.length-1]._id
-    await api.deleteJobById(id);
-    mongoose.connection.close();
+    const id = jobs[jobs.length-1]._id
+    await jobDao.del(id);
+    //mongoose.connection.close();
     
 });
+afterAll(()=>{
+  mongoose.connection.close()
+})
 
 
-test("get job by id", async () => {
+test("get user by id", async () => {
  
 
   // fix this
 
-  const payload = {author_id, title, companyName, type, description, categories, contactName, contactInfo}
+  const payload = {author_id, location, dateCreated, title, companyName, type, description, categories, contactName, contactInfo}
 
-  await api.insertUser(payload).then(res => {})
-  var jobs = await api.getAllJobs()
-  jobs = jobs.data.data
+  await jobDao.create(payload)
+  var jobs = await jobDao.readAll()
   const len = jobs.length
 
-  var job = await api.getJobById(jobs[len-1]._id)
-  job = job.data.data
+  var job = await jobDao.read(jobs[len-1]._id)
 
-  expect(job.contactInfo).toBe(contactInfo)
+  expect(job.type).toBe(type)
   expect(job.contactName).toBe(contactName)
-  
 
 
 });
 
 
-test("get all jobs / create job", async () => {
+test("get all users / create user", async () => {
  
 
       // fix this
   
-      const payload = {author_id, title, companyName, type, description, categories, contactName, contactInfo}
+      const payload = {author_id, location, dateCreated, title, companyName, type, description, categories, contactName, contactInfo}
   
       //const users_before = await api.getAllUsers()
       //const len_before = users_before.data.data.length
-      await api.insertJob(payload).then(res => {})
+      await jobDao.create(payload)
       
-      const jobs_after = await api.getAllJobs()
-      const len_after = jobs_after.data.data.length
+      const jobs_after = await jobDao.readAll()
+      const len_after = jobs_after.length
       
         
       expect(len_after).toBeGreaterThan(0);
-      expect(jobs_after.data.data.author_id).not.toBe(null);
+      expect(jobs_after.contactInfo).not.toBe(null);
 
 
     });
 
-    test("Update job by id", async () => {
+    test("Update User by id", async () => {
 
-    const payload = {author_id, title, companyName, type, description, categories, contactName, contactInfo}
-
-      await api.insertJob(payload).then(res => {})
+      var payload = {author_id, location, dateCreated, title, companyName, type, description, categories, contactName, contactInfo}
+  
+      await jobDao.create(payload)
       
-      var jobs_before = await api.getAllJobs()
-      jobs_before = jobs_before.data.data
+      var jobs_before = await jobDao.readAll()
       var jobs_len = jobs_before.length
 
-      author_id = "new_id"
-      payload = {author_id, title, companyName, type, description, categories, contactName, contactInfo}
-      await api.updateUserById(jobs_before[jobs_len-1]._id, payload)
-      var jobs_after = await api.getAllJobs()
+      contactInfo = "new_email"
+      //var pay = {"email":"new_email"}
+      payload = {author_id, location, dateCreated, title, companyName, type, description, categories, contactName, contactInfo}
+      await jobDao.update(jobs_before[jobs_len-1]._id, payload)
+      var jobs_after = await jobDao.readAll()
 
-      author_id = "temp_id"
-      jobs_after = jobs_after.data.data
+      //email = "temp@gmail.com"
       
       //expect(users_before[users_len-1].email).not.toBe("temp@gmail.com");
-      expect(jobs_after[jobs_len-1].author_id).toBe("new_id");
+      expect(jobs_after[jobs_len-1].contactInfo).toBe("new_email");
 
     })
   
-    test("delete job", async () => {
-    const payload = {author_id, title, companyName, type, description, categories, contactName, contactInfo}
+    test("delete User", async () => {
+      const payload = {author_id, location, dateCreated, title, companyName, type, description, categories, contactName, contactInfo}
   
-      await api.insertJob(payload).then(res => {})
-      await api.insertJob(payload).then(res => {})
+      await jobDao.create(payload)
+      await jobDao.create(payload)
 
-      var jobs = await api.getAllJobs()
-      jobs = jobs.data.data
+      var jobs = await jobDao.readAll()
       var jobs_len = jobs.length
       
-      await api.deleteJobById(jobs[jobs_len-1]._id)
-      var jobs_after = await api.getAllJobs()
+      await jobDao.del(jobs[jobs_len-1]._id)
+      var jobs_after = await jobDao.readAll()
       
-      jobs_after = jobs_after.data.data
       var jobs_len_after = jobs_after.length
       
       expect(jobs_len_after).toBe(jobs_len -1)
     })
 
-/*
-    it('should create a new user', async () => {
-      const response = await request(app)
-        .post('/api/users')
-        .send({
-          email: 'john.doe@example.com',
-          password: 'testpassword',
-          firstName: 'John Doe',
-          maidenName: 'Marie',
-          marriedName: "Parker",
-          classYear: "2021",
-          currentCity: "Baltimore",
-          currentState:"PA",
-          universityName: "Yes",
-          degree: "ma",
-          areaStudy: "CS",
-          gradYear: "2011",
-          position: "intern",
-          companyName: "NA",
-          industry: "na",
-          email2: "na",
-          phone: "na",
-          isAdmin: false
-        })
-        .expect(201);
-        
-        expect(response.body).toHaveProperty('_id');
-          expect(response.body).toHaveProperty('name', 'John Doe');
-          expect(response.body).toHaveProperty('email', 'john.doe@example.com');
-          expect(response.body).not.toHaveProperty('password');
-      })
-*/
+
     
     
