@@ -11,13 +11,6 @@ import JobCard from '../components/CareerCenter/Jobs/JobCard';
 import NewJob from '../components/CareerCenter/Jobs/NewJob';
 import EditJob from '../components/CareerCenter/Jobs/EditJob/EditJob';
 import api from '../api/index';
-/*import { useDispatch } from 'react-redux';
-import { getJobs } from '../components/CareerCenter/Jobs/actions/actions';
-import { Provider } from 'react-redux';
-import { configureStore, applyMiddleware, compose } from 'redux';
-import thunk from 'react-thunk';
-import reducers from '../components/CareerCenter/Jobs/reducers';
-*/
 
 const Background= styled.section`
     background-image: url(${Castle});
@@ -37,19 +30,28 @@ const CareerCenter = () => {
 
 
   const filterJobs = async(filterSettings) => {
-    await api.getAllJobs().then((response) => {
-      const filteredJobs= response.data.filter(
-        (job) => job.type=== filterSettings.type && job.location=== filterSettings.location
-      );
-        /*
-      const ele= filteredJobs.map((job) => (
-        <>
-          <JobCard props={job} openEditJob={() => setEditJob(true)} />
-          <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob} />
-        </>
-      ));*/
-      setJobs(filteredJobs);
-      })}
+    if (filterSettings.type=== "" && filterSettings.location=== "") {
+      await api.getAllJobs().then((response) => {
+        setJobs(response.data);
+      });
+    }
+
+    else {
+      await api.getAllJobs().then((response) => {
+        const filteredJobs= response.data.filter(
+          (job) => job.type=== filterSettings.type && job.location=== filterSettings.location
+        );
+          /*
+        const ele= filteredJobs.map((job) => (
+          <>
+            <JobCard props={job} openEditJob={() => setEditJob(true)} />
+            <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob} />
+          </>
+        ));*/
+        setJobs(filteredJobs);
+        })
+      }
+    }
       
       
     useEffect(() =>{
