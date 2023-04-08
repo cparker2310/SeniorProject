@@ -6,11 +6,13 @@ import api from '../../../api/index';
 import UserCard from '../UserCard/UserCard';
 import Filter from '../Filter/index';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import ReactSpinner from 'react-bootstrap-spinner';
 
 export default function SearchUser({ props }) {
     const [searched, setSearched]= useState("");
     const [users, setUsers]= useState([]);
     const [searchedUsers, setSearchedUsers]= useState([]);
+    const [page, setPage]= useState(1);
 
     useEffect(() => {
         const searchUsers= async () => {
@@ -75,7 +77,12 @@ export default function SearchUser({ props }) {
     }, [searchedUsers]);
 
     return (
-      <InfiniteScroll dataLength={searchedUsers.length}>
+      <InfiniteScroll
+        dataLength={searchedUsers.length} 
+        next={() => setPage(page+1)} 
+        hasMore={true}
+        loader={<ReactSpinner animation="border" role="status" color="#a32738" />}
+      >
         <Box py={10}>
          <Filter />
         <Grid container justifyContent='center'>
@@ -91,7 +98,7 @@ export default function SearchUser({ props }) {
             </Grid>
         </Grid>
             <Box py={4}>
-                <Grid container justifyContent='center' spacing={4}>
+                <Grid container justifyContent='center' alignItems='center' spacing={4} style={{ marginLeft: '45px'}}>
                 {searchedUsers.map((user) => {
                     return (
                     <Grid item xs={12} sm={6} md={4} key={user._id}>
