@@ -65,8 +65,8 @@ export default function JobCard({props, openEditJob, openComment}){
     const classes= useStyles();
     const categories= props.categories
 
-    const element = sessionStorage.getItem('user') === props.author_id ? <GiTrashCan /> : <></>
-    const element2 = sessionStorage.getItem('user') === props.author_id ? <MdOutlineEditNote/> : <></>
+    const element = sessionStorage.getItem('user') === props.author_id || props.isAdmin ? <GiTrashCan /> : <></>
+    const element2 = sessionStorage.getItem('user') === props.author_id || props.isAdmin ? <MdOutlineEditNote/> : <></>
     
     const [jobDescription, setJobDescription]= useState("");
     const [openJobDetails, setOpenJobDetails]= useState(false);

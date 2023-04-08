@@ -62,8 +62,8 @@ const useStyles= makeStyles((theme) => ({
 export default function MessageCard({props, openEditMessage, openComment}){
     const classes= useStyles();
     const categories= props.categories
-    const element = sessionStorage.getItem('user') === props.author_id ? <GiTrashCan /> : <></>
-    const element2 = sessionStorage.getItem('user') === props.author_id ? <MdOutlineEditNote/> : <></>
+    const element = sessionStorage.getItem('user') === props.author_id || props.isAdmin ? <GiTrashCan /> : <></>
+    const element2 = sessionStorage.getItem('user') === props.author_id || props.isAdmin ?<MdOutlineEditNote/> : <></>
     const [messageDescription, setMessageDescription]= useState("");
     const [openMessageDetails, setOpenMessageDetails]= useState(false);
 

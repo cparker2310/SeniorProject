@@ -25,7 +25,7 @@ import api from '../../api/index';
 
 export default ({props, openEdit}) => {
   const [index, setIndex] = useState(0);
-  const show = sessionStorage.getItem('user') === props._id
+  const show = sessionStorage.getItem('user') === props._id || props.isAdmin
 
   const getIndex = async() => {
     let i = await api.updateImageIndex()
