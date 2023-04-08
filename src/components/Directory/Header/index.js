@@ -5,6 +5,7 @@ import { Grid } from '@material-ui/core';
 import api from '../../../api/index';
 import UserCard from '../UserCard/UserCard';
 import Filter from '../Filter/index';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function SearchUser({ props }) {
     const [searched, setSearched]= useState("");
@@ -74,6 +75,7 @@ export default function SearchUser({ props }) {
     }, [searchedUsers]);
 
     return (
+      <InfiniteScroll dataLength={searchedUsers.length}>
         <Box py={10}>
          <Filter />
         <Grid container justifyContent='center'>
@@ -100,5 +102,6 @@ export default function SearchUser({ props }) {
                 </Grid>
             </Box>
         </Box>
+        </InfiniteScroll>
     );
 };
