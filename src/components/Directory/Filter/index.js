@@ -45,12 +45,25 @@ export default props => {
     }, []);
 
     const filterUsers= async(filterSettings) => {
-        await api.getAllUsers().then((response) => {
-            const filteredYears= response.data.filter(
-                (users) => users.classYear=== filterSettings.classYear
-            );
-            setUsers(filteredYears);
-        })
+        if (!filterSettings || filterSettings.classYear=== "") {
+            await api.getAllUsers().then((response) => {
+              setUsers(response.data);
+            });
+        }
+      
+        else {
+            await api.getAllUsers().then((response) => {
+                const filteredYears= response.data.filter(
+                    (users) => users.classYear=== filterSettings.classYear
+                );
+                setUsers(filteredYears);
+            })
+        }
+    }
+
+    const reset= async () => {
+        setUserSearch({years: ''});
+        await filterUsers({years: ''});
     }
 
 
@@ -65,6 +78,7 @@ export default props => {
                 {classYears.map(year=> <MenuItem key={year} value={year}>{year}</MenuItem>)}
             </Select>
             <Button variant='contained' color='primary' onClick={filterUsers}>Filter</Button>
+            <Button variant='contained' color='secondary' onClick={reset}>Reset</Button>
         </Box>
     );
 }
