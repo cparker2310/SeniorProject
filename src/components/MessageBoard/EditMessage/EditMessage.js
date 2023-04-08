@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
 import CloseIcon from '@mui/icons-material/Close';
@@ -52,6 +52,16 @@ export default (props) => {
     }
     const [editMessageDetails, setEditMessageDetails]= useState(initState);
 
+    useEffect(() => {
+        setEditMessageDetails({
+            author_id: sessionStorage.getItem('user'),
+            dateCreated: props.dateCreated,
+            title: props.title || "",
+            description: props.description || "",
+            categories: props.categories || [],
+            comments: props.comments || []  
+        })
+    }, [props])
 
     const handleChange= event => {
         event.persist();
