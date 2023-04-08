@@ -4,6 +4,7 @@ import { FaPaw } from 'react-icons/fa';
 import { MdOutlineEditNote } from 'react-icons/md';
 import { GiTrashCan } from 'react-icons/gi';
 import CloseIcon from '@mui/icons-material/Close';
+import { BiCommentDetail } from 'react-icons/bi';
 import { 
     Button,
     Grid,
@@ -60,7 +61,7 @@ const useStyles= makeStyles((theme) => ({
     }
 }));
 
-export default function JobCard({props, openEditJob}){
+export default function JobCard({props, openEditJob, openComment}){
     const classes= useStyles();
     const categories= props.categories
 
@@ -106,6 +107,7 @@ export default function JobCard({props, openEditJob}){
                     </Grid>
                     <Grid item>
                         <Box mt={2}>
+                            <IconButton style={{marginRight: '-21px'}} onClick={openComment}> <BiCommentDetail /> </IconButton>
                             <IconButton style={{marginRight: '-21px'}} onClick={openEditJob}> {element2} </IconButton>
                             <IconButton onClick={handleDelete}>
                                 {element}

@@ -45,7 +45,10 @@ const JobSchema= new Schema({
     contactInfo: {
         type: String,
         required: [true, 'Contact Information is required']
-    }
+    },
+    comments: {
+        type: Schema.Types.Mixed
+      }
 })
 
 const jobModel = mongoose.model('jobs', JobSchema)
