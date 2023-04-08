@@ -39,7 +39,7 @@ export default props => {
             const response= await api.getAllUsers();
             const years= response.data.map(user => user.classYear);
             const allYears= Array.from(new Set(years));
-            setClassYears(allYears);
+            setClassYears(allYears);//setClassYears(years.sort((a, b) => b-a));
         };
         getClassYears();
     }, []);
@@ -64,7 +64,7 @@ export default props => {
             <Select onChange={handleChange} name='years' value={userSearch.years} disableUnderline variant='filled'>
                 {classYears.map(year=> <MenuItem key={year} value={year}>{year}</MenuItem>)}
             </Select>
-            <Button variant='contained' color='primary'>Filter</Button>
+            <Button variant='contained' color='primary' onClick={filterUsers}>Filter</Button>
         </Box>
     );
 }

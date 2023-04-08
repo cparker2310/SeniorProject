@@ -4,11 +4,16 @@ import { FaPaw } from 'react-icons/fa';
 import { MdOutlineEditNote } from 'react-icons/md';
 import { GiTrashCan } from 'react-icons/gi';
 import { BiCommentDetail } from 'react-icons/bi';
+import CloseIcon from '@mui/icons-material/Close';
 import { 
     Button,
     Grid,
     Typography,
     IconButton,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
     makeStyles
 } from '@material-ui/core';
 import api from '../../api/index';
@@ -59,8 +64,8 @@ export default function MessageCard({props, openEditMessage, openComment}){
     const categories= props.categories
     const element = sessionStorage.getItem('user') === props.author_id ? <GiTrashCan /> : <></>
     const element2 = sessionStorage.getItem('user') === props.author_id ? <MdOutlineEditNote/> : <></>
+    const [messageDescription, setMessageDescription]= useState("");
     const [openMessageDetails, setOpenMessageDetails]= useState(false);
-
 
     const handleDelete = async () => {
         if(window.confirm("Are you sure you want to delete this message board post?")){
@@ -70,8 +75,15 @@ export default function MessageCard({props, openEditMessage, openComment}){
             window.location.reload(true);
         }
     }
+
     const closeViewMessage= () => {
         setOpenMessageDetails(false);
+    }
+
+    const viewDetails= async () => {
+        const response= await api.getMessageById(props._id);
+        setMessageDescription(response.description);
+        setOpenMessageDetails(true);
     }
 
     return (
@@ -79,7 +91,6 @@ export default function MessageCard({props, openEditMessage, openComment}){
             <Grid container>
                 <Grid item xs alignItems='center'>
                     <Typography variant='subtitle1'>{props.title}</Typography>
-                    <Typography className={classes.companyName} variant='subtitle1'>{props.title}</Typography>
                 </Grid>
                 <Grid item container xs>
                     {categories.map(category => <Grid key={category} className={classes.categoryChip} style={{height: '35px'}} item>{category}</Grid>)}
@@ -93,7 +104,24 @@ export default function MessageCard({props, openEditMessage, openComment}){
                             <IconButton style={{marginRight: '-21px'}} onClick={openComment}> <BiCommentDetail /> </IconButton>
                             <IconButton style={{marginRight: '-21px'}} onClick={openEditMessage}> {element2} </IconButton>
                             <IconButton onClick={handleDelete}>{element}</IconButton>
-                            <Button style={{backgroundColor: '#63625d', color: '#fdfdfd'}}>View Details <FaPaw /></Button>
+                            <Button style={{backgroundColor: '#63625d', color: '#fdfdfd'}} onClick={viewDetails}>View Details <FaPaw /></Button>
+                            <Dialog open={openMessageDetails} close={closeViewMessage} style={{ height: '1200px', width: '1200px', margin: 'auto'}}>
+                                <IconButton onClick={closeViewMessage}>
+                                    <CloseIcon style={{ position: 'absolute', top: 8, right: 8 }} />
+                                </IconButton>
+                                    <DialogTitle> 
+                                        <Typography variant='h5' fontWeight='bold'>{props.title}</Typography>
+                                    </DialogTitle>
+                                    <DialogContent>
+                                        <DialogContentText style={{color: '#60000d', fontWeight: 'bold'}}>Categories: {props.categories}</DialogContentText>
+                                    </DialogContent>
+                                    <DialogContent>
+                                        <DialogContentText>Posted By: {props.author_id}</DialogContentText>
+                                    </DialogContent>
+                                    <DialogContent>
+                                        <DialogContentText>Description: {props.description}</DialogContentText>
+                                    </DialogContent>
+                                </Dialog>
                         </Box>
                     </Grid>
                 </Grid>
