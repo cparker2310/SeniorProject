@@ -10,6 +10,7 @@ import MessageCard from '../components/MessageBoard/MessageCard';
 import NewMessage from '../components/MessageBoard/NewMessage';
 import EditMessage from '../components/MessageBoard/EditMessage/EditMessage';
 import ReplyMessage from '../components/MessageBoard/ReplyMessage/ReplyMessage';
+import Footer from '../components/Footer/Footer';
 import api from '../api/index';
 
 const Background= styled.section`
@@ -65,6 +66,7 @@ const MessageBoard = () => {
           </Box>
         </ThemeProvider>
       </Background>
+      <Footer />
     </>
   )
 }

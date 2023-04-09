@@ -4,6 +4,7 @@ import { ThemeProvider, Grid } from "@material-ui/core";
 import theme from '../../components/Directory/theme/theme';
 import Header from '../../components/Directory/Header';
 import Filter from '../../components/Directory/Filter';
+import Footer from '../../components/Footer/Footer';
 
 const Directory = () => {
   return (
@@ -16,6 +17,7 @@ const Directory = () => {
           </Grid>
         </Grid>
       </ThemeProvider>
+      <Footer />
     </>
   );
 };

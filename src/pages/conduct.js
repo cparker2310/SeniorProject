@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from '../components/NavBar/Navbar';
 import styled from 'styled-components';
 import Castle from '../images/castle.jpg';
-
+import Footer from '../components/Footer/Footer';
 
 const Background= styled.section`
     background-image: url(${Castle});
@@ -63,8 +63,8 @@ const SiteConduct = () => {
               <br />This site is for professional networking and alumnae communication.  <br />Solicitation involving the sale of goods or services is prohibited.
             </Content>
           </BoxWrapper>
-        
       </Background>
+      <Footer />
     </>
   );
 }

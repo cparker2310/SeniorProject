@@ -10,6 +10,7 @@ import Search from '../components/CareerCenter/Search';
 import JobCard from '../components/CareerCenter/Jobs/JobCard';
 import NewJob from '../components/CareerCenter/Jobs/NewJob';
 import EditJob from '../components/CareerCenter/Jobs/EditJob/EditJob';
+import Footer from '../components/Footer/Footer';
 import api from '../api/index';
 
 const Background= styled.section`
@@ -92,6 +93,7 @@ const CareerCenter = () => {
           </Box>
         </ThemeProvider>
       </Background>
+      <Footer />
     </>
   )
 }

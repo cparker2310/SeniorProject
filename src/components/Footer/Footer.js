@@ -6,7 +6,8 @@ import { AiFillTwitterCircle, AiFillInstagram, AiFillYoutube } from "react-icons
 import { TiSocialLinkedinCircular } from "react-icons/ti";
 
 export const FooterContainer= styled.footer`
-    background-color: linear-gradient(90deg, #60000D, #a32738);
+    //background-color: linear-gradient(90deg, #60000D, #a32738);
+    background: #a32738;
     height: 100px;
 `;
 
@@ -30,7 +31,7 @@ export const SocialMediaWrap= styled.div`
     justify-content: space-between;
     align-items: center;
     max-width: 1100px;
-    margin: 40px auto 0 auto;
+    margin: -10px auto 0 auto;
 `;
 
 export const SocialLogo= styled(Link)`
@@ -71,19 +72,19 @@ const Footer = () => {
                     <SocialLogo to='/'>MARYVALE</SocialLogo>
                     <Address>11300 Falls Road Lutherville, MD 21093</Address>
                     <SocialIcons>
-                        <SocialIconLink href="//https://www.facebook.com/MaryvaleLions" target="_blank" aria-label="Facebook">
+                        <SocialIconLink href="//www.facebook.com/MaryvaleLions" target="_blank" aria-label="Facebook">
                             <FaFacebook />
                         </SocialIconLink>
-                        <SocialIconLink href="//https://twitter.com/MaryvaleLions" target="_blank" aria-label="Twitter">
+                        <SocialIconLink href="//www.twitter.com/MaryvaleLions" target="_blank" aria-label="Twitter">
                             <AiFillTwitterCircle />
                         </SocialIconLink>
-                        <SocialIconLink href="//https://www.linkedin.com/school/maryvale-preparatory-school/" target="_blank" aria-label="LinkedIn">
+                        <SocialIconLink href="//www.linkedin.com/school/maryvale-preparatory-school/" target="_blank" aria-label="LinkedIn">
                             <TiSocialLinkedinCircular />
                         </SocialIconLink>
-                        <SocialIconLink href="//https://www.instagram.com/maryvalelions/" target="_blank" aria-label="Instagram">
+                        <SocialIconLink href="//www.instagram.com/maryvalelions/" target="_blank" aria-label="Instagram">
                             <AiFillInstagram />
                         </SocialIconLink>
-                        <SocialIconLink href="//https://www.youtube.com/@maryvalepreparatoryschool7140/featured" target="_blank" aria-label="YouTube">
+                        <SocialIconLink href="//www.youtube.com/@maryvalepreparatoryschool7140/featured" target="_blank" aria-label="YouTube">
                             <AiFillYoutube />
                         </SocialIconLink>
                     </SocialIcons>
