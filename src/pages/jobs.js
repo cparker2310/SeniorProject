@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/NavBar/Navbar';
+import Footer from '../components/Footer/Footer';
 import Castle from '../images/castle.jpg';
 import styled from 'styled-components';
 import Box from "@mui/material/Box";
@@ -10,7 +11,8 @@ import Search from '../components/CareerCenter/Search';
 import JobCard from '../components/CareerCenter/Jobs/JobCard';
 import NewJob from '../components/CareerCenter/Jobs/NewJob';
 import EditJob from '../components/CareerCenter/Jobs/EditJob/EditJob';
-import Footer from '../components/Footer/Footer';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import ReactSpinner from 'react-bootstrap-spinner';
 import api from '../api/index';
 
 const Background= styled.section`
@@ -27,6 +29,7 @@ const CareerCenter = () => {
   const [newJob, setNewJob]= useState(false);
   const [editJob, setEditJob]= useState(false);
   const [job, setJobs] = useState([]);
+  const [page, setPage]= useState(1);
   const [elements, setElements] = useState(<></>);
   
   const filterJobs = async(filterSettings) => {
@@ -74,6 +77,12 @@ const CareerCenter = () => {
 
   return (
     <>
+    <InfiniteScroll
+            dataLength={job.length} 
+            next={() => setPage(page+1)} 
+            hasMore={true}
+            loader={<ReactSpinner animation="border" role="status" color="#a32738" />}
+    >
       <Navbar />
       <Background>
         <ThemeProvider theme={theme}>
@@ -94,6 +103,7 @@ const CareerCenter = () => {
         </ThemeProvider>
       </Background>
       <Footer />
+      </InfiniteScroll>
     </>
   )
 }

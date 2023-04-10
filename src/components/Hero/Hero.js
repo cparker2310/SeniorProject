@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import Castle from '../../images/castle.jpg';
 import Button from '../Button';
+import Footer from '../Footer/Footer';
 import { FaPaw } from 'react-icons/fa';
 import { GiFlatPawPrint } from "react-icons/gi";
 
@@ -13,6 +14,7 @@ const Section= styled.section`
     background-size: cover;
     background-repeat: no-repeat;
     position: fixed;
+    overflow: scroll;
 `;
 
 const Title= styled.h1`
@@ -49,6 +51,7 @@ const Hero = () => {
               </Button>
             </a>
         </Title>
+        <Footer />
     </Section>
     </>
   );

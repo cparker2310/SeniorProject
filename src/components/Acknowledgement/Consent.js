@@ -2,6 +2,7 @@ import React from 'react';
 import './Consent.css';
 import { MdClose } from "react-icons/md";
 import Castle from '../../images/castle.jpg';
+import Footer from '../Footer/Footer';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -13,6 +14,7 @@ const Background= styled.section`
     background-size: cover;
     background-repeat: no-repeat;
     position: fixed;
+    overflow: scroll;
 `;
 
 export const Icon= styled(Link)`
@@ -60,6 +62,7 @@ const Consent = () => {
             </a>
         </div>
     </div>
+    <Footer />
     </Background>
     </>
   );

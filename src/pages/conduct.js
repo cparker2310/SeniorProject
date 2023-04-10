@@ -12,6 +12,7 @@ const Background= styled.section`
     background-size: cover;
     background-repeat: no-repeat;
     position: fixed;
+    overflow: scroll;
 `;
 
 const BoxWrapper= styled.div`
@@ -25,11 +26,12 @@ const BoxWrapper= styled.div`
     border-color: #fdfdfd;
     color: #030000;
     display: flex;
-    top: 60px;
+    top: 40px;
     right: 100px;
     left: 130px;
     position: relative;
     z-index: 10;
+    margin-bottom: 5rem;
 `;
 
 const Content= styled.div`
@@ -51,7 +53,6 @@ const SiteConduct = () => {
     <>
       <NavBar />
       <Background>
-        
           <BoxWrapper>
             <Content>
               Site Conduct<br />
@@ -63,8 +64,8 @@ const SiteConduct = () => {
               <br />This site is for professional networking and alumnae communication.  <br />Solicitation involving the sale of goods or services is prohibited.
             </Content>
           </BoxWrapper>
+          <Footer />
       </Background>
-      <Footer />
     </>
   );
 }

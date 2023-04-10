@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Castle from '../../images/castle.jpg';
+import Footer from '../Footer/Footer';
 import { FaPaw } from 'react-icons/fa';
 import api from '../../api';
 
@@ -13,6 +14,7 @@ export const Container= styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   position: fixed;
+  overflow: scroll;
 `;
 
 export const FormWrap= styled.div`
@@ -164,6 +166,7 @@ useEffect(()=>{
             </Form>
           </FormContent>
         </FormWrap>
+        <Footer />
       </Container>
     </>
   );

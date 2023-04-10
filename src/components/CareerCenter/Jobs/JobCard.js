@@ -16,8 +16,7 @@ import {
     DialogContentText,
     makeStyles
 } from '@material-ui/core';
-import api from '../../../api/index'
-
+import api from '../../../api/index';
 
 const useStyles= makeStyles((theme) => ({
     wrapper: {
