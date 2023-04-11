@@ -23,6 +23,7 @@ const Background= styled.section`
     background-size: cover;
     background-repeat: no-repeat;
     position: fixed;
+    overflow: scroll;
 `;
 
 const CareerCenter = () => {
@@ -73,16 +74,21 @@ const CareerCenter = () => {
       getJobs()
     },[])
     
-  
+  const getNextJobs= async () => {
+    const nextPage= page+1;
+    await api.getAllJobs(nextPage).then((response) => {
+      const nextJobs= response.data;
+      if (nextJobs.length> 0) {
+        setJobs([...job, ...nextJobs]);
+        setPage(nextPage);
+      } else {
+        setPage(0);
+      }
+    });
+  }
 
   return (
     <>
-    <InfiniteScroll
-            dataLength={job.length} 
-            next={() => setPage(page+1)} 
-            hasMore={true}
-            loader={<ReactSpinner animation="border" role="status" color="#a32738" />}
-    >
       <Navbar />
       <Background>
         <ThemeProvider theme={theme}>
@@ -92,18 +98,23 @@ const CareerCenter = () => {
             <Grid container justifyContent='center'>
               <Grid item xs={10}>
                 <Search filterJobs={filterJobs}/>
+                <InfiniteScroll
+                    dataLength={job.length} 
+                    next={getNextJobs} 
+                    hasMore={true}
+                    loader={<ReactSpinner animation="border" role="status" color="#a32738" />}
+                >
                 {job.map((job)=>{
-            return (<><JobCard props={job} openEditJob={() => setEditJob(true)}/>
-            <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
-            </>)})}
-                
+                    return (<><JobCard props={job} openEditJob={() => setEditJob(true)}/>
+                    <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
+                    </>)})} 
+                </InfiniteScroll>  
               </Grid>
             </Grid>
           </Box>
         </ThemeProvider>
+        <Footer />
       </Background>
-      <Footer />
-      </InfiniteScroll>
     </>
   )
 }
