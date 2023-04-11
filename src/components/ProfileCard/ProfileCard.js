@@ -16,7 +16,8 @@ import {
     Button,
     ThemeProvider,
     CardMedia,
-    Dialog
+    Dialog,
+    useRadioGroup
     /* CardMedia - Use for Profile Picture */
 } from '@mui/material';
 
@@ -25,12 +26,24 @@ import api from '../../api/index';
 
 export default ({props, openEdit}) => {
   const [index, setIndex] = useState(0);
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+    const getUser = async () =>{
+      const user = await api.getUserById(props._id)
+      setUser(user.data)
+    }
+    getUser()
+    console.log("inside")
+  }, [openEdit])
+  
+  
   const show = sessionStorage.getItem('user') === props._id || props.isAdmin
 
   const getIndex = async() => {
     let i = await api.updateImageIndex()
     i = i.data[0].profileFinal
-    console.log(i)
+    //console.log(i)
     setIndex(i);
       
     
@@ -42,6 +55,7 @@ export default ({props, openEdit}) => {
   }
 
   useEffect(() => {
+
     getIndex()
   }, [])
   
@@ -90,36 +104,36 @@ export default ({props, openEdit}) => {
                 <br />
                 <Typography variant='h5' color='#030000' style={{fontWeight: "bold"}}>Location</Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>City: {props.currentCity} </Typography>
+                <Typography variant='h6' color='#030000'>City: {user.currentCity} </Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>State: {props.currentState}</Typography>
+                <Typography variant='h6' color='#030000'>State: {user.currentState}</Typography>
                 <br />
                 <br />
                 <Typography variant='h5' color='#030000' style={{fontWeight: "bold"}}>Education</Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Name of Institution: {props.universityName}</Typography>
+                <Typography variant='h6' color='#030000'>Name of Institution: {user.universityName}</Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Degree Earned: {props.degree}</Typography>
+                <Typography variant='h6' color='#030000'>Degree Earned: {user.degree}</Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Area of Study: {props.areaStudy}</Typography>
+                <Typography variant='h6' color='#030000'>Area of Study: {user.areaStudy}</Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Graduation Year: {props.gradYear}</Typography>
+                <Typography variant='h6' color='#030000'>Graduation Year: {user.gradYear}</Typography>
                 <br />
                 <br />
                 <Typography variant='h5' color='#030000' style={{fontWeight: "bold"}}>Career</Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Position: {props.position}</Typography>
+                <Typography variant='h6' color='#030000'>Position: {user.position}</Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Company Name: {props.companyName}</Typography>
+                <Typography variant='h6' color='#030000'>Company Name: {user.companyName}</Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Industry: {props.industry}</Typography>
+                <Typography variant='h6' color='#030000'>Industry: {user.industry}</Typography>
                 <br />
                 <br />
                 <Typography variant='h5' color='#030000' style={{fontWeight: "bold"}}>Contact Information</Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Phone: {props.phone}</Typography>
+                <Typography variant='h6' color='#030000'>Phone: {user.phone}</Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Email: {props.email2} </Typography>
+                <Typography variant='h6' color='#030000'>Email: {user.email2} </Typography>
             </CardContent>
             <CardActions style={{justifyContent: "center"}}>
             {show && <><Button variant='contained' onClick={openEdit} style={{ backgroundColor: "#a32738", fontSize: "15px", fontWeight: "bold", color: "#fdfdfd",  height: "50px", width: "200px", borderRadius: "8px" }}>Edit Profile <FaPaw /></Button>
