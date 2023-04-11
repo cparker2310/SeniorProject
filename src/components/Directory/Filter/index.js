@@ -24,7 +24,7 @@ const useStyles= makeStyles({
     },
 });
 
-export default props => {
+export default (props)=>{
     const classes= useStyles();
     
     const [users, setUsers]= useState([]);
@@ -43,7 +43,7 @@ export default props => {
         };
         getClassYears();
     }, []);
-
+/*
     const filterUsers= async(filterSettings) => {
         if (!filterSettings || filterSettings.classYear=== "") {
             await api.getAllUsers().then((response) => {
@@ -59,17 +59,18 @@ export default props => {
                 setUsers(filteredYears);
             })
         }
-    }
+    }*/
 
     const reset= async () => {
         setUserSearch({years: ''});
-        await filterUsers({years: ''});
+        await props.filterUsers({years: ''});
     }
 
 
     const handleChange= event => {
         event.persist();
         setUserSearch(oldState => ({...oldState, [event.target.name] : event.target.value}));
+        console.log(userSearch)
     }
 
     return (
@@ -77,7 +78,7 @@ export default props => {
             <Select onChange={handleChange} name='years' value={userSearch.years} disableUnderline variant='filled'>
                 {classYears.map(year=> <MenuItem key={year} value={year}>{year}</MenuItem>)}
             </Select>
-            <Button variant='contained' color='primary' onClick={filterUsers}>Filter</Button>
+            <Button variant='contained' color='primary' onClick={() => props.filterUsers(userSearch.years)}>Filter</Button>
             <Button variant='contained' color='secondary' onClick={reset}>Reset</Button>
         </Box>
     );
