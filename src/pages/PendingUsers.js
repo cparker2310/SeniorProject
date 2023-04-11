@@ -18,8 +18,9 @@ import Paper from '@mui/material/Paper';
 const PendingUsers = () => {
     const [open, setOpen]= useState(false);
     //const [state, setState]= useState(true);
-    //const [pendingUsers, setPendings]= useState([]);
+    const [pendingUsers, setPendings]= useState([]);
     const [denyUser, setDenyUser]= useState({});
+    const [action, setAction] = useState(false)
     const [element, setElement]= useState(<></>);
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -51,6 +52,7 @@ const PendingUsers = () => {
           alert("User Updated")
           
       })
+      setAction(!action)
       
       //window.location.reload(true)
       
@@ -72,6 +74,7 @@ const PendingUsers = () => {
     const getPendings = async() => {
         await api.getAllPendings().then((pendings) => {
             const pendingUsers = pendings.data
+            setPendings(pendingUsers)/*
             const ele = pendingUsers.map((user, index)=>{
               return <>
               <StyledTableRow key={user._id}>
@@ -82,13 +85,13 @@ const PendingUsers = () => {
                 <StyledTableCell align="right">{user.classYear}</StyledTableCell>
                 <StyledTableCell align="right">{user.email}</StyledTableCell>
                 <StyledTableCell align="right">
-                  <><button className='accept' onClick={() => handleAccept(user)}> Accept </button></>
-                      <><button className='deny' onClick={() => handleDeny(user._id)}>Deny</button></>
+                  <><button className='accept' onClick={handleAccept(user)}> Accept </button></>
+                      <><button className='deny' onClick={handleDeny(user._id)}>Deny</button></>
                 </StyledTableCell>
               </StyledTableRow>
-              </>
+              </>*/
             })
-            setElement(ele)})
+            //setElement(ele)})
         }
     
 
@@ -96,8 +99,7 @@ const PendingUsers = () => {
     
     useEffect(()=>{
       getPendings();
-    })
-    
+    }, [action])
     
     
 
@@ -118,7 +120,21 @@ const PendingUsers = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {element}
+          {pendingUsers.map((user, index)=>{
+              return <>
+              <StyledTableRow key={user._id}>
+                <StyledTableCell align="right">{index+1}</StyledTableCell>
+                <StyledTableCell align="right">{user.firstName}</StyledTableCell>
+                <StyledTableCell align="right">{user.maidenName}</StyledTableCell>
+                <StyledTableCell align="right">{user.marriedName}</StyledTableCell>
+                <StyledTableCell align="right">{user.classYear}</StyledTableCell>
+                <StyledTableCell align="right">{user.email}</StyledTableCell>
+                <StyledTableCell align="right">
+                  <><button className='accept' onClick={() => handleAccept(user)}> Accept </button></>
+                      <><button className='deny' onClick={() => handleDeny(user._id)}>Deny</button></>
+                </StyledTableCell>
+              </StyledTableRow>
+              </>})}
         </TableBody>
       </Table>
     </TableContainer>      
