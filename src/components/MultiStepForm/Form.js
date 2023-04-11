@@ -10,6 +10,7 @@ import api from '../../api';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaPaw } from 'react-icons/fa';
+var validator = require('validator');
 
 // should make required UI for the user to know + better alerts for a field being empty
 
@@ -108,6 +109,11 @@ const Form = () => {
   }
 
   const pageOneMissing= (formData) => {
+    
+    if (!validator.isEmail(formData.email)) {
+      return alert("Invalid Email");
+    }
+
      if(!formData.firstName || !formData.maidenName || !formData.classYear || !formData.email || !formData.password){
       return alert("Missing fields")
      }

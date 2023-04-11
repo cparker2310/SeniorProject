@@ -66,7 +66,6 @@ export default function MessageCard({props, openEditMessage, openComment}){
     const element2 = sessionStorage.getItem('user') === props.author_id || props.isAdmin ?<MdOutlineEditNote/> : <></>
     const [messageDescription, setMessageDescription]= useState("");
     const [openMessageDetails, setOpenMessageDetails]= useState(false);
-
     const handleDelete = async () => {
         if(window.confirm("Are you sure you want to delete this message board post?")){
             await api.deleteMessageById(props._id).then(res => {
