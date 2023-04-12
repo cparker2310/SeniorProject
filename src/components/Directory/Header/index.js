@@ -101,7 +101,7 @@ export default function SearchUser({ props }) {
             const years= response.data.map(user => user.classYear);
             let allYears= Array.from(new Set(years));
             allYears = allYears.reverse()
-            setClassYears(allYears);//setClassYears(years.sort((a, b) => b-a));
+            setClassYears(allYears);
         };
         getClassYears();
     }, []);

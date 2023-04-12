@@ -73,19 +73,20 @@ const CareerCenter = () => {
 
       getJobs()
     },[])
-    
-  const getNextJobs= async () => {
-    const nextPage= page+1;
-    await api.getAllJobs(nextPage).then((response) => {
-      const nextJobs= response.data;
-      if (nextJobs.length> 0) {
+  
+  /* const getNextJobs= async () => {
+      const nextPage= page+1;
+      await api.getAllJobs(nextPage).then((response) => {
+        const nextJobs= response.data.filter((job) => !jobAlreadyPosted(job, job));
         setJobs([...job, ...nextJobs]);
         setPage(nextPage);
-      } else {
-        setPage(0);
-      }
-    });
-  }
+      });
+  };
+    
+  const jobAlreadyPosted= (job, jobs) => {
+      return jobs.some((j) => j._id=== job._id);
+  };*/
+    
 
   return (
     <>
@@ -98,17 +99,17 @@ const CareerCenter = () => {
             <Grid container justifyContent='center'>
               <Grid item xs={10}>
                 <Search filterJobs={filterJobs}/>
-                <InfiniteScroll
+                {/*<InfiniteScroll
                     dataLength={job.length} 
                     next={getNextJobs} 
                     hasMore={true}
                     loader={<ReactSpinner animation="border" role="status" color="#a32738" />}
-                >
+                >*/}
                 {job.map((job)=>{
                     return (<><JobCard props={job} openEditJob={() => setEditJob(true)}/>
                     <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
                     </>)})} 
-                </InfiniteScroll>  
+                {/*</InfiniteScroll>*/}
               </Grid>
             </Grid>
           </Box>
