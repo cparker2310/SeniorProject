@@ -100,6 +100,9 @@ export default function MessageCard({props, openEditMessage, openComment}){
                     <Grid item>
                         <Typography variant='caption'> {props.type} | {props.location}</Typography>
                     </Grid>
+                    {/*<Box p={2}>
+                        <ReplyCard />
+                    </Box>*/}
                     <Grid item>
                         <Box mt={2}>
                             <IconButton style={{marginRight: '-21px'}} onClick={openComment}> <BiCommentDetail /> </IconButton>
@@ -128,9 +131,6 @@ export default function MessageCard({props, openEditMessage, openComment}){
                 </Grid>
             </Grid>
         </Box>
-       {/*<Box p={2}>
-            <ReplyCard />
-    </Box>*/}
         </>
     );
 }
