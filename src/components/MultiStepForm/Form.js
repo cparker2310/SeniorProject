@@ -5,6 +5,7 @@ import Education from './Education';
 import Career from './Career';
 import ContactInfo from './ContactInfo';
 import PhotoUpload from './PhotoUpload';
+import Footer from '../Footer/Footer';
 import './MultiForm.css';
 import api from '../../api';
 import { Link } from 'react-router-dom';
@@ -152,6 +153,7 @@ const Form = () => {
             </div>
         </div>     
     </div>
+    <Footer />
     </>
   );
 }
