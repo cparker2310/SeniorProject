@@ -53,27 +53,23 @@ const storage = new GridFsStorage({
     url: dbURI,
     file: (req, file) => {
       return new Promise((resolve, reject) => {
-        crypto.randomBytes(16, (err, buf)=> {
-            if(err){
-                return reject(err)
-            }
         
-          const filename = buf.toString('hex') + path.extname(file.originalname);
+          const filename = file.originalname 
           const fileInfo = {
             filename: filename,
             bucketName: 'uploads'
           };
           resolve(fileInfo);
       });
-    })
-    }
-  });
+    }})
+    
 
 const upload = multer({ storage })
 router.post('/upload/:user_id', upload.single('myFile'), (req, res) => {
     req.file.author_id = req.params.user_id
     //res.render('http://localhost:3000/profile', {file:req.file})
-    res.json({file:req.file});
+    //res.json({file:req.file});
+    //res.redirect("http://localhost:3000/profile")
   });
 
 router.get('/upload/:user_id', (req, res) => {
@@ -92,20 +88,29 @@ router.get('/upload/:user_id', (req, res) => {
   })
 
 
-router.get('/image/:index', (req,res) => {
-  gfs.files.find().toArray((err, files) => {
-
-  
-    if(!files){
+router.get('/image/:filename', (req,res) => {
+  gfs.files.findOne({filename: req.params.filename},  (err, file) => {
+    if (err) {
+      return reject(err);
+    
+    }
+    if(!file){
       return res.status(404).json({
         err: "No File Exist"
       })
     }
-    const readstream = gridfsBucket.openDownloadStream(files[req.params.index]._id)
-    readstream.pipe(res)
+    else{
+      //console.log("files - ", file)
+      const readstream = gridfsBucket.openDownloadStream(file._id)
+      readstream.pipe(res)
+    }
+  })});
+  
+    
+    
 
-  })
-})
+  
+
 
 
 

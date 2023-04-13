@@ -25,7 +25,7 @@ const User = new Schema(
       //imageName: { type: String, required: true },
       //image: { data: Buffer, contentType: String }
       isAdmin: { type: Boolean, default: false },
-      profileFinal: {type: Number, default: false}
+      profileFinal: {type: String, default: false}
     })
 /*
     User.pre('save', async function(next) {

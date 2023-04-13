@@ -4,7 +4,6 @@ import theme from './theme/theme';
 import { FaPaw } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import img from "../../images/female-icon.png"
-import axios from 'axios'
 import './index.css'
 
 import { 
@@ -15,56 +14,47 @@ import {
     CardActions,
     Button,
     ThemeProvider,
-    CardMedia,
-    Dialog,
-    useRadioGroup
-    /* CardMedia - Use for Profile Picture */
 } from '@mui/material';
 
 import api from '../../api/index';
 
 
 export default ({props, openEdit}) => {
-  const [index, setIndex] = useState(0);
   const [user, setUser] = useState({})
+  const [fileName, setFileName] = useState("")
 
-  useEffect(() => {
-    const getUser = async () =>{
-      const user = await api.getUserById(props._id)
+  const getUser = async () =>{
+    await api.getUserById(props._id).then(user=>{
       setUser(user.data)
-    }
+      setFileName(user.data.profileFinal)
+    })
+  }
+  useEffect(() => {
+
     getUser()
-    console.log("inside")
+    //console.log("inside")
   }, [openEdit])
-  
   
   const show = sessionStorage.getItem('user') === props._id || props.isAdmin
 
-  const getIndex = async() => {
-    let i = await api.updateImageIndex()
-    i = i.data[0].profileFinal
-    //console.log(i)
-    setIndex(i);
       
     
-  }
+  
+
   const onSubmit = async() =>{
-    const profileFinal = index + 1
+    //console.log(fileName)
+    const profileFinal = fileName
     const payload = {profileFinal}
-    await api.updateUserById(props._id, payload)
+    await api.updateUserById(user._id, payload)
   }
 
-  useEffect(() => {
-
-    getIndex()
-  }, [])
   
 
 
   const handleDelete = async () => {
     if(window.confirm("Are you sure you want to delete your profile?")){
 
-      await api.deleteUserById(props._id).then(res => {
+      await api.deleteUserById(user._id).then(res => {
         sessionStorage.clear()
         window.location.href = '/';
       })
@@ -77,11 +67,11 @@ export default ({props, openEdit}) => {
       <Box p={8} sx={{width: 1430, height: 1500}} alignItems='center'>
         <Card alignItems='center'>
         <div className="App">
-      <form action={"http://localhost:8000/api/upload/" + props._id} method="POST" encType="multipart/form-data"
+      <form action={("http://localhost:8000/api/upload/" + fileName)} method="POST" encType="multipart/form-data"
       /*onSubmit={handleSubmit}*/>
 
         <label htmlFor="myFile" className='custom-file-upload'>
-          <img src={("http://localhost:8000/api/image/" +index) || img} alt="" style={{width: "450px", height: "450px", margin: "auto", display: "block", marginBottom: "20px"}} />
+          <img src={fileName ? "http://localhost:8000/api/image/" +fileName : img} alt="" style={{width: "450px", height: "450px", margin: "auto", display: "block", marginBottom: "20px"}} />
         </label>
 
         <div className="photo-container">
@@ -91,6 +81,10 @@ export default ({props, openEdit}) => {
             name="myFile"
             id='file-upload'
             accept='.jpeg, .png, .jpg'
+            onChange={(e) => {
+              e.preventDefault();
+              setFileName(e.target.files[0].name );
+            }} 
             
             className=""
           />
@@ -100,7 +94,7 @@ export default ({props, openEdit}) => {
     </div>
             <CardContent>
                 <Typography fontWeight= 'bolder' gutterBottom variant='h4' component='div' color='#030000'>{props.firstName} {props.maidenName} {props.marriedName}</Typography>
-                <Typography fontWeight= 'bolder' variant='h4' color='#a32738'>Class of {props.classYear}</Typography>
+                <Typography fontWeight= 'bolder' variant='h4' color='#a32738'>Class of {user.classYear}</Typography>
                 <br />
                 <Typography variant='h5' color='#030000' style={{fontWeight: "bold"}}>Location</Typography>
                 <br />
