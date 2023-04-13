@@ -44,3 +44,21 @@ body {
     backdrop-filter: blur(1px);
     -webkit-backdrop-filter: blur(1px);
   }
+
+  .submitBtn {
+    justify-content: center;
+    align-items: center;
+    margin-left: 575px;
+    color: #fdfdfd;
+    background: #63625d;
+    margin-bottom: 3rem;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap;
+    padding: 14px 40px;
+    font-weight: 600;
+    font-size: '30px';
+  }

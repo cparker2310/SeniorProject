@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import api from '../../api/index';
-import { CgProfile } from "react-icons/cg";
+import { SlUserFemale } from "react-icons/sl";
 
 export const NavbarContainer= styled.div`
   width: 100%;
@@ -11,12 +11,12 @@ export const NavbarContainer= styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 24px;
-  max-width: 1800px;
+  max-width: 100%;
   background: linear-gradient(90deg, #60000D, #a32738);
 `;
 
 export const NavbarWrap= styled.div`
-  width: 1800px;
+  width: 100%;
   height: 100%;
   margin: 0 auto;
   z-index: 20;
@@ -133,7 +133,7 @@ const [user, setUser] = useState({})
           <ButtonContainer> 
             <Link state={{props:user}} style={{ textDecoration: 'none' }}>
           <Button css={`color: #e6e1e1; background: inherit;`} to={u ? "/profile" : "/consent"} state={{props:user}}>
-            {u ? <CgProfile style={{height: '40px', width: '40px', color: '#e6e1e1',  marginRight: '30px', marginTop: '10px'}}/> : "Register"}
+            {u ? <SlUserFemale style={{height: '40px', width: '40px', color: '#e6e1e1',  marginRight: '30px', marginTop: '10px'}}/> : "Register"}
           </Button>
           </Link>
           <Button onClick={logOut} to={u ? "/" : "/login"}>

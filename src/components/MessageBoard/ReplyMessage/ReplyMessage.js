@@ -87,17 +87,17 @@ export default (props) => {
 
     }
 
-    const closeNewMessage= () => {
+    const closeNewComment= () => {
         setMessageDetails(initState);
-        props.closeNewMessage();
+        props.closeNewComment();
     }
     
     return (
-        <Dialog open={props.newMessage} fullWidth>
+        <Dialog open={props.newComment} fullWidth>
             <DialogTitle>
                 <Box display='flex' justifyContent='space-between' alignItems='center'>
                     Reply
-                    <IconButton onClick={closeNewMessage}>
+                    <IconButton onClick={closeNewComment}>
                         <CloseIcon />
                     </IconButton>
                 </Box>

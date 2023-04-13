@@ -20,7 +20,6 @@ export const Button= styled.button`
 
   &:hover {
     transition: all 0.2s ease-in-out;
-    background: '63625d';
     color: '#fdfdfd';
   }
 `;

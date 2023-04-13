@@ -5,7 +5,11 @@ import { FaPaw } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import img from "../../images/female-icon.png"
 import './index.css'
-
+import { MdLocationOn } from 'react-icons/md';
+import { GiGraduateCap } from 'react-icons/gi';
+import { FaBriefcase } from 'react-icons/fa';
+import { AiFillPhone } from 'react-icons/ai';
+import { BsCloudUpload } from 'react-icons/bs';
 import { 
     Box, 
     Card, 
@@ -74,11 +78,12 @@ export default ({props, openEdit}) => {
       <Box p={8} sx={{width: 1430, height: 1500}} alignItems='center'>
         <Card alignItems='center'>
         <div className="App">
+
       <form action={("http://localhost:8000/api/upload/" + fileName)} method="POST" encType="multipart/form-data"
       /*onSubmit={handleSubmit}*/>
 
         <label htmlFor="myFile" className='custom-file-upload'>
-          <img src={fileName ? "http://localhost:8000/api/image/" +fileName : img} alt="" style={{width: "450px", height: "450px", margin: "auto", display: "block", marginBottom: "20px"}} />
+          <img src={fileName ? "http://localhost:8000/api/image/" +fileName : img} alt="" style={{width: "450px", height: "450px", margin: "auto", display: "block", marginTop: "50px", marginBottom: "20px", border: "20px solid #dd6868"}} />
         </label>
 
         <div className="photo-container">
@@ -96,45 +101,45 @@ export default ({props, openEdit}) => {
             className=""
           />
         </div>
-         <button type='submit' onClick={onSubmit}>Submit</button>
+         <button type='submit' className="submitBtn" onClick={onSubmit}>Upload<BsCloudUpload /></button>
       </form>
     </div>
             <CardContent>
-                <Typography fontWeight= 'bolder' gutterBottom variant='h4' component='div' color='#030000'>{props.firstName} {props.maidenName} {props.marriedName}</Typography>
-                <Typography fontWeight= 'bolder' variant='h4' color='#a32738'>Class of {user.classYear}</Typography>
+                <Typography textAlign='center' fontWeight= 'bolder' gutterBottom variant='h3' component='div' color='#030000' style={{fontSize: '55px'}}>{props.firstName} {props.maidenName} {props.marriedName}</Typography>
+                <Typography textAlign='center' fontWeight= 'bolder' variant='h3' color='#a32738' marginBottom='3rem' style={{fontSize: '55px'}}>Class of {user.classYear}</Typography>
                 <br />
-                <Typography variant='h5' color='#030000' style={{fontWeight: "bold"}}>Location</Typography>
+                <Typography variant='h5' color='#dd6868' style={{marginLeft: "425px", fontWeight: "bold", fontSize: "35px"}}>Location<MdLocationOn /></Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>City: {user.currentCity} </Typography>
+                <Typography textAlign='center' variant='h6' color='#030000'>Current City: {user.currentCity} </Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>State: {user.currentState}</Typography>
-                <br />
-                <br />
-                <Typography variant='h5' color='#030000' style={{fontWeight: "bold"}}>Education</Typography>
-                <br />
-                <Typography variant='h6' color='#030000'>Name of Institution: {user.universityName}</Typography>
-                <br />
-                <Typography variant='h6' color='#030000'>Degree Earned: {user.degree}</Typography>
-                <br />
-                <Typography variant='h6' color='#030000'>Area of Study: {user.areaStudy}</Typography>
-                <br />
-                <Typography variant='h6' color='#030000'>Graduation Year: {user.gradYear}</Typography>
+                <Typography textAlign='center' variant='h6' color='#030000'>Current State: {user.currentState}</Typography>
                 <br />
                 <br />
-                <Typography variant='h5' color='#030000' style={{fontWeight: "bold"}}>Career</Typography>
+                <Typography variant='h5' color='#dd6868' style={{marginLeft: "425px", fontWeight: "bold", fontSize: "35px"}}>Education<GiGraduateCap /></Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Position: {user.position}</Typography>
+                <Typography textAlign='center' variant='h6' color='#030000'>Name of Institution: {user.universityName}</Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Company Name: {user.companyName}</Typography>
+                <Typography textAlign='center' variant='h6' color='#030000'>Degree Earned: {user.degree}</Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Industry: {user.industry}</Typography>
+                <Typography textAlign='center' variant='h6' color='#030000'>Area of Study: {user.areaStudy}</Typography>
+                <br />
+                <Typography textAlign='center' variant='h6' color='#030000'>Graduation Year: {user.gradYear}</Typography>
                 <br />
                 <br />
-                <Typography variant='h5' color='#030000' style={{fontWeight: "bold"}}>Contact Information</Typography>
+                <Typography variant='h5' color='#dd6868' style={{marginLeft: "425px", fontWeight: "bold", fontSize: "35px"}}>Career <FaBriefcase /></Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Phone: {user.phone}</Typography>
+                <Typography textAlign='center' variant='h6' color='#030000'>Position: {user.position}</Typography>
                 <br />
-                <Typography variant='h6' color='#030000'>Email: {user.email2} </Typography>
+                <Typography textAlign='center' variant='h6' color='#030000'>Company Name: {user.companyName}</Typography>
+                <br />
+                <Typography textAlign='center' variant='h6' color='#030000'>Industry: {user.industry}</Typography>
+                <br />
+                <br />
+                <Typography variant='h5' color='#dd6868' style={{marginLeft: "225px", fontWeight: "bold", fontSize: "35px"}}>Contact Information <AiFillPhone /></Typography>
+                <br />
+                <Typography textAlign='center' variant='h6' color='#030000'>Phone: {user.phone}</Typography>
+                <br />
+                <Typography textAlign='center' variant='h6' color='#030000' marginBottom='3rem'>Email: {user.email2} </Typography>
             </CardContent>
             <CardActions style={{justifyContent: "center"}}>
             {show && <><Button variant='contained' onClick={openEdit} style={{ backgroundColor: "#a32738", fontSize: "15px", fontWeight: "bold", color: "#fdfdfd",  height: "50px", width: "200px", borderRadius: "8px" }}>Edit Profile <FaPaw /></Button>

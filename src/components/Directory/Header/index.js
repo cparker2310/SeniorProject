@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import { Grid } from '@material-ui/core';
 import api from '../../../api/index';
 import UserCard from '../UserCard/UserCard';
-import Filter from '../Filter/index';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { TailSpin } from  'react-loader-spinner';
 import { 
