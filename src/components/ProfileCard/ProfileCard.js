@@ -22,7 +22,7 @@ import api from '../../api/index';
 export default ({props, openEdit}) => {
   const [user, setUser] = useState({})
   const [fileName, setFileName] = useState("")
-
+  const [state, setState] = useState(false)
   const getUser = async () =>{
     await api.getUserById(props._id).then(user=>{
       setUser(user.data)
@@ -35,6 +35,10 @@ export default ({props, openEdit}) => {
     //console.log("inside")
   }, [openEdit])
   
+  useEffect(() => {
+    getUser()
+    console.log("getting")
+  }, [])
   const show = sessionStorage.getItem('user') === props._id || props.isAdmin
 
       
@@ -45,7 +49,10 @@ export default ({props, openEdit}) => {
     //console.log(fileName)
     const profileFinal = fileName
     const payload = {profileFinal}
-    await api.updateUserById(user._id, payload)
+    await api.updateUserById(user._id, payload).then(res=>{
+      setState(!state)
+    })
+    console.log(state)
   }
 
   
