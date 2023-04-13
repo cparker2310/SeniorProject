@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
 import CloseIcon from '@mui/icons-material/Close';
+import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { 
     Button,
     Typography,
@@ -49,7 +50,11 @@ const initState= {
 export default (props) => {
     const classes= useStyles();
     const [messageDetails, setMessageDetails]= useState(initState);
-    
+    const [image, setImage]= useState('');
+
+    function handleImage(e) {
+        setImage(e.target.files[0]);
+    }
 
     const handleChange= event => {
         event.persist();
@@ -78,9 +83,9 @@ export default (props) => {
             alert('You must be logged in to post to the message board')
             return
         }
-        const { author_id, dateCreated, title, categories, description, comments} = messageDetails
+        const { author_id, dateCreated, title, categories, description, comments } = messageDetails
       
-        const payload = { author_id, dateCreated, title, categories, description, comments}
+        const payload = { author_id, dateCreated, title, categories, description, comments }
             
           await api.insertMessage(payload).then(res => {
             //window.alert('Job Created')
@@ -116,6 +121,12 @@ export default (props) => {
                 <Grid container spacing={2}>
                     <Grid item xs={8}>
                         <FilledInput onChange={handleChange} name='title' value={messageDetails.title} autoComplete='off' placeholder=' Title *' disableUnderline fullWidth/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <FilledInput onChange={handleChange} name='description' value={messageDetails.description} autoComplete='off' placeholder='Description *' disableUnderline fullWidth multiline rows={4}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <FilledInput onChange={handleImage} name='media' type='file' disableUnderline fullWidth/>
                     </Grid>
                 </Grid>
                 <Box mt={2}>

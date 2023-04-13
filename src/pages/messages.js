@@ -60,7 +60,7 @@ const MessageBoard = () => {
                 {theMessage.map((msg)=>{
           return (<><MessageCard props={msg} openEditMessage={() => setEditMessage(true)} openComment={() => setNewComment(true)}/>
           <EditMessage _id={msg._id} closeEditMessage={() => setEditMessage(false)} editMessage={editMessage}></EditMessage>
-          <ReplyMessage closeNewMessage={() => setNewComment(false)} newMessage={newComment} id={msg._id} />
+          <ReplyMessage closeNewComment={() => setNewComment(false)} newComment={newComment} id={msg._id} />
           </>)})}
               </Grid>
             </Grid>
