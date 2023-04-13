@@ -22,9 +22,10 @@ const Title= styled.h1`
     color: #fdfdfd;
     position: relative;
     z-index: 1;
-    margin: 335px;
+    margin: 325px;
     text-align: center;
     text-shadow: 1.5px 1.5px 2.5px #030000;
+    margin-bottom: 3.75rem;
 `;
 
 const Hero = () => {
@@ -45,7 +46,8 @@ const Hero = () => {
                             margin: auto; 
                             margin-top: 32px;
                             height: 60px;
-                            width: 280px;`} 
+                            width: 280px;
+                            cursor: pointer;`} 
                         onMouseEnter={onHover} onMouseLeave={onHover}>
                   JOIN NETWORK {hover ? <GiFlatPawPrint /> : <FaPaw />}
               </Button>

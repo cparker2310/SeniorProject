@@ -21,6 +21,7 @@ const Background= styled.section`
     background-size: cover;
     background-repeat: no-repeat;
     position: fixed;
+    overflow: scroll;
 `;
 
 const MessageBoard = () => {
@@ -65,8 +66,8 @@ const MessageBoard = () => {
             </Grid>
           </Box>
         </ThemeProvider>
+        <Footer />
       </Background>
-      <Footer />
     </>
   )
 }

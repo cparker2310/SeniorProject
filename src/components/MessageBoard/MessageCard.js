@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import ReplyCard from './ReplyMessage/ReplyCard';
 import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
 import { MdOutlineEditNote } from 'react-icons/md';
@@ -86,6 +87,7 @@ export default function MessageCard({props, openEditMessage, openComment}){
     }
 
     return (
+        <>
         <Box p={2} className={classes.wrapper}>
             <Grid container>
                 <Grid item xs alignItems='center'>
@@ -98,6 +100,9 @@ export default function MessageCard({props, openEditMessage, openComment}){
                     <Grid item>
                         <Typography variant='caption'> {props.type} | {props.location}</Typography>
                     </Grid>
+                    {/*<Box p={2}>
+                        <ReplyCard />
+                    </Box>*/}
                     <Grid item>
                         <Box mt={2}>
                             <IconButton style={{marginRight: '-21px'}} onClick={openComment}> <BiCommentDetail /> </IconButton>
@@ -126,5 +131,6 @@ export default function MessageCard({props, openEditMessage, openComment}){
                 </Grid>
             </Grid>
         </Box>
+        </>
     );
 }

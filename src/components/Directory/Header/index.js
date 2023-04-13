@@ -6,7 +6,7 @@ import api from '../../../api/index';
 import UserCard from '../UserCard/UserCard';
 import Filter from '../Filter/index';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import ReactSpinner from 'react-bootstrap-spinner';
+import { TailSpin } from  'react-loader-spinner';
 import { 
   Button,
   Select,
@@ -101,7 +101,7 @@ export default function SearchUser({ props }) {
             const years= response.data.map(user => user.classYear);
             let allYears= Array.from(new Set(years));
             allYears = allYears.reverse()
-            setClassYears(allYears);//setClassYears(years.sort((a, b) => b-a));
+            setClassYears(allYears);
         };
         getClassYears();
     }, []);
@@ -150,10 +150,20 @@ export default function SearchUser({ props }) {
     return (
       <InfiniteScroll
         dataLength={searchedUsers.length} 
-        next={() => setPage(page+1)} 
+        next={() => setPage(page+1)}  
         hasMore={true}
-        loader={<ReactSpinner animation="border" role="status" color="#a32738" />}
-      >
+        loader={<TailSpin
+        height="30"
+        width="30"
+        color="#a32738"
+        ariaLabel="tail-spin-loading"
+        radius="1"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+        justifyContent="center"
+        />}
+        >
         <Box py={10}>
         <Box p={1} mt={-5} mb={2} className={classes.wrapper}>
             <Select onChange={handleChange} name='years' value={userSearch.years} disableUnderline variant='filled'>

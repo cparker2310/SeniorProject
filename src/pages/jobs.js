@@ -12,7 +12,7 @@ import JobCard from '../components/CareerCenter/Jobs/JobCard';
 import NewJob from '../components/CareerCenter/Jobs/NewJob';
 import EditJob from '../components/CareerCenter/Jobs/EditJob/EditJob';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import ReactSpinner from 'react-bootstrap-spinner';
+import { TailSpin } from  'react-loader-spinner';
 import api from '../api/index';
 
 const Background= styled.section`
@@ -73,19 +73,20 @@ const CareerCenter = () => {
 
       getJobs()
     },[])
-    
+  
   const getNextJobs= async () => {
-    const nextPage= page+1;
-    await api.getAllJobs(nextPage).then((response) => {
-      const nextJobs= response.data;
-      if (nextJobs.length> 0) {
+      const nextPage= page+1;
+      await api.getAllJobs(nextPage).then((response) => {
+        const nextJobs= response.data.filter((job) => !jobAlreadyPosted(job, job));
         setJobs([...job, ...nextJobs]);
         setPage(nextPage);
-      } else {
-        setPage(0);
-      }
-    });
-  }
+      });
+  };
+    
+  const jobAlreadyPosted= (job, jobs) => {
+      return jobs.some((j) => j._id=== job._id);
+  };
+    
 
   return (
     <>
@@ -99,16 +100,26 @@ const CareerCenter = () => {
               <Grid item xs={10}>
                 <Search filterJobs={filterJobs}/>
                 <InfiniteScroll
-                    dataLength={job.length} 
+                    dataLength={filterJobs.length} 
                     next={getNextJobs} 
                     hasMore={true}
-                    loader={<ReactSpinner animation="border" role="status" color="#a32738" />}
+                    loader={<TailSpin
+                      height="30"
+                      width="30"
+                      color="#a32738"
+                      ariaLabel="tail-spin-loading"
+                      radius="1"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                      alignItems="center"
+                    />}
                 >
                 {job.map((job)=>{
                     return (<><JobCard props={job} openEditJob={() => setEditJob(true)}/>
                     <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
                     </>)})} 
-                </InfiniteScroll>  
+                </InfiniteScroll>
               </Grid>
             </Grid>
           </Box>
