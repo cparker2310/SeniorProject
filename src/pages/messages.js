@@ -53,7 +53,7 @@ const MessageBoard = () => {
         <ThemeProvider theme={theme}>
           <Header openNewMessage={() => setNewMessage(true)} />
           <NewMessage closeNewMessage={() => setNewMessage(false)} newMessage={newMessage} />
-          <ReplyMessage closeNewMessage={() => setNewMessage(false)} newMessage={newMessage} />
+          <ReplyMessage closeNewComment={() => setNewComment(false)} newComment={newComment} />
           <Box mb={3}>
             <Grid container justifyContent='center'>
               <Grid item xs={10}>

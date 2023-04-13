@@ -13,7 +13,7 @@ import {
     IconButton,
     makeStyles
 } from '@material-ui/core';
-import api from '../../../api/index';
+import api from '../../../../api/index';
 
 const useStyles= makeStyles(theme => ({
     categoryChip: {
@@ -87,17 +87,17 @@ export default (props) => {
 
     }
 
-    const closeNewJob= () => {
+    const closeNewComment= () => {
         setJobDetails(initState);
-        props.closeNewJob();
+        props.closeNewComment();
     }
     
     return (
-        <Dialog open={props.newJob} fullWidth>
+        <Dialog open={props.newComment} fullWidth>
             <DialogTitle>
                 <Box display='flex' justifyContent='space-between' alignItems='center'>
                     Reply
-                    <IconButton onClick={closeNewJob}>
+                    <IconButton onClick={closeNewComment}>
                         <CloseIcon />
                     </IconButton>
                 </Box>
