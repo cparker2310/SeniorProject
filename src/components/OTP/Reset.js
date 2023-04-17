@@ -109,7 +109,7 @@ export default function Reset() {
       }
     }
 
-    api.get(`/users/${sessionStorage.getItem('user')}`)
+    api.getUserById(sessionStorage.getItem('user'))
     .then(response => {
       const email= response.data.email;
       api.post('update_password', {
