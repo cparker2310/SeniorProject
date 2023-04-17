@@ -23,12 +23,14 @@ import api from '../../api/index';
 const useStyles= makeStyles((theme) => ({
     wrapper: {
         border: '1px solid #63625d',
+        spacing: 8,
         backgroundColor: '#fdfdfd',
         display: 'flex',
         boxShadow: '0px 1px 5px rgba(0, 0, 0, 0.1)',
         borderRadius: '5px',
         cursor: 'pointer',
         transition: '.3s',
+        margin: theme.spacing(2),
 
         '&:hover': {
             boxShadow: '0px 5px 25px rgba(0, 0, 0, 0.1)',

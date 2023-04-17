@@ -94,6 +94,15 @@ export const FormButton= styled.button`
   }
 `;
 
+export const ForgotPassword= styled(Link)`
+  margin-top: 10px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #030000;
+  font-weight: 800;
+  text-align: center;
+`;
+
 export default function Login() {
   const [email, setEmail]= useState("");
   const [password, setPassword]= useState("");
@@ -163,6 +172,7 @@ useEffect(()=>{
               <FormButton as="a" href={link} onClick={validate} type="submit">
                   Submit <FaPaw />
               </FormButton>
+              <ForgotPassword href="#">Forgot Password?</ForgotPassword>
             </Form>
           </FormContent>
         </FormWrap>
