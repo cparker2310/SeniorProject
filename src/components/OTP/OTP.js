@@ -5,6 +5,7 @@ import Castle from '../../images/castle.jpg';
 import Footer from '../Footer/Footer';
 import { FaPaw } from 'react-icons/fa';
 import api from '../../api';
+import axios from 'axios';
 
 export const Container= styled.div`
   background-image: url(${Castle});
@@ -43,7 +44,7 @@ export const FormContent= styled.div`
 
 export const Form= styled.form`
   background: #fdfdfd;
-  max-width: 400px;
+  max-width: 800px;
   height: auto;
   width: 100%;
   z-index: 1;
@@ -74,6 +75,14 @@ export const FormInput= styled.input`
   margin-bottom: 32px;
   border-color: #030000;
   border-radius: 2px;
+  max-width: 100px;
+`;
+
+const OTPContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin: 0 auto;
 `;
 
 export const FormButton= styled.button`
@@ -87,6 +96,8 @@ export const FormButton= styled.button`
   text-decoration: none;
   text-align: center;
   font-weight: bolder;
+  max-width: 400px;
+  margin-left: 175px;
   border: none;
 
   &:hover {
@@ -95,67 +106,35 @@ export const FormButton= styled.button`
   }
 `;
 
-export const ForgotPassword= styled(Link)`
-  margin-top: 10px;
-  font-size: 14px;
-  text-decoration: none;
-  color: #030000;
-  font-weight: 800;
-  text-align: center;
-`;
-
 export default function Login() {
-  const [email, setEmail]= useState("");
-  const [password, setPassword]= useState("");
-  const [users, setUsers]= useState({});
-  const [pendings, setPendings]= useState({});
-  const [link, setLink]= useState("");
+    /*const { email, otp, setPage } = useContext(RecoveryContext);
+    const [timerCount, setTimer] = React.useState(60);
+    const [OTPinput, setOTPinput] = useState([0, 0, 0, 0]);
+    const [disable, setDisable] = useState(true);
   
-  
-  const getLists = async () => {
-
-    await api.getAllUsers().then(users=> {
-      setUsers(users.data)
-    })
-  
-    await api.getAllPendings().then(pendings => {
-      setPendings(pendings.data)})
-
-    }
-
-  const validate = async () => {
-    var flag = false;
-    for(let i = 0; i< users.length; i++){
-      if(users[i].email === email && users[i].password === password){
-        sessionStorage.setItem('user', users[i]._id)
-        
-        alert("Successful Login")
-        setLink("/")
-        flag = true;
-        break;
+    function verfiyOTP() {
+      if (parseInt(OTPinput.join("")) === otp) {
+        setPage("reset");
+        return;
       }
+      alert(
+        "The code you have entered is not correct.  Please try again."
+      );
+      return;
     }
-
-    if(!flag){
-      for(let i = 0; i< pendings.length; i++){
-        if(pendings[i].email === email && pendings[i].password === password){
-          alert('Account is pending verification') 
-          flag = true
-          break;
-        } 
-      } 
-      if(!flag){
-        alert('Invalid Credentials')
-        setLink("/login")   
-      }
-  }
-}
-
-useEffect(()=>{
-  getLists()
-})
-
   
+   useEffect(() => {
+      let interval = setInterval(() => {
+        setTimer((lastTimerCount) => {
+          lastTimerCount <= 1 && clearInterval(interval);
+          if (lastTimerCount <= 1) setDisable(false);
+          if (lastTimerCount <= 0) return lastTimerCount;
+          return lastTimerCount - 1;
+        });
+      }, 1000);
+      return () => clearInterval(interval);
+    }, [disable]);*/
+
   return (
     <>
       <Container>
@@ -163,17 +142,16 @@ useEffect(()=>{
           <Icon to="/">MARYVALE</Icon>
           <FormContent >
             <Form action='#'>
-              <FormH1>Log In</FormH1>
-              <FormLabel htmlFor='for'>Email</FormLabel>
-                <FormInput type='email' 
-                    onChange={(event) => setEmail( event.target.value )}/>
-              <FormLabel htmlFor='for'>Password</FormLabel>
-                <FormInput type='password' 
-                    onChange={(event) => setPassword( event.target.value )}/>
-              <FormButton as="a" href={link} onClick={validate} type="submit">
+              <FormH1>Check Your Email for a One-Time Passcode</FormH1>
+                <OTPContainer>
+                    <FormInput type='password' />
+                    <FormInput type='password' />
+                    <FormInput type='password' />
+                    <FormInput type='password' />
+                </OTPContainer>
+              <FormButton type="submit">
                   Submit <FaPaw />
               </FormButton>
-              <ForgotPassword to='/otp'>Forgot Password?</ForgotPassword>
             </Form>
           </FormContent>
         </FormWrap>
