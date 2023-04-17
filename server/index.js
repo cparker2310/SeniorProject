@@ -2,14 +2,15 @@ const express = require('express')
 const crypto = require('crypto')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const multer = require('multer');
-const nodemailer = require('nodemailer');
-const {GridFsStorage} = require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
-const methodOverride = require('method-override');
+const multer = require('multer')
+const nodemailer = require('nodemailer')
+const {GridFsStorage} = require('multer-gridfs-storage')
+const Grid = require('gridfs-stream')
+const methodOverride = require('method-override')
 const path = require('path')
 
 const db = require('./db')
+const User = require('./controllers/user-ctrl')
 const router = require('./routes/router')
 
 const app = express()
@@ -35,7 +36,7 @@ function sendEmail({ recipient_email, OTP }) {
         user: process.env.MY_EMAIL,
         pass: process.env.MY_PASSWORD,
       },
-    });
+    })
 
     const mail_configs = {
       from: process.env.MY_EMAIL,
@@ -71,27 +72,43 @@ function sendEmail({ recipient_email, OTP }) {
         
       </body>
       </html>`,
-    };
+    }
     transporter.sendMail(mail_configs, function (error, info) {
       if (error) {
         console.log(error);
-        return reject({ message: `An error has occured` });
+        return reject({ message: `An error has occured` })
       }
-      return resolve({ message: "Email sent succesfuly" });
-    });
-  });
+      return resolve({ message: "Email sent succesfuly" })
+    })
+  })
 }
 
 app.get("/", (req, res) => {
   console.log(process.env.MY_EMAIL);
-});
+})
 
 app.post("/send_recovery_email", (req, res) => {
   sendEmail(req.body)
     .then((response) => res.send(response.message))
-    .catch((error) => res.status(500).send(error.message));
+    .catch((error) => res.status(500).send(error.message))
 });
 
+
+app.post('/update_password', async (req, res) => {
+  const { email, password }= req.body;
+  try {
+    const user= await User.getUserById({email})
+
+    if (!user) {
+      return res.status(404).json({message: "User not found"})
+    }
+    user.password= password;
+    await user.save();
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message: "Your password can not be updated at this time"})
+  }
+})
   /*
 const upload = multer({ storage})
 app.post('/upload', upload.single('myFile'), (req, res) => {

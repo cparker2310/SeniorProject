@@ -121,7 +121,7 @@ export default function Login() {
       console.log(OTP);
       setOTP(OTP);
 
-      axios.post("http://localhost:8000/api/send_recovery_email", {
+      api.post('/send_recovery_email', {
         OTP,
         recipient_email: email,
       }).then(() => setLink("otp")).catch(console.log);

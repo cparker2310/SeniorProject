@@ -5,7 +5,6 @@ import Castle from '../../images/castle.jpg';
 import Footer from '../Footer/Footer';
 import { FaPaw } from 'react-icons/fa';
 import api from '../../api';
-import axios from 'axios';
 import { RecoveryContext } from '../../App';
 
 export const Container= styled.div`
@@ -107,7 +106,7 @@ export const FormButton= styled.button`
   }
 `;
 
-export default function Login() {
+export default function OTP() {
     const { email, otp, setLink } = useContext(RecoveryContext);
     const [OTPinput, setOTPinput] = useState([0, 0, 0, 0]);
   

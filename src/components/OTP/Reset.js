@@ -5,7 +5,6 @@ import Castle from '../../images/castle.jpg';
 import Footer from '../Footer/Footer';
 import { FaPaw } from 'react-icons/fa';
 import api from '../../api';
-import axios from 'axios';
 import { useContext } from 'react';
 import { RecoveryContext } from '../../App';
 
@@ -98,7 +97,35 @@ export const FormButton= styled.button`
   }
 `;
 
-export default function Login() {
+export default function Reset() {
+    const { setLink }= useContext(RecoveryContext);
+    const [newPassword, setNewPassword]= useState("");
+    const [confirmPassword, setConfirmPassword]= useState("");
+
+    function changePassword() {
+      if (newPassword!== confirmPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+    }
+
+    api.get(`/users/${sessionStorage.getItem('user')}`)
+    .then(response => {
+      const email= response.data.email;
+      api.post('update_password', {
+        email: email,
+        password: newPassword
+      }).then(() => {
+        setLink("/login");
+      }).catch((error) => {
+        console.log(error);
+        alert("Your password can not be updated at this time");
+      });
+    })
+    .catch(error => {
+      console.log(error);
+      alert("Your password can not be updated at this time");
+    });  
 
   return (
     <>
@@ -109,10 +136,21 @@ export default function Login() {
             <Form action='#'>
               <FormH1>Reset Password</FormH1>
               <FormLabel htmlFor='for'>New Password</FormLabel>
-                <FormInput type='email' />
+                <FormInput 
+                  type='password' 
+                  value={newPassword}
+                  onChange={(event) => setNewPassword(event.target.value)}
+                />
               <FormLabel htmlFor='for'>Confirm New Password</FormLabel>
-                <FormInput type='password' />
-              <FormButton type="submit">
+                <FormInput 
+                  type='password'
+                  value={confirmPassword}
+                  onChange={(event) => setConfirmPassword(event.target.value)}
+                />
+              <FormButton 
+                  type="submit"
+                  onClick={changePassword}
+              >
                   Submit <FaPaw />
               </FormButton>
             </Form>
