@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Castle from '../../images/castle.jpg';
@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer';
 import { FaPaw } from 'react-icons/fa';
 import api from '../../api';
 import axios from 'axios';
+import { RecoveryContext } from '../../App';
 
 export const Container= styled.div`
   background-image: url(${Castle});
@@ -107,33 +108,19 @@ export const FormButton= styled.button`
 `;
 
 export default function Login() {
-    /*const { email, otp, setPage } = useContext(RecoveryContext);
-    const [timerCount, setTimer] = React.useState(60);
+    const { email, otp, setLink } = useContext(RecoveryContext);
     const [OTPinput, setOTPinput] = useState([0, 0, 0, 0]);
-    const [disable, setDisable] = useState(true);
   
     function verfiyOTP() {
       if (parseInt(OTPinput.join("")) === otp) {
-        setPage("reset");
+        setLink("reset");
         return;
       }
       alert(
-        "The code you have entered is not correct.  Please try again."
+        "The code you have entered is incorrect.  Please try again."
       );
       return;
     }
-  
-   useEffect(() => {
-      let interval = setInterval(() => {
-        setTimer((lastTimerCount) => {
-          lastTimerCount <= 1 && clearInterval(interval);
-          if (lastTimerCount <= 1) setDisable(false);
-          if (lastTimerCount <= 0) return lastTimerCount;
-          return lastTimerCount - 1;
-        });
-      }, 1000);
-      return () => clearInterval(interval);
-    }, [disable]);*/
 
   return (
     <>
@@ -144,12 +131,51 @@ export default function Login() {
             <Form action='#'>
               <FormH1>Check Your Email for a One-Time Passcode</FormH1>
                 <OTPContainer>
-                    <FormInput type='password' />
-                    <FormInput type='password' />
-                    <FormInput type='password' />
-                    <FormInput type='password' />
+                    <FormInput type='text'
+                        onChange={(event) => 
+                            setOTPinput([
+                                event.target.value,
+                                OTPinput[1],
+                                OTPinput[2],
+                                OTPinput[3],
+                            ])
+                        } 
+                    />
+                    <FormInput type='text' 
+                         onChange={(event) => 
+                            setOTPinput([
+                                OTPinput[0],
+                                event.target.value,
+                                OTPinput[2],
+                                OTPinput[3],
+                            ])
+                        } 
+                    />
+                    <FormInput type='text' 
+                        onChange={(event) => 
+                            setOTPinput([
+                                OTPinput[0],
+                                OTPinput[1],
+                                event.target.value,
+                                OTPinput[3],
+                            ])
+                        }
+                    />
+                    <FormInput type='text'
+                        onChange={(event) => 
+                            setOTPinput([
+                                OTPinput[0],
+                                OTPinput[1],
+                                OTPinput[2],
+                                event.target.value,
+                            ])
+                        }
+                    />
                 </OTPContainer>
-              <FormButton type="submit">
+              <FormButton 
+                type="submit"
+                onClick={() => verfiyOTP()}
+              >
                   Submit <FaPaw />
               </FormButton>
             </Form>

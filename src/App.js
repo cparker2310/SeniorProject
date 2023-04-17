@@ -12,6 +12,7 @@ import Form from './components/MultiStepForm/Form';
 import ProfilePage from './pages/Profile/profile';
 import PendingUsers from './pages/PendingUsers';
 import OTP from './components/OTP/OTP';
+import Reset from './components/OTP/Reset';
 
 export const RecoveryContext= createContext();
 
@@ -36,6 +37,7 @@ function App() {
                         <Route path="/otp" element={<OTP />} exact />
                         <Route path="/profile" element={<ProfilePage />} exact />
                         <Route path="/pending" element={<PendingUsers />} exact />
+                        <Route path="/reset" element={<Reset />} exact />
                     </Routes>
                 </Router>
             </RecoveryContext.Provider>

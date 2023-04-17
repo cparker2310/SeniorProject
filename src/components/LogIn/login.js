@@ -5,6 +5,9 @@ import Castle from '../../images/castle.jpg';
 import Footer from '../Footer/Footer';
 import { FaPaw } from 'react-icons/fa';
 import api from '../../api';
+import axios from 'axios';
+import { useContext } from 'react';
+import { RecoveryContext } from '../../App';
 
 export const Container= styled.div`
   background-image: url(${Castle});
@@ -105,11 +108,27 @@ export const ForgotPassword= styled(Link)`
 `;
 
 export default function Login() {
-  const [email, setEmail]= useState("");
+  //const [email, setEmail]= useState("");
   const [password, setPassword]= useState("");
   const [users, setUsers]= useState({});
   const [pendings, setPendings]= useState({});
   const [link, setLink]= useState("");
+  const { setOTP, email, setEmail }= useContext(RecoveryContext);
+
+  function navigateToOTP() {
+    if (email) {
+      const OTP= Math.floor(Math.random()*9000+1000);
+      console.log(OTP);
+      setOTP(OTP);
+
+      axios.post("http://localhost:8000/api/send_recovery_email", {
+        OTP,
+        recipient_email: email,
+      }).then(() => setLink("otp")).catch(console.log);
+      return;
+    }
+    return alert("Please check your email for a One-time Passcode");
+  }
   
   
   const getLists = async () => {
@@ -155,7 +174,6 @@ useEffect(()=>{
   getLists()
 })
 
-  
   return (
     <>
       <Container>
@@ -173,7 +191,7 @@ useEffect(()=>{
               <FormButton as="a" href={link} onClick={validate} type="submit">
                   Submit <FaPaw />
               </FormButton>
-              <ForgotPassword to='/otp'>Forgot Password?</ForgotPassword>
+              <ForgotPassword onClick={() => navigateToOTP()} to='/otp'>Forgot Password?</ForgotPassword>
             </Form>
           </FormContent>
         </FormWrap>
