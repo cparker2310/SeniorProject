@@ -5,6 +5,7 @@ import Button from '../Button';
 import Footer from '../Footer/Footer';
 import { FaPaw } from 'react-icons/fa';
 import { GiFlatPawPrint } from "react-icons/gi";
+import { Link } from 'react-router-dom';
 
 const Section= styled.section`
     background-image: url(${Castle});
@@ -40,6 +41,7 @@ const Hero = () => {
     <Section>
        <Title>Maryvale Alumnae Network
             <a href="/consent" css={`text-decoration: none;`}>
+            <Link style={{ textDecoration: 'none' }} to={sessionStorage.getItem('user') ? '#': "/login" }>
               <Button css={`font-size: 28px; 
                             background: linear-gradient(90deg, #60000D, #a32738); 
                             color: #fdfdfd; 
@@ -49,8 +51,9 @@ const Hero = () => {
                             width: 280px;
                             cursor: pointer;`} 
                         onMouseEnter={onHover} onMouseLeave={onHover}>
-                  JOIN NETWORK {hover ? <GiFlatPawPrint /> : <FaPaw />}
+                  {sessionStorage.getItem('user') ? "Welcome":"JOIN NETWORK"} {hover ? <GiFlatPawPrint /> : <FaPaw />}
               </Button>
+              </Link>
             </a>
         </Title>
         <Footer />
