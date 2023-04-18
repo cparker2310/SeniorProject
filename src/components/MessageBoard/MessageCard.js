@@ -6,6 +6,7 @@ import { MdOutlineEditNote } from 'react-icons/md';
 import { GiTrashCan } from 'react-icons/gi';
 import { BiCommentDetail } from 'react-icons/bi';
 import CloseIcon from '@mui/icons-material/Close';
+import api from '../../api/index'
 import { 
     Button,
     Grid,
@@ -17,7 +18,7 @@ import {
     DialogContentText,
     makeStyles
 } from '@material-ui/core';
-import api from '../../api/index';
+
 
 
 const useStyles= makeStyles((theme) => ({
@@ -67,6 +68,7 @@ export default function MessageCard({props, openEditMessage, openComment}){
     const categories= props.categories
     const element = sessionStorage.getItem('user') === props.author_id || props.isAdmin ? <GiTrashCan /> : <></>
     const element2 = sessionStorage.getItem('user') === props.author_id || props.isAdmin ?<MdOutlineEditNote/> : <></>
+    const [user, setUser] = useState({})
     const [messageDescription, setMessageDescription]= useState("");
     const [openMessageDetails, setOpenMessageDetails]= useState(false);
     const handleDelete = async () => {
@@ -84,7 +86,9 @@ export default function MessageCard({props, openEditMessage, openComment}){
 
     const viewDetails= async () => {
         const response= await api.getMessageById(props._id);
+        const u = await api.getUserById(props.author_id)
         setMessageDescription(response.description);
+        setUser(u.data)
         setOpenMessageDetails(true);
     }
 
@@ -122,7 +126,7 @@ export default function MessageCard({props, openEditMessage, openComment}){
                                         <DialogContentText style={{color: '#60000d', fontWeight: 'bold'}}>Categories: {props.categories}</DialogContentText>
                                     </DialogContent>
                                     <DialogContent>
-                                        <DialogContentText>Posted By: {props.author_id}</DialogContentText>
+                                        <DialogContentText>Posted By: {user.firstName} {user.maidenName}</DialogContentText>
                                     </DialogContent>
                                     <DialogContent>
                                         <DialogContentText>Description: {props.description}</DialogContentText>
