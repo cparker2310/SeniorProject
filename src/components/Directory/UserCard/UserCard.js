@@ -3,8 +3,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Button, CardActionArea, CardActions, Avatar } from '@mui/material';
 import { FaPaw } from 'react-icons/fa';
+import { SlUserFemale } from "react-icons/sl";
 import { ThemeProvider } from '@material-ui/core';
 import theme from '../../Directory/theme/theme';
 import "@fontsource/lora";
@@ -23,22 +24,25 @@ import { Link } from 'react-router-dom';
           }}*/
          >
       <CardActionArea>
-          <CardMedia
+          {/*<CardMedia
             component="img"
             image={`http://localhost:8000/api/image/`}
             // image={`http://localhost:8000/api/image/${props.image}`}
             alt="profile picture"
             width={70}
             height={70}
-          />
-          <CardContent>
-          <Typography gutterBottom variant="h6" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>
-            {props.firstName} {props.maidenName} {props.marriedName}
-          </Typography>
-          <Typography variant="body1" color="#a32738" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>
-              Class of {props.classYear}
-          </Typography>
-          </CardContent>
+        />*/}
+        <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Avatar sx={{ bg: [500], mb: 1, width: 60, height: 60 }}>
+              <SlUserFemale style={{ height: '40px', width: '40px' }}/>
+          </Avatar>
+            <Typography gutterBottom variant="h6" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>
+              {props.firstName} {props.maidenName} {props.marriedName}
+            </Typography>
+            <Typography variant="body1" color="#a32738" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>
+                Class of {props.classYear}
+            </Typography>
+        </CardContent>
       </CardActionArea>
       <CardActions style={{justifyContent: "center"}}>
         <Link to="/profile" state={{ props: props }} style={{ textDecoration: 'none' }}>
