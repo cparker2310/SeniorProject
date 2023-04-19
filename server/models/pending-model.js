@@ -22,6 +22,7 @@ const Pending = new Schema(
       industry: { type: String, required: false },
       email2: { type: String, required: false },
       phone: { type: String, required: false },
+      profileFinal: {type: String, default: false},
       //imageName: { type: String, required: true },
       //image: { data: Buffer, contentType: String }
       isAdmin: { type: Boolean, default: false }

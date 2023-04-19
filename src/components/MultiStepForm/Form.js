@@ -44,7 +44,8 @@ const Form = () => {
       companyName: "",
       industry: "",
       email2: "",
-      phone: ""
+      phone: "",
+      profileFinal: ""
   });
 
   const FormTitles= ["Personal Details", "Profile Picture", "Location", "Education", "Career", "Contact Information"];
@@ -53,11 +54,11 @@ const Form = () => {
     //alert("inside")
     const { email, password, firstName, maidenName, marriedName,
       classYear, currentCity, currentState, universityName, degree,
-        areaStudy, gradYear, position, companyName, industry, email2, phone } = formData
+        areaStudy, gradYear, position, companyName, industry, email2, phone, profileFinal } = formData
 
     const payload = { email, password, firstName, maidenName, marriedName,
       classYear, currentCity, currentState, universityName, degree,
-        areaStudy, gradYear, position, companyName, industry, email2, phone }
+        areaStudy, gradYear, position, companyName, industry, email2, phone, profileFinal }
 
     await api.insertPending(payload).then(res => {
       window.alert('Registration info sent to admin for verification')

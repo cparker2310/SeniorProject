@@ -116,7 +116,7 @@ export default function MessageCard({props, openEditMessage, openComment}){
                             <><IconButton style={{marginRight: '-21px'}} onClick={openEditMessage}> <MdOutlineEditNote/> </IconButton>
                             <IconButton onClick={handleDelete}><GiTrashCan /></IconButton></>}
                             <Button style={{backgroundColor: '#63625d', color: '#fdfdfd'}} onClick={viewDetails}>View Details <FaPaw /></Button>
-                            <Dialog open={openMessageDetails} close={closeViewMessage} style={{ height: '1200px', width: '1200px', margin: 'auto'}}>
+                            <Dialog open={openMessageDetails} close={closeViewMessage} style={{ height: '1200px', width: '1200px', margin: 'auto'}} fullWidth={true}>
                                 <IconButton onClick={closeViewMessage}>
                                     <CloseIcon style={{ position: 'absolute', top: 8, right: 8 }} />
                                 </IconButton>

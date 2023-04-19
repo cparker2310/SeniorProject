@@ -83,7 +83,7 @@ export default ({props, openEdit}) => {
       /*onSubmit={handleSubmit}*/>
 
         <label htmlFor="myFile" className='custom-file-upload'>
-          <img src={fileName ? "http://localhost:8000/api/image/" +fileName : img} alt="" style={{width: "450px", height: "450px", margin: "auto", display: "block", marginTop: "50px", marginBottom: "20px", border: "20px solid #dd6868"}} />
+          <img src={("http://localhost:8000/api/image/" +fileName) || img} alt="" style={{width: "450px", height: "450px", margin: "auto", display: "block", marginTop: "50px", marginBottom: "20px", border: "20px solid #dd6868"}} />
         </label>
 
         <div className="photo-container">

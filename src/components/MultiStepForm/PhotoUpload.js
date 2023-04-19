@@ -11,19 +11,30 @@ export const FormLabel= styled.label`
   margin-right: 125px;
 `;
 
-const PhotoUpload= () => {
-    const [image, setImage]= useState('');
+const PhotoUpload= ({ formData, setFormData }) => {
+    const [fileName, setFileName] = useState("")
 
-    function handleImage(e) {
-        setImage(e.target.files[0]);
-    }
+    
 
     return (
-    <div className="photo-container">
-      <input type="file" name='file'
-          onChange={handleImage}
+    
+    <form action={("http://localhost:8000/api/upload/" + formData.profileFinal)} method="POST" encType="multipart/form-data">
+      <div className="photo-container">
+      <input 
+        type="file"
+        lable="Image"
+        name="myFile"
+        
+        onChange={(event) => 
+          setFormData({...formData, profileFinal: event.target.files[0].name})}
+        
+        id='file-upload'
+        accept='.jpeg, .png, .jpg'
       />
-    </div>
+      </div>
+      <button type='submit' className="submitBtn">Save</button>
+    </form>
+    
     );
 }
 
