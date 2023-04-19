@@ -37,23 +37,18 @@ const useStyles= makeStyles(theme => ({
     }
 }));
 
-const initState= {
-    author_id: sessionStorage.getItem('user'),
-    //dateCreated: Date.now,
-    title: "",
-    description: "",
-    categories: [],
-    comments: []   
-}
+
 
 export default (props) => {
-    const classes= useStyles();
-    const [messageDetails, setMessageDetails]= useState("");
     
-
+    
+    
+    const [message, setMessage] = useState("")
+    const [messageDetails, setMessageDetails]= useState([]);
     const handleChange= event => {
         event.persist();
-        setMessageDetails(oldState => ({...oldState, [event.target.name] : event.target.value}));
+        //setMessageDetails(oldState => ({...oldState, [event.target.name] : event.target.value}));
+        setMessage(event.target.value)
     }
     
     const handleSubmit= async() => {
@@ -76,11 +71,13 @@ export default (props) => {
         }
         //props.comments.push([user, messageDetails])
         //const { comments} = messageDetails
-        const author_id = user
-        const comments = [user, messageDetails]
+        
+        //setMessageDetails(messageDetails.push([user, message]))
+        console.log(messageDetails)
+        const comments = [user, message]
         const payload = {comments}
-            //console.log(comments)
-          await api.updateMessageById(props.id, comments).then(res => {
+        console.log(payload)
+          await api.updateMessageById(props.id, payload).then(res => {
             window.alert('Replied')
           })
           window.location.reload(true)
@@ -88,10 +85,9 @@ export default (props) => {
     }
 
     const closeNewComment= () => {
-        setMessageDetails(initState);
+        setMessageDetails([]);
         props.closeNewComment();
     }
-    
     return (
         <Dialog open={props.newComment} fullWidth>
             <DialogTitle>
@@ -105,7 +101,7 @@ export default (props) => {
             <DialogContent>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <FilledInput onChange={handleChange} name='comments' value={messageDetails.comments} autoComplete='off' placeholder='Add a Comment' disableUnderline fullWidth />
+                        <FilledInput onChange={handleChange} name='comments' autoComplete='off' placeholder='Add a Comment' disableUnderline fullWidth />
                     </Grid>
                 </Grid>
             </DialogContent>

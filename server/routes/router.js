@@ -66,10 +66,11 @@ const storage = new GridFsStorage({
 
 const upload = multer({ storage })
 router.post('/upload/:user_id', upload.single('myFile'), (req, res) => {
-    req.file.author_id = req.params.user_id
-    //res.render('http://localhost:3000/profile', {file:req.file})
+    
     //res.json({file:req.file});
-    //res.redirect("http://localhost:3000/profile")
+    res.status(204).send();
+   //res.redirect('http://localhost:3000/profile')
+    
   });
 
 router.get('/upload/:user_id', (req, res) => {

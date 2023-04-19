@@ -112,8 +112,9 @@ export default function MessageCard({props, openEditMessage, openComment}){
                     <Grid item>
                         <Box mt={2}>
                             <IconButton style={{marginRight: '-21px'}} onClick={openComment}> <BiCommentDetail /> </IconButton>
-                            <IconButton style={{marginRight: '-21px'}} onClick={openEditMessage}> {element2} </IconButton>
-                            <IconButton onClick={handleDelete}>{element}</IconButton>
+                            { (sessionStorage.getItem('user') === props.author_id || props.isAdmin) &&
+                            <><IconButton style={{marginRight: '-21px'}} onClick={openEditMessage}> <MdOutlineEditNote/> </IconButton>
+                            <IconButton onClick={handleDelete}><GiTrashCan /></IconButton></>}
                             <Button style={{backgroundColor: '#63625d', color: '#fdfdfd'}} onClick={viewDetails}>View Details <FaPaw /></Button>
                             <Dialog open={openMessageDetails} close={closeViewMessage} style={{ height: '1200px', width: '1200px', margin: 'auto'}}>
                                 <IconButton onClick={closeViewMessage}>

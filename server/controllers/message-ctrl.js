@@ -25,7 +25,6 @@ getMessageById = async function(req,res){ //REST get (one) method
     res.end(); //ends the response (only 1 end per response)
 }
 
-
 createMessage = function(req,res){
     let message = req.body;
     messageDao.create(message)
@@ -34,6 +33,7 @@ createMessage = function(req,res){
 
 updateMessage = async function(req, res){
     let message = req.body
+    //console.log(message)
     let id = req.params.id
     await messageDao.update(id, message)
     //res.redirect('/profile')

@@ -22,7 +22,7 @@ const MessageSchema= new Schema({
         type: [String],
     },
     comments: {
-        type: Schema.Types.Mixed
+        type: [[String, String]],
       }
     
 })
@@ -57,14 +57,20 @@ exports.deleteAll = async function(){
   await messageModel.deleteMany();
 }
 
+
 exports.update = async function (id, updatedMessage){
     let message = await messageModel.findById(id)
     if(!message) return; 
     console.log(updatedMessage)
     message.title = updatedMessage.title ? updatedMessage.title : message.title
     message.description = updatedMessage.description ? updatedMessage.description : message.description
-    message.comments = updatedMessage.comments ? updatedMessage.comments : message.comments
+    if(message.comments.length && updatedMessage.comments){
+      message.comments.push(updatedMessage.comments)
+    }
+    else{
+      message.comments = updatedMessage.comments ? [updatedMessage.comments] : []
+    }
+
     await message.save()
     return message
-
 }
