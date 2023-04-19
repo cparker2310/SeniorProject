@@ -36,12 +36,11 @@ router.put('/message/:id', MessageCtrl.updateMessage)
 router.delete('/message/:id', MessageCtrl.deleteMessage)
 router.get('/message/:id', MessageCtrl.getMessageById)
 router.get('/messages', MessageCtrl.getMessages)
-router.get('/index', UserCtrl.updateImageIndex)
 
 let gfs;
 db.once('open', () => {
     // Init stream
-    gridfsBucket = new mongoose.mongo.GridFSBucket(db, {
+    let gridfsBucket = new mongoose.mongo.GridFSBucket(db, {
       bucketName: 'uploads'
     });
     gfs = Grid(db, mongoose.mongo);  

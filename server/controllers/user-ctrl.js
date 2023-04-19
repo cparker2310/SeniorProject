@@ -24,32 +24,32 @@ getUserById = async function(req,res){ //REST get (one) method
     res.end(); //ends the response (only 1 end per response)
 }
 
-createUser = function(req,res){
+createUser = async function(req,res){
     let user = req.body;
     if(user){
-        userDao.create(user)
+        let createdUser = await userDao.create(user)
+        res.status(200).send(createdUser);
     }
-    
-    res.end()
-}
-
-updateImageIndex = async function (req, res){
-    let index = await userDao.maxIndex()
-    res.send(index)
+    //res.send(user)
     res.end()
 }
 
 updateUser = async function(req, res){
-    let user = req.body
-    let id = req.params.id
-    await userDao.update(id, user)
-    //res.redirect('/profile')
+    let user = req.body;
+    let id = req.params.id;
+    user = await userDao.update(id, user)
+    if(user){
+        res.status(200).send(user)
+    }
     res.end();
 }
 
 deleteUser = async function(req,res){
     let id = req.params.id; //get param and convert to int    
-    await userDao.del(id);
+    let deleted = await userDao.del(id);
+    if(deleted){
+        res.status(200).send(deleted)
+    }
     res.end();
     //}
 }
@@ -59,5 +59,4 @@ module.exports = {
     deleteUser,
     getUsers,
     getUserById,
-    updateImageIndex
 }
