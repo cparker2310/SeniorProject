@@ -11,6 +11,8 @@ import NewMessage from '../components/MessageBoard/NewMessage';
 import EditMessage from '../components/MessageBoard/EditMessage/EditMessage';
 import ReplyMessage from '../components/MessageBoard/ReplyMessage/ReplyMessage';
 import Footer from '../components/Footer/Footer';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { TailSpin } from  'react-loader-spinner';
 import api from '../api/index';
 
 const Background= styled.section`
@@ -30,6 +32,7 @@ const MessageBoard = () => {
   const [editMessage, setEditMessage]= useState(false);
   const [theMessage, setMessages] = useState([]);
   const [elements, setElements] = useState(<></>);
+  const [page, setPage]= useState(1);
 
   
   
@@ -43,9 +46,20 @@ const MessageBoard = () => {
 
     getMessages()
   }, [])
-  
-  
 
+  const getNextMessages= async () => {
+    const nextPage= page+1;
+    await api.getAllMessages(nextPage).then((response) => {
+      const nextMessages= response.data.filter((theMessage) => !messageAlreadyPosted(theMessage, theMessage));
+      setMessages([...theMessage, ...nextMessages]);
+      setPage(nextPage);
+    });
+};
+  
+const messageAlreadyPosted= (theMessage, messages) => {
+    return messages.some((m) => m._id=== theMessage._id);
+};
+  
   return (
     <>
       <Navbar />
@@ -57,11 +71,28 @@ const MessageBoard = () => {
           <Box mb={3}>
             <Grid container justifyContent='center'>
               <Grid item xs={10}>
+              <InfiniteScroll
+                    dataLength={theMessage.length} 
+                    next={getNextMessages} 
+                    hasMore={true}
+                    loader={<TailSpin
+                      height="30"
+                      width="30"
+                      color="#a32738"
+                      ariaLabel="tail-spin-loading"
+                      radius="1"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                      alignItems="center"
+                    />}
+                >
                 {theMessage.map((msg)=>{
           return (<><MessageCard props={msg} openEditMessage={() => setEditMessage(true)} openComment={() => setNewComment(true)}/>
           <EditMessage _id={msg._id} closeEditMessage={() => setEditMessage(false)} editMessage={editMessage}></EditMessage>
           <ReplyMessage closeNewComment={() => setNewComment(false)} newComment={newComment} id={msg._id} />
           </>)})}
+          </InfiniteScroll>
               </Grid>
             </Grid>
           </Box>

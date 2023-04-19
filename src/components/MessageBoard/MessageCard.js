@@ -111,7 +111,7 @@ export default function MessageCard({props, openEditMessage, openComment}){
                     </Box>*/}
                     <Grid item>
                         <Box mt={2}>
-                            <IconButton style={{marginRight: '-21px'}} onClick={openComment}> <BiCommentDetail /> </IconButton>
+                            <IconButton style={{marginRight: '-10px'}} onClick={openComment}> <BiCommentDetail /> </IconButton>
                             { (sessionStorage.getItem('user') === props.author_id || props.isAdmin) &&
                             <><IconButton style={{marginRight: '-21px'}} onClick={openEditMessage}> <MdOutlineEditNote/> </IconButton>
                             <IconButton onClick={handleDelete}><GiTrashCan /></IconButton></>}
