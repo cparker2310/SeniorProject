@@ -14,6 +14,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { TailSpin } from  'react-loader-spinner';
 
 const PendingUsers = () => {
     const [open, setOpen]= useState(false);
@@ -23,6 +25,7 @@ const PendingUsers = () => {
     const [action, setAction] = useState(false)
     const [element, setElement]= useState(<></>);
     const [admin, setAdmin] = useState(false)
+    const [page, setPage]= useState(1);
     
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -110,13 +113,24 @@ const PendingUsers = () => {
       getPendings();
     }, [action])
     
+    const getNextPendings= async () => {
+      const nextPage= page+1;
+      await api.getAllPendings(nextPage).then((response) => {
+        const nextPendings= response.data.filter((pendingUsers) => !pendingAlreadyPosted(pendingUsers, pendingUsers));
+        setPendings([...pendingUsers, ...nextPendings]);
+        setPage(nextPage);
+      });
+  };
     
-
+  const pendingAlreadyPosted= (pendingUsers, allPendingUsers) => {
+      return allPendingUsers.some((p) => p._id=== pendingUsers._id);
+  };
+    
   return (
     <>
       <Navbar />
       {admin &&
-      <TableContainer component={Paper}>
+      <TableContainer style={{ marginTop: '40px' }} component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
@@ -130,6 +144,22 @@ const PendingUsers = () => {
           </TableRow>
         </TableHead>
         <TableBody>
+        <InfiniteScroll
+            dataLength={pendingUsers.length} 
+            next={getNextPendings} 
+            hasMore={true}
+            loader={<TailSpin
+                      height="30"
+                      width="30"
+                      color="#a32738"
+                      ariaLabel="tail-spin-loading"
+                      radius="1"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                      alignItems="center"
+            />}
+          >
           {pendingUsers.map((user, index)=>{
               return <>
               <StyledTableRow key={user._id}>
@@ -145,6 +175,7 @@ const PendingUsers = () => {
                 </StyledTableCell>
               </StyledTableRow>
               </>})}
+        </InfiniteScroll>
         </TableBody>
       </Table>
     </TableContainer>   

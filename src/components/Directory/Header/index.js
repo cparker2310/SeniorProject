@@ -56,7 +56,7 @@ export default function SearchUser({ props }) {
     const searchNames= (event) => {
         const search= event.toLowerCase();
         const searchedNames= users.filter((user) =>
-            user.firstName.toLowerCase().includes(search) || user.maidenName.toLowerCase().includes(search) || user.marriedName.toLowerCase().includes(search)
+            user.firstName.toLowerCase().includes(search) || user.maidenName.toLowerCase().includes(search) //|| user.marriedName.toLowerCase().includes(search)
         );
         setSearchedUsers(searchedNames);
     };

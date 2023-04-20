@@ -89,7 +89,6 @@ const CareerCenter = () => {
       return jobs.some((j) => j._id=== job._id);
   };
     
-
   return (
     <>
       <Navbar />
