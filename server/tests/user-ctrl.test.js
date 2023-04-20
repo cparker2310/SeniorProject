@@ -1,4 +1,3 @@
-import user from '../controllers/user-ctrl'
 import app from '../index'
 const request = require("supertest");
 
@@ -6,13 +5,32 @@ beforeEach(() => {
 
 })
 
-afterEach(() => {
+afterEach(async () => {
+    let res = await request(app).get('/api/users');
+    let id = res.body[res.body.length-1]._id
+    res = await request(app).delete('/api/user/'+id);
+})
 
+afterAll(()=>{
+    app.close()
 })
 
 test('getAllUsers', async() => {
-    
-    const res = await request(app).get('/api/users');
+    const user = {
+        firstName: 'Johnna',
+        maidenName: 'Morgan',
+        classYear: '2012',
+        email: 'john.doe@example.com',
+        password: 'secret'
+        
+      };
+      
+    let res = await request(app)
+        .post('/api/user')
+        .set('Content-Type', 'application/json')
+        .send(JSON.stringify(user));
+
+    res = await request(app).get('/api/users');
     expect(res.status).toBe(200)
     expect(Array.isArray(res.body)).toBe(true)
     
@@ -20,7 +38,21 @@ test('getAllUsers', async() => {
 
 test('getByID', async() => {
     
-    let res = await request(app).get('/api/users');
+    const user = {
+        firstName: 'Johnna',
+        maidenName: 'Morgan',
+        classYear: '2012',
+        email: 'john.doe@example.com',
+        password: 'secret'
+        
+      };
+      
+    let res = await request(app)
+        .post('/api/user')
+        .set('Content-Type', 'application/json')
+        .send(JSON.stringify(user));
+
+    res = await request(app).get('/api/users');
     let id = res.body[res.body.length-1]._id
     res = await request(app).get('/api/user/' + id);
     expect(res.status).toBe(200)
@@ -87,6 +119,25 @@ test('update user', async () =>{
 })
 
 test('delete user', async () => {
+
+    const user = {
+        firstName: 'Johnna',
+        maidenName: 'Morgan',
+        classYear: '2012',
+        email: 'john.doe@example.com',
+        password: 'secret'
+        
+      };
+      
+    res = await request(app)
+        .post('/api/user')
+        .set('Content-Type', 'application/json')
+        .send(JSON.stringify(user));
+
+    res = await request(app)
+        .post('/api/user')
+        .set('Content-Type', 'application/json')
+        .send(JSON.stringify(user));
 
     let res = await request(app).get('/api/users');
     let id = res.body[res.body.length-1]._id

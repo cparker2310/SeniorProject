@@ -24,15 +24,19 @@ getPendingById = async function(req,res){ //REST get (one) method
     res.end(); //ends the response (only 1 end per response)
 }
 
-createPending = function(req,res){
+createPending = async function(req,res){
     let user = req.body;
-    pendingDao.create(user)
+    user = await pendingDao.create(user)
+    if(user){
+        res.status(200).send(user)
+    }
     res.end()
 }
 
 deletePending = async function(req,res){
     let id = req.params.id; //get param and convert to int    
     await pendingDao.del(id);
+    
     res.end();
     //}
 }

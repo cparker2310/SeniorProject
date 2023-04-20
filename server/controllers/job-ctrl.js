@@ -26,16 +26,23 @@ getJobById = async function(req,res){ //REST get (one) method
 }
 
 
-createJob = function(req,res){
+createJob = async function(req,res){
     let job = req.body;
-    jobDao.create(job)
+    job = await jobDao.create(job)
+    if(job){
+        res.status(200).send(job)
+    }
+    
     res.end()
 }
 
 updateJob = async function(req, res){
     let job = req.body
     let id = req.params.id
-    await jobDao.update(id, job)
+    job = await jobDao.update(id, job)
+    if(job){
+        res.status(200).send(job)
+    }
     //res.redirect('/profile')
     res.end();
 }

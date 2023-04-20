@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const request = require("supertest");
+//import app from '../index'
 import userDao from '../models/user-model'
 const MONGODB_URI = 'mongodb+srv://cparker2310:astonsoccer@cluster0.2sqxf.mongodb.net/maryvale_temp'
 
@@ -24,7 +25,7 @@ const phone =  "123-456-7891"
 const isAdmin = false
 
 /* Connecting to the database before each test. */
-beforeEach(async () => {
+beforeAll(async () => {
     mongoose.connect(MONGODB_URI, { useNewUrlParser: true})
     
   });

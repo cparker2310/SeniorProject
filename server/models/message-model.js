@@ -61,7 +61,7 @@ exports.deleteAll = async function(){
 exports.update = async function (id, updatedMessage){
     let message = await messageModel.findById(id)
     if(!message) return; 
-    console.log(updatedMessage)
+    //console.log(updatedMessage)
     message.title = updatedMessage.title ? updatedMessage.title : message.title
     message.description = updatedMessage.description ? updatedMessage.description : message.description
     if(message.comments.length && updatedMessage.comments){
