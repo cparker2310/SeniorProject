@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './MultiForm.css';
 import styled from 'styled-components/macro';
 import { FaPaw } from 'react-icons/fa';
+import { BsCloudUpload } from 'react-icons/bs';
 import api from '../../api/index';
 
 export const FormLabel= styled.label`
@@ -32,7 +33,7 @@ const PhotoUpload= ({ formData, setFormData }) => {
         accept='.jpeg, .png, .jpg'
       />
       </div>
-      <button type='submit' className="submitBtn">Save</button>
+      <button style={{marginLeft: '210px'}} type='submit' className="submitBtn">Upload <BsCloudUpload /></button>
     </form>
     
     );

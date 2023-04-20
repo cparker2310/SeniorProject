@@ -1,16 +1,16 @@
 import React, { useState, createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/home';
+import Home from './pages/Home/home';
 import Consent from './components/Acknowledgement/Consent';
 import LogInPage from './components/LogIn/login';
-import SiteConduct from './pages/conduct';
+import SiteConduct from './pages/SiteConduct/conduct';
 import Directory from './pages/Directory/directory';
-import CareerCenter from './pages/jobs';
-import MessageBoard from './pages/messages';
+import CareerCenter from './pages/CareerCenter/jobs';
+import MessageBoard from './pages/MessageBoard/messages';
 import Form from './components/MultiStepForm/Form';
 //import EditProfile from './pages/Profile/EditProfile';        
 import ProfilePage from './pages/Profile/profile';
-import PendingUsers from './pages/PendingUsers';
+import PendingUsers from './pages/Admin/PendingUsers';
 import OTP from './components/OTP/OTP';
 import Reset from './components/OTP/Reset';
 

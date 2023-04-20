@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/NavBar/Navbar';
-import Footer from '../components/Footer/Footer';
-import Castle from '../images/castle.jpg';
+import Navbar from '../../components/NavBar/Navbar';
+import Footer from '../../components/Footer/Footer';
+import Castle from '../../images/castle.jpg';
 import styled from 'styled-components';
 import Box from "@mui/material/Box";
 import { ThemeProvider, Grid } from "@material-ui/core";
-import theme from '../components/CareerCenter/theme/theme';
-import Header from '../components/CareerCenter/Header';
-import Search from '../components/CareerCenter/Search';
-import JobCard from '../components/CareerCenter/Jobs/JobCard';
-import NewJob from '../components/CareerCenter/Jobs/NewJob';
-import EditJob from '../components/CareerCenter/Jobs/EditJob/EditJob';
-import ReplyJob from '../components/CareerCenter/Jobs/ReplyJob/ReplyJob';
+import theme from '../../components/CareerCenter/theme/theme';
+import Header from '../../components/CareerCenter/Header';
+import Search from '../../components/CareerCenter/Search';
+import JobCard from '../../components/CareerCenter/Jobs/JobCard';
+import NewJob from '../../components/CareerCenter/Jobs/NewJob';
+import EditJob from '../../components/CareerCenter/Jobs/EditJob/EditJob';
+import ReplyJob from '../../components/CareerCenter/Jobs/ReplyJob/ReplyJob';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { TailSpin } from  'react-loader-spinner';
-import api from '../api/index';
+import api from '../../api/index';
 
 const Background= styled.section`
     background-image: url(${Castle});
