@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 //import AdminVerify from '../components/AdminVerify/AdminVerify';
 import Navbar from '../../components/NavBar/Navbar';
+import Footer from '../../components/Footer/Footer';
 import api from '../../api/index';
 import './PendingUsers.css';
 import { styled } from '@mui/material/styles';
@@ -130,56 +131,58 @@ const PendingUsers = () => {
     <>
       <Navbar />
       {admin &&
-      <TableContainer style={{ marginTop: '40px' }} component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Newly Registered Users</StyledTableCell>
-            <StyledTableCell align="right">First Name</StyledTableCell>
-            <StyledTableCell align="right">Maiden Name</StyledTableCell>
-            <StyledTableCell align="right">Married Name</StyledTableCell>
-            <StyledTableCell align="right">Class Year</StyledTableCell>
-            <StyledTableCell align="right">Email</StyledTableCell>
-            <StyledTableCell align="right">Actions</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-        <InfiniteScroll
-            dataLength={pendingUsers.length} 
-            next={getNextPendings} 
-            hasMore={true}
-            loader={<TailSpin
-                      height="30"
-                      width="30"
-                      color="#a32738"
-                      ariaLabel="tail-spin-loading"
-                      radius="1"
-                      wrapperStyle={{}}
-                      wrapperClass=""
-                      visible={true}
-                      alignItems="center"
-            />}
-          >
-          {pendingUsers.map((user, index)=>{
-              return <>
-              <StyledTableRow key={user._id}>
-                <StyledTableCell align="right">{index+1}</StyledTableCell>
-                <StyledTableCell align="right">{user.firstName}</StyledTableCell>
-                <StyledTableCell align="right">{user.maidenName}</StyledTableCell>
-                <StyledTableCell align="right">{user.marriedName}</StyledTableCell>
-                <StyledTableCell align="right">{user.classYear}</StyledTableCell>
-                <StyledTableCell align="right">{user.email}</StyledTableCell>
-                <StyledTableCell align="right">
-                  <><button className='accept' onClick={() => handleAccept(user)}> Accept </button></>
-                      <><button className='deny' onClick={() => handleDeny(user._id)}>Deny</button></>
-                </StyledTableCell>
-              </StyledTableRow>
-              </>})}
-        </InfiniteScroll>
-        </TableBody>
-      </Table>
-    </TableContainer>   
-}   
+      <><TableContainer style={{ marginTop: '40px' }} component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell>Newly Registered Users</StyledTableCell>
+                <StyledTableCell align="right">First Name</StyledTableCell>
+                <StyledTableCell align="right">Maiden Name</StyledTableCell>
+                <StyledTableCell align="right">Married Name</StyledTableCell>
+                <StyledTableCell align="right">Class Year</StyledTableCell>
+                <StyledTableCell align="right">Email</StyledTableCell>
+                <StyledTableCell align="right">Actions</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <InfiniteScroll
+                dataLength={pendingUsers.length}
+                next={getNextPendings}
+                hasMore={true}
+                loader={<TailSpin
+                  height="30"
+                  width="30"
+                  color="#a32738"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                  alignItems="center" />}
+              >
+                {pendingUsers.map((user, index) => {
+                  return <>
+                    <StyledTableRow key={user._id}>
+                      <StyledTableCell align="right">{index + 1}</StyledTableCell>
+                      <StyledTableCell align="right">{user.firstName}</StyledTableCell>
+                      <StyledTableCell align="right">{user.maidenName}</StyledTableCell>
+                      <StyledTableCell align="right">{user.marriedName}</StyledTableCell>
+                      <StyledTableCell align="right">{user.classYear}</StyledTableCell>
+                      <StyledTableCell align="right">{user.email}</StyledTableCell>
+                      <StyledTableCell align="right">
+                        <><button className='accept' onClick={() => handleAccept(user)}> Accept </button></>
+                        <><button className='deny' onClick={() => handleDeny(user._id)}>Deny</button></>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  </>;
+                })}
+              </InfiniteScroll>
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Footer />
+        </>
+}
     </>
   )
 }
