@@ -70,6 +70,7 @@ export default function MessageCard({props, openEditMessage, openComment}) {
     const [openMessageDetails, setOpenMessageDetails]= useState(false);
     const [comments, setComments] = useState([]);
     const [editComment, setEditComment]= useState({});
+    const [editCommentOpen, setEditCommentOpen] = useState(false);
 
     const handleDelete = async () => {
         if(window.confirm("Are you sure you want to delete this message board post?")){
@@ -111,11 +112,11 @@ export default function MessageCard({props, openEditMessage, openComment}) {
     }
 
     const closeEditComment= () => {
-        setEditComment(false);
+        setEditCommentOpen(false);
     }
 
     const openEditComment= () => {
-        setEditComment(true);
+        setEditCommentOpen(true);
     }
       
       return (
@@ -157,15 +158,18 @@ export default function MessageCard({props, openEditMessage, openComment}) {
                                         {sessionStorage.getItem('user') === props.author_id &&
                                         <DialogContent>
                                             <IconButton onClick={openEditComment}><MdOutlineEditNote /></IconButton>
-                                            <Dialog open={openEditComment} onClose={closeEditComment} style={{ height: '1200px', width: '1200px', margin: 'auto'}}>
+                                            <Dialog open={editCommentOpen} onClose={closeEditComment} style={{ height: '1200px', width: '1200px', margin: 'auto'}}>
                                                 <Box p={2} maxWidth={500}>
+                                                    <IconButton onClick={closeEditComment}>
+                                                        <CloseIcon style={{ position: 'absolute', top: 8, left: 198 }} />
+                                                    </IconButton>
                                                     <Typography variant='subtitle1'>Edit Comment</Typography>
                                                     <TextField
                                                         variant='outlined'
                                                         margin='normal'
                                                         fullWidth
                                                         label='Edit Comment'
-                                                        value={editComment}
+                                                        value={editComment.comment}
                                                         onChange={handleEditComment}
                                                     />
                                                       <Box mt={2}>
