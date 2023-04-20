@@ -1,19 +1,19 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import Navbar from '../components/NavBar/Navbar';
-import Castle from '../images/castle.jpg';
+import Navbar from '../../components/NavBar/Navbar';
+import Castle from '../../images/castle.jpg';
 import styled from 'styled-components';
 import Box from "@mui/material/Box";
 import { ThemeProvider, Grid } from "@material-ui/core";
-import theme from '../components/MessageBoard/theme/theme';
-import Header from '../components/MessageBoard/Header/index';
-import MessageCard from '../components/MessageBoard/MessageCard';
-import NewMessage from '../components/MessageBoard/NewMessage';
-import EditMessage from '../components/MessageBoard/EditMessage/EditMessage';
-import ReplyMessage from '../components/MessageBoard/ReplyMessage/ReplyMessage';
-import Footer from '../components/Footer/Footer';
+import theme from '../../components/MessageBoard/theme/theme';
+import Header from '../../components/MessageBoard/Header/index';
+import MessageCard from '../../components/MessageBoard/MessageCard';
+import NewMessage from '../../components/MessageBoard/NewMessage';
+import EditMessage from '../../components/MessageBoard/EditMessage/EditMessage';
+import ReplyMessage from '../../components/MessageBoard/ReplyMessage/ReplyMessage';
+import Footer from '../../components/Footer/Footer';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { TailSpin } from  'react-loader-spinner';
-import api from '../api/index';
+import api from '../../api/index';
 
 const Background= styled.section`
     background-image: url(${Castle});

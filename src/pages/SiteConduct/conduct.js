@@ -1,8 +1,8 @@
 import React from 'react';
-import NavBar from '../components/NavBar/Navbar';
+import NavBar from '../../components/NavBar/Navbar';
 import styled from 'styled-components';
-import Castle from '../images/castle.jpg';
-import Footer from '../components/Footer/Footer';
+import Castle from '../../images/castle.jpg';
+import Footer from '../../components/Footer/Footer';
 
 const Background= styled.section`
     background-image: url(${Castle});

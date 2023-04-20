@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import ReplyCard from './ReplyMessage/ReplyCard';
 import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
 import { MdOutlineEditNote } from 'react-icons/md';
@@ -16,6 +15,7 @@ import {
     Dialog,
     DialogContent,
     DialogContentText,
+    TextField,
     makeStyles
 } from '@material-ui/core';
 
@@ -69,6 +69,7 @@ export default function MessageCard({props, openEditMessage, openComment}) {
     const [user, setUser] = useState({})
     const [openMessageDetails, setOpenMessageDetails]= useState(false);
     const [comments, setComments] = useState([]);
+    const [editComment, setEditComment]= useState({});
 
     const handleDelete = async () => {
         if(window.confirm("Are you sure you want to delete this message board post?")){
@@ -91,6 +92,32 @@ export default function MessageCard({props, openEditMessage, openComment}) {
         setOpenMessageDetails(true);
       }
 
+      const handleEditComment= (commentId) => {
+        const editedComment= props.comments.find((comment) => comment._id=== commentId);
+        setEditComment(editedComment);
+      };
+      
+      const handleUpdateComment= async () => {
+        const payload= {
+          author_id: editComment.author_id,
+          message_id: editComment.message_id,
+          comment: editComment.comment,
+        }
+
+        await api.updateCommentById(editComment._id, payload).then((res) => {
+          alert(`Comment updated successfully`);
+        });
+        setEditComment({});
+    }
+
+    const closeEditComment= () => {
+        setEditComment(false);
+    }
+
+    const openEditComment= () => {
+        setEditComment(true);
+    }
+      
       return (
         <>
             <Box p={2} className={classes.wrapper} width={600} height={700}>
@@ -127,6 +154,26 @@ export default function MessageCard({props, openEditMessage, openComment}) {
                                         <DialogContent>
                                             <DialogContentText>Posted By: {user.firstName} {user.maidenName} {user.marriedName}</DialogContentText>
                                         </DialogContent>
+                                        {sessionStorage.getItem('user') === props.author_id &&
+                                        <DialogContent>
+                                            <IconButton onClick={openEditComment}><MdOutlineEditNote /></IconButton>
+                                            <Dialog open={openEditComment} onClose={closeEditComment} style={{ height: '1200px', width: '1200px', margin: 'auto'}}>
+                                                <Box p={2} maxWidth={500}>
+                                                    <Typography variant='subtitle1'>Edit Comment</Typography>
+                                                    <TextField
+                                                        variant='outlined'
+                                                        margin='normal'
+                                                        fullWidth
+                                                        label='Edit Comment'
+                                                        value={editComment}
+                                                        onChange={handleEditComment}
+                                                    />
+                                                      <Box mt={2}>
+                                                        <Button style={{backgroundColor: '#a32738', color: '#fdfdfd'}} onClick={handleUpdateComment}>Submit <FaPaw /></Button>
+                                                     </Box>
+                                                </Box>
+                                            </Dialog>
+                                        </DialogContent>}
                                     </Dialog>
                             </Box>
                         </Grid>
