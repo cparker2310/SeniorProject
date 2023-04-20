@@ -13,13 +13,10 @@ import {
     Typography,
     IconButton,
     Dialog,
-    DialogTitle,
     DialogContent,
     DialogContentText,
     makeStyles
 } from '@material-ui/core';
-
-
 
 const useStyles= makeStyles((theme) => ({
     wrapper: {
@@ -69,8 +66,9 @@ export default function MessageCard({props, openEditMessage, openComment}){
     const element = sessionStorage.getItem('user') === props.author_id || props.isAdmin ? <GiTrashCan /> : <></>
     const element2 = sessionStorage.getItem('user') === props.author_id || props.isAdmin ?<MdOutlineEditNote/> : <></>
     const [user, setUser] = useState({})
-    const [messageDescription, setMessageDescription]= useState("");
     const [openMessageDetails, setOpenMessageDetails]= useState(false);
+    const [comments, setComments] = useState([]);
+
     const handleDelete = async () => {
         if(window.confirm("Are you sure you want to delete this message board post?")){
             await api.deleteMessageById(props._id).then(res => {
@@ -85,12 +83,13 @@ export default function MessageCard({props, openEditMessage, openComment}){
     }
 
     const viewDetails= async () => {
-        const response= await api.getMessageById(props._id);
-        const u = await api.getUserById(props.author_id)
-        setMessageDescription(response.description);
-        setUser(u.data)
+        const message= await api.getMessageById(props._id);
+        const u = await api.getUserById(props.author_id);
+        setComments(message.comments);
+        setUser(u.data);
         setOpenMessageDetails(true);
-    }
+      }
+      
 
     return (
         <>
@@ -104,33 +103,21 @@ export default function MessageCard({props, openEditMessage, openComment}){
                 </Grid>
                 <Grid item container direction='column' alignItems='flex-end' xs>
                     <Grid item>
-                        <Typography variant='caption'> {props.type} | {props.location}</Typography>
-                    </Grid>
-                    {/*<Box p={2}>
-                        <ReplyCard />
-                    </Box>*/}
-                    <Grid item>
                         <Box mt={2}>
                             <IconButton style={{marginRight: '-10px'}} onClick={openComment}> <BiCommentDetail /> </IconButton>
                             { (sessionStorage.getItem('user') === props.author_id || props.isAdmin) &&
                             <><IconButton style={{marginRight: '-21px'}} onClick={openEditMessage}> <MdOutlineEditNote/> </IconButton>
                             <IconButton onClick={handleDelete}><GiTrashCan /></IconButton></>}
-                            <Button style={{backgroundColor: '#63625d', color: '#fdfdfd'}} onClick={viewDetails}>View Details <FaPaw /></Button>
-                            <Dialog open={openMessageDetails} close={closeViewMessage} style={{ height: '1200px', width: '1200px', margin: 'auto'}} fullWidth={true}>
+                            <Button style={{backgroundColor: '#63625d', color: '#fdfdfd'}} onClick={viewDetails}>View Comments <FaPaw /></Button>
+                            <Dialog open={openMessageDetails} close={closeViewMessage} style={{ height: '1200px', width: '1200px', margin: 'auto'}}>
                                 <IconButton onClick={closeViewMessage}>
                                     <CloseIcon style={{ position: 'absolute', top: 8, right: 8 }} />
                                 </IconButton>
-                                    <DialogTitle> 
-                                        <Typography variant='h5' fontWeight='bold'>{props.title}</Typography>
-                                    </DialogTitle>
                                     <DialogContent>
-                                        <DialogContentText style={{color: '#60000d', fontWeight: 'bold'}}>Categories: {props.categories}</DialogContentText>
+                                        <DialogContentText>{props.comments}</DialogContentText>
                                     </DialogContent>
                                     <DialogContent>
-                                        <DialogContentText>Posted By: {user.firstName} {user.maidenName}</DialogContentText>
-                                    </DialogContent>
-                                    <DialogContent>
-                                        <DialogContentText>Description: {props.description}</DialogContentText>
+                                        <DialogContentText>Posted By: {user.firstName} {user.maidenName} {user.marriedName}</DialogContentText>
                                     </DialogContent>
                                 </Dialog>
                         </Box>
