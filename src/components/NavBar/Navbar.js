@@ -94,11 +94,12 @@ const Navbar = () => {
 const u = sessionStorage.getItem('user')
 
 const [user, setUser] = useState({})
-
+const [admin, setAdmin] = useState(false)
   const getUser = async () => {
     if(u){
       await api.getUserById(u).then(user => {
         setUser(user.data)
+        setAdmin(user.data.isAdmin)
       })
       //console.log(newUser)
         //console.log(user)
@@ -129,6 +130,8 @@ const [user, setUser] = useState({})
           <NavLink to="/directory">Directory</NavLink>
           <NavLink to="/jobs">Career Center</NavLink>
           <NavLink to="/messages">Message Board</NavLink>
+          {admin && <NavLink to="/pending">Pending Users</NavLink>}
+          
         </Nav>
           <ButtonContainer> 
             <Link state={{props:user}} style={{ textDecoration: 'none' }}>

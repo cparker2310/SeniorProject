@@ -22,7 +22,8 @@ const PendingUsers = () => {
     const [denyUser, setDenyUser]= useState({});
     const [action, setAction] = useState(false)
     const [element, setElement]= useState(<></>);
-
+    const [admin, setAdmin] = useState(false)
+    
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
             backgroundColor: '#2e2d2c',
@@ -91,6 +92,14 @@ const PendingUsers = () => {
               </StyledTableRow>
               </>*/
             })
+            if(sessionStorage.getItem('user')){
+            await api.getUserById(sessionStorage.getItem('user')).then(user=>{
+              setAdmin(user.data.isAdmin)
+                
+              }
+            )
+            }
+            
             //setElement(ele)})
         }
     
@@ -106,6 +115,7 @@ const PendingUsers = () => {
   return (
     <>
       <Navbar />
+      {admin &&
       <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
@@ -137,7 +147,8 @@ const PendingUsers = () => {
               </>})}
         </TableBody>
       </Table>
-    </TableContainer>      
+    </TableContainer>   
+}   
     </>
   )
 }

@@ -41,7 +41,7 @@ const Hero = () => {
     <Section>
        <Title>Maryvale Alumnae Network
             <a href="/consent" css={`text-decoration: none;`}>
-            <Link style={{ textDecoration: 'none' }} to={sessionStorage.getItem('user') ? '#': "/login" }>
+            <Link style={{ textDecoration: 'none' }} to={sessionStorage.getItem('user') ? '#': "/consent" }>
               <Button css={`font-size: 28px; 
                             background: linear-gradient(90deg, #60000D, #a32738); 
                             color: #fdfdfd; 
