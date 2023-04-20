@@ -6,7 +6,8 @@ import { MdOutlineEditNote } from 'react-icons/md';
 import { GiTrashCan } from 'react-icons/gi';
 import { BiCommentDetail } from 'react-icons/bi';
 import CloseIcon from '@mui/icons-material/Close';
-import api from '../../api/index'
+import TestImg from '../../images/testimagemessage.jpg';
+import api from '../../api/index';
 import { 
     Button,
     Grid,
@@ -60,7 +61,7 @@ const useStyles= makeStyles((theme) => ({
     }
 }));
 
-export default function MessageCard({props, openEditMessage, openComment}){
+export default function MessageCard({props, openEditMessage, openComment}) {
     const classes= useStyles();
     const categories= props.categories
     const element = sessionStorage.getItem('user') === props.author_id || props.isAdmin ? <GiTrashCan /> : <></>
@@ -89,42 +90,49 @@ export default function MessageCard({props, openEditMessage, openComment}){
         setUser(u.data);
         setOpenMessageDetails(true);
       }
-      
 
-    return (
+      return (
         <>
-        <Box p={2} className={classes.wrapper}>
-            <Grid container>
-                <Grid item xs alignItems='center'>
-                    <Typography variant='subtitle1'>{props.title}</Typography>
-                </Grid>
-                <Grid item container xs>
-                    {categories.map(category => <Grid key={category} className={classes.categoryChip} style={{height: '35px'}} item>{category}</Grid>)}
-                </Grid>
-                <Grid item container direction='column' alignItems='flex-end' xs>
-                    <Grid item>
-                        <Box mt={2}>
-                            <IconButton style={{marginRight: '-10px'}} onClick={openComment}> <BiCommentDetail /> </IconButton>
-                            { (sessionStorage.getItem('user') === props.author_id || props.isAdmin) &&
-                            <><IconButton style={{marginRight: '-21px'}} onClick={openEditMessage}> <MdOutlineEditNote/> </IconButton>
-                            <IconButton onClick={handleDelete}><GiTrashCan /></IconButton></>}
-                            <Button style={{backgroundColor: '#63625d', color: '#fdfdfd'}} onClick={viewDetails}>View Comments <FaPaw /></Button>
-                            <Dialog open={openMessageDetails} close={closeViewMessage} style={{ height: '1200px', width: '1200px', margin: 'auto'}}>
-                                <IconButton onClick={closeViewMessage}>
-                                    <CloseIcon style={{ position: 'absolute', top: 8, right: 8 }} />
-                                </IconButton>
-                                    <DialogContent>
-                                        <DialogContentText>{props.comments}</DialogContentText>
-                                    </DialogContent>
-                                    <DialogContent>
-                                        <DialogContentText>Posted By: {user.firstName} {user.maidenName} {user.marriedName}</DialogContentText>
-                                    </DialogContent>
-                                </Dialog>
+            <Box p={2} className={classes.wrapper} width={600} height={700}>
+                <Grid container justifyContent='center'>
+                    <Grid item xs={12} sm={6}>
+                        <Box display='flex' alignItems='center' justifyContent='center' mb={2}>
+                            <img src={TestImg} alt='Image' width={350} height={350} />
                         </Box>
                     </Grid>
+                    <Grid item xs={12} justifyContent='center'>
+                        <Typography style={{fontWeight: 'bold'}} variant='subtitle1'>{props.title}</Typography>
+                    </Grid>
+                    <Grid item container xs={12}>
+                        {categories.map(category => <Grid key={category} className={classes.categoryChip} style={{height: '35px'}} item>{category}</Grid>)}
+                    </Grid>
+                    <Grid item xs={12} justifyContent='center'>
+                        <Typography variant='subtitle1'>{props.description}</Typography>
+                    </Grid>
+                    <Grid item container direction='column' alignItems='flex-end' xs>
+                        <Grid item>
+                            <Box mt={2}>
+                                <IconButton style={{marginRight: '-10px'}} onClick={openComment}> <BiCommentDetail /> </IconButton>
+                                { (sessionStorage.getItem('user') === props.author_id || props.isAdmin) &&
+                                <><IconButton style={{marginRight: '-21px'}} onClick={openEditMessage}> <MdOutlineEditNote/> </IconButton>
+                                <IconButton onClick={handleDelete}><GiTrashCan /></IconButton></>}
+                                <Button style={{backgroundColor: '#a32738', color: '#fdfdfd'}} onClick={viewDetails}>View Comments <FaPaw /></Button>
+                                <Dialog open={openMessageDetails} close={closeViewMessage} style={{ height: '1200px', width: '1200px', margin: 'auto'}}>
+                                    <IconButton onClick={closeViewMessage}>
+                                        <CloseIcon style={{ position: 'absolute', top: 8, right: 8 }} />
+                                    </IconButton>
+                                        <DialogContent>
+                                            <DialogContentText>{props.comments}</DialogContentText>
+                                        </DialogContent>
+                                        <DialogContent>
+                                            <DialogContentText>Posted By: {user.firstName} {user.maidenName} {user.marriedName}</DialogContentText>
+                                        </DialogContent>
+                                    </Dialog>
+                            </Box>
+                        </Grid>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Box>
+            </Box>
         </>
     );
 }
