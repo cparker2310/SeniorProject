@@ -16,6 +16,7 @@ import {
     DialogContent,
     DialogContentText,
     TextField,
+    FilledInput,
     makeStyles
 } from '@material-ui/core';
 
@@ -93,23 +94,19 @@ export default function MessageCard({props, openEditMessage, openComment}) {
         setOpenMessageDetails(true);
       }
 
-      const handleEditComment= (commentId) => {
-        const editedComment= props.comments.find((comment) => comment._id=== commentId);
-        setEditComment(editedComment);
-      };
+      const handleEditComment= async (commentIndex) => {
+        const updatedComments= [...props.comments];
+        updatedComments[commentIndex]= editComment;
+        const payload= { comments: updatedComments };
       
-      const handleUpdateComment= async () => {
-        const payload= {
-          author_id: editComment.author_id,
-          message_id: editComment.message_id,
-          comment: editComment.comment,
-        }
-
-        await api.updateCommentById(editComment._id, payload).then((res) => {
-          alert(`Comment updated successfully`);
+        await api.updateMessageById(props.id, payload).then(res => {
+          window.alert('Comment updated successfully');
         });
-        setEditComment({});
+      
+        setEditCommentOpen(false);
+        window.location.reload(true);
     }
+      
 
     const closeEditComment= () => {
         setEditCommentOpen(false);
@@ -118,6 +115,20 @@ export default function MessageCard({props, openEditMessage, openComment}) {
     const openEditComment= () => {
         setEditCommentOpen(true);
     }
+
+    const handleDeleteComment= async (commentIndex) => {
+        if (window.confirm('Are you sure you want to delete this comment?')) {
+          const updatedComments= props.comments.filter((comment, index) => index !== commentIndex);
+          const payload= { comments: updatedComments };
+      
+          await api.updateMessageById(props.id, payload).then(res => {
+        
+          });
+      
+          window.location.reload(true);
+        }
+    }
+           
       
       return (
         <>
@@ -158,22 +169,26 @@ export default function MessageCard({props, openEditMessage, openComment}) {
                                         {sessionStorage.getItem('user') === props.author_id &&
                                         <DialogContent>
                                             <IconButton onClick={openEditComment}><MdOutlineEditNote /></IconButton>
-                                            <Dialog open={editCommentOpen} onClose={closeEditComment} style={{ height: '1200px', width: '1200px', margin: 'auto'}}>
-                                                <Box p={2} maxWidth={500}>
+                                            <IconButton onClick={handleDeleteComment}><GiTrashCan /></IconButton>
+                                            <Dialog open={editCommentOpen} onClose={closeEditComment} style={{ height: '800px', width: '800px', margin: 'auto'}}>
+                                                <Box p={2} maxWidth={800}>
                                                     <IconButton onClick={closeEditComment}>
-                                                        <CloseIcon style={{ position: 'absolute', top: 8, left: 198 }} />
+                                                        <CloseIcon style={{ position: 'absolute', top: 8, left: 520 }} />
                                                     </IconButton>
-                                                    <Typography variant='subtitle1'>Edit Comment</Typography>
-                                                    <TextField
+                                                    <Box mb={2}>
+                                                        <Typography variant='subtitle1'>Edit Comment</Typography>
+                                                    </Box>
+                                                    <FilledInput
                                                         variant='outlined'
                                                         margin='normal'
                                                         fullWidth
-                                                        label='Edit Comment'
+                                                        disableUnderline 
                                                         value={editComment.comment}
+                                                        style={{ width: '550px'}}
                                                         onChange={handleEditComment}
                                                     />
                                                       <Box mt={2}>
-                                                        <Button style={{backgroundColor: '#a32738', color: '#fdfdfd'}} onClick={handleUpdateComment}>Submit <FaPaw /></Button>
+                                                        <Button style={{backgroundColor: '#a32738', color: '#fdfdfd'}} onClick={handleEditComment}>Submit <FaPaw /></Button>
                                                      </Box>
                                                 </Box>
                                             </Dialog>
