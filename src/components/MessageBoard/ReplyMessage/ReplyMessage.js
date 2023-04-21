@@ -73,13 +73,15 @@ export default (props) => {
         //const { comments} = messageDetails
         
         //setMessageDetails(messageDetails.push([user, message]))
-        console.log(messageDetails)
-        const comments = [user, message]
+        let comments = props.message.comments
+        comments.push([user, message])
         const payload = {comments}
-        console.log(payload)
+        
+        
           await api.updateMessageById(props.id, payload).then(res => {
             window.alert('Replied')
           })
+          
           window.location.reload(true)
 
     }
