@@ -1,19 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions, Avatar } from '@mui/material';
+import { Button, CardActionArea, CardActions, Avatar, IconButton } from '@mui/material';
 import { FaPaw } from 'react-icons/fa';
 import { SlUserFemale } from "react-icons/sl";
+import { GiTrashCan } from 'react-icons/gi';
 import { ThemeProvider } from '@material-ui/core';
 import theme from '../../Directory/theme/theme';
 import "@fontsource/lora";
 import { maxHeight } from '@mui/system';
 import { Link } from 'react-router-dom';
+import api from '../../../api/index';
 
  export default function UserCard({props}) {
     //const user= store({ props: false });
+
+  const u = sessionStorage.getItem('user')
+  const [user, setUser] = useState({})
+  const [admin, setAdmin] = useState(false)
+
+  useEffect(() => {
+    async function getUser() {
+      if (u) {
+        const user= await api.getUserById(u).then((user) => {
+          setUser(user.data);
+          setAdmin(user.data.isAdmin);
+        });
+      }
+    }
+    getUser();
+  }, [u]);
+
+  const deleteUser= async (id) => {
+    if (admin && window.confirm("Are you sure you want to delete this user?")) {
+      await api.deleteUserById(id);
+      window.location.reload(true);
+    }
+  }  
 
    return (
     <>
@@ -23,6 +48,7 @@ import { Link } from 'react-router-dom';
             user.props= !user.props;
           }}*/
          >
+       {admin && (<IconButton onClick={() => deleteUser(props._id)} style={{ position: 'absolute' }}><GiTrashCan/></IconButton>)}
       <CardActionArea>
           {/*<CardMedia
             component="img"
