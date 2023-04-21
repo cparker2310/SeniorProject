@@ -62,7 +62,6 @@ module.exports = {
     getMessageById,
 
 }
-const messageDao = require('../models/message-model')
 
 getMessages = async function(req,res){ // REST get (all) method
     res.status(200); // 200 = Ok
