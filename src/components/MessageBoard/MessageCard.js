@@ -15,6 +15,7 @@ import {
     Dialog,
     DialogContent,
     DialogContentText,
+    TextField,
     FilledInput,
     makeStyles
 } from '@material-ui/core';
@@ -69,8 +70,9 @@ export default function MessageCard({props, openEditMessage, openComment}) {
     const [user, setUser] = useState({})
     const [openMessageDetails, setOpenMessageDetails]= useState(false);
     const [comments, setComments] = useState([]);
-    const [editComment, setEditComment]= useState({});
+    const [editComment, setEditComment]= useState([]);
     const [editCommentOpen, setEditCommentOpen] = useState(false);
+    const [comment, setComment] = useState("")
 
     const handleDelete = async () => {
         if(window.confirm("Are you sure you want to delete this message board post?")){
@@ -93,12 +95,12 @@ export default function MessageCard({props, openEditMessage, openComment}) {
         setOpenMessageDetails(true);
       }
 
-      const handleEditComment= async (commentIndex) => {
-        const updatedComments= [...props.comments];
-        updatedComments[commentIndex]= editComment;
-        const payload= { comments: updatedComments };
+      const handleEditComment= async (id, commentIndex) => {
+        const comments= props.comments;
+        comments[commentIndex]= [id, comment];
+        const payload= {comments};
       
-        await api.updateMessageById(props.id, payload).then(res => {
+        await api.updateMessageById(props._id, payload).then(res => {
           window.alert('Comment updated successfully');
         });
       
@@ -117,10 +119,10 @@ export default function MessageCard({props, openEditMessage, openComment}) {
 
     const handleDeleteComment= async (commentIndex) => {
         if (window.confirm('Are you sure you want to delete this comment?')) {
-          const updatedComments= props.comments.filter((comment, index) => index !== commentIndex);
-          const payload= { comments: updatedComments };
+          let comments= props.comments.filter((comment, index) => index !== commentIndex);
+          const payload= { comments };
       
-          await api.updateMessageById(props.id, payload).then(res => {
+          await api.updateMessageById(props._id, payload).then(res => {
         
           });
       
@@ -159,16 +161,20 @@ export default function MessageCard({props, openEditMessage, openComment}) {
                                     <IconButton onClick={closeViewMessage}>
                                         <CloseIcon style={{ position: 'absolute', top: 8, right: 8 }} />
                                     </IconButton>
+                                    { props.comments.map((comment_, index) =><>
                                         <DialogContent>
-                                            <DialogContentText>{props.comments}</DialogContentText>
+                                            <DialogContentText>{comment_[1]}</DialogContentText>
                                         </DialogContent>
                                         <DialogContent>
                                             <DialogContentText>Posted By: {user.firstName} {user.maidenName} {user.marriedName}</DialogContentText>
                                         </DialogContent>
-                                        {sessionStorage.getItem('user') === props.author_id &&
+                                        {sessionStorage.getItem('user') === comment_[0] && <>
                                         <DialogContent>
                                             <IconButton onClick={openEditComment}><MdOutlineEditNote /></IconButton>
-                                            <IconButton onClick={handleDeleteComment}><GiTrashCan /></IconButton>
+                                            <IconButton onClick={() => handleDeleteComment(index)}><GiTrashCan /></IconButton> 
+                                        </DialogContent>
+                                         </> } 
+                                        <DialogContent>
                                             <Dialog open={editCommentOpen} onClose={closeEditComment} style={{ height: '800px', width: '800px', margin: 'auto'}}>
                                                 <Box p={2} maxWidth={800}>
                                                     <IconButton onClick={closeEditComment}>
@@ -181,17 +187,19 @@ export default function MessageCard({props, openEditMessage, openComment}) {
                                                         variant='outlined'
                                                         margin='normal'
                                                         fullWidth
-                                                        disableUnderline 
-                                                        value={editComment.comment}
+                                                        disableUnderline
+                                                        placeholder="Edit Comment"
+                                                        value={comment}
+                                                        onChange={(event) => {
+                                                        setComment(event.target.value)}}
                                                         style={{ width: '550px'}}
-                                                        onChange={handleEditComment}
                                                     />
                                                       <Box mt={2}>
-                                                        <Button style={{backgroundColor: '#a32738', color: '#fdfdfd'}} onClick={handleEditComment}>Submit <FaPaw /></Button>
+                                                        <Button style={{backgroundColor: '#a32738', color: '#fdfdfd'}} onClick={()=>handleEditComment(index)}>Submit <FaPaw /></Button>
                                                      </Box>
                                                 </Box>
                                             </Dialog>
-                                        </DialogContent>}
+                                        </DialogContent> </> )}
                                     </Dialog>
                             </Box>
                         </Grid>
