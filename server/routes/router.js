@@ -39,9 +39,10 @@ router.get('/messages', MessageCtrl.getMessages)
 
 
 let gfs;
+let gridfsBucket;
 db.once('open', () => {
     // Init stream
-    let gridfsBucket = new mongoose.mongo.GridFSBucket(db, {
+    gridfsBucket = new mongoose.mongo.GridFSBucket(db, {
       bucketName: 'uploads'
     });
     gfs = Grid(db, mongoose.mongo);  
@@ -102,7 +103,7 @@ router.get('/image/:filename', (req,res) => {
     }
     else{
       //console.log("files - ", file)
-      const readstream = gridfsBucket.openDownloadStream(file._id)
+      const readstream = gridfsBucket.openDownloadStreamByName(req.params.filename)
       readstream.pipe(res)
     }
   })});

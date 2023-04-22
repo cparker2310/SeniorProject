@@ -130,14 +130,14 @@ export default function MessageCard({props, openEditMessage, openComment}) {
         }
     }
            
-      
+    console.log(props.image)
       return (
         <>
             <Box p={2} className={classes.wrapper} width={600} height={700}>
                 <Grid container justifyContent='center'>
                     <Grid item xs={12} sm={6}>
                         <Box display='flex' alignItems='center' justifyContent='center' mb={2}>
-                            <img src={TestImg} alt='Image' width={350} height={350} />
+                            <img src={("http://localhost:8000/api/image/" +props.image) || TestImg} alt='Image' width={350} height={350} />
                         </Box>
                     </Grid>
                     <Grid item xs={12} justifyContent='center'>

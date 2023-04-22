@@ -44,22 +44,29 @@ const initState= {
     title: "",
     description: "",
     categories: [],
-    comments: []   
+    comments: [],
 }
 
 export default (props) => {
     const classes= useStyles();
     const [messageDetails, setMessageDetails]= useState(initState);
-    const [image, setImage]= useState('');
+    const [image, setImage] = useState("")
 
-    function handleImage(e) {
-        setImage(e.target.files[0]);
-    }
 
     const handleChange= event => {
         event.persist();
         setMessageDetails(oldState => ({...oldState, [event.target.name] : event.target.value}));
     }
+
+    const onSubmit = async() =>{
+        //console.log(fileName)
+        //const profileFinal = fileName
+        //const payload = {profileFinal}
+        //await api.updateUserById(user._id, payload).then(res=>{
+          //setState(!state)
+        //})
+        //console.log(state)
+      }
 
     const addRemoveCategory= category => messageDetails.categories.includes(category)
         ? setMessageDetails(oldState => ({...oldState, categories: oldState.categories.filter(c => c != category),
@@ -68,24 +75,29 @@ export default (props) => {
         }));
     
     const handleSubmit= async() => {
+        console.log(image)
         for (const field in messageDetails) {
-            
-            if (typeof messageDetails[field] === 'string' && !messageDetails[field])
+            console.log(image)
+            if (typeof messageDetails[field] === 'string' && !messageDetails[field]){
                 
              return;
+            }
         }
 
-        if (!messageDetails.categories.length)             
-        return;
+        if (!messageDetails.categories.length){     
+                 
+            return;
+        }
         closeNewMessage();
-
+        
         if(!sessionStorage.getItem('user')){
             alert('You must be logged in to post to the message board')
             return
         }
+        
         const { author_id, dateCreated, title, categories, description, comments } = messageDetails
-      
-        const payload = { author_id, dateCreated, title, categories, description, comments }
+        //console.log(image)
+        const payload = { author_id, dateCreated, title, categories, description, comments, image }
             
           await api.insertMessage(payload).then(res => {
             //window.alert('Job Created')
@@ -126,7 +138,31 @@ export default (props) => {
                         <FilledInput onChange={handleChange} name='description' value={messageDetails.description} autoComplete='off' placeholder='Description *' disableUnderline fullWidth multiline rows={4}/>
                     </Grid>
                     <Grid item xs={6}>
-                        <FilledInput onChange={handleImage} name='media' type='file' disableUnderline fullWidth/>
+                    { true &&
+                    <form action={("http://localhost:8000/api/upload/" + image)} method="POST" encType="multipart/form-data"
+                        style={{width: "450px", height: "450px", margin: "auto", display: "block", marginTop: "50px", marginBottom: "20px", border: "20px solid #dd6868"}}
+      /*onSubmit={handleSubmit}*/>
+
+                    
+
+                    
+                    <FilledInput 
+                        type="file"
+                        //lable="Image"
+                        name="myFile"
+                        id='file-upload'
+                        accept='.jpeg, .png, .jpg'
+                        onChange={(e) => {
+                        e.preventDefault();
+                        setImage(e.target.files[0].name );
+                    }} 
+            
+            className=""
+          />
+                    
+         <Button type='submit' className="submitBtn" onClick={onSubmit}>Upload</Button>
+                    </form>}
+      
                     </Grid>
                 </Grid>
                 <Box mt={2}>

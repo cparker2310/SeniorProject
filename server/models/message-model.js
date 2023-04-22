@@ -23,9 +23,13 @@ const MessageSchema= new Schema({
     },
     comments: {
         type: [[String, String]],
-      }
-    
+      },
+    image:{
+      type: String,
+      required:[true, "image required"]
+    }
 })
+
 
 const messageModel= mongoose.model('messages', MessageSchema);
 
