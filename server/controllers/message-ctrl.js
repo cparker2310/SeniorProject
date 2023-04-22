@@ -34,6 +34,7 @@ createMessage = async function(req,res){
     res.end()
 }
 
+
 updateMessage = async function(req, res){
     let message = req.body
     //console.log(message)
@@ -58,5 +59,6 @@ module.exports = {
     updateMessage,
     deleteMessage,
     getMessages,
-    getMessageById
+    getMessageById,
+
 }

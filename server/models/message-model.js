@@ -57,6 +57,27 @@ exports.deleteAll = async function(){
   await messageModel.deleteMany();
 }
 
+exports.addComment = async function(id, addedComment){
+  let message = await messageModel.findById(id)
+  if(!message) return; 
+  message.comments.push(addedComment)
+  message.save()
+}
+
+exports.updateComment = async function(id, updatedComment, index){
+  let message = await messageModel.findById(id)
+  if(!message) return; 
+  message.comments[index] = updatedComment
+  message.save()
+}
+
+exports.deleteComment = async function(id, index){
+  let message = await messageModel.findById(id)
+  if(!message) return; 
+  message.comments.splice(index,index)
+  message.save()
+  
+}
 
 exports.update = async function (id, updatedMessage){
     let message = await messageModel.findById(id)
@@ -64,12 +85,9 @@ exports.update = async function (id, updatedMessage){
     //console.log(updatedMessage)
     message.title = updatedMessage.title ? updatedMessage.title : message.title
     message.description = updatedMessage.description ? updatedMessage.description : message.description
-    if(message.comments.length && updatedMessage.comments){
-      message.comments.push(updatedMessage.comments)
-    }
-    else{
-      message.comments = updatedMessage.comments ? [updatedMessage.comments] : []
-    }
+    
+    message.comments = updatedMessage.comments ? updatedMessage.comments : message.comments
+    
 
     await message.save()
     return message

@@ -37,6 +37,7 @@ router.delete('/message/:id', MessageCtrl.deleteMessage)
 router.get('/message/:id', MessageCtrl.getMessageById)
 router.get('/messages', MessageCtrl.getMessages)
 
+
 let gfs;
 db.once('open', () => {
     // Init stream
