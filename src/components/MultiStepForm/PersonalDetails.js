@@ -44,7 +44,7 @@ const PersonalDetails = ({ formData, setFormData }) => {
             </IconButton>
           </Tooltip>
         </FormLabel> 
-        <input type="text"
+        <input type="password" pattern="(?=.*\d)(?=.*[a-zA-Z]).{8,}"
           value={formData.password} onChange={(event) => setFormData({ ...formData, password: event.target.value })} />
       </div>
   );

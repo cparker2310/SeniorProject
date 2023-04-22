@@ -10,6 +10,60 @@ export const FormLabel= styled.label`
 `;
 
 const Location = ({ formData, setFormData }) => {
+  const states= [
+    "Alabama",
+    "Alaska",
+    "Arizona",
+    "Arkansas",
+    "California",
+    "Colorado",
+    "Connecticut",
+    "Delaware",
+    "District Of Columbia",
+    "Florida",
+    "Georgia",
+    "Hawaii",
+    "Idaho",
+    "Illinois",
+    "Indiana",
+    "Iowa",
+    "Kansas",
+    "Kentucky",
+    "Louisiana",
+    "Maine",
+    "Maryland",
+    "Massachusetts",
+    "Michigan",
+    "Minnesota",
+    "Mississippi",
+    "Missouri",
+    "Montana",
+    "Nebraska",
+    "Nevada",
+    "New Hampshire",
+    "New Jersey",
+    "New Mexico",
+    "New York",
+    "North Carolina",
+    "North Dakota",
+    "Ohio",
+    "Oklahoma",
+    "Oregon",
+    "Pennsylvania",
+    "Rhode Island",
+    "South Carolina",
+    "South Dakota",
+    "Tennessee",
+    "Texas",
+    "Utah",
+    "Vermont",
+    "Virginia",
+    "Washington",
+    "West Virginia",
+    "Wisconsin",
+    "Wyoming"
+  ];
+
   return (
     <div className="location-container">
       <FormLabel htmlFor='for'>Current City</FormLabel>
@@ -19,10 +73,11 @@ const Location = ({ formData, setFormData }) => {
       />
 
       <FormLabel htmlFor='for' css={`margin-left: -57px;`}>State</FormLabel>
-      <input type="text"
-          value={formData.state} onChange={(event) => 
-            setFormData({...formData, state: event.target.value})}
-      />
+      <select className="select" value={formData.state} onChange={(event) => setFormData({...formData, state: event.target.value})} style={{ width: '250px', height: '140px' }}>
+        {states.map((state) => (
+          <option className="select-menu" key={state} value={state}>{state}</option>
+        ))}
+      </select>
   </div>
   );
 }

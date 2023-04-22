@@ -136,12 +136,6 @@ const PendingUsers = () => {
             <TableHead>
               <TableRow>
                 <StyledTableCell>Newly Registered Users</StyledTableCell>
-                <StyledTableCell align="right">First Name</StyledTableCell>
-                <StyledTableCell align="right">Maiden Name</StyledTableCell>
-                <StyledTableCell align="right">Married Name</StyledTableCell>
-                <StyledTableCell align="right">Class Year</StyledTableCell>
-                <StyledTableCell align="right">Email</StyledTableCell>
-                <StyledTableCell align="right">Actions</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -162,14 +156,14 @@ const PendingUsers = () => {
               >
                 {pendingUsers.map((user, index) => {
                   return <>
-                    <StyledTableRow key={user._id}>
-                      <StyledTableCell align="right">{index + 1}</StyledTableCell>
-                      <StyledTableCell align="right">{user.firstName}</StyledTableCell>
-                      <StyledTableCell align="right">{user.maidenName}</StyledTableCell>
-                      <StyledTableCell align="right">{user.marriedName}</StyledTableCell>
-                      <StyledTableCell align="right">{user.classYear}</StyledTableCell>
-                      <StyledTableCell align="right">{user.email}</StyledTableCell>
-                      <StyledTableCell align="right">
+                    <StyledTableRow key={user._id} sx={{ minWidth: 700 }}>
+                      <StyledTableCell sx={{ minWidth: 200, textAlign: 'center' }}>{index + 1}</StyledTableCell>
+                      <StyledTableCell sx={{ minWidth: 220, textAlign: 'center' }}>{user.firstName}</StyledTableCell>
+                      <StyledTableCell sx={{ minWidth: 220, textAlign: 'center' }}>{user.maidenName}</StyledTableCell>
+                      <StyledTableCell sx={{ minWidth: 220, textAlign: 'center' }}>{user.marriedName}</StyledTableCell>
+                      <StyledTableCell sx={{ minWidth: 200, textAlign: 'center' }}>{user.classYear}</StyledTableCell>
+                      <StyledTableCell sx={{ minWidth: 220, textAlign: 'center' }}>{user.email}</StyledTableCell>
+                      <StyledTableCell sx={{ minWidth: 220, textAlign: 'center' }}>
                         <><button className='accept' onClick={() => handleAccept(user)}> Accept </button></>
                         <><button className='deny' onClick={() => handleDeny(user._id)}>Deny</button></>
                       </StyledTableCell>

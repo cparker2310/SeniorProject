@@ -33,9 +33,9 @@ import api from '../../../api/index';
     getUser();
   }, [u]);
 
-  const deleteUser= async (id) => {
+  const deleteUser= async () => {
     if (admin && window.confirm("Are you sure you want to delete this user?")) {
-      await api.deleteUserById(id);
+      await api.deleteUserById(props._id);
       window.location.reload(true);
     }
   }  
@@ -48,7 +48,7 @@ import api from '../../../api/index';
             user.props= !user.props;
           }}*/
          >
-       {admin && (<IconButton onClick={() => deleteUser(props._id)} style={{ position: 'absolute' }}><GiTrashCan/></IconButton>)}
+       {admin && (<IconButton onClick={deleteUser} style={{ position: 'absolute' }}><GiTrashCan/></IconButton>)}
       <CardActionArea>
           {/*<CardMedia
             component="img"
