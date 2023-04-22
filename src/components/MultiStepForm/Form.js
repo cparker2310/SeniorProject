@@ -48,7 +48,7 @@ const Form = () => {
       profileFinal: ""
   });
 
-  const FormTitles= ["Personal Details", "Profile Picture", "Location", "Education", "Career", "Contact Information"];
+  const FormTitles= ["Personal Details", "Profile Picture", "Location", "Post Secondary Education", "Career", "Contact Information"];
   
   const handleIncludeUser = async () => {
     //alert("inside")
@@ -114,6 +114,10 @@ const Form = () => {
     
     if (!validator.isEmail(formData.email)) {
       return alert("Invalid Email");
+    }
+
+    if (formData.password.length< 8 || !/\d/.test(formData.password)) {
+      return alert("Password must be at least 8 characters and contain at least one digit");
     }
 
      if(!formData.firstName || !formData.maidenName || !formData.classYear || !formData.email || !formData.password){
