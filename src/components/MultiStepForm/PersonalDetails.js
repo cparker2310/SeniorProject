@@ -31,7 +31,19 @@ const PersonalDetails = ({ formData, setFormData }) => {
 
         <FormLabel htmlFor='for' css={`margin-left: -5px;`}>Class Year *</FormLabel> 
         <input type="text"
-          value={formData.classYear} onChange={(event) => setFormData({ ...formData, classYear: event.target.value })} />
+          value={formData.classYear} onChange={(event) => setFormData({ ...formData, classYear: event.target.value })} 
+          onBlur={(event) => {
+            const currentYear= new Date().getFullYear();
+            const classYear= event.target.value;
+            
+            if (classYear.length!==4 || classYear<1946 || classYear>currentYear) {
+              alert(`Class Year must be entered in YYYY format between 1946 and ${currentYear}`);
+              setFormData({...formData, classYear: ''});
+            }
+          }}
+          pattern="\d{4}"
+          maxLength={4}
+        />
 
         <FormLabel htmlFor='for' css={`margin-left: -38px;`}>Email *</FormLabel> 
         <input type="text"

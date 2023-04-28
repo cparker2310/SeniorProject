@@ -120,7 +120,7 @@ export default function JobCard({props, openEditJob, openComment}){
                                         <Typography variant='h5' fontWeight='bold'>{props.title}</Typography>
                                     </DialogTitle>
                                     <DialogContent>
-                                        <DialogContentText style={{color: '#60000d', fontWeight: 'bold'}}>Categories: {props.categories}</DialogContentText>
+                                        <DialogContentText style={{color: '#60000d', fontWeight: 'bold'}}>Categories: {props.categories.join(' ')}</DialogContentText>
                                     </DialogContent>
                                     <DialogContent>
                                         <DialogContentText>Posted By: {props.contactName}</DialogContentText>
