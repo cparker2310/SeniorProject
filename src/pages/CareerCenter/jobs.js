@@ -11,7 +11,6 @@ import Search from '../../components/CareerCenter/Search';
 import JobCard from '../../components/CareerCenter/Jobs/JobCard';
 import NewJob from '../../components/CareerCenter/Jobs/NewJob';
 import EditJob from '../../components/CareerCenter/Jobs/EditJob/EditJob';
-import ReplyJob from '../../components/CareerCenter/Jobs/ReplyJob/ReplyJob';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { TailSpin } from  'react-loader-spinner';
 import api from '../../api/index';
@@ -32,7 +31,6 @@ const CareerCenter = () => {
   const [editJob, setEditJob]= useState(false);
   const [job, setJobs] = useState([]);
   const [page, setPage]= useState(1);
-  const [newComment, setNewComment]= useState(false);
   const [elements, setElements] = useState(<></>);
   
   const filterJobs = async(filterSettings) => {
@@ -96,7 +94,6 @@ const CareerCenter = () => {
         <ThemeProvider theme={theme}>
           <Header openNewJob={() => setNewJob(true)} />
           <NewJob closeNewJob={() => setNewJob(false)} newJob={newJob} />
-          <ReplyJob closeNewComment={() => setNewComment(false)} newComment={newComment} />
           <Box mb={3}>
             <Grid container justifyContent='center'>
               <Grid item xs={10}>
@@ -120,7 +117,6 @@ const CareerCenter = () => {
                 {job.map((job)=>{
                     return (<><JobCard props={job} openEditJob={() => setEditJob(true)}/>
                     <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
-                    <ReplyJob closeNewComment={() => setNewComment(false)} newComment={newComment} id={job._id}/>
                     </>)})} 
                 </InfiniteScroll>
               </Grid>
