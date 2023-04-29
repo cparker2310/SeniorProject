@@ -1,5 +1,8 @@
 # Senior Project: Maryvale Alumnae Network
 
+<img width="339" alt="Screenshot 2023-04-28 at 4 38 18 PM" src="https://user-images.githubusercontent.com/55026849/235279823-f66e57ce-267f-4acb-854c-1aa12f95e862.png">
+
+
 ## Requirements
 
 [User Stories](https://docs.google.com/spreadsheets/d/1_QwudAAi9BX-j_2ZAZfFq_GFp-EMWKnDFQONNTnFGdA/edit?pli=1#gid=0)
