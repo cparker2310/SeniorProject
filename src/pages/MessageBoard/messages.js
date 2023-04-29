@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/NavBar/Navbar';
 import Castle from '../../images/castle.jpg';
 import styled from 'styled-components';

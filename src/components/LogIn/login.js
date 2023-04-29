@@ -5,7 +5,6 @@ import Castle from '../../images/castle.jpg';
 import Footer from '../Footer/Footer';
 import { FaPaw } from 'react-icons/fa';
 import api from '../../api';
-import axios from 'axios';
 import { useContext } from 'react';
 import { RecoveryContext } from '../../App';
 

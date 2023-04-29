@@ -1,12 +1,11 @@
 const mongoose = require('mongoose')
-const isEmail = require('validator')
 const bcrypt = require('bcrypt')
 const Schema = mongoose.Schema
 
 const User = new Schema(
     {
-      email: { type: String, required: true }, //validate: [isEmail, 'Please enter a valid email'] },
-      password: { type: String, required: true }, //minlength: [8, 'Password length must be a minimum of 8 characters'] },
+      email: { type: String, required: true },
+      password: { type: String, required: true },
       firstName: { type: String, required: true },
       maidenName: { type: String, required: true },
       marriedName: { type: String, required: false },
@@ -27,13 +26,12 @@ const User = new Schema(
       isAdmin: { type: Boolean, default: false },
       profileFinal: {type: String, default: false}
     })
-/*
+
     User.pre('save', async function(next) {
       const salt= await bcrypt.genSalt();
       this.password= await bcrypt.hash(this.password, salt);
       next();
     });
-*/
 
 const userModel = mongoose.model('users', User)
 

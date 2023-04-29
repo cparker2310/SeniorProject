@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import api from '../../../api/index';
 import { FaPaw } from 'react-icons/fa';
 import CloseIcon from '@mui/icons-material/Close';
