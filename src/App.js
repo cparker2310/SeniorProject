@@ -13,6 +13,7 @@ import ProfilePage from './pages/Profile/profile';
 import PendingUsers from './pages/Admin/PendingUsers';
 import OTP from './components/OTP/OTP';
 import Reset from './components/OTP/Reset';
+import PrivateRoute from './utils/PrivateRoute';
 
 export const RecoveryContext= createContext();
 
@@ -30,13 +31,15 @@ function App() {
                         <Route path="/consent" element={<Consent/>} exact />
                         <Route path="/signup" element={<Form />} exact />
                         <Route path="/login" element={<LogInPage />} exact />
-                        <Route path="/conduct" element={<SiteConduct />} exact />
-                        <Route path="/directory" element={<Directory />} exact />
-                        <Route path="/jobs" element={<CareerCenter />} exact />
-                        <Route path="/messages" element={<MessageBoard />} exact />
+                        <Route element={<PrivateRoute />}>
+                            <Route path="/conduct" element={<SiteConduct />} exact />
+                            <Route path="/directory" element={<Directory />} exact />
+                            <Route path="/jobs" element={<CareerCenter />} exact />
+                            <Route path="/messages" element={<MessageBoard />} exact />
+                            <Route path="/profile" element={<ProfilePage />} exact />
+                            <Route path="/pending" element={<PendingUsers />} exact />
+                        </Route> 
                         <Route path="/otp" element={<OTP />} exact />
-                        <Route path="/profile" element={<ProfilePage />} exact />
-                        <Route path="/pending" element={<PendingUsers />} exact />
                         <Route path="/reset" element={<Reset />} exact />
                     </Routes>
                 </Router>
