@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-//import AdminVerify from '../components/AdminVerify/AdminVerify';
 import Navbar from '../../components/NavBar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import api from '../../api/index';

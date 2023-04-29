@@ -11,19 +11,21 @@
 ## Iteration Planning
 [Iteration Planning Document](https://docs.google.com/document/d/1WdYIVGUy4vkNrcb3N5dJ6M4iC1BRC8n5g3eWo-nUDsg/edit)
 
-## Instructions 
+## Instructions
+
+## Installation
 
 #### 1. Clone the repository
-#### 2. Install the node_modules: `npm install`
+#### 2. At the root of the directory install the node modules using the following command: `npm install`
+#### 3. Navigate to the sever folder by typing `cd server` and install the node modules with the same command: `npm install`
 
+## How to Run
 
-### Running the Backend: 
-`cd server`
-
-`nodemon index.js`
-
-### Running the Frontend:
-`npm start`
+#### 1. Open up a split terminal and navigate to the server folder by typing `cd server` in the first terminal
+#### 2. Once inside the server folder, use the following command to run the Back End: `nodemon index.js`
+#### 3. In the second terminal, navigate to the src folder by typing: `cd src`
+#### 4. Once inside the src folder, enter the following command to run the Front End: `npm start`
+#### The website should open in a new tab under the URL `localhost:3000` upon successful completion of directions
 
 
 ## Testing 

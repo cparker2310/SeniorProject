@@ -133,7 +133,7 @@ export default function MessageCard({props, openEditMessage, openComment}) {
     console.log(props.image)
       return (
         <>
-            <Box p={2} className={classes.wrapper} width={600} height={700}>
+            <Box p={2} className={classes.wrapper} width={600} height={800}>
                 <Grid container justifyContent='center'>
                     <Grid item xs={12} sm={6}>
                         <Box display='flex' alignItems='center' justifyContent='center' mb={2}>

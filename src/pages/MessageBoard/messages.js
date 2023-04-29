@@ -59,6 +59,34 @@ const MessageBoard = () => {
 const messageAlreadyPosted= (theMessage, messages) => {
     return messages.some((m) => m._id=== theMessage._id);
 };
+
+useEffect(() => {
+  const generateElements = () => {
+    const rows = [];
+
+    for (let i = 0; i < elements.length; i += 2) {
+      const row = [];
+
+      for (let j = i; j < i + 2 && j < elements.length; j++) {
+        row.push(
+          <Grid item xs={4} key={elements[j]._id}>
+            <MessageCard props={elements[j]} />
+          </Grid>
+        );
+      }
+
+      rows.push(
+        <Grid container spacing={4} key={i} justifyContent="center">
+          {row}
+        </Grid>
+      );
+    }
+
+    setElements(rows);
+  };
+
+  generateElements();
+}, [elements]);
   
   return (
     <>

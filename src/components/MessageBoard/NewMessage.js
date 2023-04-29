@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Box from "@mui/material/Box";
 import { FaPaw } from 'react-icons/fa';
 import CloseIcon from '@mui/icons-material/Close';
-import { AiOutlineCloudUpload } from 'react-icons/ai';
+import { BsCloudUpload } from 'react-icons/bs';
 import { 
     Button,
     Typography,
@@ -135,18 +135,20 @@ export default (props) => {
                         <FilledInput onChange={handleChange} name='title' value={messageDetails.title} autoComplete='off' placeholder=' Title *' disableUnderline fullWidth/>
                     </Grid>
                     <Grid item xs={12}>
-                        <FilledInput onChange={handleChange} name='description' value={messageDetails.description} autoComplete='off' placeholder='Description *' disableUnderline fullWidth multiline rows={4}/>
+                        <FilledInput onChange={handleChange} name='description' value={messageDetails.description} autoComplete='off' placeholder='Description *' disableUnderline fullWidth multiline rows={6}/>
                     </Grid>
                     <Grid item xs={6}>
                     { true &&
                     <form action={("http://localhost:8000/api/upload/" + image)} method="POST" encType="multipart/form-data"
-                        style={{width: "450px", height: "450px", margin: "auto", display: "block", marginTop: "50px", marginBottom: "20px", border: "20px solid #dd6868"}}
+                        style={{width: "450px", height: "30px", margin: "auto", display: "block", marginBottom: "60px"}}
       /*onSubmit={handleSubmit}*/>
 
                     
 
                     
-                    <FilledInput 
+                    <FilledInput
+                        style={{ marginBottom: '10px' }}
+                        disableUnderline 
                         type="file"
                         //lable="Image"
                         name="myFile"
@@ -160,7 +162,7 @@ export default (props) => {
             className=""
           />
                     
-         <Button type='submit' className="submitBtn" onClick={onSubmit}>Upload</Button>
+         <Button type='submit' variant='contained' style={{ backgroundColor: '#63625d', color: '#fdfdfd', marginRight: '3px' }} onClick={onSubmit}>Upload <BsCloudUpload /></Button>
                     </form>}
       
                     </Grid>
