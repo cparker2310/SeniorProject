@@ -1,7 +1,5 @@
-//import axios from 'axios';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Navbar from '../../components/NavBar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import api from '../../api/index';
@@ -19,11 +17,9 @@ import { TailSpin } from  'react-loader-spinner';
 
 const PendingUsers = () => {
     const [open, setOpen]= useState(false);
-    //const [state, setState]= useState(true);
     const [pendingUsers, setPendings]= useState([]);
     const [denyUser, setDenyUser]= useState({});
     const [action, setAction] = useState(false)
-    const [element, setElement]= useState(<></>);
     const [admin, setAdmin] = useState(false)
     const [page, setPage]= useState(1);
     
@@ -43,7 +39,6 @@ const PendingUsers = () => {
         '&:nth-of-type(odd)': {
             backgroundColor: theme.palette.action.hover,
         },
-        // hide last border
         '&:last-child td, &:last-child th': {
             border: 0,
         },
@@ -58,7 +53,6 @@ const PendingUsers = () => {
       })
       setAction(!action)
       
-      //window.location.reload(true)
       
   }
   
@@ -73,27 +67,11 @@ const PendingUsers = () => {
       })
       handleDeny(data._id)
   }
-    // Should retrieve users after they register
     
     const getPendings = async() => {
         await api.getAllPendings().then((pendings) => {
             const pendingUsers = pendings.data
-            setPendings(pendingUsers)/*
-            const ele = pendingUsers.map((user, index)=>{
-              return <>
-              <StyledTableRow key={user._id}>
-                <StyledTableCell align="right">{index+1}</StyledTableCell>
-                <StyledTableCell align="right">{user.firstName}</StyledTableCell>
-                <StyledTableCell align="right">{user.maidenName}</StyledTableCell>
-                <StyledTableCell align="right">{user.marriedName}</StyledTableCell>
-                <StyledTableCell align="right">{user.classYear}</StyledTableCell>
-                <StyledTableCell align="right">{user.email}</StyledTableCell>
-                <StyledTableCell align="right">
-                  <><button className='accept' onClick={handleAccept(user)}> Accept </button></>
-                      <><button className='deny' onClick={handleDeny(user._id)}>Deny</button></>
-                </StyledTableCell>
-              </StyledTableRow>
-              </>*/
+            setPendings(pendingUsers)
             })
             if(sessionStorage.getItem('user')){
             await api.getUserById(sessionStorage.getItem('user')).then(user=>{

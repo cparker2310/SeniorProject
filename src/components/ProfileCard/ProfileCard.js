@@ -1,9 +1,7 @@
 import theme from './theme/theme';
-//import avatar from "./assets/profile.png"
-
 import { FaPaw } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
-import img from "../../images/female-icon.png"
+import img from "../../images/lion.jpg";
 import './index.css'
 import { MdLocationOn } from 'react-icons/md';
 import { GiGraduateCap } from 'react-icons/gi';
@@ -27,6 +25,7 @@ export default ({props, openEdit}) => {
   const [user, setUser] = useState({})
   const [fileName, setFileName] = useState("")
   const [state, setState] = useState(false)
+
   const getUser = async () =>{
     await api.getUserById(props._id).then(user=>{
       setUser(user.data)

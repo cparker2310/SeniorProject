@@ -5,7 +5,7 @@ import { MdOutlineEditNote } from 'react-icons/md';
 import { GiTrashCan } from 'react-icons/gi';
 import { BiCommentDetail } from 'react-icons/bi';
 import CloseIcon from '@mui/icons-material/Close';
-import TestImg from '../../images/testimagemessage.jpg';
+import TestImg from '../../images/lion.jpg';
 import api from '../../api/index';
 import { 
     Button,
@@ -15,7 +15,6 @@ import {
     Dialog,
     DialogContent,
     DialogContentText,
-    TextField,
     FilledInput,
     makeStyles
 } from '@material-ui/core';
@@ -65,12 +64,9 @@ const useStyles= makeStyles((theme) => ({
 export default function MessageCard({props, openEditMessage, openComment}) {
     const classes= useStyles();
     const categories= props.categories
-    const element = sessionStorage.getItem('user') === props.author_id || props.isAdmin ? <GiTrashCan /> : <></>
-    const element2 = sessionStorage.getItem('user') === props.author_id || props.isAdmin ?<MdOutlineEditNote/> : <></>
     const [user, setUser] = useState({})
     const [openMessageDetails, setOpenMessageDetails]= useState(false);
     const [comments, setComments] = useState([]);
-    const [editComment, setEditComment]= useState([]);
     const [editCommentOpen, setEditCommentOpen] = useState(false);
     const [comment, setComment] = useState("")
 

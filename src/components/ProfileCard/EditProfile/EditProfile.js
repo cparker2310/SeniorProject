@@ -13,8 +13,6 @@ import {
     Button,
     IconButton
 } from "@material-ui/core";
-import { PinDropSharp } from '@mui/icons-material';
-
 
 const initState= {
     firstName: "",
