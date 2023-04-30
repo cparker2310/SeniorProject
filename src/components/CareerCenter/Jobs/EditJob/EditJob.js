@@ -52,7 +52,8 @@ const initState= {
     categories: []   
 }
 
-export default (props) => {
+export default ({props, index, closeEditJob, editJob}) => {
+    console.log(props)
     const classes= useStyles();
     const [editJobDetails, setEditJobDetails]= useState(initState);
 
@@ -71,18 +72,19 @@ export default (props) => {
 
         const { title, type, companyName, location, contactName,
             contactInfo, description, isAvailable, categories} = editJobDetails
-      
+        
           const payload = { title, type, companyName, location, contactName,
             contactInfo, description, isAvailable, categories}
     
         await api.updateJobById(props._id, payload).then(res => {
             alert(`Job updated successfully`)
         })
+        closeEditJob()
     }
 
-    const closeEditJob= () => {
+    const callCloseEditJob= () => {
         setEditJobDetails(initState);
-        props.closeEditJob();
+        closeEditJob();
     }
 
     const categories= [
@@ -96,11 +98,11 @@ export default (props) => {
     ];
 
     return (
-        <Dialog open={props.editJob} fullWidth>
+        <Dialog open={editJob} fullWidth>
             <DialogTitle>
                 <Box display='flex' justifyContent='space-between' alignItems='center'>
                     Edit Job
-                    <IconButton onClick={closeEditJob}>
+                    <IconButton onClick={callCloseEditJob}>
                         <CloseIcon />
                     </IconButton>
                 </Box>
@@ -108,7 +110,7 @@ export default (props) => {
             <DialogContent>
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
-                        <FilledInput onChange={handleChange} name='title' value={editJobDetails.title} autoComplete='off' placeholder='Job Title *' disableUnderline fullWidth/>
+                        <FilledInput onChange={handleChange} placeholder={props.title || 'Job Title *'} name='title' value={editJobDetails.title} autoComplete='off'  disableUnderline fullWidth/>
                     </Grid>
 
                     <Grid item xs={6}>
@@ -120,11 +122,11 @@ export default (props) => {
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput onChange={handleChange} name='companyName' value={editJobDetails.companyName} autoComplete='off' placeholder='Company Name *' disableUnderline fullWidth/>
+                        <FilledInput onChange={handleChange} name='companyName' placeholder={props.companyName || 'Company Name *'} value={editJobDetails.companyName} autoComplete='off' disableUnderline fullWidth/>
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput onChange={handleChange} name='contactName' value={editJobDetails.contactName} autoComplete='off' placeholder='Your Name *' disableUnderline fullWidth/>
+                        <FilledInput onChange={handleChange} name='contactName' placeholder={props.contactName || 'Your Name *'} value={editJobDetails.contactName} autoComplete='off' disableUnderline fullWidth/>
                     </Grid>
 
                     <Grid item xs={6}>
@@ -136,11 +138,11 @@ export default (props) => {
                     </Grid>
 
                     <Grid item xs={6}>
-                        <FilledInput onChange={handleChange} name='contactInfo' value={editJobDetails.contactInfo} autoComplete='off' placeholder='Your Email or Phone *' disableUnderline fullWidth/>
+                        <FilledInput onChange={handleChange} name='contactInfo' placeholder={props.contactInfo || 'Your Email or Phone *'} value={editJobDetails.contactInfo} autoComplete='off' disableUnderline fullWidth/>
                     </Grid>
 
                     <Grid item xs={12}>
-                        <FilledInput onChange={handleChange} name='description' value={editJobDetails.description} autoComplete='off' placeholder='Description *' disableUnderline fullWidth multiline rows={4}/>
+                        <FilledInput onChange={handleChange} name='description' placeholder={props.description || 'Description *'} value={editJobDetails.description} autoComplete='off' disableUnderline fullWidth multiline rows={4}/>
                     </Grid>
                 </Grid>
                 <Box mt={2}>

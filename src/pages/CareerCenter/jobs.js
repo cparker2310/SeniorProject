@@ -113,9 +113,9 @@ const CareerCenter = () => {
                       alignItems="center"
                     />}
                 >
-                {job.map((job)=>{
-                    return (<><JobCard props={job} openEditJob={() => setEditJob(true)}/>
-                    <EditJob _id={job._id} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
+                {job.map((_job, index)=>{
+                    return (<><JobCard props={_job} index={index} openEditJob={() => setEditJob(true)}/>
+                    <EditJob props={_job} index={index} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
                     </>)})} 
                 </InfiniteScroll>
               </Grid>
