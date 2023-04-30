@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import api from '../../api/index';
 import { SlUserFemale } from "react-icons/sl";
+import { BiChevronDown } from "react-icons/bi";
+import { GoGift } from "react-icons/go";
+import './Dropdown/Dropdown.css';
 
 export const NavbarContainer= styled.div`
   width: 100%;
@@ -95,14 +98,13 @@ const u = sessionStorage.getItem('user')
 
 const [user, setUser] = useState({})
 const [admin, setAdmin] = useState(false)
+
   const getUser = async () => {
     if(u){
       await api.getUserById(u).then(user => {
         setUser(user.data)
         setAdmin(user.data.isAdmin)
       })
-      //console.log(newUser)
-        //console.log(user)
       }
     
   }
@@ -131,7 +133,14 @@ const [admin, setAdmin] = useState(false)
           <NavLink to="/jobs">Career Center</NavLink>
           <NavLink to="/messages">Message Board</NavLink>
           {admin && <NavLink to="/pending">Pending Users</NavLink>}
-          
+          <div className='dropdown'>
+            <NavLink className='dropbtn'>Links <BiChevronDown /></NavLink>
+            <div className="dropdown-content">
+              <a href="//www.maryvale.com" target="_blank">Maryvale Main Website</a>
+              <a href="//www.maryvale.com/giving/give-now" target="_blank">Donate <GoGift /></a>
+              <a href="https://theshopatmaryvale.com" target="_blank">The Shop at Maryvale</a>
+            </div>
+         </div>
         </Nav>
           <ButtonContainer> 
             <Link state={{props:user}} style={{ textDecoration: 'none' }}>

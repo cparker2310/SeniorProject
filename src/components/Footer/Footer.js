@@ -6,7 +6,6 @@ import { AiFillTwitterCircle, AiFillInstagram, AiFillYoutube } from "react-icons
 import { TiSocialLinkedinCircular } from "react-icons/ti";
 
 export const FooterContainer= styled.footer`
-    //background-color: linear-gradient(90deg, #60000D, #a32738);
     background: #a32738;
     height: 100px;
 `;
