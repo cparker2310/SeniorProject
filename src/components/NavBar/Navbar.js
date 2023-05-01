@@ -129,9 +129,10 @@ const [admin, setAdmin] = useState(false)
         <Nav>
           <NavLink to="/">MARYVALE</NavLink>
           <NavLink to="/conduct">Site Conduct</NavLink>
+          {u && <>
           <NavLink to="/directory">Directory</NavLink>
           <NavLink to="/jobs">Career Center</NavLink>
-          <NavLink to="/messages">Message Board</NavLink>
+          <NavLink to="/messages">Message Board</NavLink></>}
           {admin && <NavLink to="/pending">Pending Users</NavLink>}
           <div className='dropdown'>
             <NavLink className='dropbtn'>Links <BiChevronDown /></NavLink>

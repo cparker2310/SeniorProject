@@ -8,6 +8,7 @@ var title = "title"
 const dateCreated = Date.now()
 const description = "..."
 const categories =  ["STEM"]
+const image = "image.png"
 
 /* Connecting to the database before each test. */
 beforeEach(async () => {
@@ -34,7 +35,7 @@ test("get user by id", async () => {
 
   // fix this
 
-  const payload = {author_id, dateCreated, title, description, categories}
+  const payload = {author_id, dateCreated, title, description, categories, image}
 
   await messageDao.create(payload)
   var messages = await messageDao.readAll()
@@ -54,7 +55,7 @@ test("get all users / create user", async () => {
 
       // fix this
   
-      const payload = {author_id, dateCreated, title, description, categories}  
+      const payload = {author_id, dateCreated, title, description, categories, image}  
       //const users_before = await api.getAllUsers()
       //const len_before = users_before.data.data.length
       await messageDao.create(payload)
@@ -71,7 +72,7 @@ test("get all users / create user", async () => {
 
     test("Update User by id", async () => {
 
-        var payload = {author_id, dateCreated, title, description, categories}  
+        var payload = {author_id, dateCreated, title, description, categories, image}  
       await messageDao.create(payload)
       
       var messages_before = await messageDao.readAll()
@@ -79,7 +80,7 @@ test("get all users / create user", async () => {
 
       title = "new_title"
       //var pay = {"email":"new_email"}
-      payload = {author_id, dateCreated, title, description, categories}      
+      payload = {author_id, dateCreated, title, description, categories, image}      
       await messageDao.update(messages_before[messages_len-1]._id, payload)
       var messages_after = await messageDao.readAll()
 
@@ -90,8 +91,8 @@ test("get all users / create user", async () => {
 
     })
   
-    test("delete User", async () => {
-      const payload = {author_id, dateCreated, title, description, categories}  
+    test("delete Message", async () => {
+      const payload = {author_id, dateCreated, title, description, categories, image}  
       await messageDao.create(payload)
       await messageDao.create(payload)
 

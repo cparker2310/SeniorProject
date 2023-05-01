@@ -20,6 +20,7 @@ test('getAllmessages', async() => {
         author_id: 'fake id',
         title: 'message posting',
         description: 'working for me',
+        image: "image.png"
       };
 
       
@@ -40,6 +41,7 @@ test('getByID', async() => {
         author_id: 'fake id',
         title: 'message posting',
         description: 'working for me',
+        image: "image.png"
       };
       
     let res = await request(app)
@@ -58,6 +60,7 @@ test('create message', async () =>{
         author_id: 'fake id',
         title: 'message posting',
         description: 'working for me',
+        image: "image.png"
       };
       
       const res = await request(app)
@@ -76,6 +79,7 @@ test('update message', async () =>{
         author_id: 'fake id',
         title: 'message posting',
         description: 'working for me',
+        image: "image.png"
       };
       
     let res = await request(app)
@@ -93,6 +97,7 @@ test('update message', async () =>{
         author_id: 'new id',
         title: 'new posting',
         description: 'new desc',
+        image: "image.png"
       };
 
     res = await request(app)
@@ -112,6 +117,7 @@ test('delete message', async () => {
         author_id: 'fake id',
         title: 'message posting',
         description: 'working for me',
+        image: "image.png"
       };
       
     res = await request(app)
