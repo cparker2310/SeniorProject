@@ -139,6 +139,7 @@ export default (props) => {
                     </Grid>
                     <Grid item xs={6}>
                     { true &&
+                    <div className="App">
                     <form action={("http://localhost:8000/api/upload/" + image)} method="POST" encType="multipart/form-data"
                         style={{width: "450px", height: "30px", margin: "auto", display: "block", marginBottom: "60px"}}
       /*onSubmit={handleSubmit}*/>
@@ -163,7 +164,7 @@ export default (props) => {
           />
                     
          <Button type='submit' variant='contained' style={{ backgroundColor: '#63625d', color: '#fdfdfd', marginRight: '3px' }} onClick={onSubmit}>Upload <BsCloudUpload /></Button>
-                    </form>}
+                    </form></div>}
       
                     </Grid>
                 </Grid>
