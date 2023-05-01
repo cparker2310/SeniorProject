@@ -26,13 +26,12 @@ const User = new Schema(
       isAdmin: { type: Boolean, default: false },
       profileFinal: {type: String, default: false}
     })
-
+/*
     User.pre('save', async function(next) {
-      const salt= await bcrypt.genSalt();
-      this.password= await bcrypt.hash(this.password, salt);
+      //const salt= await bcrypt.genSalt();
+      this.password= bcrypt.hashSync(this.password, 8);
       next();
-    });
-
+    });*/
 const userModel = mongoose.model('users', User)
 
 exports.readAll = async function(){
@@ -41,10 +40,18 @@ exports.readAll = async function(){
   return users;
 }
 
-exports.maxIndex = async function(){
-  let index = userModel.find({}).sort({profileFinal:-1}).limit(1)
-  return index
-}
+
+/*
+exports.login = async function(plogin, pwd){
+  let user = await userModel.findOne({email:plogin});
+  console.log(bcrypt.hashSync(user.password, 8))
+  //let success = await bcrypt.compare(pwd, user.password)
+  //console.log(success)
+  //if(success)
+    return user
+  //else
+    return null
+}*/
 
 exports.read = async function(id){
   let user = await userModel.findOne({_id: id});

@@ -86,7 +86,7 @@ useEffect(() => {
   };
 
   generateElements();
-}, [elements]);
+}, []);
   
   return (
     <>

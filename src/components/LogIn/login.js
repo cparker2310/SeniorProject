@@ -8,6 +8,7 @@ import api from '../../api';
 import { useContext } from 'react';
 import { RecoveryContext } from '../../App';
 
+
 export const Container= styled.div`
   background-image: url(${Castle});
   height: 100%;
@@ -153,6 +154,8 @@ export default function Login() {
         break;
       }
     }
+    
+    
 
     if(!flag){
       for(let i = 0; i< pendings.length; i++){
@@ -166,8 +169,8 @@ export default function Login() {
         alert('Invalid Credentials')
         setLink("/login")   
       }
-  }
-}
+    }}
+
 
 useEffect(()=>{
   getLists()

@@ -29,19 +29,18 @@ export default ({props, openEdit}) => {
   const getUser = async () =>{
     await api.getUserById(props._id).then(user=>{
       setUser(user.data)
+      //console.log(user.data.profileFinal)
       setFileName(user.data.profileFinal)
     })
   }
-  useEffect(() => {
 
+  useEffect(() => {
     getUser()
-    //console.log("inside")
   }, [openEdit])
   
   useEffect(() => {
     getUser()
-    console.log("getting")
-  }, [])
+  }, [state])
   const show = sessionStorage.getItem('user') === props._id || props.isAdmin
 
       
@@ -53,9 +52,10 @@ export default ({props, openEdit}) => {
     const profileFinal = fileName
     const payload = {profileFinal}
     await api.updateUserById(user._id, payload).then(res=>{
-      setState(!state)
+      //setState(!state)
     })
-    console.log(state)
+    
+    setState(!state)
   }
 
   
@@ -82,7 +82,7 @@ export default ({props, openEdit}) => {
       /*onSubmit={handleSubmit}*/>
 
         <label htmlFor="myFile" className='custom-file-upload'>
-          <img src={("http://localhost:8000/api/image/" +fileName) || img} alt="" style={{width: "450px", height: "450px", margin: "auto", display: "block", marginTop: "50px", marginBottom: "20px", border: "20px solid #dd6868"}} />
+          <img src={fileName ? ("http://localhost:8000/api/image/" + fileName) : img} alt="" style={{width: "450px", height: "450px", margin: "auto", display: "block", marginTop: "50px", marginBottom: "20px", border: "20px solid #dd6868"}} />
         </label>
 
         <div className="photo-container">

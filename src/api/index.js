@@ -5,6 +5,7 @@ const api = axios.create({
 })
 
 export const insertUser = payload => api.post(`/user`, payload)
+//export const login = payload => api.post(`/login`, payload)
 export const getAllUsers = () => api.get(`/users`)
 export const updateUserById = (id, payload) => api.put(`/user/${id}`, payload)
 export const deleteUserById = id => api.delete(`/user/${id}`)
@@ -33,7 +34,7 @@ const apis = {
     deleteUserById,
     getAllUsers,
     getUserById,
-    //updateImageIndex,
+    
 
     insertPending,
     deletePending,

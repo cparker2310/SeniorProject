@@ -126,7 +126,7 @@ export default function MessageCard({props, openEditMessage, openComment}) {
         }
     }
            
-    console.log(props.image)
+    //console.log(props.image)
       return (
         <>
             <Box p={2} className={classes.wrapper} width={600} height={800}>

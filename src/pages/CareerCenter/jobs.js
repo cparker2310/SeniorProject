@@ -114,7 +114,7 @@ const CareerCenter = () => {
                     />}
                 >
                 {job.map((_job, index)=>{
-                    return (<><JobCard props={_job} index={index} openEditJob={() => setEditJob(true)}/>
+                    return (<><JobCard props={_job} openEditJob={() => setEditJob(true)}/>
                     <EditJob props={_job} index={index} closeEditJob={() => setEditJob(false)} editJob={editJob}></EditJob>
                     </>)})} 
                 </InfiniteScroll>

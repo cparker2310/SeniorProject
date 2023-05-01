@@ -5,7 +5,22 @@ getUsers = async function(req,res){ // REST get (all) method
     res.send(await userDao.readAll()); //send the users back to the client
     res.end(); 
 }
-
+/*
+login = async function(req,res){
+    
+        let plogin = req.body.email;
+        let pwd = req.body.password;
+        
+        let user = await userDao.login(plogin, pwd);
+        //console.log(user);
+        if(user != null){ //login successful
+            res.send(user)
+            res.status(200)
+        }
+    res.end()
+    
+}
+*/
 getUserById = async function(req,res){ //REST get (one) method
     //URL parameter always on req.params.<name>
     let id = req.params.id; //get param and convert to int
@@ -59,4 +74,5 @@ module.exports = {
     deleteUser,
     getUsers,
     getUserById,
+    
 }
