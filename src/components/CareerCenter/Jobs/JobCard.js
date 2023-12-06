@@ -59,7 +59,7 @@ const useStyles= makeStyles((theme) => ({
     }
 }));
 
-export default function JobCard({props, openEditJob, openComment}){
+export default function JobCard({props, openEditJob}){
     const classes= useStyles();
     const categories= props.categories
 

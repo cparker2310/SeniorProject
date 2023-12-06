@@ -62,17 +62,17 @@ import api from '../../../api/index';
           <Avatar sx={{ bg: [500], mb: 1, width: 60, height: 60 }}>
               <SlUserFemale style={{ height: '40px', width: '40px' }}/>
           </Avatar>
-            <Typography gutterBottom variant="h6" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>
+            <Typography gutterBottom variant="body1" style={{ textAlign: "center", fontFamily: "Lora, serif", fontWeight: "bold"}}>
               {props.firstName} {props.maidenName} {props.marriedName}
             </Typography>
-            <Typography variant="body1" color="#a32738" style={{ textAlign: "center", fontFamily: "Lora, serif" }}>
+            <Typography variant="body1" color="#a32738" style={{ textAlign: "center", fontFamily: "Lora, serif", fontWeight: "bold"}}>
                 Class of {props.classYear}
             </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions style={{justifyContent: "center"}}>
         <Link to="/profile" state={{ props: props }} style={{ textDecoration: 'none' }}>
-         <Button size="small" variant="contained" style={{ backgroundColor: "#a32738", fontFamily: "Lora, serif" }}>
+         <Button size="small" variant="contained" style={{ backgroundColor: "#a32738", fontFamily: "Lora, serif"}}>
            View Profile<FaPaw />
          </Button>
          </Link>

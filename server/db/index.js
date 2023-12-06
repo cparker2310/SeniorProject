@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const dbURI = 'mongodb+srv://cparker2310:astonsoccer@cluster0.2sqxf.mongodb.net/maryvale_temp';
+const dbURI = 'mongodb+srv://iambarbara22:3lhG5BXbcIDiBx2o@maryvale.3yerlmv.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose.connect(dbURI, { useNewUrlParser: true})
   //.then((result) => app.listen(3000))
