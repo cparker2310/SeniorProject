@@ -115,11 +115,28 @@ useEffect(() => {
                       alignItems="center"
                     />}
                 >
-                {theMessage.map((msg)=>{
-          return (<><MessageCard props={msg} openEditMessage={() => setEditMessage(true)} openComment={() => setNewComment(true)}/>
-          <EditMessage _id={msg._id} closeEditMessage={() => setEditMessage(false)} editMessage={editMessage}></EditMessage>
-          <ReplyMessage closeNewComment={() => setNewComment(false)} newComment={newComment} id={msg._id} message={msg} />
-          </>)})}
+                <Grid container spacing={8}>
+                {theMessage.map((msg, index) => (
+                  <Grid item xs={12} md={6} key={index}>
+                    <MessageCard
+                      props={msg}
+                      openEditMessage={() => setEditMessage(true)}
+                      openComment={() => setNewComment(true)}
+                    />
+                    <EditMessage
+                      _id={msg._id}
+                      closeEditMessage={() => setEditMessage(false)}
+                      editMessage={editMessage}
+                    />
+                    <ReplyMessage
+                      closeNewComment={() => setNewComment(false)}
+                      newComment={newComment}
+                      id={msg._id}
+                      message={msg}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
           </InfiniteScroll>
               </Grid>
             </Grid>

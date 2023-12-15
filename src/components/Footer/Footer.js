@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaFacebook } from 'react-icons/fa';
-import { AiFillTwitterCircle, AiFillInstagram, AiFillYoutube } from "react-icons/ai";
-import { TiSocialLinkedinCircular } from "react-icons/ti";
+import { FaSquareXTwitter, FaLinkedin } from "react-icons/fa6";
+import { AiFillInstagram, AiFillYoutube } from "react-icons/ai";
 
 export const FooterContainer= styled.footer`
     background: #a32738;
@@ -74,11 +74,11 @@ const Footer = () => {
                         <SocialIconLink href="//www.facebook.com/MaryvaleLions" target="_blank" aria-label="Facebook">
                             <FaFacebook />
                         </SocialIconLink>
-                        <SocialIconLink href="//www.twitter.com/MaryvaleLions" target="_blank" aria-label="Twitter">
-                            <AiFillTwitterCircle />
+                        <SocialIconLink href="//www.twitter.com/MaryvaleLions" target="_blank" aria-label="X">
+                            <FaSquareXTwitter />
                         </SocialIconLink>
                         <SocialIconLink href="//www.linkedin.com/school/maryvale-preparatory-school/" target="_blank" aria-label="LinkedIn">
-                            <TiSocialLinkedinCircular />
+                            <FaLinkedin />
                         </SocialIconLink>
                         <SocialIconLink href="//www.instagram.com/maryvalelions/" target="_blank" aria-label="Instagram">
                             <AiFillInstagram />
